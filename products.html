@@ -1,362 +1,846 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>BoilerTech Energy</title>
+<title>Products – Boilertech Energy Services</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-
-<script>
-tailwind.config = {
-  darkMode: "class",
-  theme: {
-    extend: {
-      colors: {
-        "bt-blue": "#1FB6D5",
-        "bt-orange": "#F5A200",
-        "bt-green": "#7CFC00",
-        "bt-red": "#FF1A1A"
-      }
-    }
-  }
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>tailwind.config={theme:{extend:{fontFamily:{manrope:['Manrope','sans-serif']}}}}</script>
+<style>
+:root{
+  --blue:#1CB5D8;
+  --orange:#F5A200;
+  --green:#7CFC00;
+  --red:#FF1A1A;
+  --dk-bg:#08090c;
+  --dk-card:#13161c;
+  --dk-border:rgba(28,181,216,0.13);
+  --dk-muted:rgba(232,237,245,0.45);
+  --lt-bg:#ffffff;
+  --lt-muted:#6b7280;
+  --lt-text:#0f1115;
 }
-</script>
+/* ─── TOP BAR ─── */
+.topbar{
+  position:fixed;top:0;left:0;width:100%;height:3px;z-index:400;
+  background:linear-gradient(90deg,var(--blue),var(--orange),var(--green),var(--red),var(--blue));
+  background-size:400% 100%;
+  animation:barShift 5s linear infinite;
+}
+@keyframes barShift{0%{background-position:0%}100%{background-position:400%}}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+/* body{font-family:'DM Sans',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;background:#ffffff;} */
+*,body { font-family:'DM Sans',sans-serif; }
+.mano { font-family:'Manrope',sans-serif; }
+
+/* ── SECTION THEMES ── */
+.sec-dark{background:#08090c !important;}
+.sec-light{background:#f4f6f9 !important;}
+
+/* Scroll strip alternates with dark */
+.scroll-strip{background:#0f1115 !important;}
+
+/* TOP BAR — removed */
+
+/* NAV — handled by Tailwind */
+.nav-logo-text{font-family:'Manrope',sans-serif;font-size:1.4rem;letter-spacing:1px;color:#fff;}
+.nav-logo-text span{color:var(--blue);}
+.nav-links{display:flex;align-items:center;gap:32px;}
+/* BUTTONS */
+.btn-orange{background:var(--orange);color:#000;font-weight:700;padding:13px 30px;
+  border-radius:7px;border:none;cursor:pointer;font-size:.88rem;transition:all .3s;}
+.btn-orange:hover{background:var(--blue);color:#fff;transform:translateY(-2px);}
+
+/* STICKY CAT NAV */
+.cat-nav{position:sticky;top:65px;z-index:100;background:rgba(248,250,252,.98);
+  backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.07);padding:0 32px;}
+.cat-nav-inner{max-width:1400px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;
+  scrollbar-width:none;padding:10px 0;}
+.cat-nav-inner::-webkit-scrollbar{display:none;}
+.cat-pill{white-space:nowrap;padding:7px 18px;border-radius:6px;font-size:.79rem;
+  font-weight:600;cursor:pointer;background:transparent;color:#64748b;
+  border:1px solid #e2e8f0;transition:all .25s;}
+.cat-pill:hover{color:var(--blue);border-color:var(--blue);}
+.cat-pill.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+
+/* SCROLL STRIP */
+.scroll-strip{overflow:hidden;padding:22px 0;background:#0f1115;
+  border-bottom:1px solid rgba(255,255,255,.04);}
+.scroll-track{display:flex;gap:14px;width:max-content;animation:scrollLeft 28s linear infinite;}
+.scroll-track:hover{animation-play-state:paused;}
+@keyframes scrollLeft{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.scroll-chip{white-space:nowrap;padding:9px 22px;border-radius:8px;background:var(--dk-card);
+  border:1px solid var(--dk-border);font-size:.82rem;font-weight:600;color:rgba(255,255,255,.55);
+  transition:all .25s;cursor:default;}
+.scroll-chip:hover{border-color:var(--blue);color:var(--blue);}
+
+/* ══ ALTERNATING SECTIONS ══ */
+.sec-dark{background:var(--dk-bg);padding:80px 32px;}
+.sec-light{background:#ffffff;padding:80px 32px;}
+.sec-inner{max-width:1400px;margin:0 auto;}
+
+/* SECTION HEADER */
+.cat-divider{display:flex;align-items:center;gap:14px;margin-bottom:40px;}
+.cat-divider .icon{font-size:1.8rem;}
+.sec-dark .cat-divider h2{font-family:'Manrope',sans-serif;font-size:2.2rem;
+  color:#fff;letter-spacing:1px;}
+.sec-light .cat-divider h2{font-family:'Manrope',sans-serif;font-size:2.2rem;
+  color:#0f1115;letter-spacing:1px;}
+.sec-dark .cat-divider .ln{flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.12),transparent);}
+.sec-light .cat-divider .ln{flex:1;height:1px;background:linear-gradient(90deg,rgba(0,0,0,.15),transparent);}
+
+/* INTRO BAND */
+.intro-band{border-radius:14px;padding:28px 36px;display:flex;align-items:center;
+  justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:40px;}
+.sec-dark .intro-band{background:rgba(28,181,216,.06);border:1px solid rgba(28,181,216,.15);}
+.sec-light .intro-band{background:#f8fafc;border:1px solid rgba(28,181,216,.20);}
+.sec-dark .intro-band p{font-size:.92rem;color:var(--dk-muted);max-width:540px;line-height:1.7;}
+.sec-light .intro-band p{font-size:.92rem;color:#374151;max-width:540px;line-height:1.7;}
+.sec-dark .intro-band strong{color:#fff;}
+.sec-light .intro-band strong{color:#0f1115;}
+
+/* PRODUCT GRID */
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px;}
+
+/* DARK CARD */
+.card-dk{background:var(--dk-card);border:1px solid var(--dk-border);
+  border-radius:14px;overflow:hidden;position:relative;
+  transition:all .35s cubic-bezier(.25,.46,.45,.94);}
+.card-dk::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--acc);transform:scaleX(0);transform-origin:left;
+  transition:transform .35s ease;z-index:1;}
+.card-dk:hover::before{transform:scaleX(1);}
+.card-dk:hover{border-color:var(--acc-dim);transform:translateY(-5px);
+  box-shadow:0 20px 48px rgba(0,0,0,.55);}
+
+/* LIGHT CARD */
+.card-lt{background:#ffffff;border:1px solid rgba(0,0,0,.10);border-radius:14px;
+  overflow:hidden;position:relative;box-shadow:0 4px 20px rgba(0,0,0,.08);
+  transition:all .35s cubic-bezier(.25,.46,.45,.94);}
+.card-lt::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--acc);transform:scaleX(0);transform-origin:left;
+  transition:transform .35s ease;z-index:1;}
+.card-lt:hover::before{transform:scaleX(1);}
+.card-lt:hover{border-color:var(--acc-dim);transform:translateY(-5px);
+  box-shadow:0 20px 48px rgba(0,0,0,.15);}
+
+/* CARD INTERNALS */
+.c-head{padding:24px 24px 0;display:flex;align-items:flex-start;justify-content:space-between;}
+.c-icon{width:50px;height:50px;border-radius:11px;background:var(--icon-bg);
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;}
+.c-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:4px 11px;
+  border-radius:4px;font-weight:700;background:var(--tag-bg);color:var(--acc);}
+.c-body{padding:18px 24px 24px;}
+.c-name{font-family:'Manrope',sans-serif;font-size:1.38rem;letter-spacing:.5px;margin-bottom:9px;}
+.card-dk .c-name{color:#fff;}
+.card-lt .c-name{color:#0f1115;}
+.card-dk .c-desc{font-size:.83rem;color:var(--dk-muted);line-height:1.7;margin-bottom:18px;}
+.card-lt .c-desc{font-size:.83rem;color:#4b5563;line-height:1.7;margin-bottom:18px;}
+.c-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:18px;}
+.card-dk .ctag{font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700;
+  padding:3px 9px;border-radius:4px;background:rgba(255,255,255,.06);
+  color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.08);}
+.card-lt .ctag{font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700;
+  padding:3px 9px;border-radius:4px;background:#f1f5f9;
+  color:#64748b;border:1px solid #e2e8f0;}
+.c-foot{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;}
+.card-dk .c-foot{border-top:1px solid rgba(255,255,255,.05);}
+.card-lt .c-foot{border-top:1px solid rgba(0,0,0,.08);}
+.card-dk .c-note{font-size:.76rem;color:var(--dk-muted);}
+.card-lt .c-note{font-size:.76rem;color:#9ca3af;}
+.enq-btn{background:transparent;color:var(--acc);border:1px solid var(--acc-dim);
+  padding:7px 17px;border-radius:6px;font-size:.79rem;font-weight:700;
+  letter-spacing:.5px;cursor:pointer;transition:all .25s;}
+.enq-btn:hover{background:var(--acc);color:#000;}
+
+/* CTA */
+.cta-wrap{padding:80px 32px;background:var(--dk-bg);}
+.cta-box{max-width:1400px;margin:0 auto;
+  background:linear-gradient(135deg,rgba(28,181,216,.07),rgba(245,162,0,.05));
+  border:1px solid rgba(28,181,216,.15);border-radius:20px;
+  padding:80px 40px;text-align:center;position:relative;overflow:hidden;}
+.cta-box::before{content:'';position:absolute;top:-50%;right:-10%;width:500px;height:500px;
+  border-radius:50%;background:radial-gradient(circle,rgba(28,181,216,.06) 0%,transparent 65%);
+  pointer-events:none;}
+.cta-box h2{font-family:'Manrope',sans-serif;font-size:clamp(2.5rem,5vw,4rem);
+  color:#fff;margin-bottom:16px;position:relative;z-index:1;}
+.cta-box p{color:var(--dk-muted);max-width:520px;margin:0 auto 36px;line-height:1.7;
+  position:relative;z-index:1;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+.cta-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:28px;position:relative;z-index:1;}
+.cta-chip{font-size:.78rem;color:rgba(255,255,255,.45);background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);padding:6px 16px;border-radius:100px;}
+
+/* FOOTER — handled by Tailwind */
+
+@media(max-width:860px){
+  .prod-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:560px){
+  .sec-dark,.sec-light,.cta-wrap{padding:60px 20px;}
+  .cat-nav{padding:0 16px;}
+  .prod-grid{grid-template-columns:1fr;}
+  .cat-divider h2{font-size:1.5rem;}
+}
+  .hero{padding:120px 20px 60px;}
+
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.cat-section.hidden{display:none;}
+
+  /* ═══════════ CHATBOT ═══════════ */
+  #chatbot-btn {
+    position:fixed; bottom:24px; right:20px; z-index:999;
+    width:56px; height:56px; border-radius:50%;
+    background:linear-gradient(135deg,#1CB5D8,#0e8fa8);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 24px rgba(28,181,216,.45);
+    cursor:pointer; border:none;
+    transition:all .3s;
+  }
+  #chatbot-btn:hover { transform:scale(1.1); box-shadow:0 10px 32px rgba(28,181,216,.55); }
+  #chatbot-btn svg { width:26px; height:26px; fill:#fff; }
+  .cb-pulse {
+    position:absolute; width:100%; height:100%; border-radius:50%;
+    border:2px solid rgba(28,181,216,.5);
+    animation:cbPulse 2.5s ease infinite;
+  }
+  @keyframes cbPulse { 0%{transform:scale(1);opacity:.8} 100%{transform:scale(1.7);opacity:0} }
+
+  #chatbot-window {
+    position:fixed; bottom:92px; right:20px; z-index:999;
+    width:360px;
+    background:#fff; border-radius:20px;
+    box-shadow:0 20px 60px rgba(0,0,0,.2);
+    display:none; flex-direction:column; overflow:hidden;
+    border:1px solid rgba(28,181,216,.2);
+    animation:cbOpen .3s cubic-bezier(.16,1,.3,1);
+  }
+  @keyframes cbOpen { from{opacity:0;transform:translateY(16px) scale(.97)} to{opacity:1;transform:none} }
+  #chatbot-window.open { display:flex; }
+
+  @media(max-width:480px) {
+    #chatbot-window { position:fixed; inset:0; bottom:0; right:0; width:100%; height:100%; border-radius:0; border:none; }
+    #chatbot-btn { bottom:16px; right:16px; width:52px; height:52px; }
+  }
+
+  #cb-header {
+    background:linear-gradient(135deg,#080E18,#0e1830);
+    padding:14px 16px; display:flex; align-items:center; gap:12px;
+    border-bottom:1px solid rgba(28,181,216,.15);
+    flex-shrink:0;
+  }
+  #cb-header .cb-avatar {
+    width:38px; height:38px; border-radius:50%;
+    background:linear-gradient(135deg,#1CB5D8,#0e8fa8);
+    display:flex; align-items:center; justify-content:center; font-size:17px;
+    flex-shrink:0;
+  }
+  #cb-header .cb-info .cb-name { color:#fff; font-weight:700; font-size:.86rem; font-family:'Manrope',sans-serif; }
+  #cb-header .cb-info .cb-status { color:#7CFC00; font-size:.67rem; font-weight:600; display:flex; align-items:center; gap:4px; margin-top:2px; }
+  #cb-header .cb-info .cb-status::before { content:''; width:6px; height:6px; border-radius:50%; background:#7CFC00; display:inline-block; }
+  #cb-close { margin-left:auto; background:rgba(255,255,255,.1); border:none; color:#fff; width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:15px; display:flex; align-items:center; justify-content:center; transition:.2s; flex-shrink:0; }
+  #cb-close:hover { background:rgba(255,255,255,.2); }
+
+  #cb-messages {
+    flex:1; overflow-y:auto; padding:14px;
+    display:flex; flex-direction:column; gap:10px;
+    min-height:220px; max-height:340px;
+    background:#f8fafc;
+  }
+  @media(max-width:480px) { #cb-messages { max-height:none; min-height:0; } }
+  #cb-messages::-webkit-scrollbar { width:3px; }
+  #cb-messages::-webkit-scrollbar-thumb { background:#1CB5D8; border-radius:3px; }
+
+  .cb-msg { display:flex; gap:8px; align-items:flex-end; max-width:92%; }
+  .cb-msg.bot { align-self:flex-start; }
+  .cb-msg.user { align-self:flex-end; flex-direction:row-reverse; }
+  .cb-bubble { padding:10px 13px; border-radius:14px; font-size:.82rem; line-height:1.55; max-width:100%; word-break:break-word; }
+  .cb-msg.bot .cb-bubble { background:#fff; color:#0f1115; border:1px solid #e5eaf0; border-bottom-left-radius:4px; }
+  .cb-msg.user .cb-bubble { background:linear-gradient(135deg,#1CB5D8,#0e8fa8); color:#fff; border-bottom-right-radius:4px; }
+  .cb-msg-icon { width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,#1CB5D8,#0e8fa8); display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0; }
+
+  .cb-quick-wrap { display:flex; flex-wrap:wrap; gap:6px; padding:10px 14px 6px; background:#f8fafc; flex-shrink:0; }
+  .cb-quick { background:#fff; border:1.5px solid #1CB5D8; color:#1CB5D8; font-size:.72rem; font-weight:600; padding:5px 11px; border-radius:999px; cursor:pointer; transition:.2s; white-space:nowrap; }
+  .cb-quick:hover { background:#1CB5D8; color:#fff; }
+
+  #cb-input-row { display:flex; gap:8px; padding:10px 12px; border-top:1px solid #e5eaf0; background:#fff; flex-shrink:0; }
+  #cb-input { flex:1; border:1.5px solid #e5eaf0; border-radius:10px; padding:9px 12px; outline:none; font-family:'Inter',sans-serif; transition:.2s; font-size:16px; }
+  @media(min-width:481px) { #cb-input { font-size:.84rem; } }
+  #cb-input:focus { border-color:#1CB5D8; box-shadow:0 0 0 3px rgba(28,181,216,.1); }
+  #cb-send { background:#1CB5D8; color:#fff; border:none; width:40px; height:40px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.2s; flex-shrink:0; }
+  #cb-send:hover { background:#0e8fa8; }
+  #cb-send svg { width:16px; height:16px; fill:#fff; }
+
+  .cb-typing { display:flex; gap:4px; padding:8px 12px; align-items:center; }
+  .cb-typing span { width:7px; height:7px; border-radius:50%; background:#1CB5D8; animation:cbDot 1.2s ease infinite; }
+  .cb-typing span:nth-child(2) { animation-delay:.2s; }
+  .cb-typing span:nth-child(3) { animation-delay:.4s; }
+  @keyframes cbDot { 0%,80%,100%{transform:scale(.6);opacity:.4} 40%{transform:scale(1);opacity:1} }
+
+</style>
 </head>
+<body>
+  <div class="topbar"></div>
 
-<!-- 🔥 TOP GRADIENT BAR -->
-<div class="w-full h-1 animated-gradient fixed top-0 z-[100]"></div>
-
-<!-- NAV (FULL RESPONSIVE PREMIUM) -->
-<nav class="fixed top-0 w-full z-50 bg-white/100 backdrop-blur border-b border-slate-200">
-
-  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-
-    <!-- LOGO -->
-    <div class="flex items-center gap-3">
-      <img src="Logo.png" alt="Logo" class="h-10 w-auto" />
-      <div class="text-black font-black text-xl">
-        Lorem <span class="text-[#1CB5D8]">Tech</span>
+<!-- ══ NAV ══ -->
+<nav class="fixed top-0 w-full z-50 bg-white border-b border-slate-200">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 py-4">
+    <div class="flex items-center gap-2.5">
+      <img src="Logo.png" alt="Boilertech Energy Services Logo" class="h-9 w-auto"/>
+      <div class="text-black font-black text-xl font-manrope tracking-tight">
+        Boiler<span class="text-[#1CB5D8]">Tech</span>
       </div>
     </div>
-
-    <!-- DESKTOP LINKS -->
-    <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-      <a href="index.html" class="text-slate-700 hover:text-[#1CB5D8] transition">Home</a>
-      <a href="about.html" class="text-slate-700 hover:text-[#1CB5D8] transition">About</a>
-      <a href="services.html" class="text-slate-700 hover:text-[#1CB5D8] transition">Services</a>
-      <a href="products.html" class="text-[#1CB5D8] border-b-2 border-[#1CB5D8] pb-1">Products</a>
-      <a href="contact.html" class="text-slate-700 hover:text-[#1CB5D8] transition">Contact</a>
+    <div class="hidden md:flex items-center gap-7 text-sm font-medium">
+      <a href="index.html"    class="text-slate-600 hover:text-[#1CB5D8] transition">Home</a>
+      <a href="about.html"    class="text-slate-600 hover:text-[#1CB5D8] transition">About</a>
+      <a href="services.html" class="text-slate-600 hover:text-[#1CB5D8] transition">Services</a>
+      <a href="products.html" class="text-[#1CB5D8] border-b-2 border-[#1CB5D8] pb-0.5">Products</a>
+      <a href="contact.html"  class="text-slate-600 hover:text-[#1CB5D8] transition">Contact</a>
     </div>
-
-    <!-- CTA (DESKTOP) -->
     <div class="hidden md:block">
-      <button class="bg-[#FFA500] text-white px-5 py-2 rounded-full hover:scale-105 transition shadow-md">
-        Get Quote
-      </button>
+      <a href="contact.html">
+        <button class="bg-[#FFA500] text-white text-sm px-5 py-2 rounded-full hover:scale-105 transition shadow font-semibold">Get Quote</button>
+      </a>
     </div>
-
-    <!-- MOBILE BUTTON -->
-    <button id="menuBtn" class="md:hidden flex flex-col gap-1.5">
-      <span class="w-6 h-0.5 bg-black"></span>
-      <span class="w-6 h-0.5 bg-black"></span>
-      <span class="w-6 h-0.5 bg-black"></span>
+    <button id="menuBtn" class="md:hidden flex flex-col gap-[5px] p-1">
+      <span class="w-6 h-0.5 bg-black block"></span>
+      <span class="w-6 h-0.5 bg-black block"></span>
+      <span class="w-6 h-0.5 bg-black block"></span>
     </button>
-
   </div>
-
-  <!-- MOBILE MENU -->
-  <!-- MOBILE MENU -->
-<div id="mobileMenu"
-  class="md:hidden bg-white border-t border-slate-200 overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
-
-  <div class="flex flex-col px-6 py-4 gap-4 text-sm font-medium">
-
-    <a href="index.html" class="text-slate-700 hover:text-[#1CB5D8]">Home</a>
-    <a href="about.html" class="text-slate-700 hover:text-[#1CB5D8]">About</a>
-    <a href="services.html" class="text-slate-700 hover:text-[#1CB5D8]">Services</a>
-    <a href="products.html" class="text-[#1CB5D8] font-bold">Products</a>
-    <a href="contact.html" class="text-slate-700 hover:text-[#1CB5D8]">Contact</a>
-
-    <button class="mt-2 bg-[#FFA500] text-white px-5 py-2 rounded-full w-full">
-      Get Quote
-    </button>
-
+  <div id="mobileMenu" class="md:hidden bg-white border-t border-slate-100 overflow-hidden max-h-0 transition-all duration-500">
+    <div class="flex flex-col px-6 py-5 gap-4 text-sm font-medium">
+      <a href="index.html"    class="text-slate-600 hover:text-[#1CB5D8]">Home</a>
+      <a href="about.html"    class="text-slate-600 hover:text-[#1CB5D8]">About</a>
+      <a href="services.html" class="text-slate-600 hover:text-[#1CB5D8]">Services</a>
+      <a href="products.html" class="text-[#1CB5D8] font-bold">Products</a>
+      <a href="contact.html"  class="text-slate-600 hover:text-[#1CB5D8]">Contact</a>
+      <button class="bg-[#FFA500] text-white px-5 py-2.5 rounded-full w-full font-semibold">Get Quote</button>
+    </div>
   </div>
-</div>
-
 </nav>
 
-<body>
-<!-- Floating orbs background -->
-<div class="floating-orb orb-1"></div>
-<div class="floating-orb orb-2"></div>
-<div class="floating-orb orb-3"></div>
+<!-- STICKY CATEGORY NAV -->
+<nav class="cat-nav" id="catNav" style="top:65px;">
+  <div class="cat-nav-inner">
+    <button class="cat-pill active" data-cat="all">All Products</button>
+    <button class="cat-pill" data-cat="combustion">🔩 Combustion &amp; Fuel</button>
+    <button class="cat-pill" data-cat="structural">🏭 Structural &amp; Thermal</button>
+    <button class="cat-pill" data-cat="cfbc">🔥 CFBC &amp; Ash Handling</button>
+    <button class="cat-pill" data-cat="piping">🛠 Piping &amp; Expansion</button>
+    <button class="cat-pill" data-cat="duct">🌀 Duct Components</button>
+    <button class="cat-pill" data-cat="env">🌍 Environmental</button>
+  </div>
+</nav>
 
-<main class="pt-32 pb-24 px-4 md:px-8 max-w-[1600px] mx-auto">
-
-<!-- HEADER -->
-<header class="mb-12">
-  <h1 class="text-5xl md:text-7xl font-black mb-6 hero-title">
-    <span class="word-reveal text-bt-blue" style="--delay:0s">Precision</span>
-    <span class="word-reveal slash-char" style="--delay:1s"> / </span>
-    <span class="word-reveal text-bt-orange" style="--delay:2s">Engineering</span>
-  </h1>
-  <p class="text-reveal text-slate-500 text-lg max-w-xl" style="--delay:3s">
-    High-performance industrial boiler systems engineered for the future.
-  </p>
-</header>
-
-<!-- CATEGORY FILTERS -->
-<div class="flex flex-wrap gap-3 mb-16 stagger-children">
-  <button class="filter-btn active px-6 py-2 bg-bt-blue text-white rounded-lg" data-filter="all">All Systems</button>
-  <button class="filter-btn px-6 py-2 bg-gray-800 text-white rounded-lg" data-filter="steam">Steam Boilers</button>
-  <button class="filter-btn px-6 py-2 bg-gray-800 text-white rounded-lg" data-filter="electric">Electric Boilers</button>
-  <button class="filter-btn px-6 py-2 bg-gray-800 text-white rounded-lg" data-filter="thermic">Thermic Heaters</button>
+<!-- SCROLL STRIP -->
+<div class="scroll-strip">
+  <div class="scroll-track">
+    <div class="scroll-chip">Air Nozzle</div><div class="scroll-chip">DP Plates</div><div class="scroll-chip">Fuel Nozzle</div><div class="scroll-chip">Mixing Nozzle</div><div class="scroll-chip">Fuel Feeders</div><div class="scroll-chip">Boiler Doors</div><div class="scroll-chip">Silencers</div><div class="scroll-chip">Aerofoils</div><div class="scroll-chip">Recuperator</div><div class="scroll-chip">Air Preheater</div><div class="scroll-chip">Bed Ash Cooler</div><div class="scroll-chip">Closed Belt Conveyors</div><div class="scroll-chip">Surge Hopper</div><div class="scroll-chip">Pant Chutes</div><div class="scroll-chip">Ferrules</div><div class="scroll-chip">Spring Supports</div><div class="scroll-chip">Coil Alignment Clamps</div><div class="scroll-chip">Dampers</div><div class="scroll-chip">Butterfly Damper</div><div class="scroll-chip">Guillotine Gate</div><div class="scroll-chip">Bellows</div><div class="scroll-chip">Air Pollution Control System</div>
+    <div class="scroll-chip">Air Nozzle</div><div class="scroll-chip">DP Plates</div><div class="scroll-chip">Fuel Nozzle</div><div class="scroll-chip">Mixing Nozzle</div><div class="scroll-chip">Fuel Feeders</div><div class="scroll-chip">Boiler Doors</div><div class="scroll-chip">Silencers</div><div class="scroll-chip">Aerofoils</div><div class="scroll-chip">Recuperator</div><div class="scroll-chip">Air Preheater</div><div class="scroll-chip">Bed Ash Cooler</div><div class="scroll-chip">Closed Belt Conveyors</div><div class="scroll-chip">Surge Hopper</div><div class="scroll-chip">Pant Chutes</div><div class="scroll-chip">Ferrules</div><div class="scroll-chip">Spring Supports</div><div class="scroll-chip">Coil Alignment Clamps</div><div class="scroll-chip">Dampers</div><div class="scroll-chip">Butterfly Damper</div><div class="scroll-chip">Guillotine Gate</div><div class="scroll-chip">Bellows</div><div class="scroll-chip">Air Pollution Control System</div>
+  </div>
 </div>
 
-<!-- PRODUCTS GRID -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+<div id="allproducts"></div>
 
-  <!-- CARD 1 -->
-  <div class="group product-grid-card bg-[#1c2026] rounded-xl overflow-hidden hover-lift fade-in" data-category="steam">
-    <div class="aspect-[4/3] overflow-hidden relative">
-      <img class="w-full h-full object-cover img-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvCXEdZvzc7NW6QeQmb5U9fgNVcCc0ryJ3HwUzGcvbwN481jdvaJ9VZgnQzpkepaL_a8e_vHSh4G-ZCFmMhnf66fzU4vZcowZN0Tvk6L2xuHpwpw5URJ1mWSw-nmlI4XwlPE4qAK5rbzIktWpUIRRuu7XC-fA1tHAGmQZ7vB1U_OnQDXzjWrPywc4H9y2P4cuJxkBfwsrz-VkAdtxT9x7Ay6pJtqZYrKzh0Gicee0YYb3KGNnjj-laey_Uu6i6ZNEAn4btOWPSfIEh"/>
-      <div class="card-shine"></div>
+<!-- ══ SEC 1: COMBUSTION — WHITE ══ -->
+<section class="sec-light cat-section" id="sec-combustion">
+<div class="sec-inner">
+  <div class="cat-divider reveal"><div class="icon">🔩</div><h2>Combustion &amp; Fuel System Components</h2><div class="ln"></div></div>
+  <div class="intro-band reveal">
+    <p><strong>Precision-engineered combustion components</strong> for FBC / CFBC boilers and multi-fuel firing systems — optimizing flame stability, fuel atomization, and bed performance.</p>
+    <button class="btn-orange" style="font-size:.82rem;padding:10px 22px;">Enquire Now</button>
+  </div>
+  <div class="prod-grid">
+    <div class="card-lt reveal" style="--acc:var(--blue);--acc-dim:rgba(28,181,216,.25);--icon-bg:rgba(28,181,216,.1);--tag-bg:rgba(28,181,216,.08);">
+      <div class="c-head"><div class="c-icon">💨</div><span class="c-tag">Combustion</span></div>
+      <div class="c-body"><div class="c-name">Air Nozzle</div><div class="c-desc">Precision-engineered nozzles for uniform air distribution in FBC / CFBC boilers. Ensures stable combustion and better fluidization, reducing bed-related performance issues.</div><div class="c-tags"><span class="ctag">FBC / CFBC</span><span class="ctag">Air Distribution</span><span class="ctag">Fluidization</span></div></div>
+      <div class="c-foot"><span class="c-note">Custom sizing available</span><button class="enq-btn" style="--acc:var(--blue);--acc-dim:rgba(28,181,216,.3);">Enquire</button></div>
     </div>
-    <div class="p-6">
-      <h3 class="text-xl font-bold text-bt-blue mb-4 split-text">Titan-X 5000 Series</h3>
-      <div class="mb-6 text-sm text-white space-y-1">
-        <p class="spec-line">Capacity: <span class="text-white/70">5000 kg/hr</span></p>
-        <p class="spec-line">Fuel: <span class="text-white/70">Natural Gas</span></p>
-        <p class="spec-line text-bt-green font-bold">Efficiency: 98.5%</p>
-      </div>
-      <div class="flex gap-3">
-        <button class="border border-bt-blue px-4 py-2 rounded hover:bg-bt-blue hover:text-black text-white btn-premium">Details</button>
-        <button class="bg-bt-orange px-4 py-2 rounded hover:bg-bt-green text-white btn-premium">Quote</button>
-      </div>
+    <div class="card-lt reveal" style="--acc:var(--orange);--acc-dim:rgba(245,162,0,.3);--icon-bg:rgba(245,162,0,.1);--tag-bg:rgba(245,162,0,.08);">
+      <div class="c-head"><div class="c-icon">⬛</div><span class="c-tag" style="background:rgba(245,162,0,.1);color:var(--orange);">Combustion</span></div>
+      <div class="c-body"><div class="c-name">DP Plates</div><div class="c-desc">High-strength distribution plate systems for proper airflow balancing and fluidized bed support. Manufactured for long life under abrasive and high-temperature conditions.</div><div class="c-tags"><span class="ctag">High Temp</span><span class="ctag">Air Balancing</span><span class="ctag">FBC Support</span></div></div>
+      <div class="c-foot"><span class="c-note">Abrasion resistant grade</span><button class="enq-btn" style="--acc:var(--orange);--acc-dim:rgba(245,162,0,.3);">Enquire</button></div>
+    </div>
+    <div class="card-lt reveal" style="--acc:var(--red);--acc-dim:rgba(255,26,26,.3);--icon-bg:rgba(255,26,26,.1);--tag-bg:rgba(255,26,26,.07);">
+      <div class="c-head"><div class="c-icon">🔥</div><span class="c-tag" style="background:rgba(255,26,26,.08);color:var(--red);">Combustion</span></div>
+      <div class="c-body"><div class="c-name">Fuel Nozzle</div><div class="c-desc">Designed for controlled fuel injection and efficient combustion, suitable for various solid and liquid fuel firing systems. Optimizes flame stability and fuel atomization.</div><div class="c-tags"><span class="ctag">Solid Fuel</span><span class="ctag">Liquid Fuel</span><span class="ctag">Atomization</span></div></div>
+      <div class="c-foot"><span class="c-note">Multi-fuel compatible</span><button class="enq-btn" style="--acc:var(--red);--acc-dim:rgba(255,26,26,.3);">Enquire</button></div>
+    </div>
+    <div class="card-lt reveal" style="--acc:#3a9400;--acc-dim:rgba(58,148,0,.3);--icon-bg:rgba(124,252,0,.08);--tag-bg:rgba(100,200,0,.07);">
+      <div class="c-head"><div class="c-icon">🌀</div><span class="c-tag" style="background:rgba(100,200,0,.1);color:#3a9400;">Combustion</span></div>
+      <div class="c-body"><div class="c-name">Mixing Nozzle</div><div class="c-desc">Specialized nozzles for effective air &amp; fuel mixing, improving combustion quality and reducing unburnt losses. Widely used in burners and furnace applications.</div><div class="c-tags"><span class="ctag">Burner Systems</span><span class="ctag">LOI Reduction</span><span class="ctag">Furnace</span></div></div>
+      <div class="c-foot"><span class="c-note">Reduces unburnt losses</span><button class="enq-btn" style="--acc:#3a9400;--acc-dim:rgba(58,148,0,.3);">Enquire</button></div>
+    </div>
+    <div class="card-lt reveal" style="--acc:var(--blue);--acc-dim:rgba(28,181,216,.25);--icon-bg:rgba(28,181,216,.1);--tag-bg:rgba(28,181,216,.08);">
+      <div class="c-head"><div class="c-icon">⚙️</div><span class="c-tag">Combustion</span></div>
+      <div class="c-body"><div class="c-name">Fuel Feeders</div><div class="c-desc">Robust drag chain and pocket feeder systems for continuous and controlled fuel supply to the furnace. Suitable for coal, biomass, and mixed-fuel operations.</div><div class="c-tags"><span class="ctag">Drag Chain</span><span class="ctag">Pocket Feeder</span><span class="ctag">Biomass</span><span class="ctag">Coal</span></div></div>
+      <div class="c-foot"><span class="c-note">Coal / Biomass / Mixed</span><button class="enq-btn" style="--acc:var(--blue);--acc-dim:rgba(28,181,216,.3);">Enquire</button></div>
     </div>
   </div>
-
-  <!-- CARD 2 -->
-  <div class="group product-grid-card bg-[#1c2026] rounded-xl overflow-hidden hover-lift fade-in" data-category="electric">
-    <div class="aspect-[4/3] overflow-hidden relative">
-      <img class="w-full h-full object-cover img-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvCXEdZvzc7NW6QeQmb5U9fgNVcCc0ryJ3HwUzGcvbwN481jdvaJ9VZgnQzpkepaL_a8e_vHSh4G-ZCFmMhnf66fzU4vZcowZN0Tvk6L2xuHpwpw5URJ1mWSw-nmlI4XwlPE4qAK5rbzIktWpUIRRuu7XC-fA1tHAGmQZ7vB1U_OnQDXzjWrPywc4H9y2P4cuJxkBfwsrz-VkAdtxT9x7Ay6pJtqZYrKzh0Gicee0YYb3KGNnjj-laey_Uu6i6ZNEAn4btOWPSfIEh"/>
-      <div class="card-shine"></div>
-    </div>
-    <div class="p-6">
-      <h3 class="text-xl font-bold text-bt-blue mb-4 split-text">Voltarc E-3000</h3>
-      <div class="mb-6 text-sm text-white space-y-1">
-        <p class="spec-line">Capacity: <span class="text-white/70">3000 kg/hr</span></p>
-        <p class="spec-line">Fuel: <span class="text-white/70">Electric</span></p>
-        <p class="spec-line text-bt-green font-bold">Efficiency: 99.2%</p>
-      </div>
-      <div class="flex gap-3">
-        <button class="border border-bt-blue px-4 py-2 rounded hover:bg-bt-blue hover:text-black text-white btn-premium">Details</button>
-        <button class="bg-bt-orange px-4 py-2 rounded hover:bg-bt-green text-white btn-premium">Quote</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- CARD 3 -->
-  <div class="group product-grid-card bg-[#1c2026] rounded-xl overflow-hidden hover-lift fade-in" data-category="thermic">
-    <div class="aspect-[4/3] overflow-hidden relative">
-      <img class="w-full h-full object-cover img-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvCXEdZvzc7NW6QeQmb5U9fgNVcCc0ryJ3HwUzGcvbwN481jdvaJ9VZgnQzpkepaL_a8e_vHSh4G-ZCFmMhnf66fzU4vZcowZN0Tvk6L2xuHpwpw5URJ1mWSw-nmlI4XwlPE4qAK5rbzIktWpUIRRuu7XC-fA1tHAGmQZ7vB1U_OnQDXzjWrPywc4H9y2P4cuJxkBfwsrz-VkAdtxT9x7Ay6pJtqZYrKzh0Gicee0YYb3KGNnjj-laey_Uu6i6ZNEAn4btOWPSfIEh"/>
-      <div class="card-shine"></div>
-    </div>
-    <div class="p-6">
-      <h3 class="text-xl font-bold text-bt-blue mb-4 split-text">ThermaPro T-700</h3>
-      <div class="mb-6 text-sm text-white space-y-1">
-        <p class="spec-line">Capacity: <span class="text-white/70">7000 kg/hr</span></p>
-        <p class="spec-line">Fuel: <span class="text-white/70">Diesel/HFO</span></p>
-        <p class="spec-line text-bt-green font-bold">Efficiency: 97.8%</p>
-      </div>
-      <div class="flex gap-3">
-        <button class="border border-bt-blue px-4 py-2 rounded hover:bg-bt-blue hover:text-black text-white btn-premium">Details</button>
-        <button class="bg-bt-orange px-4 py-2 rounded hover:bg-bt-green text-white btn-premium">Quote</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- CARD 4 -->
-  <div class="group product-grid-card bg-[#1c2026] rounded-xl overflow-hidden hover-lift fade-in" data-category="steam">
-    <div class="aspect-[4/3] overflow-hidden relative">
-      <img class="w-full h-full object-cover img-zoom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvCXEdZvzc7NW6QeQmb5U9fgNVcCc0ryJ3HwUzGcvbwN481jdvaJ9VZgnQzpkepaL_a8e_vHSh4G-ZCFmMhnf66fzU4vZcowZN0Tvk6L2xuHpwpw5URJ1mWSw-nmlI4XwlPE4qAK5rbzIktWpUIRRuu7XC-fA1tHAGmQZ7vB1U_OnQDXzjWrPywc4H9y2P4cuJxkBfwsrz-VkAdtxT9x7Ay6pJtqZYrKzh0Gicee0YYb3KGNnjj-laey_Uu6i6ZNEAn4btOWPSfIEh"/>
-      <div class="card-shine"></div>
-    </div>
-    <div class="p-6">
-      <h3 class="text-xl font-bold text-bt-blue mb-4 split-text">HydroMax S-9000</h3>
-      <div class="mb-6 text-sm text-white space-y-1">
-        <p class="spec-line">Capacity: <span class="text-white/70">9000 kg/hr</span></p>
-        <p class="spec-line">Fuel: <span class="text-white/70">Biomass</span></p>
-        <p class="spec-line text-bt-green font-bold">Efficiency: 96.5%</p>
-      </div>
-      <div class="flex gap-3">
-        <button class="border border-bt-blue px-4 py-2 rounded hover:bg-bt-blue hover:text-black text-white btn-premium">Details</button>
-        <button class="bg-bt-orange px-4 py-2 rounded hover:bg-bt-green text-white btn-premium">Quote</button>
-      </div>
-    </div>
-  </div>
-
 </div>
-
-<!-- TARGET INDUSTRIES -->
-<section class="py-24 px-6 md:px-12 bg-black fade-in rounded-3xl mt-16 overflow-hidden" id="target">
-  <div class="text-center mb-16">
-    <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4 split-text">
-      Target <span class="text-gradient">Industries</span>
-    </h2>
-    <p class="text-gray-500 max-w-xl mx-auto text-sm md:text-base text-reveal" style="--delay:0.2s">
-      Delivering high-performance boiler solutions across multiple industries with precision and efficiency.
-    </p>
-  </div>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 stagger-children">
-    <div class="industry-card group"><div class="icon">⚡</div><h3>Power Plants</h3><p>High-efficiency thermal systems</p></div>
-    <div class="industry-card group"><div class="icon">🏭</div><h3>Steel Plants</h3><p>Heavy-duty heat solutions</p></div>
-    <div class="industry-card group"><div class="icon">🍬</div><h3>Sugar Plants</h3><p>Steam-based processing</p></div>
-    <div class="industry-card group"><div class="icon">📄</div><h3>Paper Mills</h3><p>Consistent thermal control</p></div>
-    <div class="industry-card group"><div class="icon">🧪</div><h3>Chemical</h3><p>Safe heat transfer systems</p></div>
-    <div class="industry-card group"><div class="icon">🍽</div><h3>Food Industry</h3><p>Clean steam production</p></div>
-    <div class="industry-card group"><div class="icon">🏗</div><h3>Cement Factories</h3><p>High temperature systems</p></div>
-    <div class="industry-card group"><div class="icon">🚂</div><h3>Railways</h3><p>Robust steam solutions</p></div>
-  </div>
 </section>
 
-<!-- SERVICES -->
-<section class="py-28 px-6 md:px-12 relative overflow-hidden fade-in">
-  <div class="absolute inset-0 bg-gradient-to-tr from-[#ffb77d]/20 via-transparent to-[#a7c8ff]/20 blur-3xl pointer-events-none"></div>
-  <div class="text-center mb-20 relative z-10">
-    <h2 class="text-5xl md:text-6xl font-extrabold tracking-tight text-[#F5A200] mb-4 split-text">
-      BoilerTech Services
-    </h2>
-    <p class="text-slate-500 max-w-2xl mx-auto text-sm md:text-base text-reveal" style="--delay:0.2s">
-      Advanced engineering solutions powered by innovation, precision and performance.
-    </p>
-  </div>
-  <div class="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-12 perspective">
-    <div class="space-y-10">
-      <div class="glass-3d tilt fade-in"><h3>⚙️ Boiler Studies</h3><p>Performance • Operational • Efficiency • Combustion</p></div>
-      <div class="glass-3d tilt fade-in"><h3>📊 Audit Services</h3><p>Pre • Shutdown • Post Shutdown Audits</p></div>
-      <div class="glass-3d tilt fade-in"><h3>🛠 Troubleshooting</h3><p>Operations • Tube Failures • LOI • Clinker</p></div>
+<!-- ══ SEC 2: STRUCTURAL — DARK ══ -->
+<section class="sec-dark cat-section" id="sec-structural">
+<div class="sec-inner">
+  <div class="cat-divider reveal"><div class="icon">🏭</div><h2>Boiler Structural &amp; Thermal Components</h2><div class="ln"></div></div>
+  <div class="prod-grid">
+    <div class="card-dk reveal" style="--acc:var(--orange);--acc-dim:rgba(245,162,0,.25);--icon-bg:rgba(245,162,0,.1);--tag-bg:rgba(245,162,0,.08);">
+      <div class="c-head"><div class="c-icon">🚪</div><span class="c-tag" style="background:rgba(245,162,0,.1);color:var(--orange);">Structural</span></div>
+      <div class="c-body"><div class="c-name">Boiler Doors</div><div class="c-desc">Heavy-duty inspection and access doors designed for safe operation, easy maintenance, and thermal sealing. Manufactured to withstand high temperature and pressure environments.</div><div class="c-tags"><span class="ctag">High Pressure</span><span class="ctag">Thermal Seal</span><span class="ctag">Access</span></div></div>
+      <div class="c-foot"><span class="c-note">Custom dimensions</span><button class="enq-btn" style="--acc:var(--orange);--acc-dim:rgba(245,162,0,.3);">Enquire</button></div>
     </div>
-    <div class="space-y-10 md:mt-16">
-      <div class="glass-3d tilt fade-in"><h3>🏗 Engineering</h3><p>CFD • Piping • Re-engineering • Optimization</p></div>
-      <div class="glass-3d tilt fade-in"><h3>⚡ Energy Systems</h3><p>Energy Saving • Steam Loss • Pumps & Fans</p></div>
-      <div class="glass-3d tilt fade-in"><h3>🔥 Fuel Systems</h3><p>Alternative Fuel • Feeding • APH Systems</p></div>
+    <div class="card-dk reveal" style="--acc:var(--blue);--acc-dim:rgba(28,181,216,.25);--icon-bg:rgba(28,181,216,.12);--tag-bg:rgba(28,181,216,.1);">
+      <div class="c-head"><div class="c-icon">🔇</div><span class="c-tag">Structural</span></div>
+      <div class="c-body"><div class="c-name">Silencers</div><div class="c-desc">Custom-designed industrial silencers for steam venting, blow-off lines, and pressure relief systems. Reduces operational noise and improves plant safety standards.</div><div class="c-tags"><span class="ctag">Steam Vent</span><span class="ctag">Blow-off</span><span class="ctag">Noise Control</span></div></div>
+      <div class="c-foot"><span class="c-note">Noise reduction certified</span><button class="enq-btn" style="--acc:var(--blue);--acc-dim:rgba(28,181,216,.3);">Enquire</button></div>
+    </div>
+    <div class="card-dk reveal" style="--acc:var(--green);--acc-dim:rgba(124,252,0,.2);--icon-bg:rgba(124,252,0,.08);--tag-bg:rgba(124,252,0,.07);">
+      <div class="c-head"><div class="c-icon">🪽</div><span class="c-tag" style="background:rgba(124,252,0,.1);color:var(--green);">Thermal</span></div>
+      <div class="c-body"><div class="c-name">Aerofoils</div><div class="c-desc">High-performance aerodynamic flow components used in ducting and fan systems to optimize airflow. Designed to reduce pressure drop and improve flow efficiency.</div><div class="c-tags"><span class="ctag">Aerodynamic</span><span class="ctag">Fan Systems</span><span class="ctag">Pressure Drop ↓</span></div></div>
+      <div class="c-foot"><span class="c-note">CFD-optimized profile</span><button class="enq-btn" style="--acc:var(--green);--acc-dim:rgba(124,252,0,.2);">Enquire</button></div>
+    </div>
+    <div class="card-dk reveal" style="--acc:var(--red);--acc-dim:rgba(255,26,26,.25);--icon-bg:rgba(255,26,26,.1);--tag-bg:rgba(255,26,26,.08);">
+      <div class="c-head"><div class="c-icon">♻️</div><span class="c-tag" style="background:rgba(255,26,26,.1);color:var(--red);">Heat Recovery</span></div>
+      <div class="c-body"><div class="c-name">Recuperator</div><div class="c-desc">Advanced heat recovery units that transfer waste heat from flue gases to incoming process air. Improves overall thermal efficiency and reduces fuel consumption significantly.</div><div class="c-tags"><span class="ctag">Heat Recovery</span><span class="ctag">Waste Heat</span><span class="ctag">Fuel Saving</span></div></div>
+      <div class="c-foot"><span class="c-note">Proven efficiency gains</span><button class="enq-btn" style="--acc:var(--red);--acc-dim:rgba(255,26,26,.3);">Enquire</button></div>
+    </div>
+    <div class="card-dk reveal" style="--acc:var(--orange);--acc-dim:rgba(245,162,0,.25);--icon-bg:rgba(245,162,0,.1);--tag-bg:rgba(245,162,0,.08);">
+      <div class="c-head"><div class="c-icon">🌡</div><span class="c-tag" style="background:rgba(245,162,0,.1);color:var(--orange);">⭐ Key Product</span></div>
+      <div class="c-body"><div class="c-name">Air Preheater</div><div class="c-desc">Designed for preheating combustion air using flue gas heat recovery, significantly improving boiler efficiency. Critical for fuel savings and thermal performance enhancement across all boiler types.</div><div class="c-tags"><span class="ctag">Flue Gas Recovery</span><span class="ctag">Combustion Air</span><span class="ctag">Fuel Economy</span><span class="ctag">IBR</span></div></div>
+      <div class="c-foot"><span class="c-note">All boiler types</span><button class="enq-btn" style="--acc:var(--orange);--acc-dim:rgba(245,162,0,.3);">Enquire</button></div>
     </div>
   </div>
+</div>
 </section>
 
-<!-- PRODUCTS CAROUSEL -->
-<section class="py-24 px-6 md:px-12 bg-black overflow-hidden fade-in rounded-3xl">
-  <div class="text-center mb-14">
-    <h2 class="text-4xl md:text-5xl font-extrabold section-title mb-3 split-text">Our Products</h2>
-    <p class="text-gray-400 text-sm max-w-xl mx-auto text-reveal" style="--delay:5s">
-      High-quality engineered components designed for performance, durability and efficiency.
-    </p>
-  </div>
-  <div class="relative overflow-hidden">
-    <div class="carousel-track flex gap-6">
-      <div class="product-card">Air Nozzle</div>
-      <div class="product-card">Fuel Nozzle</div>
-      <div class="product-card">Mixing Nozzle</div>
-      <div class="product-card">DP Plates</div>
-      <div class="product-card">Boiler Doors</div>
-      <div class="product-card">Silencers</div>
-      <div class="product-card">Air Preheater</div>
-      <div class="product-card">Recuperator</div>
-      <div class="product-card">Dampers</div>
-      <div class="product-card">Butterfly Dampers</div>
-      <div class="product-card">Bellows</div>
-      <div class="product-card">Pollution Control Systems</div>
-      <!-- DUPLICATE for infinite scroll -->
-      <div class="product-card">Air Nozzle</div>
-      <div class="product-card">Fuel Nozzle</div>
-      <div class="product-card">Mixing Nozzle</div>
-      <div class="product-card">DP Plates</div>
-      <div class="product-card">Boiler Doors</div>
-      <div class="product-card">Silencers</div>
-      <div class="product-card">Air Preheater</div>
-      <div class="product-card">Recuperator</div>
-      <div class="product-card">Dampers</div>
-      <div class="product-card">Butterfly Dampers</div>
-      <div class="product-card">Bellows</div>
-      <div class="product-card">Pollution Control Systems</div>
+<!-- ══ SEC 3: CFBC — WHITE ══ -->
+<section class="sec-light cat-section" id="sec-cfbc">
+<div class="sec-inner">
+  <div class="cat-divider reveal"><div class="icon">🔥</div><h2>CFBC &amp; Ash Handling Systems</h2><div class="ln"></div></div>
+  <div class="prod-grid">
+    <div class="card-lt reveal" style="--acc:var(--red);--acc-dim:rgba(255,26,26,.3);--icon-bg:rgba(255,26,26,.1);--tag-bg:rgba(255,26,26,.07);">
+      <div class="c-head"><div class="c-icon">❄️</div><span class="c-tag" style="background:rgba(255,26,26,.08);color:var(--red);">CFBC</span></div>
+      <div class="c-body"><div class="c-name">Bed Ash Cooler</div><div class="c-desc">Efficient ash cooling equipment for safe discharge and heat recovery from hot bed ash. Ideal for CFBC and FBC boiler applications with high ash generation rates.</div><div class="c-tags"><span class="ctag">CFBC</span><span class="ctag">FBC</span><span class="ctag">Heat Recovery</span><span class="ctag">Ash Discharge</span></div></div>
+      <div class="c-foot"><span class="c-note">Safe hot ash handling</span><button class="enq-btn" style="--acc:var(--red);--acc-dim:rgba(255,26,26,.3);">Enquire</button></div>
+    </div>
+    <div class="card-lt reveal" style="--acc:var(--blue);--acc-dim:rgba(28,181,216,.25);--icon-bg:rgba(28,181,216,.1);--tag-bg:rgba(28,181,216,.08);">
+      <div class="c-head"><div class="c-icon">📦</div><span class="c-tag">Material Handling</span></div>
+      <div class="c-body"><div class="c-name">Closed Belt Conveyors</div><div class="c-desc">Dust-free material handling systems for fuel, ash, and process material transfer. Designed for cleaner plant environments and reduced material loss during transport.</div><div class="c-tags"><span class="ctag">Dust-Free</span><span class="ctag">Ash Transfer</span><span class="ctag">Fuel Handling</span></div></div>
+      <div class="c-foot"><span class="c-note">Zero dust emission</span><button class="enq-btn" style="--acc:var(--blue);--acc-dim:rgba(28,181,216,.3);">Enquire</button></div>
+    </div>
+    <div class="card-lt reveal" style="--acc:var(--orange);--acc-dim:rgba(245,162,0,.3);--icon-bg:rgba(245,162,0,.1);--tag-bg:rgba(245,162,0,.08);">
+      <div class="c-head"><div class="c-icon">🪣</div><span class="c-tag" style="background:rgba(245,162,0,.1);color:var(--orange);">Material Flow</span></div>
+      <div class="c-body"><div class="c-name">Surge Hopper with Screens</div><div class="c-desc">Custom-designed hoppers with integrated screening systems for smooth material flow and separation of oversized particles in boiler plant operations.</div><div class="c-tags"><span class="ctag">Screening</span><span class="ctag">Particle Sep.</span><span class="ctag">Custom Design</span></div></div>
+      <div class="c-foot"><span class="c-note">Custom capacity</span><button class="enq-btn" style="--acc:var(--orange);--acc-dim:rgba(245,162,0,.3);">Enquire</button></div>
+    </div>
+    <div class="card-lt reveal" style="--acc:#3a9400;--acc-dim:rgba(58,148,0,.3);--icon-bg:rgba(124,252,0,.08);--tag-bg:rgba(100,200,0,.07);">
+      <div class="c-head"><div class="c-icon">↕️</div><span class="c-tag" style="background:rgba(100,200,0,.1);color:#3a9400;">Structural</span></div>
+      <div class="c-body"><div class="c-name">Pant Chutes</div><div class="c-desc">Heavy-duty chute systems for controlled transfer of fuel and ash materials in boiler plants. Built for high-wear environments with long service life.</div><div class="c-tags"><span class="ctag">Fuel Transfer</span><span class="ctag">Ash Handling</span><span class="ctag">High Wear</span></div></div>
+      <div class="c-foot"><span class="c-note">Heavy-duty grade</span><button class="enq-btn" style="--acc:#3a9400;--acc-dim:rgba(58,148,0,.3);">Enquire</button></div>
+    </div>
+    <div class="card-lt reveal" style="--acc:var(--blue);--acc-dim:rgba(28,181,216,.25);--icon-bg:rgba(28,181,216,.1);--tag-bg:rgba(28,181,216,.08);">
+      <div class="c-head"><div class="c-icon">✚</div><span class="c-tag">Structural</span></div>
+      <div class="c-body"><div class="c-name">Cross Components</div><div class="c-desc">Fabricated cross-joint and structural flow components for multi-directional transfer and duct integration. Custom-engineered to match plant layout requirements.</div><div class="c-tags"><span class="ctag">Multi-Dir.</span><span class="ctag">Duct Integration</span><span class="ctag">Custom Fab.</span></div></div>
+      <div class="c-foot"><span class="c-note">Per plant layout</span><button class="enq-btn" style="--acc:var(--blue);--acc-dim:rgba(28,181,216,.3);">Enquire</button></div>
     </div>
   </div>
+</div>
 </section>
 
-</main>
+<!-- ══ SEC 4: PIPING — DARK ══ -->
+<section class="sec-dark cat-section" id="sec-piping">
+<div class="sec-inner">
+  <div class="cat-divider reveal"><div class="icon">🛠</div><h2>Boiler Piping &amp; Expansion Components</h2><div class="ln"></div></div>
+  <div class="prod-grid">
+    <div class="card-dk reveal" style="--acc:var(--orange);--acc-dim:rgba(245,162,0,.25);--icon-bg:rgba(245,162,0,.1);--tag-bg:rgba(245,162,0,.08);">
+      <div class="c-head"><div class="c-icon">🔘</div><span class="c-tag" style="background:rgba(245,162,0,.1);color:var(--orange);">Piping</span></div>
+      <div class="c-body"><div class="c-name">Ferrules</div><div class="c-desc">High-temperature ceramic and metallic ferrules for tube protection and sealing in boiler systems. Withstands extreme thermal cycling conditions.</div><div class="c-tags"><span class="ctag">Ceramic</span><span class="ctag">Metallic</span><span class="ctag">High Temp</span><span class="ctag">Tube Protection</span></div></div>
+      <div class="c-foot"><span class="c-note">Ceramic / Metallic grades</span><button class="enq-btn" style="--acc:var(--orange);--acc-dim:rgba(245,162,0,.3);">Enquire</button></div>
+    </div>
+    <div class="card-dk reveal" style="--acc:var(--blue);--acc-dim:rgba(28,181,216,.25);--icon-bg:rgba(28,181,216,.12);--tag-bg:rgba(28,181,216,.1);">
+      <div class="c-head"><div class="c-icon">🌀</div><span class="c-tag">Piping</span></div>
+      <div class="c-body"><div class="c-name">Spring Supports for Piping</div><div class="c-desc">Engineered supports to absorb thermal expansion and piping load movement. Essential for long-term piping reliability in high-temperature boiler applications.</div><div class="c-tags"><span class="ctag">Thermal Expansion</span><span class="ctag">Load Absorption</span><span class="ctag">IBR</span></div></div>
+      <div class="c-foot"><span class="c-note">IBR compliant</span><button class="enq-btn" style="--acc:var(--blue);--acc-dim:rgba(28,181,216,.3);">Enquire</button></div>
+    </div>
+    <div class="card-dk reveal" style="--acc:var(--green);--acc-dim:rgba(124,252,0,.2);--icon-bg:rgba(124,252,0,.08);--tag-bg:rgba(124,252,0,.07);">
+      <div class="c-head"><div class="c-icon">🔧</div><span class="c-tag" style="background:rgba(124,252,0,.1);color:var(--green);">Piping</span></div>
+      <div class="c-body"><div class="c-name">Coil Alignment Clamps</div><div class="c-desc">Precision clamps for proper alignment and support of boiler coil assemblies. Ensures stable heat transfer performance and prevents coil vibration under load.</div><div class="c-tags"><span class="ctag">Precision Fit</span><span class="ctag">Coil Alignment</span><span class="ctag">Heat Transfer</span></div></div>
+      <div class="c-foot"><span class="c-note">Custom coil sizes</span><button class="enq-btn" style="--acc:var(--green);--acc-dim:rgba(124,252,0,.2);">Enquire</button></div>
+    </div>
+  </div>
+</div>
+</section>
 
-<!-- Footer -->
-<footer class="bg-slate-950 dark:bg-black w-full pt-20 pb-10">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-<div class="col-span-1 md:col-span-1">
-<div class="text-base sm:text-lg lg:text-xl font-bold text-white mb-6">BoilerTech Energy</div>
-<p class="text-slate-500 font-inter text-sm antialiased mb-6">
-Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut voluptates molestias eaque dolore commodi natus veritatis atque harum distinctio asperiores nemo sit repudiandae, optio dicta voluptatum culpa ad. Delectus, sequi!                </p>
-<div class="flex gap-4">
-<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-orange-400">
-<span class="material-symbols-outlined text-sm">language</span>
+<!-- ══ SEC 5: DUCT — WHITE ══ -->
+<section class="sec-light cat-section" id="sec-duct">
+<div class="sec-inner">
+  <div class="cat-divider reveal"><div class="icon">🌀</div><h2>Boiler Duct Components</h2><div class="ln"></div></div>
+  <div class="prod-grid">
+    <div class="card-lt reveal" style="--acc:var(--blue);--acc-dim:rgba(28,181,216,.25);--icon-bg:rgba(28,181,216,.1);--tag-bg:rgba(28,181,216,.08);">
+      <div class="c-head"><div class="c-icon">🎚</div><span class="c-tag">Duct Control</span></div>
+      <div class="c-body"><div class="c-name">Dampers</div><div class="c-desc">Heavy-duty flow control dampers for air and flue gas regulation in duct systems. Engineered for precise modulation and long service life in high-temperature environments.</div><div class="c-tags"><span class="ctag">Flow Control</span><span class="ctag">Air Regulation</span><span class="ctag">Flue Gas</span></div></div>
+      <div class="c-foot"><span class="c-note">Manual / actuated</span><button class="enq-btn" style="--acc:var(--blue);--acc-dim:rgba(28,181,216,.3);">Enquire</button></div>
+    </div>
+    <div class="card-lt reveal" style="--acc:var(--orange);--acc-dim:rgba(245,162,0,.3);--icon-bg:rgba(245,162,0,.1);--tag-bg:rgba(245,162,0,.08);">
+      <div class="c-head"><div class="c-icon">🦋</div><span class="c-tag" style="background:rgba(245,162,0,.1);color:var(--orange);">Duct Control</span></div>
+      <div class="c-body"><div class="c-name">Butterfly Damper</div><div class="c-desc">Used for quick flow isolation and modulation in air and gas ducting lines. Compact design for space-constrained installations with reliable seating performance.</div><div class="c-tags"><span class="ctag">Flow Isolation</span><span class="ctag">Gas Ducting</span><span class="ctag">Compact</span></div></div>
+      <div class="c-foot"><span class="c-note">Quick isolation</span><button class="enq-btn" style="--acc:var(--orange);--acc-dim:rgba(245,162,0,.3);">Enquire</button></div>
+    </div>
+    <div class="card-lt reveal" style="--acc:var(--red);--acc-dim:rgba(255,26,26,.3);--icon-bg:rgba(255,26,26,.1);--tag-bg:rgba(255,26,26,.07);">
+      <div class="c-head"><div class="c-icon">⬇️</div><span class="c-tag" style="background:rgba(255,26,26,.08);color:var(--red);">Duct Control</span></div>
+      <div class="c-body"><div class="c-name">Guillotine Gate</div><div class="c-desc">Industrial-grade isolation gates for full shut-off in ducts and ash handling systems. Designed for reliable, gas-tight closure under operational pressure.</div><div class="c-tags"><span class="ctag">Full Shut-Off</span><span class="ctag">Gas-Tight</span><span class="ctag">Ash Handling</span></div></div>
+      <div class="c-foot"><span class="c-note">Gas-tight certified</span><button class="enq-btn" style="--acc:var(--red);--acc-dim:rgba(255,26,26,.3);">Enquire</button></div>
+    </div>
+    <div class="card-lt reveal" style="--acc:#3a9400;--acc-dim:rgba(58,148,0,.3);--icon-bg:rgba(124,252,0,.08);--tag-bg:rgba(100,200,0,.07);">
+      <div class="c-head"><div class="c-icon">〰️</div><span class="c-tag" style="background:rgba(100,200,0,.1);color:#3a9400;">Expansion</span></div>
+      <div class="c-body"><div class="c-name">Bellows</div><div class="c-desc">Flexible expansion joints to absorb thermal movement, vibration, and alignment variation in pipelines and ducting. Prevents stress transfer to connected equipment.</div><div class="c-tags"><span class="ctag">Thermal Flex</span><span class="ctag">Vibration</span><span class="ctag">Pipeline</span><span class="ctag">Ducting</span></div></div>
+      <div class="c-foot"><span class="c-note">Metallic / fabric types</span><button class="enq-btn" style="--acc:#3a9400;--acc-dim:rgba(58,148,0,.3);">Enquire</button></div>
+    </div>
+  </div>
 </div>
-<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-orange-400">
-<span class="material-symbols-outlined text-sm">mail</span>
+</section>
+
+<!-- ══ SEC 6: ENVIRONMENTAL — DARK ══ -->
+<section class="sec-dark cat-section" id="sec-env">
+<div class="sec-inner">
+  <div class="cat-divider reveal"><div class="icon">🌍</div><h2>Environmental &amp; Special Systems</h2><div class="ln"></div></div>
+  <div class="intro-band reveal" style="border-color:rgba(124,252,0,.2);">
+    <p><strong style="color:#7CFC00;">Sustainability-focused engineering.</strong> Our environmental systems ensure regulatory compliance, cleaner operations, and sustainable industrial performance for future-ready plants.</p>
+    <button style="background:var(--green);color:#000;font-weight:700;padding:10px 22px;border-radius:7px;border:none;cursor:pointer;font-size:.82rem;">Compliance Enquiry</button>
+  </div>
+  <div class="prod-grid">
+    <div class="card-dk reveal" style="--acc:var(--green);--acc-dim:rgba(124,252,0,.2);--icon-bg:rgba(124,252,0,.08);--tag-bg:rgba(124,252,0,.07);">
+      <div class="c-head"><div class="c-icon">🏭</div><span class="c-tag" style="background:rgba(124,252,0,.1);color:var(--green);">⭐ Featured</span></div>
+      <div class="c-body"><div class="c-name">Air Pollution Control System</div><div class="c-desc">Complete solutions for dust collection, emission control, and regulatory compliance. Includes Electrostatic Precipitators (ESP), bag filters, wet scrubbers, and full ducting systems. Designed for cleaner, sustainable plant operations.</div><div class="c-tags"><span class="ctag">ESP</span><span class="ctag">Bag Filters</span><span class="ctag">Wet Scrubber</span><span class="ctag">Compliance</span><span class="ctag">Emission Control</span></div></div>
+      <div class="c-foot"><span class="c-note" style="color:var(--green);font-weight:700;">CPCB / PCB Compliant</span><button class="enq-btn" style="--acc:var(--green);--acc-dim:rgba(124,252,0,.2);">Enquire</button></div>
+    </div>
+    <div class="card-dk reveal" style="--acc:var(--blue);--acc-dim:rgba(28,181,216,.25);--icon-bg:rgba(28,181,216,.12);--tag-bg:rgba(28,181,216,.1);">
+      <div class="c-head"><div class="c-icon">🔩</div><span class="c-tag">Special</span></div>
+      <div class="c-body"><div class="c-name">Other Special Equipment</div><div class="c-desc">Custom-engineered products designed based on client-specific boiler and process requirements. Our engineering team works directly with your plant team to deliver purpose-built solutions.</div><div class="c-tags"><span class="ctag">Custom Design</span><span class="ctag">Client-Specific</span><span class="ctag">Engineered-to-Order</span></div></div>
+      <div class="c-foot"><span class="c-note">Fully bespoke</span><button class="enq-btn" style="--acc:var(--blue);--acc-dim:rgba(28,181,216,.3);">Enquire</button></div>
+    </div>
+  </div>
 </div>
+</section>
+
+<!-- CTA — DARK -->
+<div class="cta-wrap" id="cta">
+  <div class="cta-box">
+    <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:14px;font-weight:700;position:relative;z-index:1;">Your Trusted Performance Partner</div>
+    <h2>Need a Custom-Engineered<br><span style="color:var(--blue);">Product Solution?</span></h2>
+    <p>Our engineering team specializes in purpose-built boiler components for your exact specifications. From concept to delivery — we deliver precision.</p>
+    <div class="cta-btns">
+      <button class="btn-orange">📞 Request a Quote</button>
+      <button class="btn-ghost-w">✉️ Email Our Engineers</button>
+    </div>
+    <div class="cta-chips">
+      <span class="cta-chip">✓ IBR Compliant Manufacturing</span>
+      <span class="cta-chip">✓ Custom Sizing Available</span>
+      <span class="cta-chip">✓ Field-Proven Performance</span>
+      <span class="cta-chip">✓ After-Sales Support</span>
+      <span class="cta-chip">✓ Rapid Delivery</span>
+    </div>
+  </div>
 </div>
-</div>
-<div>
-<h4 class="text-white font-bold mb-6">Expertise</h4>
-<ul class="space-y-4">
-<li><a class="text-slate-500 hover:text-slate-300 transition-transform hover:translate-x-1 inline-block" href="#">Boiler Installation</a></li>
-<li><a class="text-slate-500 hover:text-slate-300 transition-transform hover:translate-x-1 inline-block" href="#">System Design</a></li>
-<li><a class="text-slate-500 hover:text-slate-300 transition-transform hover:translate-x-1 inline-block" href="#">Maintenance</a></li>
-<li><a class="text-slate-500 hover:text-slate-300 transition-transform hover:translate-x-1 inline-block" href="#">Energy Audit</a></li>
-</ul>
-</div>
-<div>
-<h4 class="text-white font-bold mb-6">Company</h4>
-<ul class="space-y-4">
-<li><a class="text-slate-500 hover:text-slate-300 transition-transform hover:translate-x-1 inline-block" href="about.html">About</a></li>
-<li><a class="text-slate-500 hover:text-slate-300 transition-transform hover:translate-x-1 inline-block" href="product.html">Products</a></li>
-<li><a class="text-slate-500 hover:text-slate-300 transition-transform hover:translate-x-1 inline-block" href="services.html">Services</a></li>
-<li><a class="text-slate-500 hover:text-slate-300 transition-transform hover:translate-x-1 inline-block" href="contact.html">Contact</a></li>
-</ul>
-</div>
-<div>
-<h4 class="text-white font-bold mb-6">Global HQ</h4>
-<p class="text-slate-500 text-sm leading-relaxed">
-                    1200 Industrial Avenue<br/>
-                    Engineering District, Sector 4<br/>
-                    support@boilertech-energy.com<br/>
-                    +1 (555) 902-3000
-</p>
-</div>
-</div>
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4">
-<p class="text-slate-500 text-sm antialiased">© 2026 BoilerTech Energy. All rights reserved. Precision Industrial Engineering.</p>
-<div class="flex gap-6">
-<a class="text-slate-500 hover:text-slate-300 text-sm" href="#">Privacy Policy</a>
-<a class="text-slate-500 hover:text-slate-300 text-sm" href="#">Terms of Service</a>
-<a class="text-slate-500 hover:text-slate-300 text-sm" href="#">Cookie Policy</a>
-<a class="text-slate-500 hover:text-slate-300 text-sm" href="#">Sitemap</a>
-</div>
-</div>
+
+<!-- ══ FOOTER ══ -->
+<footer class="bg-slate-950 pt-14 pb-8">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-3 mb-3">
+        <img src="Logo.png" alt="Logo" class="h-9 w-auto"/>
+        <div class="font-black text-lg text-white" style="font-family:'Manrope',sans-serif;">Boiler<span class="text-[#1CB5D8]">Tech</span></div>
+      </div>
+      <div class="text-[#1CB5D8] text-xs font-semibold mb-3">Your Trusted Performance Partner.</div>
+      <p class="text-slate-500 text-xs leading-relaxed mb-5">Optimizing industrial boiler performance through engineering precision, operational reliability, and long-term sustainability since 2015.</p>
+      <div class="flex gap-3">
+        <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-[#FFA500] hover:bg-slate-700 cursor-pointer transition"><span class="material-symbols-outlined text-sm">language</span></div>
+        <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-[#FFA500] hover:bg-slate-700 cursor-pointer transition"><span class="material-symbols-outlined text-sm">mail</span></div>
+      </div>
+    </div>
+    <div>
+      <h4 class="font-bold text-sm mb-5 text-white">Expertise</h4>
+      <ul class="space-y-3 text-xs">
+        <li><a class="text-slate-500 hover:text-slate-300 transition" href="services.html">Boiler Performance Study</a></li>
+        <li><a class="text-slate-500 hover:text-slate-300 transition" href="services.html">Shutdown Audit</a></li>
+        <li><a class="text-slate-500 hover:text-slate-300 transition" href="services.html">Energy Conservation</a></li>
+        <li><a class="text-slate-500 hover:text-slate-300 transition" href="services.html">CFD Analysis</a></li>
+        <li><a class="text-slate-500 hover:text-slate-300 transition" href="services.html">IBR Piping Design</a></li>
+        <li><a class="text-slate-500 hover:text-slate-300 transition" href="services.html">Capacity Enhancement</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-bold text-sm mb-5 text-white">Company</h4>
+      <ul class="space-y-3 text-xs">
+        <li><a class="text-slate-500 hover:text-slate-300 transition" href="about.html">About Us</a></li>
+        <li><a class="text-slate-500 hover:text-slate-300 transition" href="services.html">Services</a></li>
+        <li><a class="text-slate-500 hover:text-slate-300 transition" href="products.html">Products</a></li>
+        <li><a class="text-slate-500 hover:text-slate-300 transition" href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-bold text-sm mb-5 text-white">Headquarters</h4>
+      <p class="text-slate-500 text-xs leading-relaxed">130/1, First Floor, Periyar Street,<br>Erode – 638001, Tamil Nadu<br><br>
+        <a href="tel:7708397080" class="text-[#1CB5D8] hover:underline">+91 77083 97080</a><br>
+        <a href="mailto:director@boilertechenergy.com" class="text-slate-500 hover:text-slate-300 break-all">director@boilertechenergy.com</a>
+      </p>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 mt-10 pt-6 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center gap-3">
+    <p class="text-slate-600 text-xs">© 2026 BoilerTech Energy Services. All rights reserved.</p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a class="text-slate-600 hover:text-slate-400 text-xs" href="privacy-policy.html">Privacy Policy</a>
+      <a class="text-slate-600 hover:text-slate-400 text-xs" href="terms-of-service.html">Terms of Service</a>
+      <a class="text-slate-600 hover:text-slate-400 text-xs" href="#">Sitemap</a>
+    </div>
+  </div>
 </footer>
+<!-- ══════════ CHATBOT BUTTON ══════════ -->
+<button id="chatbot-btn" aria-label="Open Chat Assistant">
+  <div class="cb-pulse"></div>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+  </svg>
+</button>
 
-<div id="chatbot-container"></div>
+
+<!-- ══════════ CHATBOT WINDOW ══════════ -->
+<div id="chatbot-window" role="dialog" aria-label="Boilertech Chat Assistant">
+  <div id="cb-header">
+    <div class="cb-avatar">    
+      <img src="Logo.png" alt="">
+  </div>
+    <div class="cb-info">
+      <div class="cb-name">Boilertech Assistant</div>
+      <div class="cb-status">Online — Ready to Help</div>
+    </div>
+    <button id="cb-close" aria-label="Close chat">✕</button>
+  </div>
+  <div id="cb-messages"></div>
+  <div id="cb-quick-area"></div>
+  <div id="cb-input-row">
+    <input id="cb-input" type="text" placeholder="Type your message…" autocomplete="off" maxlength="200"/>
+    <button id="cb-send" aria-label="Send">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- WhatsApp Float -->
+<!-- <a href="https://wa.me/917708397080" target="_blank" rel="noopener"
+   class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-lg hover:scale-110 transition"
+   aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32" class="w-7 h-7 fill-white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 0C7.163 0 0 7.163 0 16c0 2.82.736 5.463 2.027 7.754L0 32l8.489-2.002A15.94 15.94 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.786-1.858l-.487-.289-5.04 1.188 1.213-4.912-.316-.503A13.271 13.271 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.293-9.91c-.4-.2-2.366-1.167-2.732-1.3-.366-.133-.633-.2-.9.2-.266.4-1.033 1.3-1.266 1.567-.233.267-.467.3-.867.1-.4-.2-1.688-.622-3.214-1.982-1.188-1.06-1.99-2.368-2.223-2.768-.233-.4-.025-.616.175-.816.18-.18.4-.467.6-.7.2-.233.267-.4.4-.667.133-.267.067-.5-.033-.7-.1-.2-.9-2.167-1.233-2.967-.325-.78-.655-.674-.9-.686l-.767-.013c-.267 0-.7.1-1.067.5-.366.4-1.4 1.367-1.4 3.333s1.433 3.867 1.633 4.133c.2.267 2.822 4.31 6.834 6.043.956.413 1.702.66 2.283.844.96.306 1.833.263 2.524.16.77-.115 2.366-.967 2.7-1.9.333-.933.333-1.733.233-1.9-.1-.167-.366-.267-.766-.467z"/>
+  </svg>
+</a> -->
 
 <script>
-fetch("chatbot.html")
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("chatbot-container").innerHTML = data;
+// Mobile menu
+const btn = document.getElementById('menuBtn');
+const menu = document.getElementById('mobileMenu');
+let open = false;
+btn.addEventListener('click', () => {
+  open = !open;
+  menu.style.maxHeight = open ? '420px' : '0px';
+});
+
+const pills=document.querySelectorAll('.cat-pill');
+const secMap={combustion:'sec-combustion',structural:'sec-structural',cfbc:'sec-cfbc',piping:'sec-piping',duct:'sec-duct',env:'sec-env'};
+pills.forEach(pill=>{
+  pill.addEventListener('click',()=>{
+    pills.forEach(p=>p.classList.remove('active'));
+    pill.classList.add('active');
+    const cat=pill.dataset.cat;
+    Object.entries(secMap).forEach(([k,id])=>{
+      document.getElementById(id).style.display=(cat==='all'||k===cat)?'':'none';
+    });
+    document.getElementById('allproducts').scrollIntoView({behavior:'smooth',block:'start'});
   });
+});
+
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+/* ════════════════════════════════
+   CHATBOT
+════════════════════════════════ */
+const cbBtn    = document.getElementById('chatbot-btn');
+const cbWindow = document.getElementById('chatbot-window');
+const cbClose  = document.getElementById('cb-close');
+const cbMsgs   = document.getElementById('cb-messages');
+const cbInput  = document.getElementById('cb-input');
+const cbSend   = document.getElementById('cb-send');
+const cbQuick  = document.getElementById('cb-quick-area');
+
+/* Knowledge base */
+const KB = {
+  greet:      ['hi','hello','hey','vanakkam','good morning','good afternoon','good evening','helo','hii'],
+  services:   ['service','services','what do you do','offer','boiler','performance','shutdown','audit','cfd','ibr','capacity','energy','fuel','troubleshoot','root cause'],
+  contact:    ['contact','phone','email','call','reach','address','office','location','whatsapp','number'],
+  quote:      ['quote','quotation','price','cost','charge','rate','fee','estimate'],
+  about:      ['about','company','who','years','experience','founded','history','team'],
+  clients:    ['client','customer','project','ultratech','ambuja','adani','ceat','jubilant','who have you worked'],
+  industries: ['industry','industries','sector','cement','steel','sugar','paper','chemical','food','textile','pharma','power'],
+};
+
+function matchTopic(msg) {
+  const m = msg.toLowerCase();
+  for (const [topic, kws] of Object.entries(KB)) {
+    if (kws.some(k => m.includes(k))) return topic;
+  }
+  return null;
+}
+
+function getReply(topic) {
+  switch (topic) {
+    case 'greet':
+      return "Hello! 👋 Welcome to <strong>Boilertech Energy Services</strong>. I'm here to help you with information about our services, clients, or how to get in touch. What can I assist you with today?";
+    case 'services':
+      return `We offer a comprehensive range of industrial boiler engineering services:<br><br>
+⚙️ <strong>Boiler Performance &amp; Operational Studies</strong><br>
+🛠 <strong>Shutdown &amp; Audit Services</strong><br>
+🔍 <strong>Troubleshooting &amp; Root Cause Analysis</strong><br>
+🚀 <strong>Capacity Enhancement &amp; Re-Engineering</strong><br>
+🌱 <strong>Energy &amp; Fuel Optimization</strong><br>
+💻 <strong>CFD Analysis &amp; IBR Engineering</strong><br><br>
+Would you like details on any specific service?`;
+    case 'contact':
+      return `You can reach us through:<br><br>
+📞 <strong>Phone:</strong> <a href="tel:7708397080" style="color:#1CB5D8">+91 77083 97080</a><br>
+✉️ <strong>Email:</strong> director@boilertechenergy.com<br>
+💬 <strong>WhatsApp:</strong> <a href="https://wa.me/917708397080" target="_blank" style="color:#25d366">Chat with us</a><br>
+📍 <strong>Office:</strong> 130/1, First Floor, Periyar Street, Erode – 638001<br><br>
+Our team responds within <strong>24–48 hours</strong>.`;
+    case 'quote':
+      return `To get a customized quote, please share:<br><br>
+• Industry / sector type<br>
+• Boiler capacity &amp; type<br>
+• Service required<br>
+• Location<br><br>
+📞 Call: <a href="tel:7708397080" style="color:#1CB5D8">+91 77083 97080</a><br>
+✉️ Email: director@boilertechenergy.com<br><br>
+Or <a href="contact.html" style="color:#1CB5D8">fill our inquiry form →</a>`;
+    case 'about':
+      return `<strong>Boilertech Energy Services</strong> is a leading industrial boiler engineering company based in Erode, Tamil Nadu.<br><br>
+🏆 <strong>10+ Years</strong> of engineering excellence<br>
+📋 <strong>IBR Certified</strong> designs<br>
+🌍 <strong>Pan India</strong> operations<br>
+⚙️ <strong>500+ Projects</strong> delivered<br>
+🏭 <strong>7+ Industries</strong> served`;
+    case 'clients':
+      return `We've served <strong>50+ leading companies</strong> across India, including:<br><br>
+• Ultratech Cements, Ambuja Cements, Adani Cement<br>
+• Jubilant Life Sciences, Neuland Labs<br>
+• CEAT Tyres, NSL Textiles<br>
+• Hira Ferro Alloys, Shyam Metallics, Sunflag Iron &amp; Steel<br>
+• Star Paper Mills, Orient Paper Mills, Sripathi Papers<br>
+• Parry Sugars, EID Parry India, Shakti Sugars`;
+    case 'industries':
+      return `We serve <strong>7+ major industries</strong>:<br><br>
+🏭 Power Plants &nbsp;⚙️ Steel Plants<br>
+🍬 Sugar Plants &nbsp;📄 Paper Mills<br>
+🧪 Chemical &nbsp;🍲 Food Industries<br>
+🏗 Cement &nbsp;🧵 Textile &nbsp;💊 Pharma`;
+    default:
+      return `Thanks for reaching out! Here's how I can help:<br><br>
+• <strong>Services</strong> we offer<br>
+• <strong>Contact</strong> information<br>
+• <strong>Get a Quote</strong><br>
+• <strong>About</strong> Boilertech<br>
+• <strong>Clients</strong> we've served<br><br>
+Or call us: <a href="tel:7708397080" style="color:#1CB5D8">+91 77083 97080</a>`;
+  }
+}
+
+function addMsg(text, from = 'bot') {
+  const wrap = document.createElement('div');
+  wrap.className = `cb-msg ${from}`;
+  wrap.innerHTML = from === 'bot'
+    ? `<div class="cb-msg-icon">
+          <div class="cb-avatar"><img src="Logo.png" alt=""></div>
+          </div><div class="cb-bubble">${text}</div>`
+    : `<div class="cb-bubble">${text}</div>`;
+  cbMsgs.appendChild(wrap);
+  cbMsgs.scrollTop = cbMsgs.scrollHeight;
+}
+
+function showTyping() {
+  const d = document.createElement('div');
+  d.className = 'cb-msg bot'; d.id = 'cb-typing-row';
+  d.innerHTML = `<div class="cb-msg-icon">
+        <div class="cb-avatar"><img src="Logo.png" alt=""></div>
+    </div><div class="cb-bubble"><div class="cb-typing"><span></span><span></span><span></span></div></div>`;
+  cbMsgs.appendChild(d);
+  cbMsgs.scrollTop = cbMsgs.scrollHeight;
+}
+function removeTyping() {
+  const t = document.getElementById('cb-typing-row');
+  if (t) t.remove();
+}
+
+function showQuickReplies(opts) {
+  cbQuick.innerHTML = '';
+  const wrap = document.createElement('div');
+  wrap.className = 'cb-quick-wrap';
+  opts.forEach(o => {
+    const b = document.createElement('button');
+    b.className = 'cb-quick'; b.textContent = o;
+    b.addEventListener('click', () => {
+      cbQuick.innerHTML = '';
+      addMsg(o, 'user');
+      handleResponse(o);
+    });
+    wrap.appendChild(b);
+  });
+  cbQuick.appendChild(wrap);
+}
+
+function handleResponse(msg) {
+  showTyping();
+  setTimeout(() => {
+    removeTyping();
+    addMsg(getReply(matchTopic(msg)), 'bot');
+    showQuickReplies(['Our Services', 'Get a Quote', 'Contact Us', 'Our Clients']);
+  }, 900);
+}
+
+/* Open / Close */
+cbBtn.addEventListener('click', () => {
+  cbWindow.classList.toggle('open');
+  if (cbWindow.classList.contains('open') && cbMsgs.children.length === 0) {
+    setTimeout(() => {
+      addMsg("Hello! 👋 Welcome to <strong>Boilertech Energy Services</strong>.<br>How can I help you today?", 'bot');
+      showQuickReplies(['Our Services', 'Get a Quote', 'Contact Us', 'About Us', 'Our Clients']);
+    }, 200);
+  }
+});
+cbClose.addEventListener('click', () => cbWindow.classList.remove('open'));
+
+/* Send */
+function sendMessage() {
+  const txt = cbInput.value.trim();
+  if (!txt) return;
+  cbQuick.innerHTML = '';
+  addMsg(txt, 'user');
+  cbInput.value = '';
+  handleResponse(txt);
+}
+cbSend.addEventListener('click', sendMessage);
+cbInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(); });
 </script>
-<script src="script.js"></script>
 </body>
 </html>
