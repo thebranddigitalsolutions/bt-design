@@ -5,232 +5,351 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Boilertech Energy Services – Your Trusted Performance Partner</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 
 <style>
 :root {
-  --blue:   #1CB5D8;
-  --orange: #FFA500;
-  --green:  #7CFC00;
-  --red:    #e02424;
-  --dark:   #080E18;
-}
-*,body { font-family:'DM Sans',sans-serif; }
-.mano { font-family:'Manrope',sans-serif; }
-
-/* ─── TOP BAR ─── */
-.topbar{
-  position:fixed;top:0;left:0;width:100%;height:3px;z-index:400;
-  background:linear-gradient(90deg,var(--blue),var(--orange),var(--green),var(--red),var(--blue));
-  background-size:400% 100%;
-  animation:barShift 5s linear infinite;
-}
-@keyframes barShift{0%{background-position:0%}100%{background-position:400%}}
-
-/* LOADER */
-#loader { position:fixed;inset:0;background:#080E18;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .7s,visibility .7s; }
-#loader.hide{opacity:0;visibility:hidden;}
-.lbar{width:220px;height:3px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden;margin-top:16px;}
-.lbar::after{content:'';display:block;height:100%;background:linear-gradient(90deg,#1CB5D8,#FFA500,#7CFC00);animation:lfill 1.6s cubic-bezier(.16,1,.3,1) forwards;}
-@keyframes lfill{from{width:0}to{width:100%}}
-.ltxt{color:#fff;font-size:11px;letter-spacing:5px;text-transform:uppercase;animation:blink 1.2s ease-in-out infinite;}
-@keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
-
-/* ANIMATIONS */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
-.reveal.show{opacity:1;transform:translateY(0);}
-.fleft{opacity:0;transform:translateX(-45px);transition:opacity .8s ease,transform .8s ease;}
-.fleft.show{opacity:1;transform:translateX(0);}
-.fright{opacity:0;transform:translateX(45px);transition:opacity .8s ease,transform .8s ease;}
-.fright.show{opacity:1;transform:translateX(0);}
-
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.fl{animation:float 7s ease-in-out infinite;}
-@keyframes spin-slow{to{transform:rotate(360deg)}}
-.spin-slow{animation:spin-slow 20s linear infinite;}
-
-/* GRADIENT TEXT */
-.gtblue{background:linear-gradient(135deg,#1CB5D8,#62d9ed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.gtorange{background:linear-gradient(135deg,#FFA500,#ffcc44);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.gtgreen{background:linear-gradient(135deg,#7CFC00,#aaff55);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-
-/* CARD LIFT */
-.card-lift{transition:transform .3s,box-shadow .3s;}
-.card-lift:hover{transform:translateY(-6px);box-shadow:0 20px 44px rgba(28,181,216,.12);}
-
-/* TICKER */
-.ticker-wrap{overflow:hidden;white-space:nowrap;}
-.ticker-inner{display:inline-block;animation:ticker 30s linear infinite;}
-@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* BLOB */
-.blob{border-radius:50%;filter:blur(90px);pointer-events:none;position:absolute;}
-
-/* IMAGE OVERLAY */
-.img-overlay{position:relative;overflow:hidden;}
-.img-overlay::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,14,24,.8),transparent 60%);}
-.img-overlay img{transition:transform .6s ease;}
-.img-overlay:hover img{transform:scale(1.06);}
-
-/* CLIENT LOGO */
-.client-row{display:flex;gap:0;white-space:nowrap;}
-.client-scroll{animation:clientScroll 40s linear infinite;}
-.client-scroll2{animation:clientScroll 40s linear infinite reverse;animation-delay:-20s;}
-@keyframes clientScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.client-item{display:inline-flex;align-items:center;padding:0 24px;border-right:1px solid #e2e8f0;min-width:max-content;}
-
-/* STAT COUNTER */
-.cnum{font-family:'Manrope',sans-serif;font-weight:900;}
-
-/* NAV ACTIVE */
-nav a.active{color:#1CB5D8;border-bottom:2px solid #1CB5D8;padding-bottom:2px;}
-
-/* SECTION DIVIDER */
-.section-tag{display:inline-flex;align-items:center;gap:8px;padding:4px 16px;border-radius:999px;border:1px solid rgba(28,181,216,.25);background:rgba(28,181,216,.08);color:#1CB5D8;font-size:11px;font-weight:600;margin-bottom:16px;}
-
-/* IMAGE GRID */
-.boiler-img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
-.boiler-img:hover{transform:scale(1.04);}
-
-/* ══════════════════════════════
-   CHATBOT STYLES
-══════════════════════════════ */
-#chatbot-btn{
-  position:fixed;bottom:24px;right:20px;z-index:999;
-  width:56px;height:56px;border-radius:50%;
-  background:linear-gradient(135deg,#1CB5D8,#0e8fa8);
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 6px 24px rgba(28,181,216,.45);
-  cursor:pointer;border:none;
-  transition:all .3s;
-}
-#chatbot-btn:hover{transform:scale(1.1);box-shadow:0 10px 32px rgba(28,181,216,.55);}
-#chatbot-btn svg{width:26px;height:26px;fill:#fff;}
-.cb-pulse{
-  position:absolute;width:100%;height:100%;border-radius:50%;
-  border:2px solid rgba(28,181,216,.5);
-  animation:cbPulse 2.5s ease infinite;
-}
-@keyframes cbPulse{
-  0%{transform:scale(1);opacity:.8}
-  100%{transform:scale(1.7);opacity:0}
+  --blue:    #1CB5D8;
+  --blue-dk: #0e8fa8;
+  --orange:  #FFA500;
+  --dark:    #080E18;
+  --dark2:   #0D1526;
+  --gray:    #64748B;
+  --light:   #F4F6F9;
+  --white:   #ffffff;
 }
 
-/* Desktop chat window */
-#chatbot-window{
-  position:fixed;bottom:92px;right:20px;z-index:999;
-  width:360px;
-  background:#fff;border-radius:20px;
-  box-shadow:0 20px 60px rgba(0,0,0,.2);
-  display:none;flex-direction:column;overflow:hidden;
-  border:1px solid rgba(28,181,216,.2);
-  animation:cbOpen .3s cubic-bezier(.16,1,.3,1);
-}
-@keyframes cbOpen{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
-#chatbot-window.open{display:flex;}
+*, body { font-family: 'DM Sans', sans-serif; box-sizing: border-box; }
+.mano { font-family: 'Manrope', sans-serif; }
 
-/* Mobile — full screen chat */
-@media(max-width:480px){
-  #chatbot-window{
-    position:fixed;inset:0;bottom:0;right:0;
-    width:100%;height:100%;border-radius:0;
-    border:none;
+/* ── TOPBAR ACCENT ── */
+.topbar {
+  position: fixed; top: 0; left: 0; width: 100%; height: 2px; z-index: 500;
+  background: linear-gradient(90deg, var(--blue), var(--orange), var(--blue));
+  background-size: 300% 100%;
+  animation: barShift 6s linear infinite;
+}
+@keyframes barShift { 0%{background-position:0%} 100%{background-position:300%} }
+
+/* ── LOADER ── */
+#loader {
+  position: fixed; inset: 0; background: var(--dark); z-index: 9999;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  transition: opacity .4s, visibility .4s;
+}
+#loader.hide { opacity: 0; visibility: hidden; }
+.lbar { width: 180px; height: 2px; background: rgba(255,255,255,.08); border-radius: 2px; overflow: hidden; margin-top: 20px; }
+.lbar::after {
+  content: ''; display: block; height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--orange));
+  animation: lfill .5s cubic-bezier(.16,1,.3,1) forwards;
+}
+@keyframes lfill { from{width:0} to{width:100%} }
+.ltxt { color: rgba(255,255,255,.5); font-size: 10px; letter-spacing: 5px; text-transform: uppercase; font-family: 'Manrope', sans-serif; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 400;
+  background: rgba(8,14,24,.85);
+  backdrop-filter: blur(16px) saturate(1.5);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  transition: background .3s;
+}
+nav.scrolled {
+  background: rgba(8,14,24,.97);
+  border-bottom-color: rgba(28,181,216,.12);
+}
+nav a { position: relative; transition: color .2s; }
+nav a.active { color: var(--blue); }
+nav a:not(.btn-nav)::after {
+  content: ''; position: absolute; left: 0; bottom: -3px;
+  width: 0; height: 1px; background: var(--orange);
+  transition: width .25s;
+}
+nav a:not(.btn-nav):hover::after { width: 100%; }
+.btn-nav {
+  background: var(--orange); color: #fff; border-radius: 4px;
+  padding: 9px 22px; font-weight: 600; font-size: .82rem;
+  letter-spacing: .03em; transition: background .2s, transform .2s;
+}
+.btn-nav:hover { background: #e69300; transform: translateY(-1px); }
+
+/* Mobile menu */
+.hamburger span { display: block; width: 22px; height: 1.5px; background: rgba(255,255,255,.8); transition: .3s; margin: 5px 0; }
+#mobileMenu { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+
+/* ── HERO ── */
+.hero-bg {
+  background: var(--dark);
+  position: relative; overflow: hidden;
+}
+.hero-grid {
+  position: absolute; inset: 0; opacity: .03;
+  background-image:
+    linear-gradient(to right, #fff 1px, transparent 1px),
+    linear-gradient(to bottom, #fff 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-glow {
+  position: absolute; border-radius: 50%; pointer-events: none; filter: blur(100px);
+}
+
+/* ── SECTION TAG ── */
+.stag {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 14px; border-radius: 3px;
+  background: rgba(28,181,216,.08); border-left: 2px solid var(--blue);
+  color: var(--blue); font-size: .72rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+/* ── BUTTONS ── */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--blue); color: #fff; border-radius: 4px;
+  padding: 13px 28px; font-weight: 600; font-size: .88rem;
+  letter-spacing: .02em; transition: background .2s, transform .2s, box-shadow .2s;
+}
+.btn-primary:hover { background: var(--blue-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(28,181,216,.25); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.75); border-radius: 4px;
+  padding: 13px 28px; font-weight: 500; font-size: .88rem;
+  transition: border-color .2s, color .2s, background .2s;
+}
+.btn-outline:hover { border-color: var(--orange); color: var(--orange); }
+.btn-outline-dark {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid #dde3ec; color: #374151; border-radius: 4px;
+  padding: 12px 26px; font-weight: 500; font-size: .88rem;
+  transition: border-color .2s, color .2s, background .2s;
+}
+.btn-outline-dark:hover { border-color: var(--blue); color: var(--blue); background: rgba(28,181,216,.04); }
+
+/* ── STATS BAND ── */
+.stats-band { background: var(--blue); position: relative; overflow: hidden; }
+.stats-band::before {
+  content: ''; position: absolute; right: -100px; top: -60px;
+  width: 300px; height: 300px; border-radius: 50%;
+  background: rgba(255,255,255,.06);
+}
+
+/* ── SERVICE CARD ── */
+.svc-card {
+  border: 1px solid rgba(255,255,255,.07);
+  background: rgba(255,255,255,.03);
+  border-radius: 6px;
+  padding: 36px 28px;
+  transition: border-color .25s, background .25s, transform .25s;
+  position: relative; overflow: hidden;
+}
+.svc-card::before {
+  content: ''; position: absolute; left: 0; top: 0;
+  width: 2px; height: 0; background: var(--blue);
+  transition: height .35s;
+}
+.svc-card:hover::before { height: 100%; }
+.svc-card:hover {
+  border-color: rgba(28,181,216,.25);
+  background: rgba(28,181,216,.04);
+  transform: translateY(-3px);
+}
+.svc-icon {
+  width: 44px; height: 44px; border-radius: 4px;
+  background: rgba(28,181,216,.1); border: 1px solid rgba(28,181,216,.2);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+}
+.svc-card:nth-child(2n) .svc-icon { background: rgba(255,165,0,.08); border-color: rgba(255,165,0,.2); }
+
+/* ── IMAGE CARD ── */
+.img-card { border-radius: 6px; overflow: hidden; position: relative; }
+.img-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; display: block; }
+.img-card:hover img { transform: scale(1.04); }
+.img-card .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,14,24,.85) 0%, transparent 55%); }
+
+/* ── TICKER ── */
+.ticker-wrap { overflow: hidden; white-space: nowrap; }
+.ticker-inner { display: inline-block; animation: ticker 35s linear infinite; }
+@keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ── CARD LIFT ── */
+.lift { transition: transform .25s, box-shadow .25s; }
+.lift:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.1); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.show { opacity: 1; transform: none; }
+.fl { opacity: 0; transform: translateX(-32px); transition: opacity .7s ease, transform .7s ease; }
+.fl.show { opacity: 1; transform: none; }
+.fr { opacity: 0; transform: translateX(32px); transition: opacity .7s ease, transform .7s ease; }
+.fr.show { opacity: 1; transform: none; }
+
+/* ── CLIENT SCROLL ── */
+.client-row { display: flex; gap: 0; white-space: nowrap; }
+.cs1 { animation: clientScroll 40s linear infinite; }
+.cs2 { animation: clientScroll 40s linear infinite reverse; animation-delay: -20s; }
+@keyframes clientScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.client-item {
+  display: inline-flex; align-items: center; padding: 0 32px;
+  border-right: 1px solid rgba(255,255,255,.06); min-width: max-content;
+}
+
+  /* ═══════════ CHATBOT ═══════════ */
+  #chatbot-btn {
+    position:fixed; bottom:24px; right:20px; z-index:999;
+    width:56px; height:56px; border-radius:50%;
+    background:linear-gradient(135deg,#1CB5D8,#0e8fa8);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 24px rgba(28,181,216,.45);
+    cursor:pointer; border:none;
+    transition:all .3s;
   }
-  #chatbot-btn{
-    bottom:16px;right:16px;
-    width:52px;height:52px;
+  #chatbot-btn:hover { transform:scale(1.1); box-shadow:0 10px 32px rgba(28,181,216,.55); }
+  #chatbot-btn svg { width:26px; height:26px; fill:#fff; }
+  .cb-pulse {
+    position:absolute; width:100%; height:100%; border-radius:50%;
+    border:2px solid rgba(28,181,216,.5);
+    animation:cbPulse 2.5s ease infinite;
   }
+  @keyframes cbPulse { 0%{transform:scale(1);opacity:.8} 100%{transform:scale(1.7);opacity:0} }
+
+  #chatbot-window {
+    position:fixed; bottom:92px; right:20px; z-index:999;
+    width:360px;
+    background:#fff; border-radius:20px;
+    box-shadow:0 20px 60px rgba(0,0,0,.2);
+    display:none; flex-direction:column; overflow:hidden;
+    border:1px solid rgba(28,181,216,.2);
+    animation:cbOpen .3s cubic-bezier(.16,1,.3,1);
+  }
+  @keyframes cbOpen { from{opacity:0;transform:translateY(16px) scale(.97)} to{opacity:1;transform:none} }
+  #chatbot-window.open { display:flex; }
+
+  @media(max-width:480px) {
+    #chatbot-window { position:fixed; inset:0; bottom:0; right:0; width:100%; height:100%; border-radius:0; border:none; }
+    #chatbot-btn { bottom:16px; right:16px; width:52px; height:52px; }
+  }
+
+  #cb-header {
+    background:linear-gradient(135deg,#080E18,#0e1830);
+    padding:14px 16px; display:flex; align-items:center; gap:12px;
+    border-bottom:1px solid rgba(28,181,216,.15);
+    flex-shrink:0;
+  }
+  #cb-header .cb-avatar {
+    width:38px; height:38px; border-radius:50%;
+    background:linear-gradient(135deg,#1CB5D8,#0e8fa8);
+    display:flex; align-items:center; justify-content:center; font-size:17px;
+    flex-shrink:0;
+  }
+  #cb-header .cb-info .cb-name { color:#fff; font-weight:700; font-size:.86rem; font-family:'Manrope',sans-serif; }
+  #cb-header .cb-info .cb-status { color:#7CFC00; font-size:.67rem; font-weight:600; display:flex; align-items:center; gap:4px; margin-top:2px; }
+  #cb-header .cb-info .cb-status::before { content:''; width:6px; height:6px; border-radius:50%; background:#7CFC00; display:inline-block; }
+  #cb-close { margin-left:auto; background:rgba(255,255,255,.1); border:none; color:#fff; width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:15px; display:flex; align-items:center; justify-content:center; transition:.2s; flex-shrink:0; }
+  #cb-close:hover { background:rgba(255,255,255,.2); }
+
+  #cb-messages {
+    flex:1; overflow-y:auto; padding:14px;
+    display:flex; flex-direction:column; gap:10px;
+    min-height:220px; max-height:340px;
+    background:#f8fafc;
+  }
+  @media(max-width:480px) { #cb-messages { max-height:none; min-height:0; } }
+  #cb-messages::-webkit-scrollbar { width:3px; }
+  #cb-messages::-webkit-scrollbar-thumb { background:#1CB5D8; border-radius:3px; }
+
+  .cb-msg { display:flex; gap:8px; align-items:flex-end; max-width:92%; }
+  .cb-msg.bot { align-self:flex-start; }
+  .cb-msg.user { align-self:flex-end; flex-direction:row-reverse; }
+  .cb-bubble { padding:10px 13px; border-radius:14px; font-size:.82rem; line-height:1.55; max-width:100%; word-break:break-word; }
+  .cb-msg.bot .cb-bubble { background:#fff; color:#0f1115; border:1px solid #e5eaf0; border-bottom-left-radius:4px; }
+  .cb-msg.user .cb-bubble { background:linear-gradient(135deg,#1CB5D8,#0e8fa8); color:#fff; border-bottom-right-radius:4px; }
+  .cb-msg-icon { width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,#1CB5D8,#0e8fa8); display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0; }
+
+  .cb-quick-wrap { display:flex; flex-wrap:wrap; gap:6px; padding:10px 14px 6px; background:#f8fafc; flex-shrink:0; }
+  .cb-quick { background:#fff; border:1.5px solid #1CB5D8; color:#1CB5D8; font-size:.72rem; font-weight:600; padding:5px 11px; border-radius:999px; cursor:pointer; transition:.2s; white-space:nowrap; }
+  .cb-quick:hover { background:#1CB5D8; color:#fff; }
+
+  #cb-input-row { display:flex; gap:8px; padding:10px 12px; border-top:1px solid #e5eaf0; background:#fff; flex-shrink:0; }
+  #cb-input { flex:1; border:1.5px solid #e5eaf0; border-radius:10px; padding:9px 12px; outline:none; font-family:'Inter',sans-serif; transition:.2s; font-size:16px; }
+  @media(min-width:481px) { #cb-input { font-size:.84rem; } }
+  #cb-input:focus { border-color:#1CB5D8; box-shadow:0 0 0 3px rgba(28,181,216,.1); }
+  #cb-send { background:#1CB5D8; color:#fff; border:none; width:40px; height:40px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.2s; flex-shrink:0; }
+  #cb-send:hover { background:#0e8fa8; }
+  #cb-send svg { width:16px; height:16px; fill:#fff; }
+
+  .cb-typing { display:flex; gap:4px; padding:8px 12px; align-items:center; }
+  .cb-typing span { width:7px; height:7px; border-radius:50%; background:#1CB5D8; animation:cbDot 1.2s ease infinite; }
+  .cb-typing span:nth-child(2) { animation-delay:.2s; }
+  .cb-typing span:nth-child(3) { animation-delay:.4s; }
+  @keyframes cbDot { 0%,80%,100%{transform:scale(.6);opacity:.4} 40%{transform:scale(1);opacity:1} }
+
+/* ── WHY CARD ── */
+.why-card {
+  padding: 28px 24px; background: #fff; border: 1px solid #e8edf3;
+  border-radius: 6px; transition: box-shadow .25s, border-color .25s, transform .25s;
+}
+.why-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,.07); border-color: rgba(28,181,216,.2); transform: translateY(-3px); }
+.why-icon { width: 40px; height: 40px; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+
+/* ── CLIENT CARD ── */
+.client-card {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 6px; padding: 20px;
+  transition: border-color .25s, background .25s;
+}
+.client-card:hover { border-color: rgba(28,181,216,.25); background: rgba(28,181,216,.04); }
+
+/* ── DIVIDER ── */
+.section-divider { height: 1px; background: linear-gradient(to right, transparent, rgba(28,181,216,.2), transparent); }
+
+/* ── CNUM ── */
+.cnum { font-family: 'Manrope', sans-serif; font-weight: 900; }
+
+/* ── PERFORMANCE PANEL ── */
+.perf-panel {
+  background: rgba(255,255,255,.04);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 8px;
 }
 
-#cb-header{
-  background:linear-gradient(135deg,#080E18,#0e1830);
-  padding:14px 16px;display:flex;align-items:center;gap:12px;
-  border-bottom:1px solid rgba(28,181,216,.15);
-  flex-shrink:0;
+/* ── CONTACT CARD ── */
+.contact-card {
+  background: var(--dark2); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 6px; padding: 22px;
+  transition: border-color .25s;
 }
-#cb-header .cb-avatar{
-  width:38px;height:38px;border-radius:50%;
-  background:linear-gradient(135deg,#1CB5D8,#0e8fa8);
-  display:flex;align-items:center;justify-content:center;font-size:17px;
-  flex-shrink:0;
-}
-#cb-header .cb-info .cb-name{color:#fff;font-weight:700;font-size:.86rem;font-family:'Manrope',sans-serif;}
-#cb-header .cb-info .cb-status{color:#7CFC00;font-size:.67rem;font-weight:600;display:flex;align-items:center;gap:4px;margin-top:2px;}
-#cb-header .cb-info .cb-status::before{content:'';width:6px;height:6px;border-radius:50%;background:#7CFC00;display:inline-block;}
-#cb-close{margin-left:auto;background:rgba(255,255,255,.1);border:none;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0;}
-#cb-close:hover{background:rgba(255,255,255,.2);}
+.contact-card:hover { border-color: rgba(28,181,216,.25); }
 
-#cb-messages{
-  flex:1;overflow-y:auto;padding:14px;
-  display:flex;flex-direction:column;gap:10px;
-  min-height:220px;max-height:340px;
-  background:#f8fafc;
-}
-@media(max-width:480px){
-  #cb-messages{max-height:none;min-height:0;}
-}
-#cb-messages::-webkit-scrollbar{width:3px;}
-#cb-messages::-webkit-scrollbar-thumb{background:#1CB5D8;border-radius:3px;}
+/* ── FOOTER ── */
+footer a { transition: color .2s; }
 
-.cb-msg{display:flex;gap:8px;align-items:flex-end;max-width:92%;}
-.cb-msg.bot{align-self:flex-start;}
-.cb-msg.user{align-self:flex-end;flex-direction:row-reverse;}
-.cb-bubble{
-  padding:10px 13px;border-radius:14px;font-size:.82rem;line-height:1.55;
-  max-width:100%;word-break:break-word;
-}
-.cb-msg.bot .cb-bubble{background:#fff;color:#0f1115;border:1px solid #e5eaf0;border-bottom-left-radius:4px;}
-.cb-msg.user .cb-bubble{background:linear-gradient(135deg,#1CB5D8,#0e8fa8);color:#fff;border-bottom-right-radius:4px;}
-.cb-msg-icon{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#1CB5D8,#0e8fa8);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+/* SVG icons */
+.icon-svg { width: 22px; height: 22px; display: block; }
 
-/* quick replies */
-.cb-quick-wrap{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px 6px;background:#f8fafc;flex-shrink:0;}
-.cb-quick{
-  background:#fff;border:1.5px solid #1CB5D8;color:#1CB5D8;
-  font-size:.72rem;font-weight:600;padding:5px 11px;border-radius:999px;
-  cursor:pointer;transition:.2s;white-space:nowrap;
-}
-.cb-quick:hover{background:#1CB5D8;color:#fff;}
-
-#cb-input-row{
-  display:flex;gap:8px;padding:10px 12px;
-  border-top:1px solid #e5eaf0;background:#fff;
-  flex-shrink:0;
-}
-#cb-input{
-  flex:1;border:1.5px solid #e5eaf0;border-radius:10px;
-  padding:9px 12px;font-size:.84rem;outline:none;
-  font-family:'DM Sans',sans-serif;transition:.2s;
-  /* prevent iOS zoom on focus */
-  font-size:16px;
-}
-@media(min-width:481px){#cb-input{font-size:.84rem;}}
-#cb-input:focus{border-color:#1CB5D8;box-shadow:0 0 0 3px rgba(28,181,216,.1);}
-#cb-send{
-  background:#1CB5D8;color:#fff;border:none;
-  width:40px;height:40px;border-radius:10px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:.2s;flex-shrink:0;
-}
-#cb-send:hover{background:#0e8fa8;}
-#cb-send svg{width:16px;height:16px;fill:#fff;}
-
-/* typing indicator */
-.cb-typing{display:flex;gap:4px;padding:8px 12px;align-items:center;}
-.cb-typing span{width:7px;height:7px;border-radius:50%;background:#1CB5D8;animation:cbDot 1.2s ease infinite;}
-.cb-typing span:nth-child(2){animation-delay:.2s;}
-.cb-typing span:nth-child(3){animation-delay:.4s;}
-@keyframes cbDot{0%,80%,100%{transform:scale(.6);opacity:.4}40%{transform:scale(1);opacity:1}}
+/* ── Progress bar ── */
+.pbar { height: 2px; background: rgba(255,255,255,.08); border-radius: 2px; overflow: hidden; margin-top: 10px; }
+.pbar-fill { height: 100%; border-radius: 2px; }
 </style>
 </head>
 
-<body class="bg-[#F8FAFC] text-slate-800 overflow-x-hidden">
-  <div class="topbar"></div>
+<body class="bg-[#F4F6F9] text-slate-800 overflow-x-hidden">
+<div class="topbar"></div>
 
 <!-- LOADER -->
 <div id="loader">
-  <p class="ltxt">Boilertech Energy</p>
+  <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;">
+    <img src="Logo.png" alt="" style="width:48px;height:48px;object-fit:contain;"/>
+    <div>
+      <p class="ltxt" style="margin:0 0 4px;">Boilertech Energy Services</p>
+      <p style="color:rgba(255,255,255,.25);font-size:9px;letter-spacing:4px;text-transform:uppercase;font-family:'Manrope',sans-serif;">Initializing…</p>
+    </div>
+  </div>
   <div class="lbar"></div>
 </div>
 
@@ -239,16 +358,21 @@ nav a.active{color:#1CB5D8;border-bottom:2px solid #1CB5D8;padding-bottom:2px;}
   <div class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 py-4">
     <div class="flex items-center gap-2.5">
       <img src="Logo.png" alt="Boilertech Energy Services Logo" class="h-9 w-auto"/>
-      <div class="text-black font-black text-xl font-manrope tracking-tight">
-        Boiler<span class="text-[#1CB5D8]">Tech</span>
-      </div>
+     <div class="flex flex-col leading-tight">
+  <span class="text-black font-black text-xl font-manrope tracking-tight">
+    Boiler<span class="text-[#1CB5D8]">tech</span>
+  </span>
+  <span class="text-xs text-slate-500 font-semibold tracking-widest">
+    ENERGY SERVICES
+  </span>
+</div>
     </div>
     <div class="hidden md:flex items-center gap-7 text-sm font-medium">
-      <a href="index.html"    class="text-[#1CB5D8] border-b-2 border-[#1CB5D8] pb-0.5">Home</a>
-      <a href="about.html"    class="text-slate-600 hover:text-[#1CB5D8] transition">About</a>
-      <a href="services.html" class="text-slate-600 hover:text-[#1CB5D8] transition">Services</a>
-      <a href="products.html" class="text-slate-600 hover:text-[#1CB5D8] transition">Products</a>
-      <a href="contact.html"  class="text-slate-600 hover:text-[#1CB5D8] transition">Contact</a>
+      <a href="index.html"    class="text-[#FFA500] text-base font-extrabold border-b-2 border-[#FFA500] pb-0.5">Home</a>
+      <a href="about.html"    class="text-slate-600 text-base  font-bold hover:text-[#FFA500] transition">About</a>
+      <a href="services.html" class="text-slate-600 text-base font-bold hover:text-[#FFA500] transition">Services</a>
+      <a href="products.html" class="text-slate-600 text-base font-bold hover:text-[#FFA500] transition">Products</a>
+      <a href="contact.html"  class="text-slate-600 text-base font-bold hover:text-[#FFA500] transition">Contact</a>
     </div>
     <div class="hidden md:block">
       <a href="contact.html">
@@ -263,484 +387,698 @@ nav a.active{color:#1CB5D8;border-bottom:2px solid #1CB5D8;padding-bottom:2px;}
   </div>
   <div id="mobileMenu" class="md:hidden bg-white border-t border-slate-100 overflow-hidden max-h-0 transition-all duration-500">
     <div class="flex flex-col px-6 py-5 gap-4 text-sm font-medium">
-      <a href="index.html"    class="text-slate-600 hover:text-[#1CB5D8]">Home</a>
-      <a href="about.html"    class="text-[#1CB5D8] font-bold">About</a>
-      <a href="services.html" class="text-slate-600 hover:text-[#1CB5D8]">Services</a>
-      <a href="products.html" class="text-slate-600 hover:text-[#1CB5D8]">Products</a>
-      <a href="contact.html"  class="text-slate-600 hover:text-[#1CB5D8]">Contact</a>
+      <a href="index.html"    class="text-[#FFA500] text-base font-extrabold">Home</a>
+      <a href="about.html"    class="text-slate-600 text-base  font-bold hover:text-[#FFA500]">About</a>
+      <a href="services.html" class="text-slate-600 text-base font-bold hover:text-[#FFA500]">Services</a>
+      <a href="products.html" class="text-slate-600text-base font-bold  hover:text-[#FFA500]">Products</a>
+      <a href="contact.html"  class="text-slate-600text-base font-bold hover:text-[#FFA500]">Contact</a>
       <button class="bg-[#FFA500] text-white px-5 py-2.5 rounded-full w-full font-semibold">Get Quote</button>
     </div>
   </div>
 </nav>
 
+<!-- ═══ HERO ═══ -->
+<section class="hero-bg min-h-screen flex items-center pt-20">
+  <div class="hero-grid"></div>
+  <div class="hero-glow w-[600px] h-[600px] top-[-180px] left-[-180px]" style="background:rgba(28,181,216,.07)"></div>
+  <div class="hero-glow w-[400px] h-[400px] bottom-[-100px] right-[-80px]" style="background:rgba(255,165,0,.06)"></div>
 
-<!-- ══════════ HERO ══════════ -->
-<section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-[#080E18]">
-  <div class="blob w-[700px] h-[700px] bg-[#1CB5D8]/12 top-[-200px] left-[-200px]"></div>
-  <div class="blob w-[500px] h-[500px] bg-[#FFA500]/10 bottom-[-100px] right-[-100px]"></div>
-  <div class="blob w-[300px] h-[300px] bg-[#7CFC00]/6 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
-  <div class="absolute inset-0 opacity-[0.03]" style="background-image:linear-gradient(to right,#fff 1px,transparent 1px),linear-gradient(to bottom,#fff 1px,transparent 1px);background-size:72px 72px;"></div>
-  <div class="absolute right-[-100px] top-20 w-[600px] h-[600px] border border-[#1CB5D8]/8 rounded-full spin-slow hidden lg:block"></div>
-  <div class="absolute right-[-40px] top-40 w-[420px] h-[420px] border border-[#FFA500]/7 rounded-full spin-slow hidden lg:block" style="animation-direction:reverse;animation-duration:26s"></div>
-
-  <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full grid lg:grid-cols-2 gap-12 items-center py-20 relative z-10">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full grid lg:grid-cols-2 gap-16 items-center py-24 relative z-10">
+    <!-- Left -->
     <div>
-      <div class="section-tag reveal"><span class="w-2 h-2 bg-[#1CB5D8] rounded-full animate-pulse"></span>Your Trusted Performance Partner</div>
-      <h1 class="mano text-5xl sm:text-6xl lg:text-[68px] font-black leading-[1.04] reveal" style="transition-delay:.05s">
+      <div class="stag reveal">Your Trusted Performance Partner</div>
+      <h1 class="mano text-5xl sm:text-6xl lg:text-[64px] font-black leading-[1.05] reveal" style="transition-delay:.06s">
         <span class="text-white">Industrial</span><br>
-        <span class="gtblue">Boiler</span><br>
+        <span style="color:var(--blue)">Boiler</span><br>
         <span class="text-white">Engineering</span><br>
-        <span class="gtorange">Excellence</span>
+        <span style="color:var(--orange)">Excellence</span>
       </h1>
-      <p class="text-slate-400 text-base sm:text-lg mt-6 max-w-lg leading-relaxed reveal" style="transition-delay:.1s">
-        Optimizing industrial boiler performance through advanced engineering, operational reliability, and long-term sustainability. Trusted across 500+ projects pan-India.
+      <p class="text-slate-400 text-base mt-6 max-w-md leading-relaxed reveal" style="transition-delay:.1s">
+        Optimizing industrial boiler performance through advanced engineering, operational reliability, and long-term sustainability across 500+ projects pan India.
       </p>
-      <div class="flex flex-wrap gap-4 mt-8 reveal" style="transition-delay:.15s">
-        <a href="services.html"><button class="px-7 py-3 rounded-full bg-[#1CB5D8] text-white font-semibold hover:scale-105 transition shadow-lg shadow-[#1CB5D8]/30">Explore Services</button></a>
-        <a href="contact.html"><button class="px-7 py-3 rounded-full border border-slate-600 text-slate-200 font-semibold hover:border-[#FFA500] hover:text-[#FFA500] transition">Get a Quote</button></a>
+      <div class="flex flex-wrap gap-4 mt-8 reveal" style="transition-delay:.14s">
+        <a href="services.html" class="btn-primary">Explore Services <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></a>
+        <a href="contact.html" class="btn-outline">Get a Quote</a>
       </div>
-      <div class="flex flex-wrap items-center gap-5 mt-10 reveal" style="transition-delay:.2s">
-        <div class="flex items-center gap-2 text-xs text-slate-400"><span class="w-2 h-2 bg-[#7CFC00] rounded-full"></span>IBR Certified</div>
-        <div class="flex items-center gap-2 text-xs text-slate-400"><span class="w-2 h-2 bg-[#FFA500] rounded-full"></span>10+ Years</div>
-        <div class="flex items-center gap-2 text-xs text-slate-400"><span class="w-2 h-2 bg-[#1CB5D8] rounded-full"></span>500+ Projects</div>
-        <div class="flex items-center gap-2 text-xs text-slate-400"><span class="w-2 h-2 bg-[#e02424] rounded-full"></span>Pan India</div>
+      <div class="flex flex-wrap items-center gap-6 mt-10 reveal" style="transition-delay:.18s">
+        <div class="flex items-center gap-2 text-xs text-slate-500">
+          <span class="w-1.5 h-1.5 rounded-full" style="background:var(--blue)"></span>IBR Certified
+        </div>
+        <div class="flex items-center gap-2 text-xs text-slate-500">
+          <span class="w-1.5 h-1.5 rounded-full" style="background:var(--orange)"></span>10+ Years
+        </div>
+        <div class="flex items-center gap-2 text-xs text-slate-500">
+          <span class="w-1.5 h-1.5 rounded-full" style="background:var(--blue)"></span>500+ Projects
+        </div>
+        <div class="flex items-center gap-2 text-xs text-slate-500">
+          <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,255,255,.3)"></span>Pan India
+        </div>
       </div>
     </div>
 
-    <div class="relative flex flex-col gap-4 reveal fl" style="transition-delay:.2s">
-      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-3xl p-6">
-        <div class="flex items-center justify-between mb-5">
-          <span class="text-white font-bold text-sm mano">Performance Index</span>
-          <span class="flex items-center gap-1.5 text-[#7CFC00] text-xs font-semibold"><span class="w-1.5 h-1.5 bg-[#7CFC00] rounded-full animate-pulse"></span>Live</span>
+    <!-- Right: Performance Panel -->
+    <div class="perf-panel p-7 reveal fr" style="transition-delay:.12s">
+      <div class="flex items-center justify-between mb-6">
+        <span class="text-white text-sm font-bold mano tracking-wide">Performance Index</span>
+        <span class="flex items-center gap-2 text-xs font-semibold" style="color:#64d8a0">
+          <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>Live
+        </span>
+      </div>
+      <div class="grid grid-cols-2 gap-4 mb-6">
+        <div class="bg-white/5 rounded-md p-4 border border-white/5">
+          <div class="cnum text-3xl" style="color:var(--blue)">500+</div>
+          <div class="text-slate-400 text-xs mt-1">Projects Delivered</div>
+          <div class="pbar mt-3"><div class="pbar-fill w-[92%]" style="background:var(--blue)"></div></div>
         </div>
-        <div class="grid grid-cols-2 gap-3">
-          <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
-            <div class="cnum text-3xl text-[#1CB5D8]">500+</div>
-            <div class="text-slate-400 text-xs mt-1">Projects Done</div>
-            <div class="mt-2 h-0.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-[#1CB5D8] rounded-full" style="width:92%"></div></div>
-          </div>
-          <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
-            <div class="cnum text-3xl text-[#7CFC00]">98%</div>
-            <div class="text-slate-400 text-xs mt-1">Efficiency Rate</div>
-            <div class="mt-2 h-0.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-[#7CFC00] rounded-full" style="width:98%"></div></div>
-          </div>
-          <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
-            <div class="cnum text-3xl text-[#FFA500]">7+</div>
-            <div class="text-slate-400 text-xs mt-1">Industries</div>
-            <div class="mt-2 h-0.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-[#FFA500] rounded-full" style="width:70%"></div></div>
-          </div>
-          <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
-            <div class="cnum text-3xl text-white">10+</div>
-            <div class="text-slate-400 text-xs mt-1">Years Exp.</div>
-            <div class="mt-2 h-0.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-white/50 rounded-full" style="width:80%"></div></div>
-          </div>
+        <div class="bg-white/5 rounded-md p-4 border border-white/5">
+          <div class="cnum text-3xl text-white">98%</div>
+          <div class="text-slate-400 text-xs mt-1">Efficiency Rate</div>
+          <div class="pbar mt-3"><div class="pbar-fill w-[98%]" style="background:var(--orange)"></div></div>
+        </div>
+        <div class="bg-white/5 rounded-md p-4 border border-white/5">
+          <div class="cnum text-3xl" style="color:var(--orange)">50+</div>
+          <div class="text-slate-400 text-xs mt-1">Trusted Clients</div>
+          <div class="pbar mt-3"><div class="pbar-fill w-[70%]" style="background:var(--orange)"></div></div>
+        </div>
+        <div class="bg-white/5 rounded-md p-4 border border-white/5">
+          <div class="cnum text-3xl text-white">10+</div>
+          <div class="text-slate-400 text-xs mt-1">Years Experience</div>
+          <div class="pbar mt-3"><div class="pbar-fill w-[80%]" style="background:rgba(255,255,255,.4)"></div></div>
         </div>
       </div>
-      <div class="flex gap-3">
-        <div class="flex-1 bg-[#FFA500] text-white text-xs font-bold px-4 py-3 rounded-2xl shadow-lg shadow-[#FFA500]/25 text-center">⚡ Vision 2030 — Pan India Leader</div>
-        <div class="flex gap-2 items-center bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
-          <span class="px-2 py-0.5 rounded-full bg-[#1CB5D8]/20 text-[#1CB5D8] text-[10px] font-bold border border-[#1CB5D8]/30">IBR</span>
-          <span class="px-2 py-0.5 rounded-full bg-[#7CFC00]/20 text-[#7CFC00] text-[10px] font-bold border border-[#7CFC00]/30">CFD</span>
-          <span class="px-2 py-0.5 rounded-full bg-[#FFA500]/20 text-[#FFA500] text-[10px] font-bold border border-[#FFA500]/30">ISO</span>
-        </div>
+      <img src="assets/home page img.png" alt="Boilertech plant" style="border-radius:6px;width:100%;object-fit:cover;max-height:180px;display:block;"/>
+      <div class="mt-5 flex items-center gap-3">
+        <span class="px-3 py-1 rounded-sm text-[10px] font-bold tracking-widest uppercase border" style="color:var(--blue);border-color:rgba(28,181,216,.3);background:rgba(28,181,216,.07)">IBR</span>
+        <span class="px-3 py-1 rounded-sm text-[10px] font-bold tracking-widest uppercase border" style="color:var(--orange);border-color:rgba(255,165,0,.3);background:rgba(255,165,0,.07)">CFD</span>
+        <span class="px-3 py-1 rounded-sm text-[10px] font-bold tracking-widest uppercase border" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.1);background:rgba(255,255,255,.04)">ISO</span>
+        <span class="ml-auto text-slate-500 text-xs">Vision 2030 · Pan India Leader</span>
       </div>
     </div>
   </div>
-  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-600 animate-bounce text-2xl">↓</div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-600 text-sm animate-bounce">↓</div>
 </section>
 
-
-<!-- TICKER -->
-<div class="bg-[#1CB5D8] py-3 overflow-hidden">
-  <div class="ticker-wrap">
-    <div class="ticker-inner text-sm font-semibold text-white">
-      <span class="mx-8">⚙️ Boiler Performance Studies</span><span class="mx-8">🔥 Combustion Optimization</span><span class="mx-8">📊 Energy Audit</span><span class="mx-8">🔬 CFD Analysis</span><span class="mx-8">📐 IBR Piping Design</span><span class="mx-8">🛠 Shutdown Audit</span><span class="mx-8">⚡ Capacity Enhancement</span><span class="mx-8">🌱 Alternative Fuel Study</span><span class="mx-8">🌀 Auxiliary Optimization</span><span class="mx-8">🧩 Root Cause Analysis</span>
-      <span class="mx-8">⚙️ Boiler Performance Studies</span><span class="mx-8">🔥 Combustion Optimization</span><span class="mx-8">📊 Energy Audit</span><span class="mx-8">🔬 CFD Analysis</span><span class="mx-8">📐 IBR Piping Design</span><span class="mx-8">🛠 Shutdown Audit</span><span class="mx-8">⚡ Capacity Enhancement</span><span class="mx-8">🌱 Alternative Fuel Study</span><span class="mx-8">🌀 Auxiliary Optimization</span><span class="mx-8">🧩 Root Cause Analysis</span>
+<!-- ═══ STATS BAND ═══ -->
+<div class="stats-band py-8">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-white text-center">
+      <div>
+        <div class="cnum text-3xl sm:text-4xl">500+</div>
+        <div class="text-[11px] font-semibold tracking-widest uppercase mt-1 text-white/60">Projects</div>
+      </div>
+      <div>
+        <div class="cnum text-3xl sm:text-4xl">98%</div>
+        <div class="text-[11px] font-semibold tracking-widest uppercase mt-1 text-white/60">Efficiency</div>
+      </div>
+      <div>
+        <div class="cnum text-3xl sm:text-4xl">50+</div>
+        <div class="text-[11px] font-semibold tracking-widest uppercase mt-1 text-white/60">Clients</div>
+      </div>
+      <div>
+        <div class="cnum text-3xl sm:text-4xl">7+</div>
+        <div class="text-[11px] font-semibold tracking-widest uppercase mt-1 text-white/60">Industries</div>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- ═══ TICKER ═══ -->
+<div class="bg-[#0a111e] py-3 border-y border-white/5 overflow-hidden">
+  <div class="ticker-wrap">
+    <div class="ticker-inner text-[11px] font-semibold tracking-widest uppercase text-slate-500">
+      <span class="mx-8">Boiler Performance Studies</span>
+      <span class="mx-3 text-slate-700">—</span>
+      <span class="mx-8">Combustion Optimization</span>
+      <span class="mx-3 text-slate-700">—</span>
+      <span class="mx-8">Energy Audit</span>
+      <span class="mx-3 text-slate-700">—</span>
+      <span class="mx-8">CFD Analysis</span>
+      <span class="mx-3 text-slate-700">—</span>
+      <span class="mx-8">IBR Piping Design</span>
+      <span class="mx-3 text-slate-700">—</span>
+      <span class="mx-8">Shutdown Audit</span>
+      <span class="mx-3 text-slate-700">—</span>
+      <span class="mx-8">Capacity Enhancement</span>
+      <span class="mx-3 text-slate-700">—</span>
+      <span class="mx-8">Alternate Fuel Study</span>
+      <span class="mx-3 text-slate-700">—</span>
+      <span class="mx-8">Root Cause Analysis</span>
+      <span class="mx-3 text-slate-700">—</span>
+      <span class="mx-8">Boiler Performance Studies</span>
+      <span class="mx-3 text-slate-700">—</span>
+      <span class="mx-8">Combustion Optimization</span>
+      <span class="mx-3 text-slate-700">—</span>
+      <span class="mx-8">Energy Audit</span>
+      <span class="mx-3 text-slate-700">—</span>
+      <span class="mx-8">CFD Analysis</span>
+      <span class="mx-3 text-slate-700">—</span>
+      <span class="mx-8">IBR Piping Design</span>
+      <span class="mx-3 text-slate-700">—</span>
+      <span class="mx-8">Shutdown Audit</span>
+      <span class="mx-3 text-slate-700">—</span>
+      <span class="mx-8">Capacity Enhancement</span>
+      <span class="mx-3 text-slate-700">—</span>
+      <span class="mx-8">Alternate Fuel Study</span>
+      <span class="mx-3 text-slate-700">—</span>
+      <span class="mx-8">Root Cause Analysis</span>
+    </div>
+  </div>
+</div>
 
-<!-- ══════════ ABOUT ══════════ -->
-<section class="py-20 bg-white relative overflow-hidden">
-  <div class="blob w-[450px] h-[450px] bg-[#1CB5D8]/7 top-0 right-0"></div>
-  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-14 items-center relative z-10">
-    <div class="relative fleft">
+<!-- ═══ ABOUT ═══ -->
+<section class="py-24 bg-white relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-16 items-center">
+    <!-- Image grid -->
+    <div class="relative fl">
       <div class="grid grid-cols-2 gap-3 h-[420px]">
-        <div class="img-overlay rounded-2xl overflow-hidden row-span-2">
-          <img src="assets/home1.jpg" alt="Industrial boiler plant" class="boiler-img h-full w-full object-cover"/>
-          <div class="absolute bottom-0 left-0 right-0 p-3 z-10">
-            <span class="text-white text-xs font-semibold bg-black/40 backdrop-blur px-3 py-1 rounded-full">Industrial Boiler Systems</span>
+        <div class="img-card row-span-2">
+          <img src="assets/home1.jpg" alt="Industrial boiler plant"/>
+          <div class="overlay"></div>
+          <div class="absolute bottom-4 left-4 right-4 z-10">
+            <span class="text-white text-xs font-semibold bg-black/50 backdrop-blur px-3 py-1.5 rounded-sm tracking-wide">Industrial Boiler Systems</span>
           </div>
         </div>
-        <div class="img-overlay rounded-2xl overflow-hidden">
-          <img src="assets/home2.jpg" alt="Boiler engineering" class="boiler-img h-full w-full object-cover"/>
-        </div>
-        <div class="img-overlay rounded-2xl overflow-hidden">
-          <img src="assets/home3.jpg" alt="Energy plant" class="boiler-img h-full w-full object-cover"/>
-        </div>
+        <div class="img-card"><img src="assets/home2.jpg" alt="Boiler engineering"/><div class="overlay"></div></div>
+        <div class="img-card"><img src="assets/home3.jpg" alt="Energy plant"/><div class="overlay"></div></div>
       </div>
-      <div class="absolute -bottom-4 -right-4 bg-[#0B1220] border border-slate-700 rounded-2xl p-4 shadow-xl">
-        <div class="text-[#7CFC00] font-black text-2xl mano">98%</div>
-        <div class="text-slate-400 text-xs">Avg. Efficiency</div>
+      <div class="absolute -bottom-4 -right-4 bg-[#0D1526] border border-slate-700/60 rounded-md p-4 shadow-2xl">
+        <div class="cnum text-2xl" style="color:var(--orange)">98%</div>
+        <div class="text-slate-400 text-xs mt-1 tracking-wide">Avg. Boiler Efficiency</div>
       </div>
     </div>
 
-    <div class="fright">
-      <div class="section-tag"><span class="w-1.5 h-1.5 bg-[#1CB5D8] rounded-full animate-pulse"></span>About Boilertech Energy</div>
+    <!-- Text -->
+    <div class="fr">
+      <div class="stag">About Boilertech Energy Services</div>
       <h2 class="mano text-4xl sm:text-5xl font-black leading-tight">
-        Engineering <span class="text-[#1CB5D8]">Precision,</span><br>Built for <span class="text-[#FFA500]">Industry</span>
+        Engineering <span style="color:var(--blue)">Precision,</span><br>Built for <span style="color:var(--orange)">Industry</span>
       </h2>
-      <p class="mt-4 text-slate-600 leading-relaxed text-sm">
-        At Boilertech Energy Services, we specialize in optimizing the performance and enhancing the availability of industrial boiler systems. Through precise fine-tuning of operational parameters and strategic system re-engineering, we ensure clients' boiler plants operate at peak efficiency with consistent reliability.
+      <p class="mt-5 text-slate-500 leading-relaxed">
+        At Boilertech Energy Services, we specialize in optimizing the performance and availability of industrial boiler systems. Through precise fine-tuning of operational parameters and strategic system re-engineering, we ensure boiler plants operate at peak efficiency with consistent reliability.
       </p>
-      <p class="mt-3 text-slate-500 text-sm leading-relaxed">
-        Driven by a deep commitment to excellence — delivering cost-effective, energy-efficient solutions tailored to each client's needs. Safety, performance, and long-term sustainability are at the core of everything we do.
+      <p class="mt-3 text-slate-500 leading-relaxed">
+        Safety, performance, and long-term sustainability are at the core of everything we do — delivering cost-effective, energy-efficient solutions tailored to each client's needs.
       </p>
-      <div class="mt-6 grid grid-cols-2 gap-3">
-        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
-          <span class="text-lg">🎯</span><div><div class="font-bold text-xs">Engineering Precision</div><div class="text-slate-400 text-[10px]">Meticulous design & execution</div></div>
+      <div class="mt-8 grid grid-cols-2 gap-3">
+        <div class="flex items-start gap-3 p-4 rounded-md bg-slate-50 border border-slate-100">
+          <span class="mt-0.5 text-base">◎</span>
+          <div>
+            <div class="font-bold text-xs text-slate-800 tracking-wide">Engineering Precision</div>
+            <div class="text-slate-400 text-xs mt-0.5">Meticulous design & execution</div>
+          </div>
         </div>
-        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
-          <span class="text-lg">🛡️</span><div><div class="font-bold text-xs">Operational Reliability</div><div class="text-slate-400 text-[10px]">Performance you depend on</div></div>
+        <div class="flex items-start gap-3 p-4 rounded-md bg-slate-50 border border-slate-100">
+          <span class="mt-0.5 text-base">◈</span>
+          <div>
+            <div class="font-bold text-xs text-slate-800 tracking-wide">Operational Reliability</div>
+            <div class="text-slate-400 text-xs mt-0.5">Performance you depend on</div>
+          </div>
         </div>
-        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
-          <span class="text-lg">🌱</span><div><div class="font-bold text-xs">Sustainability</div><div class="text-slate-400 text-[10px]">Long-term energy efficiency</div></div>
+        <div class="flex items-start gap-3 p-4 rounded-md bg-slate-50 border border-slate-100">
+          <span class="mt-0.5 text-base">◉</span>
+          <div>
+            <div class="font-bold text-xs text-slate-800 tracking-wide">Long-term Sustainability</div>
+            <div class="text-slate-400 text-xs mt-0.5">Energy-efficient outcomes</div>
+          </div>
         </div>
-        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
-          <span class="text-lg">🔬</span><div><div class="font-bold text-xs">Innovation First</div><div class="text-slate-400 text-[10px]">CFD-driven optimization</div></div>
+        <div class="flex items-start gap-3 p-4 rounded-md bg-slate-50 border border-slate-100">
+          <span class="mt-0.5 text-base">◆</span>
+          <div>
+            <div class="font-bold text-xs text-slate-800 tracking-wide">Innovation First</div>
+            <div class="text-slate-400 text-xs mt-0.5">CFD-driven optimization</div>
+          </div>
         </div>
       </div>
-      <div class="mt-7 flex gap-3">
-        <a href="about.html"><button class="px-6 py-2.5 rounded-full bg-[#1CB5D8] text-white text-sm font-semibold hover:scale-105 transition shadow-md">Know More</button></a>
-        <a href="contact.html"><button class="px-6 py-2.5 rounded-full border border-slate-200 text-slate-700 text-sm font-semibold hover:bg-slate-50 transition">Contact Us</button></a>
+      <div class="mt-8 flex gap-3">
+        <a href="about.html" class="btn-primary" style="background:var(--orange)">Know More <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></a>
+        <a href="contact.html" class="btn-outline-dark">Contact Us</a>
       </div>
     </div>
   </div>
 </section>
 
+<div class="section-divider"></div>
 
-<!-- ══════════ SERVICES ══════════ -->
-<section class="py-20 bg-[#080E18] relative overflow-hidden">
-  <div class="blob w-[500px] h-[500px] bg-[#1CB5D8]/8 top-0 left-[-100px]"></div>
-  <div class="blob w-[400px] h-[400px] bg-[#FFA500]/7 bottom-0 right-[-100px]"></div>
+<!-- ═══ SERVICES ═══ -->
+<section class="py-24 bg-[#080E18] relative overflow-hidden">
+  <div class="hero-glow w-[600px] h-[600px] top-[-150px] left-[-200px]" style="background:rgba(28,181,216,.05)"></div>
+  <div class="hero-glow w-[400px] h-[400px] bottom-[-100px] right-[-100px]" style="background:rgba(255,165,0,.04)"></div>
   <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
-    <div class="text-center mb-14 reveal">
-      <div class="section-tag mx-auto w-fit">What We Do</div>
-      <h2 class="mano text-4xl sm:text-5xl font-black text-white mt-2">Core <span class="gtblue">Services</span></h2>
-      <p class="text-slate-400 text-sm mt-3 max-w-xl mx-auto">Comprehensive boiler engineering — from performance studies to full system re-engineering</p>
+    <div class="max-w-2xl mb-16 reveal">
+      <div class="stag">What We Do</div>
+      <h2 class="mano text-4xl sm:text-5xl font-black text-white mt-2">Core <span style="color:var(--orange)">Services</span></h2>
+      <p class="text-slate-400 mt-4 leading-relaxed">Comprehensive boiler engineering — from performance studies to full system re-engineering and IBR-compliant design.</p>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      <div class="group relative p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#1CB5D8]/50 transition card-lift reveal overflow-hidden">
-        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#1CB5D8]/12 to-transparent transition duration-500 pointer-events-none"></div>
-        <div class="relative z-10">
-          <div class="w-12 h-12 rounded-xl bg-[#1CB5D8]/15 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">⚙️</div>
-          <h3 class="text-white font-bold text-sm mb-2 group-hover:text-[#1CB5D8] transition">Boiler Performance & Operational Studies</h3>
-          <p class="text-slate-400 text-xs leading-relaxed">Detailed evaluation of steam generation, fuel consumption, heat transfer, and efficiency — identifying gaps and improving output.</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- Service 1 -->
+      <div class="svc-card reveal">
+        <div class="svc-icon">
+          <svg class="icon-svg" fill="none" stroke="#1CB5D8" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008Z"/></svg>
+        </div>
+        <h3 class="text-white font-bold text-sm mb-3 mano tracking-wide">Boiler Performance & Operational Studies</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Detailed evaluation of steam generation, fuel consumption, heat transfer, and efficiency — identifying gaps and improving output.</p>
+      </div>
+      <!-- Service 2 -->
+      <div class="svc-card reveal" style="transition-delay:.05s">
+        <div class="svc-icon">
+          <svg class="icon-svg" fill="none" stroke="#FFA500" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"/></svg>
+        </div>
+        <h3 class="text-white font-bold text-sm mb-3 mano tracking-wide">Shutdown & Audit Services</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Pre-shutdown, shutdown, and post-shutdown audits with pressure part checks and thickness mapping at erosion zones.</p>
+      </div>
+      <!-- Service 3 -->
+      <div class="svc-card reveal" style="transition-delay:.1s">
+        <div class="svc-icon">
+          <svg class="icon-svg" fill="none" stroke="#1CB5D8" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
+        </div>
+        <h3 class="text-white font-bold text-sm mb-3 mano tracking-wide">Troubleshooting & Root Cause Analysis</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Diagnosis of tube failures, combustion issues, LOI control, and bed coil failures with corrective recommendations.</p>
+      </div>
+      <!-- Service 4 -->
+      <div class="svc-card reveal">
+        <div class="svc-icon">
+          <svg class="icon-svg" fill="none" stroke="#FFA500" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605"/></svg>
+        </div>
+        <h3 class="text-white font-bold text-sm mb-3 mano tracking-wide">Capacity Enhancement & Re-Engineering</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Design modifications to safely increase boiler capacity, including fluidized bed combustion re-engineering.</p>
+      </div>
+      <!-- Service 5 -->
+      <div class="svc-card reveal" style="transition-delay:.05s">
+        <div class="svc-icon">
+          <svg class="icon-svg" fill="none" stroke="#1CB5D8" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+        </div>
+        <h3 class="text-white font-bold text-sm mb-3 mano tracking-wide">Energy & Fuel Optimization</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Energy conservation, alternative fuel feasibility, combustion analysis for biomass/coal blends, and fuel system assessments.</p>
+      </div>
+      <!-- Service 6 -->
+      <div class="svc-card reveal" style="transition-delay:.1s">
+        <div class="svc-icon">
+          <svg class="icon-svg" fill="none" stroke="#FFA500" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0H3"/></svg>
+        </div>
+        <h3 class="text-white font-bold text-sm mb-3 mano tracking-wide">CFD Analysis & IBR Engineering</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">CFD analysis for boiler ducting, IBR-compliant piping design, stress analysis, and auxiliary equipment optimization.</p>
+      </div>
+    </div>
+    <div class="mt-10 reveal">
+      <a href="services.html" class="btn-outline inline-flex">View All Services <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SHOWCASE ═══ -->
+<section class="py-24 bg-[#060C18] relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-8 items-end mb-10 reveal">
+      <div>
+        <div class="stag">Our Work in Action</div>
+        <h2 class="mano text-4xl sm:text-5xl font-black text-white mt-2">Industrial Engineering <span style="color:var(--orange)">Showcase</span></h2>
+      </div>
+      <p class="text-slate-400 leading-relaxed lg:text-right">High-performance boiler systems engineered with precision across sectors — from cement giants to steel mills.</p>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="img-card h-60 reveal">
+        <img src="assets/AFBC Boiler System.webp" alt="AFBC Boiler"/>
+        <div class="overlay"></div>
+        <div class="absolute bottom-4 left-4 z-10">
+          <span class="text-white text-xs font-semibold" style="background:rgba(28,181,216,.85);backdrop-filter:blur(8px);padding:4px 12px;border-radius:3px;letter-spacing:.05em">AFBC Boiler System</span>
         </div>
       </div>
-      <div class="group relative p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#FFA500]/50 transition card-lift reveal overflow-hidden" style="transition-delay:.05s">
-        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#FFA500]/12 to-transparent transition duration-500 pointer-events-none"></div>
-        <div class="relative z-10">
-          <div class="w-12 h-12 rounded-xl bg-[#FFA500]/15 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">🛠</div>
-          <h3 class="text-white font-bold text-sm mb-2 group-hover:text-[#FFA500] transition">Shutdown & Audit Services</h3>
-          <p class="text-slate-400 text-xs leading-relaxed">Pre-shutdown, shutdown, and post-shutdown audits with pressure part healthiness checks and thickness mapping at flue gas erosion zones.</p>
+      <div class="img-card h-60 reveal" style="transition-delay:.05s">
+        <img src="assets/Energy Plant Operations.jpg" alt="Energy Plant"/>
+        <div class="overlay"></div>
+        <div class="absolute bottom-4 left-4 z-10">
+          <span class="text-white text-xs font-semibold" style="background:rgba(255,165,0,.85);backdrop-filter:blur(8px);padding:4px 12px;border-radius:3px;letter-spacing:.05em">Energy Plant Operations</span>
         </div>
       </div>
-      <div class="group relative p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#7CFC00]/50 transition card-lift reveal overflow-hidden" style="transition-delay:.1s">
-        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#7CFC00]/12 to-transparent transition duration-500 pointer-events-none"></div>
-        <div class="relative z-10">
-          <div class="w-12 h-12 rounded-xl bg-[#7CFC00]/15 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">🔍</div>
-          <h3 class="text-white font-bold text-sm mb-2 group-hover:text-[#7CFC00] transition">Troubleshooting & Root Cause Analysis</h3>
-          <p class="text-slate-400 text-xs leading-relaxed">Diagnosis of tube failures, combustion issues, LOI control, and bed coil tube failure analysis with corrective recommendations.</p>
+      <div class="img-card h-60 reveal" style="transition-delay:.1s">
+        <img src="assets/CFBC Boiler Plant.jpg" alt="CFBC Boiler"/>
+        <div class="overlay"></div>
+        <div class="absolute bottom-4 left-4 z-10">
+          <span class="text-white text-xs font-semibold" style="background:rgba(28,181,216,.85);backdrop-filter:blur(8px);padding:4px 12px;border-radius:3px;letter-spacing:.05em">CFBC Boiler Plant</span>
         </div>
       </div>
-      <div class="group relative p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#e02424]/50 transition card-lift reveal overflow-hidden">
-        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#e02424]/12 to-transparent transition duration-500 pointer-events-none"></div>
-        <div class="relative z-10">
-          <div class="w-12 h-12 rounded-xl bg-[#e02424]/15 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">🚀</div>
-          <h3 class="text-white font-bold text-sm mb-2 group-hover:text-[#e02424] transition">Capacity Enhancement & Re-Engineering</h3>
-          <p class="text-slate-400 text-xs leading-relaxed">Design modifications to safely increase boiler capacity, including fluidized bed combustion re-engineering and system optimization.</p>
+      <div class="img-card h-60 reveal" style="transition-delay:.05s">
+        <img src="assets/Fan Efficiency.jpg" alt="Steam Generation"/>
+        <div class="overlay"></div>
+        <div class="absolute bottom-4 left-4 z-10">
+          <span class="text-white text-xs font-semibold" style="background:rgba(100,116,139,.8);backdrop-filter:blur(8px);padding:4px 12px;border-radius:3px;letter-spacing:.05em">Steam Generation Unit</span>
         </div>
       </div>
-      <div class="group relative p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#1CB5D8]/50 transition card-lift reveal overflow-hidden" style="transition-delay:.05s">
-        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#1CB5D8]/12 to-transparent transition duration-500 pointer-events-none"></div>
-        <div class="relative z-10">
-          <div class="w-12 h-12 rounded-xl bg-[#1CB5D8]/15 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">🌱</div>
-          <h3 class="text-white font-bold text-sm mb-2 group-hover:text-[#1CB5D8] transition">Energy & Fuel Optimization</h3>
-          <p class="text-slate-400 text-xs leading-relaxed">Energy conservation, alternative fuel feasibility, combustion analysis for biomass/coal blends, and fuel feeding system assessments.</p>
+      <div class="img-card h-60 reveal" style="transition-delay:.1s">
+        <img src="PHOTOS FOR WEBSITE/thermal audit.jpg" alt="Thermal Engineering"/>
+        <div class="overlay"></div>
+        <div class="absolute bottom-4 left-4 z-10">
+          <span class="text-white text-xs font-semibold" style="background:rgba(28,181,216,.85);backdrop-filter:blur(8px);padding:4px 12px;border-radius:3px;letter-spacing:.05em">Thermal Engineering</span>
         </div>
       </div>
-      <div class="group relative p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#FFA500]/50 transition card-lift reveal overflow-hidden" style="transition-delay:.1s">
-        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#FFA500]/12 to-transparent transition duration-500 pointer-events-none"></div>
-        <div class="relative z-10">
-          <div class="w-12 h-12 rounded-xl bg-[#FFA500]/15 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">💻</div>
-          <h3 class="text-white font-bold text-sm mb-2 group-hover:text-[#FFA500] transition">CFD Analysis & IBR Engineering</h3>
-          <p class="text-slate-400 text-xs leading-relaxed">CFD analysis for boiler ducting, IBR-compliant piping design, stress analysis, and complete auxiliary equipment optimization.</p>
+      <div class="h-60 rounded-md flex flex-col items-center justify-center p-8 text-center reveal border border-white/07" style="background:rgba(28,181,216,.06);transition-delay:.15s">
+        <div class="cnum text-5xl mb-2" style="color:var(--blue)">500+</div>
+        <div class="text-white font-bold text-sm mano tracking-wide">Projects Delivered</div>
+        <div class="text-slate-500 text-xs mt-2">Across 7+ industries nationwide</div>
+        <a href="about.html" class="mt-5 text-xs font-semibold tracking-wide uppercase" style="color:var(--blue)">View Our Journey →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHY BOILERTECH ═══ -->
+<section class="py-24 bg-[#F4F6F9] relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+      <div class="stag mx-auto w-fit">Our Edge</div>
+      <h2 class="mano text-4xl sm:text-5xl font-black mt-2">Why Choose <span style="color:var(--blue)">Boilertech?</span></h2>
+      <p class="text-slate-500 mt-4 leading-relaxed">The technical and operational advantages that make us India's most trusted boiler engineering partner.</p>
+    </div>
+    <div class="grid lg:grid-cols-5 gap-5 mb-5">
+      <!-- Featured card -->
+      <div class="lg:col-span-2 relative rounded-md overflow-hidden reveal group min-h-[300px]">
+        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=700&q=80" alt="CFD Analysis" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+        <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(8,14,24,.92) 0%, rgba(8,14,24,.4) 100%)"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-7 z-10">
+          <div class="w-10 h-10 rounded-md flex items-center justify-center mb-4 border" style="background:rgba(28,181,216,.15);border-color:rgba(28,181,216,.25)">
+            <svg class="icon-svg" fill="none" stroke="#1CB5D8" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
+          </div>
+          <h3 class="text-white mano font-black text-xl mb-2">CFD-Driven Analysis</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">We simulate and optimize boiler performance computationally before any physical work begins — reducing risk, maximizing results.</p>
+          <div class="mt-4 flex items-center gap-2 text-xs font-semibold" style="color:var(--blue)">
+            <span class="w-8 h-px" style="background:var(--blue)"></span>
+            Industry-leading precision
+          </div>
         </div>
+      </div>
+      <!-- 4 why cards -->
+      <div class="lg:col-span-3 grid sm:grid-cols-2 gap-4">
+        <div class="why-card reveal">
+          <div class="why-icon" style="background:rgba(255,165,0,.08);border:1px solid rgba(255,165,0,.15)">
+            <svg class="icon-svg" fill="none" stroke="#FFA500" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
+          </div>
+          <h3 class="font-bold text-sm mb-2 text-slate-800 mano">IBR Certified Designs</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">All designs strictly adhere to Indian Boiler Regulations — full legal compliance and safety at every stage.</p>
+        </div>
+        <div class="why-card reveal" style="transition-delay:.05s">
+          <div class="why-icon" style="background:rgba(28,181,216,.08);border:1px solid rgba(28,181,216,.15)">
+            <svg class="icon-svg" fill="none" stroke="#1CB5D8" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+          </div>
+          <h3 class="font-bold text-sm mb-2 text-slate-800 mano">15–25% Fuel Savings</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Combustion optimization and energy audit services deliver measurable fuel cost reductions across sectors.</p>
+        </div>
+        <div class="why-card reveal" style="transition-delay:.1s">
+          <div class="why-icon" style="background:rgba(255,165,0,.08);border:1px solid rgba(255,165,0,.15)">
+            <svg class="icon-svg" fill="none" stroke="#FFA500" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+          </div>
+          <h3 class="font-bold text-sm mb-2 text-slate-800 mano">Zero-Downtime Focus</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Shutdown audits and preventive maintenance catch issues before failures — keeping your plant running.</p>
+        </div>
+        <div class="why-card reveal" style="background:var(--dark);border-color:rgba(255,255,255,.06);transition-delay:.15s">
+          <div class="why-icon" style="background:rgba(28,181,216,.1);border:1px solid rgba(28,181,216,.2)">
+            <svg class="icon-svg" fill="none" stroke="#1CB5D8" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"/></svg>
+          </div>
+          <h3 class="text-white font-bold text-sm mb-2 mano">Long-Term Partnership</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">We stay with you for the lifetime of your plant — ongoing support, training, and system upgrades.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom row -->
+    <div class="grid sm:grid-cols-3 gap-4">
+      <div class="why-card reveal flex items-start gap-4">
+        <div class="why-icon shrink-0" style="background:rgba(28,181,216,.08);border:1px solid rgba(28,181,216,.15)">
+          <svg class="icon-svg" fill="none" stroke="#1CB5D8" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 0 0-8.862 12.872M12.75 3.031a9 9 0 0 1 6.69 14.036m0 0-.177-.529A2.25 2.25 0 0 0 17.128 15H16.5l-.324-.324a1.453 1.453 0 0 0-2.328.377l-.036.073a1.586 1.586 0 0 1-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643"/></svg>
+        </div>
+        <div>
+          <h3 class="font-bold text-sm mb-1 text-slate-800 mano">Eco-Friendly</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Alternative fuel systems and emission control reduce your carbon footprint.</p>
+        </div>
+      </div>
+      <div class="why-card reveal flex items-start gap-4" style="transition-delay:.05s">
+        <div class="why-icon shrink-0" style="background:rgba(255,165,0,.08);border:1px solid rgba(255,165,0,.15)">
+          <svg class="icon-svg" fill="none" stroke="#FFA500" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+        </div>
+        <div>
+          <h3 class="font-bold text-sm mb-1 text-slate-800 mano">End-to-End Service</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Design, installation, shutdown audits, re-engineering, and performance studies — all under one roof.</p>
+        </div>
+      </div>
+      <div class="why-card reveal flex items-start gap-4" style="transition-delay:.1s">
+        <div class="why-icon shrink-0" style="background:rgba(28,181,216,.08);border:1px solid rgba(28,181,216,.15)">
+          <svg class="icon-svg" fill="none" stroke="#1CB5D8" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+        </div>
+        <div>
+          <h3 class="font-bold text-sm mb-1 text-slate-800 mano">Pan India Presence</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Active projects across Tamil Nadu, Maharashtra, Odisha, Chhattisgarh, West Bengal, Rajasthan and more.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider" style="background:linear-gradient(to right, transparent, rgba(255,165,0,.15), transparent)"></div>
+
+<!-- ═══ CLIENTS ═══ -->
+<section class="py-24 bg-[#080E18] relative overflow-hidden">
+  <div class="hero-glow w-[500px] h-[500px] top-0 left-1/2 -translate-x-1/2" style="background:rgba(255,165,0,.04)"></div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
+    <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+      <div class="stag mx-auto w-fit">Trusted By Industry</div>
+      <h2 class="mano text-4xl sm:text-5xl font-black text-white mt-2">Our <span style="color:var(--orange)">Clients</span></h2>
+      <p class="text-slate-400 mt-4 leading-relaxed">Delivering engineering excellence to leading industrial names across India — from cement giants to steel mills, sugar plants to specialty chemicals.</p>
+    </div>
+
+    <!-- Client scroll rows -->
+    <div class="overflow-hidden mb-2">
+      <div class="client-row cs1">
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Ultratech Cements</span><span class="text-slate-600 text-xs ml-2">Tamil Nadu</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Ambuja Cements</span><span class="text-slate-600 text-xs ml-2">Chhattisgarh</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Adani Cement</span><span class="text-slate-600 text-xs ml-2">Rajasthan</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Jubilant Life Sciences</span><span class="text-slate-600 text-xs ml-2">Pune</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Star Paper Mills</span><span class="text-slate-600 text-xs ml-2">Uttar Pradesh</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Orient Paper Mills</span><span class="text-slate-600 text-xs ml-2">Madhya Pradesh</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">CEAT Tyres</span><span class="text-slate-600 text-xs ml-2">Tamil Nadu</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Parry Sugars</span><span class="text-slate-600 text-xs ml-2">Andhra Pradesh</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">EID Parry India</span><span class="text-slate-600 text-xs ml-2">Karnataka</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Shakti Sugars</span><span class="text-slate-600 text-xs ml-2">Tamil Nadu</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Ultratech Cements</span><span class="text-slate-600 text-xs ml-2">Tamil Nadu</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Ambuja Cements</span><span class="text-slate-600 text-xs ml-2">Chhattisgarh</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Adani Cement</span><span class="text-slate-600 text-xs ml-2">Rajasthan</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Jubilant Life Sciences</span><span class="text-slate-600 text-xs ml-2">Pune</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Star Paper Mills</span><span class="text-slate-600 text-xs ml-2">Uttar Pradesh</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Orient Paper Mills</span><span class="text-slate-600 text-xs ml-2">Madhya Pradesh</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">CEAT Tyres</span><span class="text-slate-600 text-xs ml-2">Tamil Nadu</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Parry Sugars</span><span class="text-slate-600 text-xs ml-2">Andhra Pradesh</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">EID Parry India</span><span class="text-slate-600 text-xs ml-2">Karnataka</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Shakti Sugars</span><span class="text-slate-600 text-xs ml-2">Tamil Nadu</span></div>
+      </div>
+    </div>
+    <div class="overflow-hidden mb-12">
+      <div class="client-row cs2">
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Hira Ferro Alloys</span><span class="text-slate-600 text-xs ml-2">Chhattisgarh</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Shyam Metallics</span><span class="text-slate-600 text-xs ml-2">Odisha</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Sunflag Iron & Steel</span><span class="text-slate-600 text-xs ml-2">Maharashtra</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Rashmi Metallics</span><span class="text-slate-600 text-xs ml-2">Kharagpur</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">NSL Textiles</span><span class="text-slate-600 text-xs ml-2">Andhra Pradesh</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Neuland Labs</span><span class="text-slate-600 text-xs ml-2">Hyderabad</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">MSP Metallics</span><span class="text-slate-600 text-xs ml-2">Odisha</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Sripathi Papers</span><span class="text-slate-600 text-xs ml-2">Tamil Nadu</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Kraft Papers</span><span class="text-slate-600 text-xs ml-2">Assam</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Gujarat Ambuja Exports</span><span class="text-slate-600 text-xs ml-2">Karnataka</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Hira Ferro Alloys</span><span class="text-slate-600 text-xs ml-2">Chhattisgarh</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Shyam Metallics</span><span class="text-slate-600 text-xs ml-2">Odisha</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Sunflag Iron & Steel</span><span class="text-slate-600 text-xs ml-2">Maharashtra</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Rashmi Metallics</span><span class="text-slate-600 text-xs ml-2">Kharagpur</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">NSL Textiles</span><span class="text-slate-600 text-xs ml-2">Andhra Pradesh</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Neuland Labs</span><span class="text-slate-600 text-xs ml-2">Hyderabad</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">MSP Metallics</span><span class="text-slate-600 text-xs ml-2">Odisha</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Sripathi Papers</span><span class="text-slate-600 text-xs ml-2">Tamil Nadu</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Kraft Papers</span><span class="text-slate-600 text-xs ml-2">Assam</span></div>
+        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Gujarat Ambuja Exports</span><span class="text-slate-600 text-xs ml-2">Karnataka</span></div>
+      </div>
+    </div>
+
+    <!-- Client cards grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 reveal">
+      <div class="client-card">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-9 h-9 rounded-md flex items-center justify-center shrink-0 overflow-hidden" style="background:rgba(28,181,216,.1);border:1px solid rgba(28,181,216,.2)">
+            <img src="bt client logos/ultratech-cement-logo.png" alt="" class="w-6 h-6 object-contain opacity-75"/>
+          </div>
+          <div class="text-white text-xs font-bold leading-snug">Ultratech Cements</div>
+        </div>
+        <div class="text-slate-500 text-xs pl-12">Training · Tamil Nadu</div>
+      </div>
+      <div class="client-card">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-9 h-9 rounded-md flex items-center justify-center shrink-0 overflow-hidden" style="background:rgba(255,165,0,.1);border:1px solid rgba(255,165,0,.2)">
+            <img src="bt client logos/jubilant lifescience.jpg" alt="" class="w-6 h-6 object-contain opacity-75"/>
+          </div>
+          <div class="text-white text-xs font-bold leading-snug">Jubilant Life Sciences</div>
+        </div>
+        <div class="text-slate-500 text-xs pl-12">Performance Study · Pune</div>
+      </div>
+      <div class="client-card">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-9 h-9 rounded-md flex items-center justify-center shrink-0 overflow-hidden" style="background:rgba(28,181,216,.1);border:1px solid rgba(28,181,216,.2)">
+            <img src="bt client logos/adani-logo.svg" alt="" class="w-6 h-6 object-contain opacity-75"/>
+          </div>
+          <div class="text-white text-xs font-bold leading-snug">Adani Cement</div>
+        </div>
+        <div class="text-slate-500 text-xs pl-12">Performance Study · Rajasthan</div>
+      </div>
+      <div class="client-card">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-9 h-9 rounded-md flex items-center justify-center shrink-0 overflow-hidden" style="background:rgba(255,165,0,.1);border:1px solid rgba(255,165,0,.2)">
+            <img src="bt client logos/ceat logo.png" alt="" class="w-6 h-6 object-contain opacity-75"/>
+          </div>
+          <div class="text-white text-xs font-bold leading-snug">CEAT Tyres Ltd</div>
+        </div>
+        <div class="text-slate-500 text-xs pl-12">Troubleshooting · Tamil Nadu</div>
+      </div>
+      <div class="client-card">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-9 h-9 rounded-md flex items-center justify-center shrink-0 overflow-hidden" style="background:rgba(28,181,216,.1);border:1px solid rgba(28,181,216,.2)">
+            <img src="bt client logos/star paper mills.jpg" alt="" class="w-6 h-6 object-contain opacity-75"/>
+          </div>
+          <div class="text-white text-xs font-bold leading-snug">Star Paper Mills</div>
+        </div>
+        <div class="text-slate-500 text-xs pl-12">Operational Study · U.P</div>
+      </div>
+      <div class="client-card">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-9 h-9 rounded-md flex items-center justify-center shrink-0 overflow-hidden" style="background:rgba(255,165,0,.1);border:1px solid rgba(255,165,0,.2)">
+            <img src="bt client logos/Ambuja cement.webp" alt="" class="w-6 h-6 object-contain opacity-75"/>
+          </div>
+          <div class="text-white text-xs font-bold leading-snug">Ambuja Cements</div>
+        </div>
+        <div class="text-slate-500 text-xs pl-12">Performance Improvement · C.G</div>
+      </div>
+      <div class="client-card">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-9 h-9 rounded-md flex items-center justify-center shrink-0 overflow-hidden" style="background:rgba(28,181,216,.1);border:1px solid rgba(28,181,216,.2)">
+            <img src="bt client logos/hira.png" alt="" class="w-6 h-6 object-contain opacity-75"/>
+          </div>
+          <div class="text-white text-xs font-bold leading-snug">Hira Ferro Alloys</div>
+        </div>
+        <div class="text-slate-500 text-xs pl-12">Capacity Enhancement · C.G</div>
+      </div>
+      <div class="client-card">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-9 h-9 rounded-md flex items-center justify-center shrink-0 overflow-hidden" style="background:rgba(255,165,0,.1);border:1px solid rgba(255,165,0,.2)">
+            <img src="bt client logos/parrys sugar.jpg" alt="" class="w-6 h-6 object-contain opacity-75"/>
+          </div>
+          <div class="text-white text-xs font-bold leading-snug">Parry Sugars</div>
+        </div>
+        <div class="text-slate-500 text-xs pl-12">Shutdown Inspection · A.P</div>
+      </div>
+      <div class="client-card">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-9 h-9 rounded-md flex items-center justify-center shrink-0 overflow-hidden" style="background:rgba(28,181,216,.1);border:1px solid rgba(28,181,216,.2)">
+            <img src="bt client logos/Sunflag Iron & Steel.png" alt="" class="w-6 h-6 object-contain opacity-75"/>
+          </div>
+          <div class="text-white text-xs font-bold leading-snug">Sunflag Iron & Steel</div>
+        </div>
+        <div class="text-slate-500 text-xs pl-12">Troubleshooting · Maharashtra</div>
+      </div>
+      <div class="client-card">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-9 h-9 rounded-md flex items-center justify-center shrink-0 overflow-hidden" style="background:rgba(255,165,0,.1);border:1px solid rgba(255,165,0,.2)">
+            <img src="bt client logos/neuland_laboratories_limited_logo.jpg" alt="" class="w-6 h-6 object-contain opacity-75"/>
+          </div>
+          <div class="text-white text-xs font-bold leading-snug">Neuland Labs</div>
+        </div>
+        <div class="text-slate-500 text-xs pl-12">Derating Study · Hyderabad</div>
+      </div>
+      <div class="client-card">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-9 h-9 rounded-md flex items-center justify-center shrink-0 overflow-hidden" style="background:rgba(28,181,216,.1);border:1px solid rgba(28,181,216,.2)">
+            <img src="bt client logos/shyam metalics.webp" alt="" class="w-6 h-6 object-contain opacity-75"/>
+          </div>
+          <div class="text-white text-xs font-bold leading-snug">Shyam Metallics</div>
+        </div>
+        <div class="text-slate-500 text-xs pl-12">CFD Analysis · Odisha</div>
+      </div>
+      <div class="client-card">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-9 h-9 rounded-md flex items-center justify-center shrink-0 overflow-hidden" style="background:rgba(255,165,0,.1);border:1px solid rgba(255,165,0,.2)">
+            <img src="bt client logos/parrys sugar.jpg" alt="" class="w-6 h-6 object-contain opacity-75"/>
+          </div>
+          <div class="text-white text-xs font-bold leading-snug">EID Parry India</div>
+        </div>
+        <div class="text-slate-500 text-xs pl-12">Shutdown Inspection · Karnataka</div>
       </div>
     </div>
     <div class="text-center mt-10 reveal">
-      <a href="services.html"><button class="px-8 py-3 rounded-full border border-[#1CB5D8]/40 text-[#1CB5D8] text-sm font-semibold hover:bg-[#1CB5D8] hover:text-white transition">View All Services →</button></a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════ BOILER IMAGES SHOWCASE ══════════ -->
-<section class="py-20 bg-[#080E18] relative overflow-hidden">
-  <div class="blob w-[500px] h-[500px] bg-[#1CB5D8]/8 top-0 right-0"></div>
-  <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
-    <div class="text-center mb-14 reveal">
-      <div class="section-tag mx-auto w-fit">Our Work in Action</div>
-      <h2 class="mano text-4xl sm:text-5xl font-black text-white mt-2">Industrial <span class="gtblue">Engineering</span> Showcase</h2>
-      <p class="text-slate-400 text-sm mt-3">High-performance boiler systems engineered with precision across sectors</p>
-    </div>
-    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="img-overlay rounded-2xl overflow-hidden h-56 reveal">
-        <img src="assets/AFBC Boiler System.webp" alt="Boiler system" class="boiler-img w-full h-full object-cover"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-[#080E18]/70 to-transparent z-10"></div>
-        <div class="absolute bottom-3 left-4 z-20 text-white text-xs font-semibold bg-[#1CB5D8]/80 backdrop-blur px-3 py-1 rounded-full">AFBC Boiler System</div>
-      </div>
-      <div class="img-overlay rounded-2xl overflow-hidden h-56 reveal" style="transition-delay:.05s">
-        <img src="assets/Energy Plant Operations.jpg" alt="Industrial plant" class="boiler-img w-full h-full object-cover"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-[#080E18]/70 to-transparent z-10"></div>
-        <div class="absolute bottom-3 left-4 z-20 text-white text-xs font-semibold bg-[#FFA500]/80 backdrop-blur px-3 py-1 rounded-full">Energy Plant Operations</div>
-      </div>
-      <div class="img-overlay rounded-2xl overflow-hidden h-56 reveal" style="transition-delay:.1s">
-        <img src="assets/CFBC Boiler Plant.jpg" alt="Power plant" class="boiler-img w-full h-full object-cover"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-[#080E18]/70 to-transparent z-10"></div>
-        <div class="absolute bottom-3 left-4 z-20 text-white text-xs font-semibold bg-[#7CFC00]/80 backdrop-blur px-3 py-1 rounded-full">CFBC Boiler Plant</div>
-      </div>
-      <div class="img-overlay rounded-2xl overflow-hidden h-56 reveal" style="transition-delay:.05s">
-        <img src="assets/Fan Efficiency.jpg" alt="Steam system" class="boiler-img w-full h-full object-cover"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-[#080E18]/70 to-transparent z-10"></div>
-        <div class="absolute bottom-3 left-4 z-20 text-white text-xs font-semibold bg-[#e02424]/80 backdrop-blur px-3 py-1 rounded-full">Steam Generation Unit</div>
-      </div>
-      <div class="img-overlay rounded-2xl overflow-hidden h-56 reveal" style="transition-delay:.1s">
-        <img src="assets/Thermal Engineering.jpg" alt="Engineering" class="boiler-img w-full h-full object-cover"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-[#080E18]/70 to-transparent z-10"></div>
-        <div class="absolute bottom-3 left-4 z-20 text-white text-xs font-semibold bg-[#1CB5D8]/80 backdrop-blur px-3 py-1 rounded-full">Thermal Engineering</div>
-      </div>
-      <div class="rounded-2xl h-56 bg-gradient-to-br from-[#1CB5D8]/15 to-[#080E18] border border-[#1CB5D8]/20 reveal flex flex-col items-center justify-center p-6 text-center" style="transition-delay:.15s">
-        <div class="cnum text-5xl text-[#1CB5D8] mb-2">500+</div>
-        <div class="text-white font-bold text-sm">Projects Delivered</div>
-        <div class="text-slate-400 text-xs mt-2">Across 7+ industries nationwide</div>
-        <a href="about.html" class="mt-4 text-[#1CB5D8] text-xs font-semibold hover:underline">View Our Journey →</a>
+      <div class="inline-flex items-center gap-2 px-6 py-3 rounded-sm border text-slate-400 text-xs font-semibold tracking-wide uppercase" style="border-color:rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
+        <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background:var(--orange)"></span>
+        50+ clients trusted — Erode to Assam
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- ══════════ WHY BOILERTECH ══════════ -->
-<section class="py-20 bg-[#F8FAFC] relative overflow-hidden">
-  <div class="blob w-[450px] h-[450px] bg-[#1CB5D8]/7 top-0 right-0"></div>
-  <div class="blob w-[400px] h-[400px] bg-[#FFA500]/7 bottom-0 left-0"></div>
+<!-- ═══ CTA ═══ -->
+<section class="py-24 bg-white relative overflow-hidden">
+  <div class="hero-glow w-[500px] h-[500px] top-[-100px] left-[-100px]" style="background:rgba(28,181,216,.06)"></div>
+  <div class="hero-glow w-[400px] h-[400px] bottom-[-80px] right-[-80px]" style="background:rgba(255,165,0,.06)"></div>
   <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
-    <div class="text-center mb-14 reveal">
-      <div class="section-tag mx-auto w-fit">Our Edge</div>
-      <h2 class="mano text-4xl sm:text-5xl font-black mt-2">Why Choose <span class="text-[#1CB5D8]">Boilertech?</span></h2>
-      <p class="text-slate-500 text-sm mt-3 max-w-xl mx-auto">The technical and operational advantages that make us India's most trusted boiler engineering partner</p>
-    </div>
-    <div class="grid lg:grid-cols-5 gap-5 mb-5">
-      <div class="lg:col-span-2 relative rounded-3xl overflow-hidden reveal group card-lift h-full min-h-[300px]">
-        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=700&q=80" alt="CFD Analysis" class="absolute inset-0 w-full h-full object-cover boiler-img"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-[#080E18] via-[#080E18]/60 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 right-0 p-7 z-10">
-          <div class="w-12 h-12 rounded-xl bg-[#1CB5D8]/20 backdrop-blur flex items-center justify-center text-2xl mb-3">🔬</div>
-          <h3 class="text-white mano font-black text-xl mb-2">CFD-Driven Analysis</h3>
-          <p class="text-slate-300 text-xs leading-relaxed">We simulate and optimize boiler performance computationally before any physical work begins — reducing risk, maximizing results.</p>
-          <div class="mt-4 flex items-center gap-2 text-[#1CB5D8] text-xs font-semibold">
-            <span class="w-6 h-0.5 bg-[#1CB5D8]"></span>Industry-leading precision
-          </div>
-        </div>
-      </div>
-      <div class="lg:col-span-3 grid sm:grid-cols-2 gap-4">
-        <div class="p-5 rounded-2xl bg-white border border-slate-100 shadow-sm card-lift reveal group hover:border-[#FFA500]/30 transition">
-          <div class="w-11 h-11 rounded-xl bg-[#FFA500]/10 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">📋</div>
-          <h3 class="font-bold text-sm mb-1 group-hover:text-[#FFA500] transition">IBR Certified Designs</h3>
-          <p class="text-slate-500 text-xs leading-relaxed">All designs strictly adhere to Indian Boiler Regulations ensuring full legal compliance and safety at every stage.</p>
-        </div>
-        <div class="p-5 rounded-2xl bg-white border border-slate-100 shadow-sm card-lift reveal group hover:border-[#7CFC00]/30 transition" style="transition-delay:.05s">
-          <div class="w-11 h-11 rounded-xl bg-[#7CFC00]/10 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">⚡</div>
-          <h3 class="font-bold text-sm mb-1 group-hover:text-[#7CFC00] transition">15–25% Fuel Savings</h3>
-          <p class="text-slate-500 text-xs leading-relaxed">Our combustion optimization and energy audit services deliver measurable fuel cost reductions across sectors.</p>
-        </div>
-        <div class="p-5 rounded-2xl bg-white border border-slate-100 shadow-sm card-lift reveal group hover:border-[#e02424]/30 transition" style="transition-delay:.1s">
-          <div class="w-11 h-11 rounded-xl bg-[#e02424]/10 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">🛡️</div>
-          <h3 class="font-bold text-sm mb-1 group-hover:text-[#e02424] transition">Zero-Downtime Focus</h3>
-          <p class="text-slate-500 text-xs leading-relaxed">Shutdown audits and preventive maintenance catch issues before failures — keeping your plant running 24/7.</p>
-        </div>
-        <div class="p-5 rounded-2xl bg-[#080E18] border border-slate-800 card-lift reveal group" style="transition-delay:.15s">
-          <div class="w-11 h-11 rounded-xl bg-[#1CB5D8]/15 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">🤝</div>
-          <h3 class="text-white font-bold text-sm mb-1">Long-Term Partnership</h3>
-          <p class="text-slate-400 text-xs leading-relaxed">We stay with you for the lifetime of your plant — providing ongoing support, training, and system upgrades.</p>
-        </div>
-      </div>
-    </div>
-    <div class="grid sm:grid-cols-3 gap-4">
-      <div class="p-5 rounded-2xl bg-white border border-slate-100 shadow-sm card-lift reveal group hover:border-[#1CB5D8]/30 transition flex items-start gap-4">
-        <div class="w-10 h-10 rounded-xl bg-[#1CB5D8]/10 flex items-center justify-center text-lg shrink-0 group-hover:scale-110 transition">🌱</div>
-        <div><h3 class="font-bold text-sm mb-1 group-hover:text-[#1CB5D8] transition">Eco-Friendly</h3><p class="text-slate-500 text-xs leading-relaxed">Alternative fuel systems and emission control reduce your carbon footprint without sacrificing performance.</p></div>
-      </div>
-      <div class="p-5 rounded-2xl bg-white border border-slate-100 shadow-sm card-lift reveal group hover:border-[#FFA500]/30 transition flex items-start gap-4" style="transition-delay:.05s">
-        <div class="w-10 h-10 rounded-xl bg-[#FFA500]/10 flex items-center justify-center text-lg shrink-0 group-hover:scale-110 transition">📐</div>
-        <div><h3 class="font-bold text-sm mb-1 group-hover:text-[#FFA500] transition">End-to-End Service</h3><p class="text-slate-500 text-xs leading-relaxed">From design and installation to shutdown audits, re-engineering, and performance studies — all under one roof.</p></div>
-      </div>
-      <div class="p-5 rounded-2xl bg-white border border-slate-100 shadow-sm card-lift reveal group hover:border-[#7CFC00]/30 transition flex items-start gap-4" style="transition-delay:.1s">
-        <div class="w-10 h-10 rounded-xl bg-[#7CFC00]/10 flex items-center justify-center text-lg shrink-0 group-hover:scale-110 transition">📍</div>
-        <div><h3 class="font-bold text-sm mb-1 group-hover:text-[#7CFC00] transition">Pan India Presence</h3><p class="text-slate-500 text-xs leading-relaxed">Active projects across Tamil Nadu, Maharashtra, Odisha, Chhattisgarh, West Bengal, Rajasthan and more.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════ OUR CLIENTS ══════════ -->
-<section class="py-20 bg-[#080E18] relative overflow-hidden">
-  <div class="blob w-[500px] h-[500px] bg-[#FFA500]/7 top-0 left-1/2 -translate-x-1/2"></div>
-  <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
-    <div class="text-center mb-14 reveal">
-      <div class="section-tag mx-auto w-fit">Trusted By Industry</div>
-      <h2 class="mano text-4xl sm:text-5xl font-black text-white mt-2">Our <span class="gtorange">Clients</span></h2>
-      <p class="text-slate-400 text-sm mt-3 max-w-2xl mx-auto">Boilertech Energy Services has delivered engineering excellence to leading industrial names across India — from cement giants to steel mills, sugar plants to specialty chemicals.</p>
-    </div>
-    <div class="overflow-hidden mb-3">
-      <div class="client-row client-scroll">
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Ultratech Cements</span><span class="text-slate-600 text-xs ml-2">Tamil Nadu</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Ambuja Cements</span><span class="text-slate-600 text-xs ml-2">Chhattisgarh</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Adani Cement</span><span class="text-slate-600 text-xs ml-2">Rajasthan</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Jubilant Life Sciences</span><span class="text-slate-600 text-xs ml-2">Pune</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Star Paper Mills</span><span class="text-slate-600 text-xs ml-2">Uttar Pradesh</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Orient Paper Mills</span><span class="text-slate-600 text-xs ml-2">Madhya Pradesh</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">CEAT Tyres</span><span class="text-slate-600 text-xs ml-2">Tamil Nadu</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Parry Sugars & Refinery</span><span class="text-slate-600 text-xs ml-2">Andhra Pradesh</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">EID Parry India</span><span class="text-slate-600 text-xs ml-2">Karnataka</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Shakti Sugars</span><span class="text-slate-600 text-xs ml-2">Tamil Nadu</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Ultratech Cements</span><span class="text-slate-600 text-xs ml-2">Tamil Nadu</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Ambuja Cements</span><span class="text-slate-600 text-xs ml-2">Chhattisgarh</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Adani Cement</span><span class="text-slate-600 text-xs ml-2">Rajasthan</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Jubilant Life Sciences</span><span class="text-slate-600 text-xs ml-2">Pune</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Star Paper Mills</span><span class="text-slate-600 text-xs ml-2">Uttar Pradesh</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Orient Paper Mills</span><span class="text-slate-600 text-xs ml-2">Madhya Pradesh</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">CEAT Tyres</span><span class="text-slate-600 text-xs ml-2">Tamil Nadu</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Parry Sugars & Refinery</span><span class="text-slate-600 text-xs ml-2">Andhra Pradesh</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">EID Parry India</span><span class="text-slate-600 text-xs ml-2">Karnataka</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Shakti Sugars</span><span class="text-slate-600 text-xs ml-2">Tamil Nadu</span></div>
-      </div>
-    </div>
-    <div class="overflow-hidden">
-      <div class="client-row client-scroll2">
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Hira Ferro Alloys</span><span class="text-slate-600 text-xs ml-2">Chhattisgarh</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Shyam Metallics</span><span class="text-slate-600 text-xs ml-2">Odisha</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Sunflag Iron & Steel</span><span class="text-slate-600 text-xs ml-2">Maharashtra</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Rashmi Metallics</span><span class="text-slate-600 text-xs ml-2">Kharagpur</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">NSL Textiles</span><span class="text-slate-600 text-xs ml-2">Andhra Pradesh</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Neuland Labs</span><span class="text-slate-600 text-xs ml-2">Hyderabad</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">MSP Metallics</span><span class="text-slate-600 text-xs ml-2">Odisha</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Sripathi Papers</span><span class="text-slate-600 text-xs ml-2">Tamil Nadu</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Kraft Papers</span><span class="text-slate-600 text-xs ml-2">Assam</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Gujarat Ambuja Exports</span><span class="text-slate-600 text-xs ml-2">Karnataka</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Hira Ferro Alloys</span><span class="text-slate-600 text-xs ml-2">Chhattisgarh</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Shyam Metallics</span><span class="text-slate-600 text-xs ml-2">Odisha</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Sunflag Iron & Steel</span><span class="text-slate-600 text-xs ml-2">Maharashtra</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Rashmi Metallics</span><span class="text-slate-600 text-xs ml-2">Kharagpur</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">NSL Textiles</span><span class="text-slate-600 text-xs ml-2">Andhra Pradesh</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Neuland Labs</span><span class="text-slate-600 text-xs ml-2">Hyderabad</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">MSP Metallics</span><span class="text-slate-600 text-xs ml-2">Odisha</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Sripathi Papers</span><span class="text-slate-600 text-xs ml-2">Tamil Nadu</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Kraft Papers</span><span class="text-slate-600 text-xs ml-2">Assam</span></div>
-        <div class="client-item"><span class="text-slate-300 text-sm font-semibold">Gujarat Ambuja Exports</span><span class="text-slate-600 text-xs ml-2">Karnataka</span></div>
-      </div>
-    </div>
-    <div class="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 reveal">
-      <div class="bg-white/5 border border-white/10 rounded-xl p-4 hover:border-[#1CB5D8]/40 transition"><div class="text-[#1CB5D8] font-bold text-xs">Ultratech Cements</div><div class="text-slate-500 text-[10px] mt-0.5">Training · Tamil Nadu</div></div>
-      <div class="bg-white/5 border border-white/10 rounded-xl p-4 hover:border-[#FFA500]/40 transition"><div class="text-[#FFA500] font-bold text-xs">Jubilant Life Sciences</div><div class="text-slate-500 text-[10px] mt-0.5">Performance Study · Pune</div></div>
-      <div class="bg-white/5 border border-white/10 rounded-xl p-4 hover:border-[#7CFC00]/40 transition"><div class="text-[#7CFC00] font-bold text-xs">Adani Cement</div><div class="text-slate-500 text-[10px] mt-0.5">Performance Study · Rajasthan</div></div>
-      <div class="bg-white/5 border border-white/10 rounded-xl p-4 hover:border-[#e02424]/40 transition"><div class="text-[#e02424] font-bold text-xs">CEAT Tyres Ltd</div><div class="text-slate-500 text-[10px] mt-0.5">Troubleshooting · Tamil Nadu</div></div>
-      <div class="bg-white/5 border border-white/10 rounded-xl p-4 hover:border-[#1CB5D8]/40 transition"><div class="text-[#1CB5D8] font-bold text-xs">Star Paper Mills</div><div class="text-slate-500 text-[10px] mt-0.5">Operational Study · U.P</div></div>
-      <div class="bg-white/5 border border-white/10 rounded-xl p-4 hover:border-[#FFA500]/40 transition"><div class="text-[#FFA500] font-bold text-xs">Ambuja Cements</div><div class="text-slate-500 text-[10px] mt-0.5">Performance Improvement · C.G</div></div>
-      <div class="bg-white/5 border border-white/10 rounded-xl p-4 hover:border-[#7CFC00]/40 transition"><div class="text-[#7CFC00] font-bold text-xs">Hira Ferro Alloys</div><div class="text-slate-500 text-[10px] mt-0.5">Capacity Enhancement · C.G</div></div>
-      <div class="bg-white/5 border border-white/10 rounded-xl p-4 hover:border-[#e02424]/40 transition"><div class="text-[#e02424] font-bold text-xs">Parry Sugars</div><div class="text-slate-500 text-[10px] mt-0.5">Shutdown Inspection · A.P</div></div>
-      <div class="bg-white/5 border border-white/10 rounded-xl p-4 hover:border-[#1CB5D8]/40 transition"><div class="text-[#1CB5D8] font-bold text-xs">Sunflag Iron & Steel</div><div class="text-slate-500 text-[10px] mt-0.5">Troubleshooting · Maharashtra</div></div>
-      <div class="bg-white/5 border border-white/10 rounded-xl p-4 hover:border-[#FFA500]/40 transition"><div class="text-[#FFA500] font-bold text-xs">Neuland Labs</div><div class="text-slate-500 text-[10px] mt-0.5">Derating Study · Hyderabad</div></div>
-      <div class="bg-white/5 border border-white/10 rounded-xl p-4 hover:border-[#7CFC00]/40 transition"><div class="text-[#7CFC00] font-bold text-xs">Shyam Metallics</div><div class="text-slate-500 text-[10px] mt-0.5">CFD Analysis · Odisha</div></div>
-      <div class="bg-white/5 border border-white/10 rounded-xl p-4 hover:border-[#e02424]/40 transition"><div class="text-[#e02424] font-bold text-xs">EID Parry India</div><div class="text-slate-500 text-[10px] mt-0.5">Shutdown Inspection · Karnataka</div></div>
-    </div>
-    <div class="text-center mt-8 reveal">
-      <div class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 text-slate-400 text-sm">
-        <span class="w-2 h-2 bg-[#FFA500] rounded-full animate-pulse"></span>
-        50+ clients trusted across India — from Erode to Assam
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════ CTA ══════════ -->
-<section class="relative py-24 overflow-hidden bg-white">
-  <div class="absolute inset-0">
-    <div class="blob w-[600px] h-[600px] bg-[#1CB5D8]/10 top-[-100px] left-[-150px]"></div>
-    <div class="blob w-[500px] h-[500px] bg-[#FFA500]/10 bottom-[-100px] right-[-100px]"></div>
-    <div class="blob w-[300px] h-[300px] bg-[#7CFC00]/8 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
-  </div>
-  <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Left -->
       <div class="reveal">
-        <div class="section-tag"><span class="w-1.5 h-1.5 bg-[#1CB5D8] rounded-full animate-pulse"></span>Start Your Project</div>
+        <div class="stag">Start Your Project</div>
         <h2 class="mano text-5xl sm:text-6xl font-black leading-[1.05] mt-3">
-          Let's Build<br><span class="text-[#1CB5D8]">Something</span><br><span class="text-[#FFA500]">Extraordinary</span>
+          Let's Build<br><span style="color:var(--blue)">Something</span><br><span style="color:var(--orange)">Extraordinary</span>
         </h2>
-        <p class="mt-5 text-slate-500 text-base leading-relaxed max-w-md">
+        <p class="mt-5 text-slate-500 leading-relaxed max-w-md">
           We collaborate with industries to design intelligent boiler systems that improve efficiency, reliability, and performance at scale. Tell us your plant's challenges.
         </p>
         <div class="mt-8 flex flex-wrap gap-4">
-          <a href="contact.html"><button class="px-8 py-3.5 rounded-full bg-[#1CB5D8] text-white font-semibold hover:scale-105 transition shadow-lg shadow-[#1CB5D8]/25">Start a Project</button></a>
-          <a href="services.html"><button class="px-8 py-3.5 rounded-full border border-slate-200 text-slate-700 font-semibold hover:bg-slate-50 transition">View Services</button></a>
+          <a href="contact.html" class="btn-primary">Start a Project <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></a>
+          <a href="services.html" class="btn-outline-dark">View Services</a>
         </div>
-        <p class="mt-6 text-xs text-slate-400">Trusted across Power · Steel · Sugar · Paper · Chemical · Food · Cement</p>
+        <p class="mt-6 text-xs text-slate-400 tracking-wide">Trusted across Power · Steel · Sugar · Paper · Chemical · Food · Cement</p>
       </div>
-      <div class="reveal" style="transition-delay:.1s">
-        <div class="space-y-4">
-          <div class="flex items-start gap-4 p-5 rounded-2xl bg-[#080E18] border border-slate-800 hover:border-[#1CB5D8]/40 transition card-lift">
-            <div class="w-10 h-10 rounded-xl bg-[#1CB5D8]/15 flex items-center justify-center text-lg shrink-0">📞</div>
-            <div>
-              <div class="text-slate-400 text-xs mb-1">Call Us Directly</div>
-              <a href="tel:7708397080" class="text-[#1CB5D8] font-bold text-lg hover:underline">+91 77083 97080</a>
-              <div class="text-slate-500 text-xs mt-1">Available for project discussions</div>
-            </div>
+      <!-- Right: contact cards -->
+      <div class="reveal space-y-3" style="transition-delay:.1s">
+        <div class="contact-card flex items-start gap-4">
+          <div class="w-9 h-9 rounded-md flex items-center justify-center shrink-0" style="background:rgba(28,181,216,.1);border:1px solid rgba(28,181,216,.2)">
+            <svg class="icon-svg" fill="none" stroke="#1CB5D8" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
           </div>
-          <div class="flex items-start gap-4 p-5 rounded-2xl bg-[#080E18] border border-slate-800 hover:border-[#FFA500]/40 transition card-lift">
-            <div class="w-10 h-10 rounded-xl bg-[#FFA500]/15 flex items-center justify-center text-lg shrink-0">✉️</div>
-            <div>
-              <div class="text-slate-400 text-xs mb-1">Email Us</div>
-              <a href="mailto:director@boilertechenergy.com" class="text-white font-semibold text-sm hover:text-[#FFA500] transition">director@boilertechenergy.com</a>
-              <div class="text-slate-500 text-xs mt-0.5">boilertechenergy@gmail.com</div>
-            </div>
+          <div>
+            <div class="text-slate-400 text-xs mb-1 tracking-wide uppercase">Call Us Directly</div>
+            <a href="tel:7708397080" class="font-bold text-base" style="color:var(--blue)">+91 77083 97080</a>
+            <div class="text-slate-500 text-xs mt-0.5">Available for project discussions</div>
           </div>
-          <div class="flex items-start gap-4 p-5 rounded-2xl bg-[#080E18] border border-slate-800 hover:border-[#7CFC00]/40 transition card-lift">
-            <div class="w-10 h-10 rounded-xl bg-[#7CFC00]/15 flex items-center justify-center text-lg shrink-0">📍</div>
-            <div>
-              <div class="text-slate-400 text-xs mb-1">Visit Our Office</div>
-              <div class="text-white font-semibold text-sm">130/1, First Floor, Periyar Street</div>
-              <div class="text-slate-500 text-xs mt-0.5">Backside of EDCC Bank, Erode – 638001</div>
-            </div>
+        </div>
+        <div class="contact-card flex items-start gap-4">
+          <div class="w-9 h-9 rounded-md flex items-center justify-center shrink-0" style="background:rgba(255,165,0,.1);border:1px solid rgba(255,165,0,.2)">
+            <svg class="icon-svg" fill="none" stroke="#FFA500" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
           </div>
-          <div class="flex items-start gap-4 p-5 rounded-2xl bg-[#080E18] border border-slate-800 hover:border-[#1CB5D8]/40 transition card-lift">
-            <div class="w-10 h-10 rounded-xl bg-[#1CB5D8]/15 flex items-center justify-center text-lg shrink-0">🌐</div>
-            <div>
-              <div class="text-slate-400 text-xs mb-1">Website</div>
-              <a href="https://www.boilertechenergy.com" target="_blank" class="text-[#1CB5D8] font-bold hover:underline text-sm">www.boilertechenergy.com</a>
-              <div class="text-slate-500 text-xs mt-0.5">Erode, Tamil Nadu — Pan India Operations</div>
-            </div>
+          <div>
+            <div class="text-slate-400 text-xs mb-1 tracking-wide uppercase">Email Us</div>
+            <a href="mailto:boilertechenergy@gmail.com" class="text-white font-semibold text-sm hover:text-orange-400 transition">boilertechenergy@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-card flex items-start gap-4">
+          <div class="w-9 h-9 rounded-md flex items-center justify-center shrink-0" style="background:rgba(28,181,216,.1);border:1px solid rgba(28,181,216,.2)">
+            <svg class="icon-svg" fill="none" stroke="#1CB5D8" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+          </div>
+          <div>
+            <div class="text-slate-400 text-xs mb-1 tracking-wide uppercase">Visit Our Office</div>
+            <div class="text-white font-semibold text-sm">130/1, First Floor, Periyar Street</div>
+            <div class="text-slate-500 text-xs mt-0.5">Backside of EDCC Bank, Erode – 638001</div>
+          </div>
+        </div>
+        <div class="contact-card flex items-start gap-4">
+          <div class="w-9 h-9 rounded-md flex items-center justify-center shrink-0" style="background:rgba(255,165,0,.1);border:1px solid rgba(255,165,0,.2)">
+            <svg class="icon-svg" fill="none" stroke="#FFA500" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253M3.284 14.253A8.959 8.959 0 0 1 3 12c0-1.016.167-1.994.474-2.91"/></svg>
+          </div>
+          <div>
+            <div class="text-slate-400 text-xs mb-1 tracking-wide uppercase">Website</div>
+            <a href="https://www.boilertechenergy.com" target="_blank" class="font-bold text-sm" style="color:var(--blue)">www.boilertechenergy.com</a>
+            <div class="text-slate-500 text-xs mt-0.5">Erode, Tamil Nadu — Pan India Operations</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
 
 <!-- ══════════ FOOTER ══════════ -->
 <footer class="bg-slate-950 pt-14 pb-8">
@@ -750,8 +1088,8 @@ nav a.active{color:#1CB5D8;border-bottom:2px solid #1CB5D8;padding-bottom:2px;}
         <img src="Logo.png" alt="Logo" class="h-9 w-auto"/>
         <div class="mano font-black text-lg text-white">Boiler<span class="text-[#1CB5D8]">Tech</span></div>
       </div>
-      <div class="text-[#1CB5D8] text-xs font-semibold mb-3">Your Trusted Performance Partner.</div>
-      <p class="text-slate-500 text-xs leading-relaxed mb-5">Optimizing industrial boiler performance through engineering precision, operational reliability, and long-term sustainability since 2015.</p>
+      <div class="text-[#1CB5D8] text-sm font-semibold mb-3">Your Trusted Performance Partner.</div>
+      <p class="text-slate-500 text-sm leading-relaxed mb-5">Optimizing industrial boiler performance through engineering precision, operational reliability, and long-term sustainability since 2015.</p>
       <div class="flex gap-3">
         <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-[#FFA500] hover:bg-slate-700 cursor-pointer transition"><span class="material-symbols-outlined text-sm">language</span></div>
         <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-[#FFA500] hover:bg-slate-700 cursor-pointer transition"><span class="material-symbols-outlined text-sm">mail</span></div>
@@ -759,7 +1097,7 @@ nav a.active{color:#1CB5D8;border-bottom:2px solid #1CB5D8;padding-bottom:2px;}
     </div>
     <div>
       <h4 class="font-bold text-sm mb-5 text-white">Expertise</h4>
-      <ul class="space-y-3 text-xs">
+      <ul class="space-y-3 text-sm">
         <li><a class="text-slate-500 hover:text-slate-300 transition" href="#">Boiler Performance Study</a></li>
         <li><a class="text-slate-500 hover:text-slate-300 transition" href="#">Shutdown Audit</a></li>
         <li><a class="text-slate-500 hover:text-slate-300 transition" href="#">Energy Conservation</a></li>
@@ -770,7 +1108,7 @@ nav a.active{color:#1CB5D8;border-bottom:2px solid #1CB5D8;padding-bottom:2px;}
     </div>
     <div>
       <h4 class="font-bold text-sm mb-5 text-white">Company</h4>
-      <ul class="space-y-3 text-xs">
+      <ul class="space-y-3 text-sm">
         <li><a class="text-slate-500 hover:text-slate-300 transition" href="about.html">About Us</a></li>
         <li><a class="text-slate-500 hover:text-slate-300 transition" href="services.html">Services</a></li>
         <li><a class="text-slate-500 hover:text-slate-300 transition" href="products.html">Products</a></li>
@@ -779,26 +1117,23 @@ nav a.active{color:#1CB5D8;border-bottom:2px solid #1CB5D8;padding-bottom:2px;}
     </div>
     <div>
       <h4 class="font-bold text-sm mb-5 text-white">Headquarters</h4>
-      <p class="text-slate-500 text-xs leading-relaxed">130/1, First Floor, Periyar Street,<br>Erode – 638001, Tamil Nadu<br><br>
+      <p class="text-slate-500 text-sm leading-relaxed">130/1, First Floor, Periyar Street,<br>Erode – 638001, Tamil Nadu<br><br>
         <a href="tel:7708397080" class="text-[#1CB5D8] hover:underline">+91 77083 97080</a><br>
-        <a href="mailto:director@boilertechenergy.com" class="text-slate-500 hover:text-slate-300 break-all">director@boilertechenergy.com</a>
+        <a href="mailto:boilertechenergy@gmail.com" class="text-slate-500 hover:text-slate-300 break-all">boilertechenergy@gmail.com</a>
       </p>
     </div>
   </div>
   <div class="max-w-7xl mx-auto px-5 sm:px-8 mt-10 pt-6 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center gap-3">
-    <p class="text-slate-600 text-xs">© 2026 BoilerTech Energy Services. All rights reserved.</p>
+    <p class="text-slate-600 text-sm">© 2026 BoilerTech Energy Services. All rights reserved.</p>
     <div class="flex flex-wrap justify-center gap-4">
-      <a class="text-slate-600 hover:text-slate-400 text-xs" href="privacy-policy.html">Privacy Policy</a>
-      <a class="text-slate-600 hover:text-slate-400 text-xs" href="terms of condition.html">Terms of Service</a>
-      <a class="text-slate-600 hover:text-slate-400 text-xs" href="#">Sitemap</a>
+      <a class="text-slate-600 hover:text-slate-400 text-sm" href="privacy-policy.html">Privacy Policy</a>
+      <a class="text-slate-600 hover:text-slate-400 text-sm" href="terms of condition.html">Terms of Service</a>
+      <a class="text-slate-600 hover:text-slate-400 text-sm" href="#">Sitemap</a>
     </div>
   </div>
 </footer>
 
-
-<!-- ══════════════════════════════════════
-     CHATBOT BUTTON
-══════════════════════════════════════ -->
+<!-- ══════════ CHATBOT BUTTON ══════════ -->
 <button id="chatbot-btn" aria-label="Open Chat Assistant">
   <div class="cb-pulse"></div>
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -807,25 +1142,19 @@ nav a.active{color:#1CB5D8;border-bottom:2px solid #1CB5D8;padding-bottom:2px;}
 </button>
 
 
-<!-- ══════════════════════════════════════
-     CHATBOT WINDOW
-══════════════════════════════════════ -->
+<!-- ══════════ CHATBOT WINDOW ══════════ -->
 <div id="chatbot-window" role="dialog" aria-label="Boilertech Chat Assistant">
   <div id="cb-header">
     <div class="cb-avatar"><img src="Logo.png" alt=""></div>
+
     <div class="cb-info">
       <div class="cb-name">Boilertech Assistant</div>
       <div class="cb-status">Online — Ready to Help</div>
     </div>
     <button id="cb-close" aria-label="Close chat">✕</button>
   </div>
-
-  <div id="cb-messages">
-    <!-- Welcome message injected by JS -->
-  </div>
-
+  <div id="cb-messages"></div>
   <div id="cb-quick-area"></div>
-
   <div id="cb-input-row">
     <input id="cb-input" type="text" placeholder="Type your message…" autocomplete="off" maxlength="200"/>
     <button id="cb-send" aria-label="Send">
@@ -834,204 +1163,125 @@ nav a.active{color:#1CB5D8;border-bottom:2px solid #1CB5D8;padding-bottom:2px;}
   </div>
 </div>
 
-
 <script>
-/* ── LOADER ── */
+/* LOADER */
 window.addEventListener("load",()=>{
   setTimeout(()=>{
     const l=document.getElementById("loader");
-    if(l){l.classList.add("hide");setTimeout(()=>l.remove(),700);}
-  },1400);
+    if(l){l.classList.add("hide");setTimeout(()=>l.remove(),500);}
+  },1200);
 });
 
-/* ── SCROLL REVEAL ── */
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show');});
-},{threshold:0.1});
-document.querySelectorAll('.reveal,.fleft,.fright').forEach(el=>obs.observe(el));
+/* SCROLL REVEAL */
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('show');}),{threshold:.1});
+document.querySelectorAll('.reveal,.fl,.fr').forEach(el=>obs.observe(el));
 
-/* ── MOBILE MENU ── */
-const btn=document.getElementById('menuBtn'),menu=document.getElementById('mobileMenu');
-let open=false;
-btn.addEventListener('click',()=>{
-  open=!open;menu.style.maxHeight=open?'420px':'0px';
+/* NAV SCROLL */
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>60);
 });
 
-/* ════════════════════════════════════════
-   CHATBOT LOGIC
-════════════════════════════════════════ */
-const cbBtn    = document.getElementById('chatbot-btn');
-const cbWindow = document.getElementById('chatbot-window');
-const cbClose  = document.getElementById('cb-close');
-const cbMsgs   = document.getElementById('cb-messages');
-const cbInput  = document.getElementById('cb-input');
-const cbSend   = document.getElementById('cb-send');
-const cbQuick  = document.getElementById('cb-quick-area');
+/* MOBILE MENU */
+const menuBtn=document.getElementById('menuBtn'),mob=document.getElementById('mobileMenu');
+let mOpen=false;
+menuBtn.addEventListener('click',()=>{
+  mOpen=!mOpen;mob.style.maxHeight=mOpen?'400px':'0';
+});
 
-/* Knowledge base */
-const KB = {
-  greet: ["hi","hello","hey","vanakkam","good morning","good afternoon","good evening","helo","hii"],
-  services: ["service","services","what do you do","what you do","offer","boiler","performance","shutdown","audit","cfd","ibr","capacity","energy","fuel","troubleshoot","root cause"],
-  contact: ["contact","phone","email","call","reach","address","office","location","whatsapp","number"],
-  quote: ["quote","quotation","price","cost","charge","rate","fee","estimate"],
-  about: ["about","company","who","years","experience","founded","history","team"],
-  clients: ["client","customer","who have you worked","project","ultratech","ambuja","adani","ceat","jubilant"],
-  industries: ["industry","industries","sector","cement","steel","sugar","paper","chemical","food","textile","pharma","power"],
+/* ═══ CHATBOT ═══ */
+const cbBtn=document.getElementById('chatbot-btn');
+const cbWin=document.getElementById('chatbot-window');
+const cbClose=document.getElementById('cb-close');
+const cbMsgs=document.getElementById('cb-messages');
+const cbInput=document.getElementById('cb-input');
+const cbSend=document.getElementById('cb-send');
+const cbQuick=document.getElementById('cb-quick-area');
+
+const KB={
+  greet:["hi","hello","hey","vanakkam","good morning","good afternoon","good evening"],
+  services:["service","services","what do you do","offer","boiler","performance","shutdown","audit","cfd","ibr","capacity","energy","fuel","troubleshoot","root cause"],
+  contact:["contact","phone","email","call","reach","address","office","location","whatsapp","number"],
+  quote:["quote","quotation","price","cost","charge","rate","fee","estimate"],
+  about:["about","company","who","years","experience","founded","history","team"],
+  clients:["client","customer","project","ultratech","ambuja","adani","ceat","jubilant"],
+  industries:["industry","industries","sector","cement","steel","sugar","paper","chemical","food","textile","pharma","power"],
 };
 
 function matchTopic(msg){
   const m=msg.toLowerCase();
-  for(const [topic,kws] of Object.entries(KB)){
-    if(kws.some(k=>m.includes(k))) return topic;
-  }
+  for(const[t,kws]of Object.entries(KB)){if(kws.some(k=>m.includes(k)))return t;}
   return null;
 }
 
-function getReply(topic, rawMsg){
-  switch(topic){
-    case 'greet':
-      return "Hello! 👋 Welcome to <strong>Boilertech Energy Services</strong>. I'm here to help you with information about our services, clients, or how to get in touch. What can I assist you with today?";
-    case 'services':
-      return `We offer a comprehensive range of industrial boiler engineering services:<br><br>
-⚙️ <strong>Boiler Performance & Operational Studies</strong><br>
-🛠 <strong>Shutdown & Audit Services</strong><br>
-🔍 <strong>Troubleshooting & Root Cause Analysis</strong><br>
-🚀 <strong>Capacity Enhancement & Re-Engineering</strong><br>
-🌱 <strong>Energy & Fuel Optimization</strong><br>
-💻 <strong>CFD Analysis & IBR Engineering</strong><br><br>
-Would you like details on any specific service?`;
-    case 'contact':
-      return `You can reach us through:<br><br>
-📞 <strong>Phone:</strong> <a href="tel:7708397080" style="color:#1CB5D8">+91 77083 97080</a><br>
-✉️ <strong>Email:</strong> director@boilertechenergy.com<br>
-💬 <strong>WhatsApp:</strong> <a href="https://wa.me/917708397080" target="_blank" style="color:#25d366">Chat with us</a><br>
-📍 <strong>Office:</strong> 130/1, First Floor, Periyar Street, Erode – 638001<br><br>
-Our team responds within <strong>24–48 hours</strong>.`;
-    case 'quote':
-      return `To get a customized quote, please share your:<br><br>
-• Industry/sector type<br>
-• Boiler capacity & type<br>
-• Service required<br>
-• Location<br><br>
-📞 Call us: <a href="tel:7708397080" style="color:#1CB5D8">+91 77083 97080</a><br>
-✉️ Email: director@boilertechenergy.com<br><br>
-Or <a href="contact.html" style="color:#1CB5D8">fill our inquiry form →</a>`;
-    case 'about':
-      return `<strong>Boilertech Energy Services</strong> is a leading industrial boiler engineering company based in Erode, Tamil Nadu.<br><br>
-🏆 <strong>10+ Years</strong> of engineering excellence<br>
-📋 <strong>IBR Certified</strong> designs<br>
-🌍 <strong>Pan India</strong> operations<br>
-⚙️ <strong>500+ Projects</strong> delivered<br>
-🏭 <strong>7+ Industries</strong> served<br><br>
-We specialize in optimizing boiler performance through precision engineering and long-term sustainability.`;
-    case 'clients':
-      return `We've served <strong>50+ leading companies</strong> across India, including:<br><br>
-• Ultratech Cements, Ambuja Cements, Adani Cement<br>
-• Jubilant Life Sciences, Neuland Labs<br>
-• CEAT Tyres, NSL Textiles<br>
-• Hira Ferro Alloys, Shyam Metallics, Sunflag Iron & Steel<br>
-• Star Paper Mills, Orient Paper Mills, Sripathi Papers<br>
-• Parry Sugars, EID Parry India, Shakti Sugars<br><br>
-…and many more across Tamil Nadu, Maharashtra, Odisha, Chhattisgarh & beyond.`;
-    case 'industries':
-      return `We serve <strong>7+ major industries</strong>:<br><br>
-🏭 Power Plants &nbsp; ⚙️ Steel Plants<br>
-🍬 Sugar Plants &nbsp; 📄 Paper Mills<br>
-🧪 Chemical Industries &nbsp; 🍲 Food Industries<br>
-🏗 Cement Industries &nbsp; 🧵 Textile Mills<br>
-💊 Pharmaceutical Industries<br><br>
-Each solution is customized to the specific boiler type and operational requirements.`;
-    default:
-      return `Thanks for reaching out! I'm not sure I understood that. Here's how I can help:<br><br>
-• <strong>Services</strong> we offer<br>
-• <strong>Contact</strong> information<br>
-• <strong>Get a Quote</strong><br>
-• <strong>About</strong> Boilertech<br>
-• <strong>Clients</strong> we've served<br><br>
-Or call us directly: <a href="tel:7708397080" style="color:#1CB5D8">+91 77083 97080</a>`;
-  }
+function getReply(topic){
+  const r={
+    greet:`Hello! Welcome to <strong>Boilertech Energy Services</strong>. I'm here to help you with information about our services, clients, or how to get in touch. How can I assist you?`,
+    services:`We offer comprehensive industrial boiler engineering:<br><br>• <strong>Performance & Operational Studies</strong><br>• <strong>Shutdown & Audit Services</strong><br>• <strong>Troubleshooting & Root Cause Analysis</strong><br>• <strong>Capacity Enhancement & Re-Engineering</strong><br>• <strong>Energy & Fuel Optimization</strong><br>• <strong>CFD Analysis & IBR Engineering</strong><br>• <strong>Piping Engineering</strong><br>Would you like details on any specific service?`,
+    contact:`You can reach us through:<br><br>📞 <a href="tel:7708397080" style="color:#1CB5D8">+91 77083 97080</a><br>✉️ boilertechenergy@gmail.com<br>📍 130/1, Periyar Street, Erode – 638001<br>💬 <a href="https://wa.me/917708397080" target="_blank" style="color:#25d366">WhatsApp</a><br><br>Response within <strong>24–48 hours</strong>.`,
+    quote:`For a customized quote, please share:<br><br>• Industry/sector type<br>• Boiler capacity & type<br>• Service required<br>• Location<br><br>📞 <a href="tel:7708397080" style="color:#1CB5D8">+91 77083 97080</a><br>Or <a href="contact.html" style="color:#1CB5D8">fill our inquiry form →</a>`,
+    about:`<strong>Boilertech Energy Services</strong> — leading industrial boiler engineering, Erode, Tamil Nadu.<br><br>✓ <strong>10+ Years</strong> of engineering excellence<br>✓ <strong>IBR Certified</strong> designs<br>✓ <strong>Pan India</strong> operations<br>✓ <strong>500+ Projects</strong> delivered<br>✓ <strong>7+ Industries</strong> served`,
+    clients:`We've served <strong>50+ leading companies</strong> across India:<br><br>• Ultratech, Ambuja, Adani Cement<br>• Jubilant Life Sciences, Neuland Labs<br>• CEAT Tyres, NSL Textiles<br>• Hira Ferro Alloys, Shyam Metallics<br>• Star Paper Mills, Orient Paper Mills<br>• Parry Sugars, EID Parry India…`,
+    industries:`We serve <strong>7+ major industries</strong>:<br><br>Power Plants · Steel Plants · Sugar Plants<br>Paper Mills · Chemical Industries<br>Food Industries · Cement · Pharma · Textiles<br><br>Each solution is customized to the specific boiler type and requirements.`,
+  };
+  return r[topic]||`I can help you with:<br><br>• Our <strong>Services</strong><br>• <strong>Contact</strong> information<br>• Getting a <strong>Quote</strong><br>• <strong>About</strong> us<br>• Our <strong>Clients</strong><br><br>Or call: <a href="tel:7708397080" style="color:#1CB5D8">+91 77083 97080</a>`;
 }
 
-function addMsg(text, from='bot'){
-  const wrap = document.createElement('div');
-  wrap.className = `cb-msg ${from}`;
-  if(from==='bot'){
-    wrap.innerHTML = `<div class="cb-msg-icon">
-          <div class="cb-avatar"><img src="Logo.png" alt=""></div>
-      </div><div class="cb-bubble">${text}</div>`;
-  } else {
-    wrap.innerHTML = `<div class="cb-bubble">${text}</div>`;
-  }
-  cbMsgs.appendChild(wrap);
-  cbMsgs.scrollTop = cbMsgs.scrollHeight;
+function addMsg(text,from='bot'){
+  const w=document.createElement('div');
+  w.className=`cb-msg ${from}`;
+  w.innerHTML=from==='bot'
+    ?`<div class="cb-msg-icon"><img src="Logo.png" alt=""/></div><div class="cb-bubble">${text}</div>`
+    :`<div class="cb-bubble">${text}</div>`;
+  cbMsgs.appendChild(w);
+  cbMsgs.scrollTop=cbMsgs.scrollHeight;
 }
 
 function showTyping(){
   const d=document.createElement('div');
-  d.className='cb-msg bot';d.id='cb-typing-row';
-  d.innerHTML=`<div class="cb-msg-icon">
-        <div class="cb-avatar"><img src="Logo.png" alt=""></div>
-    </div><div class="cb-bubble"><div class="cb-typing"><span></span><span></span><span></span></div></div>`;
-  cbMsgs.appendChild(d);
-  cbMsgs.scrollTop=cbMsgs.scrollHeight;
+  d.className='cb-msg bot';d.id='cbTyping';
+  d.innerHTML=`<div class="cb-msg-icon"><img src="Logo.png" alt=""/></div><div class="cb-bubble"><div class="cb-typing"><span></span><span></span><span></span></div></div>`;
+  cbMsgs.appendChild(d);cbMsgs.scrollTop=cbMsgs.scrollHeight;
 }
-function removeTyping(){
-  const t=document.getElementById('cb-typing-row');
-  if(t) t.remove();
-}
+function removeTyping(){const t=document.getElementById('cbTyping');if(t)t.remove();}
 
-function showQuickReplies(opts){
+function showQuicks(opts){
   cbQuick.innerHTML='';
-  const wrap=document.createElement('div');
-  wrap.className='cb-quick-wrap';
+  const w=document.createElement('div');w.className='cb-quick-wrap';
   opts.forEach(o=>{
-    const b=document.createElement('button');
-    b.className='cb-quick';b.textContent=o;
-    b.addEventListener('click',()=>{
-      cbQuick.innerHTML='';
-      addMsg(o,'user');
-      handleResponse(o);
-    });
-    wrap.appendChild(b);
+    const b=document.createElement('button');b.className='cb-quick';b.textContent=o;
+    b.addEventListener('click',()=>{cbQuick.innerHTML='';addMsg(o,'user');handleResp(o);});
+    w.appendChild(b);
   });
-  cbQuick.appendChild(wrap);
+  cbQuick.appendChild(w);
 }
 
-function handleResponse(msg){
+function handleResp(msg){
   showTyping();
   setTimeout(()=>{
     removeTyping();
-    const topic=matchTopic(msg);
-    addMsg(getReply(topic,msg),'bot');
-    // show follow-up quick replies
-    showQuickReplies(['Our Services','Get a Quote','Contact Us','Our Clients']);
-  }, 900);
+    addMsg(getReply(matchTopic(msg)));
+    showQuicks(['Our Services','Get a Quote','Contact Us','Our Clients']);
+  },900);
 }
 
-/* Open / Close */
 cbBtn.addEventListener('click',()=>{
-  cbWindow.classList.toggle('open');
-  if(cbWindow.classList.contains('open') && cbMsgs.children.length===0){
-    // Welcome message
+  cbWin.classList.toggle('open');
+  if(cbWin.classList.contains('open')&&cbMsgs.children.length===0){
     setTimeout(()=>{
-      addMsg("Hello! 👋 Welcome to <strong>Boilertech Energy Services</strong>.<br>How can I help you today?","bot");
-      showQuickReplies(['Our Services','Get a Quote','Contact Us','About Us','Our Clients']);
+      addMsg("Hello! Welcome to <strong>Boilertech Energy Services</strong>.<br>How can I help you today?");
+      showQuicks(['Our Services','Get a Quote','Contact Us','About Us','Our Clients']);
     },200);
   }
 });
-cbClose.addEventListener('click',()=>cbWindow.classList.remove('open'));
+cbClose.addEventListener('click',()=>cbWin.classList.remove('open'));
 
-/* Send */
-function sendMessage(){
-  const txt=cbInput.value.trim();
-  if(!txt) return;
-  cbQuick.innerHTML='';
-  addMsg(txt,'user');
-  cbInput.value='';
-  handleResponse(txt);
+function sendMsg(){
+  const t=cbInput.value.trim();if(!t)return;
+  cbQuick.innerHTML='';addMsg(t,'user');cbInput.value='';handleResp(t);
 }
-cbSend.addEventListener('click',sendMessage);
-cbInput.addEventListener('keydown',e=>{if(e.key==='Enter') sendMessage();});
+cbSend.addEventListener('click',sendMsg);
+cbInput.addEventListener('keydown',e=>{if(e.key==='Enter')sendMsg();});
 </script>
 </body>
 </html>
