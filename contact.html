@@ -39,7 +39,45 @@ body{font-family:'Manrope',sans-serif;background:var(--dk);overflow-x:hidden;-we
 
 .topbar{position:fixed;top:0;left:0;width:100%;height:2px;z-index:500;background:linear-gradient(90deg,var(--blue),var(--orange),var(--blue-bright),var(--blue));background-size:300% 100%;animation:barShift 6s linear infinite;}
 @keyframes barShift{0%{background-position:0%}100%{background-position:300%}}
+/* ── NAV start ── */
+.logo-text{
+  font-family:'Montserrat',sans-serif;
+  font-weight:700;
+  letter-spacing:1px;
+  line-height:1;
+}
 
+.logo-sub{
+  font-family:'Montserrat',sans-serif;
+  letter-spacing:1px;
+  font-weight:700;
+}
+
+.nav-link{
+  position:relative;
+  transition:.3s;
+}
+
+.nav-link::after{
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:-8px;
+  width:0;
+  height:2px;
+  background:#FFA500;
+  transition:.3s;
+}
+
+.nav-link:hover::after{
+  width:100%;
+}
+
+.nav-link:hover{
+  color:#FFA500;
+}
+
+/* nav end */
 /* ═══════════════════════════════
    HERO
 ═══════════════════════════════ */
@@ -582,40 +620,130 @@ body{font-family:'Manrope',sans-serif;background:var(--dk);overflow-x:hidden;-we
 
 <div class="topbar"></div>
 
-<!-- NAV — unchanged -->
-<nav class="fixed w-full z-50 bg-white border-b border-slate-200" style="top:2px;">
+<!-- ═════════ NAVBAR start ═════════ -->
+
+<nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+  
   <div class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 py-4">
-    <div class="flex items-center gap-2.5">
-      <img src="Logo.png" alt="Boilertech" class="h-9 w-auto"/>
-      <div class="flex flex-col leading-tight">
-        <span class="text-black font-black text-xl font-manrope tracking-tight">Boiler<span class="text-[#1CB5D8]">tech</span></span>
-        <span class="text-xs text-slate-500 font-semibold tracking-widest">ENERGY SERVICES</span>
+
+    <!-- LOGO -->
+    <div class="flex items-center gap-3">
+      
+      <img src="Logo.png" 
+           alt="Boilertech Energy Services Logo" 
+           class="h-12 w-auto"/>
+
+      <div class="flex flex-col leading-none">
+        
+       <span class="logo-text text-[#0B6EA8] text-[18px] tracking-tight">
+          BOILERTECH
+      </span>
+
+        <span class="logo-sub text-[#0B6EA8] text-[18px] mt-1">
+          ENERGY SERVICES
+        </span>
+
       </div>
     </div>
-    <div class="hidden md:flex items-center gap-7">
-      <a href="index.html"    class="text-slate-600 text-base font-bold hover:text-[#F5A200] transition">Home</a>
-      <a href="about.html"    class="text-slate-600 text-base font-bold hover:text-[#F5A200] transition">About</a>
-      <a href="services.html" class="text-slate-600 text-base font-bold hover:text-[#F5A200] transition">Services</a>
-      <a href="products.html" class="text-slate-600 text-base font-bold hover:text-[#F5A200] transition">Products</a>
-      <a href="contact.html"  class="text-[#F5A200] text-base font-extrabold border-b-2 border-[#F5A200] pb-0.5">Contact</a>
+
+    <!-- DESKTOP MENU -->
+    <div class="hidden lg:flex items-center gap-8 text-[15px] font-semibold">
+
+      <a href="index.html"
+         class="nav-link text-[#FFA500]">
+         Home
+      </a>
+
+      <a href="about.html"
+         class="nav-link text-slate-700">
+         About
+      </a>
+
+      <a href="services.html"
+         class="nav-link text-slate-700">
+         Services
+      </a>
+
+      <a href="products.html"
+         class="nav-link text-slate-700">
+         Products
+      </a>
+
+      <!-- NEW BLOG MENU -->
+      <a href="blog.html"
+         class="nav-link text-slate-700">
+         Blog
+      </a>
+
+      <!-- NEW BROCHURE MENU -->
+      <a href="brochure.html"
+         class="nav-link text-slate-700">
+         Brochures
+      </a>
+
+      <a href="contact.html"
+         class="nav-link text-slate-700">
+         Contact
+      </a>
+
     </div>
-    <div class="hidden md:block">
-      <a href="contact.html"><button class="bg-[#F5A200] text-white text-sm px-5 py-2 rounded-full hover:scale-105 transition shadow font-semibold">Get Quote</button></a>
+
+    <!-- CTA BUTTON -->
+    <div class="hidden lg:block">
+      <a href="contact.html">
+        <button class="bg-[#FFA500] hover:bg-[#1CB5D8] text-white text-sm px-6 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-xl font-bold">
+          Get Quote
+        </button>
+      </a>
     </div>
-    <button id="menuBtn" class="md:hidden flex flex-col gap-[5px] p-1">
+
+    <!-- MOBILE MENU BUTTON -->
+    <button id="menuBtn" class="lg:hidden flex flex-col gap-[5px] p-1">
       <span class="w-6 h-0.5 bg-black block"></span>
       <span class="w-6 h-0.5 bg-black block"></span>
       <span class="w-6 h-0.5 bg-black block"></span>
     </button>
+
   </div>
-  <div id="mobileMenu" class="md:hidden bg-white border-t border-slate-100 overflow-hidden max-h-0 transition-all duration-500">
-    <div class="flex flex-col px-6 py-5 gap-4">
-      <a href="index.html"    class="text-slate-600 text-base font-bold hover:text-[#F5A200]">Home</a>
-      <a href="about.html"    class="text-slate-600 text-base font-bold hover:text-[#F5A200]">About</a>
-      <a href="services.html" class="text-slate-600 text-base font-bold hover:text-[#F5A200]">Services</a>
-      <a href="products.html" class="text-slate-600 text-base font-bold hover:text-[#F5A200]">Products</a>
-      <a href="contact.html"  class="text-[#F5A200] text-base font-extrabold">Contact</a>
-      <button class="bg-[#F5A200] text-white px-5 py-2.5 rounded-full w-full font-semibold">Get Quote</button>
+
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu"
+       class="lg:hidden bg-white border-t border-slate-100 overflow-hidden max-h-0 transition-all duration-500">
+
+    <div class="flex flex-col px-6 py-5 gap-5 text-[15px] font-semibold">
+
+      <a href="index.html" class="text-[#FFA500] font-bold">Home</a>
+
+      <a href="about.html" class="text-slate-700 hover:text-[#FFA500]">
+        About
+      </a>
+
+      <a href="services.html" class="text-slate-700 hover:text-[#FFA500]">
+        Services
+      </a>
+
+      <a href="products.html" class="text-slate-700 hover:text-[#FFA500]">
+        Products
+      </a>
+
+      <!-- MOBILE BLOG -->
+      <a href="blog.html" class="text-slate-700 hover:text-[#FFA500]">
+        Blog
+      </a>
+
+      <!-- MOBILE BROCHURE -->
+      <a href="brochure.html" class="text-slate-700 hover:text-[#FFA500]">
+        Brochures
+      </a>
+
+      <a href="contact.html" class="text-slate-700 hover:text-[#FFA500]">
+        Contact
+      </a>
+
+      <button class="bg-[#FFA500] text-white px-5 py-3 rounded-full w-full font-bold">
+        Get Quote
+      </button>
+
     </div>
   </div>
 </nav>
@@ -890,7 +1018,6 @@ body{font-family:'Manrope',sans-serif;background:var(--dk);overflow-x:hidden;-we
       <div class="reveal d1">
         <div class="map-frame-wrap">
           <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3911.928474580659!2d77.72844637505011!3d11.339934988845188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTHCsDIwJzIzLjgiTiA3N8KwNDMnNTEuNyJF!5e0!3m2!1sen!2sin!4v1778132685517!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3911.926912270905!2d77.72842067536709!3d11.340049088845053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96f0003b70ecb%3A0x5b1fe28f39e1a4db!2sMahesh%20Photos!5e0!3m2!1sen!2sin!4v1777963231124!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
           <div class="map-overlay-badge">
             <div class="mob-pulse"></div>
             <div>
