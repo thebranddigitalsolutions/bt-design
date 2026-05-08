@@ -7,6 +7,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://unpkg.com/lucide@latest"></script>
 <style>
 /* ═══════════════════════════════════════
    DESIGN TOKENS — BLUE ONLY PALETTE
@@ -25,11 +26,37 @@
 
 *, body { box-sizing: border-box; }
 
+
+h1,h2,h3,h4,h5,h6,
+.section-title,
+.hero-title{
+  font-family:'Rockwell',serif;
+}
+
+/* PARAGRAPHS */
+body,
+p,
+li,
+.description{
+  font-family:'Rockwell',serif;
+}
+
+/* NAVBAR + BUTTONS */
+nav,
+button,
+.btn,
+.logo-text,
+.stats-number{
+  font-family:'Montserrat',sans-serif;
+}
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Rockwell', serif;
   background: #fff;
   color: var(--navy);
   overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
 }
 
 /* ── SMOOTH SCROLLBAR ── */
@@ -455,7 +482,7 @@ letter-spacing:2.2px;
 .services-section { background: var(--bg-soft); }
 
 .svc-h2 {
-  font-family: 'Rockwell', sans-serif;
+  font-family: 'Rockwell', serif;
   font-size: clamp(32px, 4vw, 50px);
   font-weight: 900; color: var(--navy);
   line-height: 1.1;
@@ -529,8 +556,10 @@ letter-spacing:2.2px;
   font-size: 11px; font-weight: 700; letter-spacing: .06em;
   color: #fff; z-index: 2;
   background: rgba(47,128,237,.85);
-  backdrop-filter: blur(8px);
+  /* backdrop-filter: blur(8px); */
   padding: 4px 12px; border-radius: 6px;
+  backdrop-filter: blur(12px);
+border:1px solid rgba(255,255,255,.12);
 }
 
 .showcase-cta-card {
@@ -549,7 +578,7 @@ letter-spacing:2.2px;
 .why-section { background: #fff; }
 
 .why-h2 {
-  font-family: 'rockwell', sans-serif;
+  font-family: 'rockwell', serif;
   font-size: clamp(32px, 4vw, 50px);
   font-weight: 900; color: var(--navy); line-height: 1.1;
 }
@@ -652,6 +681,58 @@ width:50px;
 height:50px;
 object-fit:contain;
 opacity:.7
+}
+
+
+/* CLIENT LOGO */
+.client-logo{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-bottom:16px;}
+
+/* .client-logo{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+} */
+ .client-logo img{
+  display:block;
+
+  width:78px;
+  height:78px;
+
+  object-fit:contain;
+
+  opacity:1;
+  filter:grayscale(100%);
+
+  margin:0 auto;
+
+  transition:
+    transform .35s ease,
+    filter .35s ease,
+    opacity .35s ease;
+}
+/* HOVER */
+ /* .client-logo img{
+  width:78px;
+  height:78px;
+  object-fit:contain;
+
+  opacity:1;
+  filter:grayscale(100%);
+
+  transition:
+    transform .35s ease,
+    filter .35s ease,
+    opacity .35s ease;
+  } */
+/* HOVER */
+.client-card:hover .client-logo img{
+  filter:none;
+  transform:scale(1.06);
 }
 /* ═══════════════════════════════════════
    CTA SECTION
@@ -1193,13 +1274,13 @@ footer {
         </h2>
 
         <!-- Paragraph -->
-        <p class="mt-6 text-[16px] lg:text-[17px] leading-[1.9] text-[#5B6B7B] font-['Rockwell'] max-w-2xl">
+        <p class="mt-6 text-[16px] lg:text-[17px] leading-[1.9] text-[#5B6B7B] font-['Rockwell'] max-w-xl">
 
           At Boilertech Energy Services, we specialize in optimizing the performance and availability of industrial boiler systems.
 
         </p>
 
-        <p class="mt-4 text-[16px] lg:text-[17px] leading-[1.9] text-[#5B6B7B] font-['Rockwell'] max-w-2xl">
+        <p class="mt-4 text-[16px] lg:text-[17px] leading-[1.9] text-[#5B6B7B] font-['Rockwell'] max-w-xl">
 
           Safety, performance, and sustainability remain at the core of every engineering solution we deliver.
 
@@ -1211,7 +1292,7 @@ footer {
           <div class="bg-white border border-blue-100 rounded-2xl p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300">
 
             <div class="w-11 h-11 rounded-2xl bg-blue-50 flex items-center justify-center mb-3">
-              ⚙️
+           <i data-lucide="settings"></i>
             </div>
 
             <h4 class="font-['Montserrat'] font-bold text-[#16324F] text-lg">
@@ -1227,7 +1308,7 @@ footer {
           <div class="bg-white border border-blue-100 rounded-2xl p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300">
 
             <div class="w-11 h-11 rounded-2xl bg-blue-50 flex items-center justify-center mb-3">
-              ⚡
+            <i data-lucide="zap"></i>
             </div>
 
             <h4 class="font-['Montserrat'] font-bold text-[#16324F] text-lg">
@@ -1348,7 +1429,7 @@ footer {
           Industrial Engineering <span class="grad-text">Showcase</span>
         </h2>
       </div>
-      <p style="font-family:'Rockwell',Georgia,serif;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.5);lg:text-right">
+      <p style="font-family:'Rockwell',Georgia,serif;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.5) ; lg:text-right;">
         High-performance boiler systems engineered with precision across sectors — from cement giants to steel mills.
       </p>
     </div>
@@ -1522,9 +1603,9 @@ footer {
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 reveal">
       <div class="client-card">
         <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"> -->
-          <!-- <div class="client-logo-box"> -->
-            <img src="bt client logos/ultratech-cement-logo.png" alt="" style=" width:100px;height:100px;object-fit:contain;opacity:.7;display:block;margin:auto;"/>
-          <!-- </div> -->
+          <div class="client-logo">
+            <img src="bt client logos/ultratech-cement-logo.png" alt=""/>
+          </div>
           <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">Ultratech Cements</div>
         <!-- </div> -->
         <!-- <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Training · Tamil Nadu</div> -->
@@ -1532,99 +1613,99 @@ footer {
       
       <div class="client-card">
         <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"> -->
-          <!-- <div class="client-logo-box"> -->
-            <img src="bt client logos/jubli.png" alt="" style="width:100px;height:100px;object-fit:contain;opacity:.7;display:block;margin:auto;"/>
-          <!-- </div> -->
+          <div class="client-logo">
+            <img src="bt client logos/jubli.png" alt="" />
+          </div>
           <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">Jubilant Life Sciences</div>
         <!-- </div> -->
         <!-- <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Performance Study · Pune</div> -->
       </div>
       <div class="client-card">
         <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"> -->
-          <!-- <div class="client-logo-box"> -->
-            <img src="bt client logos/adani-logo.svg" alt="" style="width:100px;height:100px;object-fit:contain;opacity:.7;display:block;margin:auto;"/>
-          <!-- </div> -->
+          <div class="client-logo">
+            <img src="bt client logos/adani-logo.svg" alt="" />
+          </div>
           <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">Adani Cement</div>
         <!-- </div>
         <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Performance Study · Rajasthan</div> -->
       </div>
       <div class="client-card">
         <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"> -->
-          <!-- <div class="client-logo-box"> -->
-            <img src="bt client logos/ceat logo.png" alt="" style="width:100px;height:100px;object-fit:contain;opacity:.7;display:block;margin:auto;"/>
-          <!-- </div> -->
+          <div class="client-logo">
+            <img src="bt client logos/ceat logo.png" alt="" />
+          </div>
           <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">CEAT Tyres Ltd</div>
         <!-- </div>
         <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Troubleshooting · Tamil Nadu</div> -->
       </div>
       <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-          <div class="client-logo-box"> -->
-            <img src="bt client logos/star paper mills.jpg" alt="" style="width:100px;height:100px;object-fit:contain;opacity:.7;display:block;margin:auto;"/>
-          <!-- </div> -->
+        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">-->
+          <div class="client-logo"> 
+            <img src="bt client logos/star paper mills.jpg" alt="" />
+          </div>
           <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy); text-align: center;">Star Paper Mills</div>
         <!-- </div>
         <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Operational Study · U.P</div> -->
       </div>
       <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-          <div class="client-logo-box"> -->
-            <img src="bt client logos/Ambuja cement.webp" alt="" style="width:100px;height:100px;object-fit:contain;opacity:.7;display:block;margin:auto;"/>
-          <!-- </div> -->
+        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">-->
+          <div class="client-logo"> 
+            <img src="bt client logos/Ambuja cement.webp" alt="" />
+          </div>
           <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">Ambuja Cements</div>
         <!-- </div>
         <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Performance Improvement · C.G</div> -->
       </div>
       <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-          <div class="client-logo-box"> -->
-            <img src="bt client logos/hira-ferro.png" alt="" style="width:100px;height:100px;object-fit:contain;opacity:.7;display:block;margin:auto;"/>
-          <!-- </div> -->
+        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"> -->
+          <div class="client-logo"> 
+            <img src="bt client logos/hira-ferro.png" alt="" />
+          </div>
           <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">Hira Ferro Alloys</div>
         <!-- </div>
         <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Capacity Enhancement · C.G</div> -->
       </div>
       <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-          <div class="client-logo-box"> -->
-            <img src="bt client logos/parrys sugar.jpg" alt="" style="width:100px;height:100px;object-fit:contain;opacity:.7;display:block;margin:auto;"/>
-          <!-- </div> -->
+        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">-->
+          <div class="client-logo"> 
+            <img src="bt client logos/parrys sugar.jpg" alt="" />
+          </div>
           <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">Parry Sugars</div>
         <!-- </div>
         <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Shutdown Inspection · A.P</div> -->
       </div>
       <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-          <div class="client-logo-box"> -->
-            <img src="bt client logos/Sunflag Iron & Steel.png" alt="" style="width:100px;height:100px;object-fit:contain;opacity:.7;display:block;margin:auto;"/>
-          <!-- </div> -->
+        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">-->
+          <div class="client-logo"> 
+            <img src="bt client logos/Sunflag Iron & Steel.png" alt="" />
+          </div>
           <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">Sunflag Iron & Steel</div>
         <!-- </div>
         <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Troubleshooting · Maharashtra</div> -->
       </div>
       <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-          <div class="client-logo-box"> -->
-            <img src="bt client logos/neuland_laboratories_limited_logo.jpg" alt="" style="width:100px;height:100px;object-fit:contain;opacity:.7;display:block;margin:auto;"/>
-          <!-- </div> -->
+        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">-->
+          <div class="client-logo"> 
+            <img src="bt client logos/neuland_laboratories_limited_logo.jpg" alt="" />
+          </div>
           <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">Neuland Labs</div>
         <!-- </div>
         <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Derating Study · Hyderabad</div> -->
       </div>
       <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-          <div class="client-logo-box"> -->
-            <img src="bt client logos/shyam metalics.webp" alt="" style="width:100px;height:100px;object-fit:contain;opacity:.7;display:block;margin:auto;"/>
-          <!-- </div> -->
+        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">-->
+          <div class="client-logo"> 
+            <img src="bt client logos/shyam metalics.webp" alt="" />
+          </div>
           <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">Shyam Metallics</div>
         <!-- </div>
         <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">CFD Analysis · Odisha</div> -->
       </div>
       <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-          <div class="client-logo-box"> -->
-            <img src="bt client logos/parrys sugar.jpg" alt="" style="width:100px;height:100px;object-fit:contain;opacity:.7;display:block;margin:auto;"/>
-          <!-- </div> -->
+        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">-->
+          <div class="client-logo"> 
+            <img src="bt client logos/parrys sugar.jpg" alt="" />
+          </div>
           <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">EID Parry India</div>
         <!-- </div>
         <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Shutdown Inspection · Karnataka</div> -->
@@ -1936,6 +2017,9 @@ function sendMsg(){
 }
 cbSend.addEventListener('click',sendMsg);
 cbInput.addEventListener('keydown',e=>{if(e.key==='Enter')sendMsg();});
+</script>
+<script>
+  lucide.createIcons();
 </script>
 </body>
 </html>
