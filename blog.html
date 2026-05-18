@@ -65,10 +65,14 @@ body {
 #mainNav.scrolled { box-shadow: 0 4px 32px rgba(47,128,237,.09); }
 
 .logo-tagline-nav {
-  font-family: 'Times New Roman', Times, serif; font-size: 11px;
-  font-style: italic; margin-top: 1px; letter-spacing: .08em;
-  text-align:end; color:#6B7280;
+  font-family:' Montserrat', sans-serif;
+   font-size: 11.5px;
+   font-weight: 400;
+  font-style: italic; margin-top: 1px;
+   letter-spacing: .08em;
+  text-align:end; color:#5f6672;
 }
+
 
 .nav-link {
   font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;
@@ -147,6 +151,66 @@ footer { background: var(--navy); }
   padding: 20px 40px;
   border-radius: 12px;
 }
+
+
+.blog-container{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:30px;
+  padding:40px 10px;
+}
+.blog-card{
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.blog-image{
+  width:100%;
+  height:250px;
+  object-fit:cover;
+}
+
+.blog-content{
+  padding:24px 22px 28px;
+}
+
+.blog-content h3{
+  margin:0 0 14px;
+  color:#16324F;
+  font-size:24px;
+  line-height:1.4;
+  font-weight:700;
+}
+
+.blog-content p{
+  color:#5B6B7B;
+  line-height:1.9;
+  font-size:16px;
+  margin:0;
+}
+/* Laptop */
+@media(max-width:1200px){
+  .blog-container{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+/* Tablet */
+@media(max-width:900px){
+  .blog-container{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+/* Mobile */
+@media(max-width:600px){
+  .blog-container{
+    grid-template-columns:1fr;
+    padding:20px 0;
+  }
+}
 </style>
 </head>
 <body>
@@ -204,13 +268,44 @@ footer { background: var(--navy); }
     </div>
   </div>
 </nav>
-<div class="demo-body">
-  <!-- <p>Your page content goes here</p> -->
 
 
+<!-- <div id="blogContainer " class="demo-body">
 
 
-</div>
+</div> -->
+<section style="padding:80px 20px;background:#F5FAFF;min-height:100vh;">
+
+  <div style="max-width:1200px;margin:auto;">
+
+    <div style="text-align:center;margin-bottom:50px;">
+
+      <h1 style="
+        font-family:'Rockwell',Georgia,serif;
+        font-size:42px;
+        color:#16324F;
+        margin-bottom:15px;
+      ">
+        Latest Blogs
+      </h1>
+
+      <p style="
+        font-size:18px;
+        color:#5B6B7B;
+        max-width:700px;
+        margin:auto;
+        line-height:1.8;
+      ">
+        Insights, updates, and industrial engineering knowledge from BoilerTech Energy Services.
+      </p>
+
+    </div>
+
+    <div id="blogContainer" class="blog-container"></div>
+
+  </div>
+
+</section>
 <!-- ═══════════════════════════════════════
      FOOTER
 ═══════════════════════════════════════ -->
@@ -320,7 +415,74 @@ footer { background: var(--navy); }
 <!-- ═══════════════════════════════════════
      SCRIPTS
 ═══════════════════════════════════════ -->
-<script>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyCr1BTBdROX6hPbTvbxH3hQd-W6PpQRDDw",
+  authDomain: "boilertech-272dd.firebaseapp.com",
+  projectId: "boilertech-272dd",
+  storageBucket: "boilertech-272dd.appspot.com",
+  messagingSenderId: "609150312510",
+  appId: "1:609150312510:web:6bc92d05845ae08a07316f"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+async function loadBlogs() {
+
+  const container = document.getElementById("blogContainer");
+
+  container.innerHTML = "Loading blogs...";
+
+const q = query(
+  collection(db, "blogs"),
+  orderBy("createdAt", "desc")
+);
+
+const querySnapshot = await getDocs(q);
+  container.innerHTML = "";
+
+  querySnapshot.forEach((docSnap) => {
+
+    const blog = docSnap.data();
+
+    const div = document.createElement("div");
+
+    div.className = "blog-card";
+
+    div.innerHTML = `
+      <img src="${blog.url}" class="blog-image">
+
+      <div class="blog-content">
+
+        <h3>${blog.title}</h3>
+
+        <p>${blog.description}</p>
+
+      </div>
+    `;
+
+    container.appendChild(div);
+
+  });
+
+}
+
+loadBlogs();
+
+
+
 /* ── Nav scroll shadow ── */
 window.addEventListener('scroll', () => {
   document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
@@ -345,6 +507,7 @@ if (logoImg) {
     if (fb) fb.style.display = 'inline';
   });
 }
+
 </script>
 
 </body>
