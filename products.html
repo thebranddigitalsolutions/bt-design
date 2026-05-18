@@ -457,13 +457,13 @@ body {
 }
 .enq-btn-green:hover { background:var(--green); color:#fff; border-color:var(--green); box-shadow:0 4px 12px rgba(12,122,75,.28); }
 
-.enq-btn-dk {
+.enq-btn-orange {
   font-family:'Montserrat',sans-serif; font-size:.73rem; font-weight:700;
   padding:7px 16px; border-radius:8px; cursor:pointer;
   transition:all .22s; border:1.5px solid rgba(86,204,242,.35);
   color:var(--secondary); background:transparent;
 }
-.enq-btn-dk:hover { background:var(--secondary); color:var(--navy); border-color:var(--secondary); }
+.enq-btn-orange:hover { background:var(--secondary); color:var(--navy); border-color:var(--secondary); }
 
 /* ═══════════════════════════════════════
    CTA SECTION
@@ -655,6 +655,137 @@ footer { background: var(--navy); }
   height: 50px;
   width: 200px;
 }
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  padding:20px;
+}
+
+.modal-box{
+  width:100%;
+  max-width:520px;
+  background:white;
+  border-radius:22px;
+  padding:34px;
+  position:relative;
+  animation:popup .3s ease;
+}
+
+@keyframes popup{
+  from{
+    opacity:0;
+    transform:translateY(30px) scale(.95);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+.modal-box h2{
+  font-size:32px;
+  margin-bottom:24px;
+  color:#16324F;
+}
+
+.modal-box input,
+.modal-box textarea{
+  width:100%;
+  margin-bottom:16px;
+  padding:14px 16px;
+  border:1px solid #DCEBFF;
+  border-radius:12px;
+  outline:none;
+  font-size:15px;
+}
+
+.modal-box input:focus,
+.modal-box textarea:focus{
+  border-color:#2F80ED;
+  box-shadow:0 0 0 4px rgba(47,128,237,.1);
+}
+
+.submit-btn{
+  width:100%;
+  background:linear-gradient(135deg,#2F80ED,#56CCF2);
+  color:white;
+  border:none;
+  padding:15px;
+  border-radius:12px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.submit-btn:hover{
+  transform:translateY(-2px);
+}
+
+.close-modal{
+  position:absolute;
+  top:16px;
+  right:16px;
+  width:38px;
+  height:38px;
+  border:none;
+  border-radius:50%;
+  background:#EEF6FF;
+  cursor:pointer;
+  font-size:18px;
+}
+.success-popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:10000;
+}
+
+.success-box{
+  background:white;
+  padding:40px 30px;
+  border-radius:24px;
+  text-align:center;
+  width:90%;
+  max-width:400px;
+  animation:popup .3s ease;
+}
+
+.success-icon{
+  width:80px;
+  height:80px;
+  margin:auto;
+  border-radius:50%;
+  background:linear-gradient(135deg,#00b894,#00cec9);
+  color:white;
+  font-size:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:20px;
+  font-weight:bold;
+}
+
+.success-box h3{
+  font-size:28px;
+  color:#16324F;
+  margin-bottom:10px;
+}
+
+.success-box p{
+  color:#555;
+  font-size:16px;
+}
 </style>
 </head>
 <body>
@@ -777,7 +908,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-blue">Enquire</button>
+          <button class="enq-btn-blue"
+onclick="openModal('Air Nozzle')">
+Enquire
+</button>
         </div>
       </div>
 
@@ -797,7 +931,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-blue">Enquire</button>
+          <button class="enq-btn-blue"
+onclick="openModal('DP Plates')">
+Enquire
+</button>
         </div>
       </div>
 
@@ -817,7 +954,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-blue">Enquire</button>
+          <button class="enq-btn-blue"
+onclick="openModal('Fuel Nozzle')">
+Enquire
+</button>
         </div>
       </div>
 
@@ -837,7 +977,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-blue">Enquire</button>
+          <button class="enq-btn-blue"
+onclick="openModal('Mixing Nozzle')">
+Enquire
+</button>
         </div>
       </div>
 
@@ -857,7 +1000,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-blue">Enquire</button>
+          <button class="enq-btn-blue"
+onclick="openModal('Fuel Feeders')">
+Enquire
+</button>
         </div>
       </div>
 
@@ -896,8 +1042,11 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-orange">Enquire</button>
-        </div>
+<button class="enq-btn-orange"
+onclick="openModal('Boiler Doors')">
+Enquire
+</button>          
+</div>
       </div>
 
       <div class="card-lt reveal reveal-d2">
@@ -916,8 +1065,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-orange">Enquire</button>
-        </div>
+<button class="enq-btn-orange"
+onclick="openModal('Silencers')">
+Enquire
+</button>          </div>
       </div>
 
       <div class="card-lt reveal reveal-d3">
@@ -936,8 +1087,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-orange">Enquire</button>
-        </div>
+<button class="enq-btn-orange"
+onclick="openModal('Aerofoils')">
+Enquire
+</button>          </div>
       </div>
 
       <div class="card-lt reveal reveal-d1">
@@ -956,8 +1109,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-orange">Enquire</button>
-        </div>
+<button class="enq-btn-orange"
+onclick="openModal('Recuperator')">
+Enquire
+</button>          </div>
       </div>
 
       <div class="card-lt reveal reveal-d2" style="border:2px solid rgba(232,98,26,.25);">
@@ -976,8 +1131,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note" style="color:var(--orange);font-weight:700;">All boiler types</span>
-          <button class="enq-btn-orange">Enquire</button>
-        </div>
+<button class="enq-btn-orange"
+onclick="openModal('Air Preheater')">
+Enquire
+</button>          </div>
       </div>
 
     </div>
@@ -1015,8 +1172,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-green">Enquire</button>
-        </div>
+<button class="enq-btn-orange"
+onclick="openModal('Bed Ash Cooler')">
+Enquire
+</button>          </div>
       </div>
 
       <div class="card-lt reveal reveal-d2">
@@ -1035,8 +1194,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-green">Enquire</button>
-        </div>
+<button class="enq-btn-orange"
+onclick="openModal('Closed Belt Conveyors')">
+Enquire
+</button>         </div>
       </div>
 
       <div class="card-lt reveal reveal-d3">
@@ -1055,8 +1216,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-green">Enquire</button>
-        </div>
+<button class="enq-btn-orange"
+onclick="openModal('Surge Hopper with Screens')">
+Enquire
+</button>         </div>
       </div>
 
       <div class="card-lt reveal reveal-d1">
@@ -1075,8 +1238,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-green">Enquire</button>
-        </div>
+<button class="enq-btn-orange"
+onclick="openModal('Pant Chutes')">
+Enquire
+</button>         </div>
       </div>
 
       <div class="card-lt reveal reveal-d2">
@@ -1095,8 +1260,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-green">Enquire</button>
-        </div>
+<button class="enq-btn-orange"
+onclick="openModal('Cross Components')">
+Enquire
+</button>         </div>
       </div>
 
     </div>
@@ -1135,8 +1302,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-dk">Enquire</button>
-        </div>
+<button class="enq-btn-orange"
+onclick="openModal('Ferrules')">
+Enquire
+</button>         </div>
       </div>
 
       <div class="card-dk reveal reveal-d2">
@@ -1154,8 +1323,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-dk">Enquire</button>
-        </div>
+<button class="enq-btn-orange"
+onclick="openModal('Spring Supports for Piping')">
+Enquire
+</button>         </div>
       </div>
 
       <div class="card-dk reveal reveal-d3">
@@ -1173,8 +1344,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-dk">Enquire</button>
-        </div>
+<button class="enq-btn-orange"
+onclick="openModal('Coil Alignment Clamps')">
+Enquire
+</button>         </div>
       </div>
 
     </div>
@@ -1212,8 +1385,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-orange">Enquire</button>
-        </div>
+<button class="enq-btn-orange"
+onclick="openModal('Dampers')">
+Enquire
+</button>         </div>
       </div>
 
       <div class="card-lt reveal reveal-d2">
@@ -1232,8 +1407,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-orange">Enquire</button>
-        </div>
+<button class="enq-btn-orange"
+onclick="openModal('Butterfly Damper')">
+Enquire
+</button>         </div>
       </div>
 
       <div class="card-lt reveal reveal-d3">
@@ -1252,8 +1429,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-orange">Enquire</button>
-        </div>
+<button class="enq-btn-orange"
+onclick="openModal('Guillotine Gate')">
+Enquire
+</button>         </div>
       </div>
 
       <div class="card-lt reveal reveal-d1">
@@ -1272,8 +1451,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
-          <button class="enq-btn-orange">Enquire</button>
-        </div>
+<button class="enq-btn-orange"
+onclick="openModal('Bellows')">
+Enquire
+</button>        </div>
       </div>
 
     </div>
@@ -1310,8 +1491,10 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note" style="color:var(--secondary);font-weight:700;">CPCB / PCB Compliant</span>
-          <button class="enq-btn-dk">Enquire</button>
-        </div>
+<button class="enq-btn-orange"
+onclick="openModal('Air Pollution Control System')">
+Enquire
+</button>        </div>
       </div>
 
       <!-- <div class="card-dk reveal reveal-d2">
@@ -1329,7 +1512,7 @@ footer { background: var(--navy); }
         </div>
         <div class="card-foot">
           <span class="card-note">Fully bespoke</span>
-          <button class="enq-btn-dk">Enquire</button>
+          <button class="enq-btn-orange">Enquire</button>
         </div>
       </div> -->
 
@@ -1468,6 +1651,58 @@ footer { background: var(--navy); }
   </div>
 </div>
 
+
+
+
+<!-- enquirey form -->
+
+<div class="modal" id="enquiryModal">
+
+  <div class="modal-box">
+
+    <button class="close-modal" onclick="closeModal()">×</button>
+
+    <h2>Send Enquiry</h2>
+
+    <form id="enquiryForm">
+
+      <input type="text" id="customerName" placeholder="Your Name" required>
+
+      <input type="text" id="companyName" placeholder="Company Name">
+
+      <input type="tel" id="phoneNumber" placeholder="Phone Number" required>
+
+      <input type="email" id="emailAddress" placeholder="Email Address">
+
+      <input type="text" id="productName" placeholder="Product" readonly>
+
+      <textarea id="requirementMessage" rows="5" placeholder="Requirement Details"></textarea>
+
+      <button type="submit" class="submit-btn">
+        Submit Enquiry
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<!-- SUCCESS POPUP -->
+
+<div class="success-popup" id="successPopup">
+
+  <div class="success-box">
+
+    <div class="success-icon">✓</div>
+
+    <h3>Enquiry Submitted Successfully!</h3>
+
+    <p>Our team will contact you shortly.</p>
+
+  </div>
+
+</div>
 <script>
 /* NAV SCROLL */
 window.addEventListener('scroll',()=>{
@@ -1592,6 +1827,79 @@ function sendMsg(){
 }
 cbSend.addEventListener('click',sendMsg);
 cbInput.addEventListener('keydown',e=>{if(e.key==='Enter')sendMsg();});
+// enquire form
+
+function openModal(productName) {
+
+  document.getElementById("enquiryModal").style.display = "flex";
+
+  document.getElementById("productName").value = productName;
+}
+
+function closeModal() {
+
+  document.getElementById("enquiryModal").style.display = "none";
+}
+
+// form script
+const scriptURL = "https://script.google.com/macros/s/AKfycbze0OmB50JchL0btGMtwftznSdaciC_a8PgVhq2mHMskh1x0o-rDliB1dJ51i9twNbX/exec";
+
+const enquiryForm = document.getElementById("enquiryForm");
+
+enquiryForm.addEventListener("submit", async (e) => {
+
+  e.preventDefault();
+
+  const submitBtn = document.querySelector(".submit-btn");
+
+  submitBtn.innerText = "Submitting...";
+  submitBtn.disabled = true;
+
+  const formData = {
+    name: document.getElementById("customerName").value,
+    company: document.getElementById("companyName").value,
+    phone: document.getElementById("phoneNumber").value,
+    email: document.getElementById("emailAddress").value,
+    product: document.getElementById("productName").value,
+    message: document.getElementById("requirementMessage").value
+  };
+
+  try {
+
+    const response = await fetch(scriptURL, {
+      method: "POST",
+      body: JSON.stringify(formData)
+    });
+
+    const result = await response.json();
+
+    if(result.result === "success"){
+
+      alert("Enquiry Submitted Successfully!");
+
+      enquiryForm.reset();
+
+      document.getElementById("enquiryModal").style.display = "none";
+
+    } else {
+
+      alert("Submission failed");
+
+    }
+
+  } catch(error){
+
+    console.log(error);
+
+    alert("Submission failed");
+
+  }
+
+  submitBtn.innerText = "Submit Enquiry";
+  submitBtn.disabled = false;
+
+});
+
 </script>
 </body>
 </html>
