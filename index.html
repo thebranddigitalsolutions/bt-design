@@ -10,7 +10,7 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
 /* ═══════════════════════════════════════
-   DESIGN TOKENS — BLUE ONLY PALETTE
+   DESIGN TOKENS
 ═══════════════════════════════════════ */
 :root {
   --primary:    #2F80ED;
@@ -20,992 +20,812 @@
   --bg-soft:    #F5FAFF;
   --card-bg:    #FFFFFF;
   --border:     #DCEBFF;
+  --orange:     #E8621A;
+  --orange-soft:#FFF4ED;
+  --orange-border:#FDDEC8;
+  --green:      #0C7A4B;
+  --green-soft: #EDFAF4;
+  --green-border:#B6E8D3;
   --grad:       linear-gradient(135deg, #2F80ED, #56CCF2);
   --grad-dark:  linear-gradient(135deg, #16324F, #1E4D7B);
+  --grad-orange:linear-gradient(135deg, #E8621A, #F5A623);
+  --grad-green: linear-gradient(135deg, #0C7A4B, #1DB97A);
+
+  /* Animation timing */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth:    cubic-bezier(0.4, 0, 0.2, 1);
+  --anim-dur:       0.72s;
+  --anim-stagger:   0.08s;
 }
 
 *, body { box-sizing: border-box; }
 
-
 h1,h2,h3,h4,h5,h6,
-.section-title,
-.hero-title{
-  font-family:'Rockwell',serif;
+.section-title, .hero-title,
+.svc-h2, .svc-h3, .why-h2, .why-h3,
+.clients-h2, .cta-h2, .logo-text,
+.hero-h1 {
+  font-family: 'Rockwell', 'Rockwell Nova', 'Courier Bold', Georgia, serif;
 }
 
-/* PARAGRAPHS */
-body,
-p,
-li,
-.description{
-  font-family:'Rockwell',serif;
+body, p, li, .description, .svc-p, .about-p,
+.why-p, .hero-p, .footer-link, .footer-text, .cb-bubble {
+  font-family: 'Times New Roman', Times, serif;
 }
 
-/* NAVBAR + BUTTONS */
-nav,
-button,
-.btn,
-.logo-text,
-.stats-number{
-  font-family:'Montserrat',sans-serif;
+nav, button, .btn, .stats-number {
+  font-family: 'Montserrat', sans-serif;
 }
+
 body {
-  font-family: 'Rockwell', serif;
   background: #fff;
   color: var(--navy);
   overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-
 }
-
-/* ── SMOOTH SCROLLBAR ── */
-/* ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg-soft); }
-::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; } */
 
 /* ═══════════════════════════════════════
-   LOADER
+   ▸ REUSABLE ANIMATION CLASSES
+   All elements start hidden; JS adds
+   .is-visible to trigger the animation.
+═══════════════════════════════════════ */
+
+/* Base hidden state — shared by all anim classes */
+.reveal-up,
+.reveal-left,
+.reveal-right,
+.reveal-scale,
+.reveal-fade,
+.stagger-item {
+  opacity: 0;
+  will-change: opacity, transform;
+  /* Transition applied via individual classes below */
+}
+
+/* ── Fade Up ── */
+.reveal-up {
+  transform: translateY(32px);
+  transition: opacity var(--anim-dur) var(--ease-out-expo),
+              transform var(--anim-dur) var(--ease-out-expo);
+}
+
+/* ── Fade Left (element enters from the left) ── */
+.reveal-left {
+  transform: translateX(-36px);
+  transition: opacity var(--anim-dur) var(--ease-out-expo),
+              transform var(--anim-dur) var(--ease-out-expo);
+}
+
+/* ── Fade Right (element enters from the right) ── */
+.reveal-right {
+  transform: translateX(36px);
+  transition: opacity var(--anim-dur) var(--ease-out-expo),
+              transform var(--anim-dur) var(--ease-out-expo);
+}
+
+/* ── Scale + Fade ── */
+.reveal-scale {
+  transform: scale(0.93) translateY(18px);
+  transition: opacity var(--anim-dur) var(--ease-out-expo),
+              transform var(--anim-dur) var(--ease-out-expo);
+}
+
+/* ── Pure Fade (subtle blur reduction too) ── */
+.reveal-fade {
+  transform: none;
+  filter: blur(4px);
+  transition: opacity var(--anim-dur) var(--ease-smooth),
+              filter var(--anim-dur) var(--ease-smooth);
+}
+
+/* ── Stagger children ── */
+.stagger-item {
+  transform: translateY(22px);
+  transition: opacity var(--anim-dur) var(--ease-out-expo),
+              transform var(--anim-dur) var(--ease-out-expo);
+}
+
+/* ── Visible state for ALL animation classes ── */
+.reveal-up.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible,
+.reveal-scale.is-visible,
+.stagger-item.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+.reveal-fade.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: blur(0px);
+}
+
+/* ── Stagger delay helpers (apply to nth-child or manually) ── */
+.delay-1  { transition-delay: calc(var(--anim-stagger) * 1) !important; }
+.delay-2  { transition-delay: calc(var(--anim-stagger) * 2) !important; }
+.delay-3  { transition-delay: calc(var(--anim-stagger) * 3) !important; }
+.delay-4  { transition-delay: calc(var(--anim-stagger) * 4) !important; }
+.delay-5  { transition-delay: calc(var(--anim-stagger) * 5) !important; }
+.delay-6  { transition-delay: calc(var(--anim-stagger) * 6) !important; }
+.delay-7  { transition-delay: calc(var(--anim-stagger) * 7) !important; }
+.delay-8  { transition-delay: calc(var(--anim-stagger) * 8) !important; }
+
+/* ── Legacy aliases (keeps old class names working) ── */
+.reveal  { opacity:0; transform:translateY(28px);
+           transition: opacity var(--anim-dur) var(--ease-out-expo),
+                       transform var(--anim-dur) var(--ease-out-expo);
+           will-change: opacity, transform; }
+.reveal.show { opacity:1; transform:none; }
+
+.fl { opacity:0; transform:translateX(-36px);
+      transition: opacity var(--anim-dur) var(--ease-out-expo),
+                  transform var(--anim-dur) var(--ease-out-expo);
+      will-change: opacity, transform; }
+.fl.show { opacity:1; transform:none; }
+
+.fr { opacity:0; transform:translateX(36px);
+      transition: opacity var(--anim-dur) var(--ease-out-expo),
+                  transform var(--anim-dur) var(--ease-out-expo);
+      will-change: opacity, transform; }
+.fr.show { opacity:1; transform:none; }
+
+/* ── Hero word-by-word reveal ── */
+.hero-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px) rotate(2deg);
+  transition: opacity 0.6s var(--ease-out-expo),
+              transform 0.6s var(--ease-out-expo);
+  will-change: opacity, transform;
+}
+.hero-word.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Section tag slide-in ── */
+.stag-reveal {
+  opacity: 0;
+  transform: translateX(-16px);
+  transition: opacity 0.5s var(--ease-out-expo),
+              transform 0.5s var(--ease-out-expo);
+}
+.stag-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Heading char split (applied by JS when .split-heading) ── */
+.char-span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%) skewY(6deg);
+  transition: opacity 0.5s var(--ease-out-expo),
+              transform 0.5s var(--ease-out-expo);
+  will-change: transform, opacity;
+}
+.char-span.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Line underline draw ── */
+.underline-draw {
+  position: relative;
+}
+.underline-draw::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--grad);
+  border-radius: 2px;
+  transition: width 0.8s var(--ease-out-expo);
+}
+.underline-draw.is-visible::after {
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════
+   LOADER — max 2 s, smooth fade-out
 ═══════════════════════════════════════ */
 #loader {
-  position: fixed; inset: 0; z-index: 99999;
-  background: #fff;
-  display: flex; align-items: center; justify-content: center;
-  transition: opacity .6s ease, visibility .6s ease;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at top right, rgba(47,128,237,.14), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(86,204,242,.12), transparent 30%),
+    linear-gradient(135deg,#ffffff 0%,#EEF6FF 45%,#DCEFFF 100%);
+  /* Smooth fade-out */
+  transition: opacity 0.55s var(--ease-smooth),
+              visibility 0.55s var(--ease-smooth);
+  pointer-events: all;
 }
-#loader.hide { opacity: 0; visibility: hidden; }
+#loader.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /* immediately un-block interactions */
+}
+/* Prevent body scroll only while loader is active */
+body.loader-active {
+  overflow: hidden;
+}
+
+.loader-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(47,128,237,.12);
+  animation: ringPulse 5s ease-in-out infinite;
+}
+.ring1 { width:720px; height:720px; }
+.ring2 { width:520px; height:520px; animation-delay:.7s; }
+.ring3 { width:320px; height:320px; animation-delay:1.2s; }
+@keyframes ringPulse { 0%,100%{transform:scale(1);opacity:.45} 50%{transform:scale(1.08);opacity:1} }
 
 .loader-box {
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
 }
-
-.loader-logo {
-  width: 80px; height: auto;
-  object-fit: contain;
-  margin-bottom: 20px;
-  animation: logoFloat 2s ease-in-out infinite;
+.loader-logo-wrap {
+  width: 150px;
+  height: 150px;
+  border-radius: 38px;
+  background: rgba(255,255,255,.82);
+  backdrop-filter: blur(18px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 30px 80px rgba(47,128,237,.18), 0 0 0 1px rgba(255,255,255,.65);
+  margin-bottom: 34px;
+  animation: logoFloat 3s ease-in-out infinite, logoBorn .7s var(--ease-out-expo) both;
 }
-
+.loader-logo { width:95px; height:auto; object-fit:contain; display:block; }
 .loader-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 28px; font-weight: 900;
-  letter-spacing: 2px;
+  margin: 0;
+  font-family: 'Rockwell','Rockwell Nova',Georgia,serif;
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: 5px;
+  line-height: 1;
   background: var(--grad);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin: 0; line-height: 1;
+  animation: fadeUp .65s .15s both;
 }
-
 .loader-sub {
+  margin-top: 12px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 5px; color: var(--body);
-  margin-top: 6px; text-transform: uppercase;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: #5B6472;
+  animation: fadeUp .65s .25s both;
+}
+.loader-tagline {
+  margin-top: 14px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--body);
+  letter-spacing: .06em;
+  animation: fadeUp .65s .38s both;
 }
 
-.loader-bar {
-  width: 160px; height: 2px;
-  background: var(--border);
-  border-radius: 2px; overflow: hidden;
-  margin-top: 24px;
+/* Progress bar instead of spinner — feels faster */
+.loader-progress-wrap {
+  margin-top: 34px;
+  width: 180px;
+  height: 3px;
+  background: rgba(47,128,237,.15);
+  border-radius: 3px;
+  overflow: hidden;
+  animation: fadeUp .5s .45s both;
 }
-.loader-bar-fill {
+.loader-progress-bar {
   height: 100%;
+  width: 0%;
   background: var(--grad);
-  border-radius: 2px;
-  animation: barFill 1.4s ease forwards;
+  border-radius: 3px;
+  animation: loadProgress 1.6s var(--ease-out-expo) .1s forwards;
 }
-@keyframes barFill { from{width:0} to{width:100%} }
-@keyframes logoFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+@keyframes loadProgress {
+  0%   { width: 0%;   }
+  60%  { width: 75%;  }
+  85%  { width: 92%;  }
+  100% { width: 100%; }
+}
+
+/* Legacy dot-spinner kept for no-JS fallback */
+.dot-spinner { display: none; }
+
+@keyframes logoFloat { 0%,100%{transform:translateY(0px)} 50%{transform:translateY(-12px)} }
+@keyframes logoBorn  { from{transform:scale(.5);opacity:0} to{transform:scale(1);opacity:1} }
+@keyframes fadeUp    { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+
+@media(max-width:768px){
+  .loader-logo-wrap{width:120px;height:120px}
+  .loader-logo{width:76px}
+  .loader-title{font-size:28px;letter-spacing:3px}
+  .loader-sub{font-size:13px;letter-spacing:5px}
+  .loader-tagline{font-size:13px}
+  .ring1{width:420px;height:420px}
+  .ring2{width:300px;height:300px}
+  .ring3{width:200px;height:200px}
+}
 
 /* ═══════════════════════════════════════
    NAVBAR
 ═══════════════════════════════════════ */
 #mainNav {
   position: fixed; top: 0; width: 100%; z-index: 500;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--border);
   transition: box-shadow .3s, background .3s;
+  /* Nav slides down on load */
+  animation: navSlideIn .6s var(--ease-out-expo) .2s both;
 }
-#mainNav.scrolled {
-  box-shadow: 0 4px 32px rgba(47,128,237,.08);
+@keyframes navSlideIn {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: none; opacity: 1; }
 }
+#mainNav.scrolled { box-shadow: 0 4px 32px rgba(47,128,237,.09); }
 
-/* .logo-text{
-  font-family:'Montserrat',sans-serif;
-  font-weight:700;
-  letter-spacing:1px;
-  line-height:1;
-    font-size: 20px;
-
-} */
- .logo-text{
-  font-family:'Montserrat',sans-serif;
-  font-size:22px;
-  font-weight:800;
-  letter-spacing:1.5px;
-  line-height:1;
-  color:#0B6EA8;
-}
-
-/* .logo-sub{
-  font-family:'Montserrat',sans-serif;
-  letter-spacing:1px;
-  font-weight:700;
-  font-size: 20px;
-} */
- /* .logo-sub{
-font-size:12px;
-letter-spacing:2px;
-} */
-.logo-sub{
-  font-family:'Montserrat',sans-serif;
-  font-size:11px;
-  font-weight:700;
-letter-spacing:2.2px;
-  line-height:1.2;
-  color:#5B6B7B;
-  margin-top:4px;
-  text-transform:uppercase;
+.logo-tagline-nav {
+  font-family: 'Times New Roman', Times, serif; font-size: 11px;
+  font-style: italic; margin-top: 1px; letter-spacing: .08em;
+  text-align:end; color:#6B7280;
 }
 
 .nav-link {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: var(--navy); letter-spacing: .05em;
-  text-decoration: none;
-  position: relative; padding-bottom: 4px;
-  transition: color .25s;
+  font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;
+  color: var(--navy); letter-spacing: .05em; text-decoration: none;
+  position: relative; padding-bottom: 4px; transition: color .25s;
 }
 .nav-link::after {
-  content: ''; position: absolute;
-  left: 0; bottom: -2px;
-  width: 0; height: 2px;
-  background: var(--grad);
-  border-radius: 2px;
-  transition: width .3s cubic-bezier(.4,0,.2,1);
+  content: ''; position: absolute; left: 0; bottom: -2px;
+  width: 0; height: 2px; background: var(--grad); border-radius: 2px;
+  transition: width .3s var(--ease-smooth);
 }
 .nav-link:hover { color: var(--primary); }
 .nav-link:hover::after { width: 100%; }
 .nav-link.active { color: var(--primary); }
 .nav-link.active::after { width: 100%; }
 
-/* ═══════════════════════════════════════
-   BUTTONS
-═══════════════════════════════════════ */
+/* ═══ BUTTONS ═══ */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
-  background: var(--grad);
-  color: #fff; border-radius: 999px;
-  padding: 13px 30px; font-weight: 700;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 13px; letter-spacing: .06em;
-  border: none; cursor: pointer;
-  transition: transform .25s, box-shadow .25s;
-  text-decoration: none;
+  background: var(--grad); color: #fff; border-radius: 999px;
+  padding: 13px 30px; font-weight: 700; font-family: 'Montserrat', sans-serif;
+  font-size: 13px; letter-spacing: .06em; border: none; cursor: pointer;
+  transition: transform .25s, box-shadow .25s; text-decoration: none;
 }
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(47,128,237,.35);
-}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(47,128,237,.35); }
 
 .btn-secondary {
   display: inline-flex; align-items: center; gap: 8px;
-  background: #fff; color: var(--primary);
-  border: 1.5px solid var(--primary);
-  border-radius: 999px;
-  padding: 12px 28px; font-weight: 700;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 13px; letter-spacing: .06em;
+  background: #fff; color: var(--primary); border: 1.5px solid var(--primary);
+  border-radius: 999px; padding: 12px 28px; font-weight: 700;
+  font-family: 'Montserrat', sans-serif; font-size: 13px; letter-spacing: .06em;
   cursor: pointer; text-decoration: none;
   transition: background .25s, color .25s, transform .25s, box-shadow .25s;
 }
-.btn-secondary:hover {
-  background: var(--bg-soft);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(47,128,237,.15);
-}
+.btn-secondary:hover { background: var(--bg-soft); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(47,128,237,.15); }
 
-/* ═══════════════════════════════════════
-   SECTION TAG
-═══════════════════════════════════════ */
+/* ═══ SECTION TAG ═══ */
 .stag {
   display: inline-flex; align-items: center; gap: 8px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 10px; font-weight: 700;
-  letter-spacing: .18em; text-transform: uppercase;
-  color: var(--primary);
-  background: rgba(47,128,237,.08);
-  border: 1px solid rgba(47,128,237,.2);
-  padding: 6px 14px; border-radius: 999px;
-  margin-bottom: 18px;
+  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--primary);
+  background: rgba(47,128,237,.08); border: 1px solid rgba(47,128,237,.2);
+  padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
 }
-.stag::before {
-  content: ''; width: 5px; height: 5px;
-  border-radius: 50%; background: var(--primary);
+.stag::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--primary); }
+
+.stag-orange {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--orange);
+  background: rgba(232,98,26,.08); border: 1px solid rgba(232,98,26,.2);
+  padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
 }
+.stag-orange::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--orange); }
 
-/* ═══════════════════════════════════════
-   HERO
-═══════════════════════════════════════ */
+.stag-green {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--green);
+  background: rgba(12,122,75,.08); border: 1px solid rgba(12,122,75,.2);
+  padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+}
+.stag-green::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--green); }
 
+/* ═══ HERO ═══ */
 .hero-section {
   min-height: 100vh;
-  /* background: linear-gradient(160deg, #fff 0%, #EBF4FF 55%, #ffffff 100%); */
-  background-color: #FFFFFF;
-  position: relative; overflow: hidden;
-  display: flex; align-items: center;
-  padding-top: 80px;
+  background: linear-gradient(160deg, #ffffff 0%, #EEF6FF 60%, #D6ECFF 100%);
+  position: relative; overflow: hidden; display: flex; align-items: center; padding-top: 80px;
 }
-
-.hero-glow {
-  position: absolute; border-radius: 50%;
-  pointer-events: none; filter: blur(80px);
-}
-
 .hero-dot-grid {
-  position: absolute; inset: 0; opacity: .4;
+  position: absolute; inset: 0; opacity: .3;
   background-image: radial-gradient(circle, #DCEBFF 1px, transparent 1px);
   background-size: 36px 36px;
+  animation: gridDrift 20s ease-in-out infinite alternate;
 }
-
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 5px 12px 5px 8px;
-  background: #7b7979; border: 1px solid var(--border);
-  border-radius: 999px;
-  box-shadow: 0 2px 12px rgba(47,128,237,.12);
-  font-size: 11px; font-weight: 600; color: var(--body);
-  margin-bottom: 28px;
-}
-.hero-badge span {
-  background: var(--grad); color: #fff;
-  padding: 2px 10px; border-radius: 999px;
-  font-size: 10px; font-weight: 700; letter-spacing: .08em;
+@keyframes gridDrift {
+  from { background-position: 0 0; }
+  to   { background-position: 18px 18px; }
 }
 
 .hero-h1 {
-  /* font-family: 'Rockwell', serif; */
-  font-size: clamp(44px, 6vw, 76px);
-  font-weight: 900;
-  line-height: 1.04;
-  color: var(--navy);
-  letter-spacing: -1px;
+  font-family: 'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif;
+  font-size: clamp(42px, 5.5vw, 72px); font-weight: 900;
+  line-height: 1.05; color: var(--navy); letter-spacing: -0.5px;
 }
-
 .hero-h1 .gradient-text {
-  background: var(--grad);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: var(--grad); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-p { font-family: 'Times New Roman', Times, serif; font-size: 18px; line-height: 1.85; color: var(--body); max-width: 460px; margin-top: 24px; letter-spacing: 0.01em; }
 
+/* Hero headline lines — animate in from bottom */
+.hero-line {
+  overflow: hidden;
+  display: block;
+}
+.hero-line-inner {
+  display: block;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.7s var(--ease-out-expo),
+              transform 0.7s var(--ease-out-expo);
+}
+.hero-line-inner.is-visible {
+  opacity: 1;
+  transform: none;
 }
 
-.hero-p {
-  font-family: 'Rockwell', serif;
-  font-size: 17px; line-height: 1.75;
-  color: var(--body); max-width: 460px;
-  margin-top: 24px;
-}
-
-.hero-trust-pills {
-  display: flex; flex-wrap: wrap; gap: 10px;
-  margin-top: 36px;   font-family: 'Montserrat', sans-serif;
-
-}
-
-.trust-pill {
-  display: flex; align-items: center; gap: 6px;
-  background: #fff; border: 1px solid var(--border);
-  border-radius: 999px; padding: 6px 14px;
-  font-size: 11px; font-weight: 600; color: var(--navy);
-  box-shadow: 0 1px 6px rgba(47,128,237,.07);
-}
-.trust-pill .dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--grad); flex-shrink: 0;
-}
-
-/* Performance card */
 .perf-card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 28px;
+  background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: 28px;
   box-shadow: 0 20px 60px rgba(47,128,237,.12), 0 4px 16px rgba(47,128,237,.08);
   position: relative; overflow: hidden;
 }
-.perf-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: var(--grad);
-}
+.perf-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad); }
 
 .perf-stat {
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 18px 16px;
-  text-align: center;
-  transition: transform .25s, box-shadow .25s;
+  background: var(--bg-soft); border: 1px solid var(--border); border-radius: 12px;
+  padding: 18px 16px; text-align: center;
+  transition: transform .3s var(--ease-smooth), box-shadow .3s var(--ease-smooth);
 }
-.perf-stat:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(47,128,237,.15);
-}
+.perf-stat:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(47,128,237,.15); }
+
 .perf-num {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 32px; font-weight: 900;
-  background: var(--grad);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1;
+  font-family: 'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif;
+  font-size: 32px; font-weight: 900; background: var(--grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;
 }
-.perf-label {
-  font-size: 10px; font-weight: 600; color: var(--body);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-top: 4px;
-}
+.perf-label { font-family: 'Times New Roman', Times, serif; font-size: 14px; color: var(--body); letter-spacing: .06em; text-transform: uppercase; margin-top: 4px; font-weight: 700; }
 .pbar { height: 3px; background: var(--border); border-radius: 3px; overflow: hidden; margin-top: 10px; }
-.pbar-fill { height: 100%; border-radius: 3px; background: var(--grad); }
-
-.cert-tag {
-  display: inline-flex; align-items: center;
-  padding: 5px 12px;
-  border: 1px solid var(--border);
-  border-radius: 6px; background: var(--bg-soft);
-  font-size: 10px; font-weight: 700; letter-spacing: .12em;
-  color: var(--primary); text-transform: uppercase;
-}
-
-/* ═══════════════════════════════════════
-   STATS BAND
-═══════════════════════════════════════ */
-.stats-band {
+.pbar-fill {
+  height: 100%;
+  border-radius: 3px;
   background: var(--grad);
-  position: relative; overflow: hidden;
+  /* Animated from 0 via JS adding .pbar-active */
+  width: 0%;
+  transition: width 1.4s var(--ease-out-expo);
 }
-.stats-band::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23fff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-.stat-num {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(28px, 4vw, 42px);
-  font-weight: 900; color: #fff; line-height: 1;
-}
-.stat-lbl {
-  font-size: 10px; font-weight: 600;
-  letter-spacing: .15em; text-transform: uppercase;
-  color: rgba(255,255,255,.65); margin-top: 4px;
+.pbar-fill.pbar-active { /* width set inline, transition kicks in */ }
+.counter-num {
+  font-family: 'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif;
+  font-size: 32px; font-weight: 900; background: var(--grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;
 }
 
-/* ═══════════════════════════════════════
-   TICKER
-═══════════════════════════════════════ */
-.ticker-bg {
-  background: var(--navy);
-  border-top: 1px solid rgba(255,255,255,.06);
-  border-bottom: 1px solid rgba(255,255,255,.06);
-}
+/* ═══ TICKER ═══ */
+.ticker-bg { background: var(--navy); border-top: 1px solid rgba(255,255,255,.06); border-bottom: 1px solid rgba(255,255,255,.06); padding: 14px 0; }
 .ticker-wrap { overflow: hidden; white-space: nowrap; }
-.ticker-inner { display: inline-block; animation: ticker 40s linear infinite; }
+.ticker-inner { display: inline-block; animation: ticker 36s linear infinite; }
+.ticker-inner:hover { animation-play-state: paused; }
 @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.ticker-item { margin: 0 28px; font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.92); font-family: 'Montserrat', sans-serif; }
+.ticker-sep { color: rgba(47,128,237,.7); margin: 0 6px; font-size: 10px; }
 
-/* ═══════════════════════════════════════
-   SECTIONS: ABOUT
-═══════════════════════════════════════ */
+/* ═══ ABOUT ═══ */
 .about-section { background: #fff; }
+.about-p { font-family: 'Times New Roman', Times, serif; font-size: 16px; line-height: 1.9; color: var(--body); letter-spacing: 0.01em; }
 
-.about-img-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 200px 200px;
-  gap: 12px;
-}
-.about-img-grid .main-img { grid-row: 1 / 3; }
-
-.img-card {
-  border-radius: 14px; overflow: hidden;
-  position: relative;
-}
-.img-card img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform .6s ease; display: block;
-}
-.img-card:hover img { transform: scale(1.05); }
-.img-card .overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(22,50,79,.7) 0%, transparent 55%);
-}
-
-.about-feat {
-  display: flex; align-items: flex-start; gap: 14px;
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
-  border-radius: 12px; padding: 16px;
-  transition: transform .25s, box-shadow .25s;
-}
-.about-feat:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(47,128,237,.12);
-}
-.about-feat-icon {
-  width: 38px; height: 38px; border-radius: 10px;
-  background: rgba(47,128,237,.1);
-  border: 1px solid rgba(47,128,237,.2);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.about-h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(32px, 4vw, 48px);
-  font-weight: 900; color: var(--navy);
-  line-height: 1.1; letter-spacing: -0.5px;
-}
-.about-p {
-  font-family: 'Rockwell', Georgia, serif;
-  font-size: 15.5px; line-height: 1.8;
-  color: var(--body);
-}
-
-/* ═══════════════════════════════════════
-   SERVICES SECTION
-═══════════════════════════════════════ */
-.services-section { background: var(--bg-soft); }
-
-.svc-h2 {
-  font-family: 'Rockwell', serif;
-  font-size: clamp(32px, 4vw, 50px);
-  font-weight: 900; color: var(--navy);
-  line-height: 1.1;
-}
-
-.svc-card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 28px 24px;
+/* ═══ SERVICES ═══ */
+.services-section {
+  background: linear-gradient(160deg, #FFF8F3 0%, #FFF4ED 60%, #FEEADB 100%);
   position: relative; overflow: hidden;
-  transition: transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s, border-color .3s;
 }
-.svc-card::after {
-  content: ''; position: absolute;
-  top: 0; left: 0; right: 0; height: 0;
-  background: var(--grad);
-  transition: height .35s;
-  border-radius: 16px 16px 0 0;
+.services-section::before {
+  content: ''; position: absolute; top: -80px; right: -80px; width: 400px; height: 400px;
+  border-radius: 50%; background: radial-gradient(circle, rgba(232,98,26,.07) 0%, transparent 70%); pointer-events: none;
 }
+.svc-h2 { font-family: 'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif; font-size: clamp(32px, 4vw, 50px); font-weight: 900; color: var(--navy); line-height: 1.1; }
+.svc-card {
+  background: #fff; border: 1px solid var(--orange-border); border-radius: 16px;
+  padding: 0; position: relative; overflow: hidden;
+  transition: transform .35s var(--ease-out-expo),
+              box-shadow .35s var(--ease-smooth),
+              border-color .35s var(--ease-smooth);
+}
+.svc-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 0; background: var(--grad-orange); transition: height .35s; border-radius: 16px 16px 0 0; }
 .svc-card:hover::after { height: 3px; }
-.svc-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 50px rgba(47,128,237,.14);
-  border-color: rgba(47,128,237,.3);
-}
+.svc-card:hover { transform: translateY(-6px); box-shadow: 0 24px 56px rgba(232,98,26,.14); border-color: rgba(232,98,26,.4); }
+.service-img { width: 100%; height: 180px; object-fit: cover; border-radius: 0; display: block; transition: transform .6s var(--ease-smooth); }
+.svc-card:hover .service-img { transform: scale(1.05); }
+.svc-card-body { padding: 24px 22px 26px; }
+.svc-img-wrap { overflow: hidden; border-radius: 16px 16px 0 0; }
+.svc-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(232,98,26,.08); border: 1px solid rgba(232,98,26,.2); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.svc-h3 { font-family: 'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif; font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 10px; letter-spacing: .01em; }
+.svc-p { font-family: 'Times New Roman', Times, serif; font-size: 15.5px; line-height: 1.78; color: var(--body); letter-spacing: 0.01em; }
 
-.svc-icon {
-  width: 48px; height: 48px; border-radius: 12px;
-  background: rgba(47,128,237,.08);
-  border: 1px solid rgba(47,128,237,.18);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 20px;
-}
-
-.svc-h3 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px; font-weight: 700;
-  color: var(--navy); margin-bottom: 10px;
-  letter-spacing: .02em;
-}
-.svc-p {
-  font-family: 'Rockwell', Georgia, serif;
-  font-size: 15px; line-height: 1.7;
-  color: var(--body);
-}
-
-/* ═══════════════════════════════════════
-   SHOWCASE
-═══════════════════════════════════════ */
+/* ═══ SHOWCASE ═══ */
 .showcase-section { background: var(--navy); }
-
-.showcase-img-card {
-  border-radius: 14px; overflow: hidden;
-  position: relative; height: 220px;
-  transition: transform .3s;
-}
+.showcase-img-card { border-radius: 14px; overflow: hidden; position: relative; height: 220px; transition: transform .35s var(--ease-out-expo); }
 .showcase-img-card:hover { transform: scale(1.02); }
-.showcase-img-card img {
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-  transition: transform .6s;
-}
-.showcase-img-card:hover img { transform: scale(1.06); }
-.showcase-img-card .ovl {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(22,50,79,.9) 0%, transparent 55%);
-}
-.showcase-label {
-  position: absolute; bottom: 14px; left: 14px;
-  font-size: 11px; font-weight: 700; letter-spacing: .06em;
-  color: #fff; z-index: 2;
-  background: rgba(47,128,237,.85);
-  /* backdrop-filter: blur(8px); */
-  padding: 4px 12px; border-radius: 6px;
-  backdrop-filter: blur(12px);
-border:1px solid rgba(255,255,255,.12);
-}
+.showcase-img-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s var(--ease-smooth); }
+.showcase-img-card:hover img { transform: scale(1.07); }
+.showcase-img-card .ovl { position: absolute; inset: 0; background: linear-gradient(to top, rgba(22,50,79,.9) 0%, transparent 55%); }
+.showcase-label { position: absolute; bottom: 14px; left: 14px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .06em; color: #fff; z-index: 2; background: rgba(47,128,237,.85); padding: 4px 12px; border-radius: 6px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.12); }
+.showcase-cta-card { height: 220px; border-radius: 14px; background: rgba(47,128,237,.12); border: 1px solid rgba(47,128,237,.25); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; }
 
-.showcase-cta-card {
-  height: 220px;
-  border-radius: 14px;
-  background: rgba(47,128,237,.12);
-  border: 1px solid rgba(47,128,237,.25);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 24px; text-align: center;
-}
-
-/* ═══════════════════════════════════════
-   WHY BOILERTECH
-═══════════════════════════════════════ */
-.why-section { background: #fff; }
-
-.why-h2 {
-  font-family: 'rockwell', serif;
-  font-size: clamp(32px, 4vw, 50px);
-  font-weight: 900; color: var(--navy); line-height: 1.1;
-}
-
+/* ═══ WHY ═══ */
+.why-section { background: linear-gradient(160deg, #F4FDF8 0%, #EDFAF4 60%, #D4F2E5 100%); position: relative; overflow: hidden; }
+.why-section::before { content: ''; position: absolute; bottom: -60px; left: -60px; width: 350px; height: 350px; border-radius: 50%; background: radial-gradient(circle, rgba(12,122,75,.06) 0%, transparent 70%); pointer-events: none; }
+.why-h2 { font-family: 'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif; font-size: clamp(32px, 4vw, 50px); font-weight: 900; color: var(--navy); line-height: 1.1; }
 .why-card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 24px;
-  transition: transform .25s, box-shadow .25s, border-color .25s;
+  background: #fff; border: 1px solid var(--green-border); border-radius: 16px; padding: 24px;
+  transition: transform .3s var(--ease-out-expo), box-shadow .3s var(--ease-smooth), border-color .3s var(--ease-smooth);
 }
-.why-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(47,128,237,.12);
-  border-color: rgba(47,128,237,.3);
-}
-
-.why-icon {
-  width: 42px; height: 42px; border-radius: 11px;
-  background: rgba(47,128,237,.08);
-  border: 1px solid rgba(47,128,237,.18);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 16px;
-}
-
-.why-h3 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px; font-weight: 700; color: var(--navy);
-  margin-bottom: 8px;
-}
-.why-p {
-  font-family: 'Rockwell', Georgia, serif;
-  font-size: 13.5px; line-height: 1.7; color: var(--body);
-}
-
-.why-featured {
-  border-radius: 16px; overflow: hidden;
-  position: relative; min-height: 320px;
-}
-.why-featured img {
-  width: 100%; height: 100%;
-  object-fit: cover; position: absolute; inset: 0;
-  transition: transform .7s;
-}
+.why-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(12,122,75,.1); border-color: rgba(12,122,75,.35); }
+.why-icon { width: 42px; height: 42px; border-radius: 11px; background: rgba(12,122,75,.08); border: 1px solid rgba(12,122,75,.2); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.why-h3 { font-family: 'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif; font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.why-p { font-family: 'Times New Roman', Times, serif; font-size: 14.5px; line-height: 1.78; color: var(--body); letter-spacing: 0.01em; }
+.why-featured { border-radius: 16px; overflow: hidden; position: relative; min-height: 320px; }
+.why-featured img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; transition: transform .7s var(--ease-smooth); }
 .why-featured:hover img { transform: scale(1.04); }
-.why-featured-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(22,50,79,.94) 0%, rgba(22,50,79,.3) 100%);
-}
-.why-featured-content {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 28px;
-}
+.why-featured-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,60,38,.94) 0%, rgba(10,60,38,.3) 100%); }
+.why-featured-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; }
 
-/* ═══════════════════════════════════════
-   CLIENTS
-═══════════════════════════════════════ */
-.clients-section { background: var(--bg-soft); }
-
-.clients-h2 {
-  font-family: 'Rockwell', serif;
-  font-size: clamp(32px, 4vw, 50px);
-  font-weight: 900; color: var(--navy); line-height: 1.1;
-}
-
+/* ═══ CLIENTS ═══ */
+.clients-section { background: #fff; }
+.clients-h2 { font-family: 'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif; font-size: clamp(32px, 4vw, 50px); font-weight: 900; color: var(--navy); line-height: 1.1; }
 .client-row { display: flex; gap: 0; white-space: nowrap; }
 .cs1 { animation: clientScroll 40s linear infinite; }
 .cs2 { animation: clientScroll 40s linear infinite reverse; animation-delay: -20s; }
 @keyframes clientScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-
-.client-item {
-  display: inline-flex; align-items: center;
-  padding: 0 28px;
-  border-right: 1px solid var(--border);
-  min-width: max-content;
-}
+.client-item { display: inline-flex; align-items: center; padding: 0 28px; border-right: 1px solid var(--border); min-width: max-content; }
 .client-card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 14px; padding: 18px;
-  transition: border-color .25s, box-shadow .25s, transform .25s;
+  background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px;
+  transition: border-color .3s, box-shadow .3s, transform .3s var(--ease-out-expo);
 }
-.client-card:hover {
-  border-color: rgba(47,128,237,.3);
-  box-shadow: 0 8px 24px rgba(47,128,237,.1);
-  transform: translateY(-2px);
-}
+.client-card:hover { border-color: rgba(47,128,237,.3); box-shadow: 0 8px 24px rgba(47,128,237,.1); transform: translateY(-3px); }
+.client-logo { width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 16px; }
+.client-logo img { display: block; width: 78px; height: 78px; object-fit: contain; opacity: 1; filter: grayscale(100%); margin: 0 auto; transition: transform .35s var(--ease-smooth), filter .35s var(--ease-smooth); }
+.client-card:hover .client-logo img { filter: none; transform: scale(1.07); }
 
-.client-logo-box {
-  width: 70px; height: 70px; border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; overflow: hidden;
-  background: var(--body);
-  border: 1px solid var(--border);
-}
-
-.client-card .client-logo-box img
-{
-width:50px;
-height:50px;
-object-fit:contain;
-opacity:.7
-}
-
-
-/* CLIENT LOGO */
-.client-logo{
-  width:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  margin-bottom:16px;}
-
-/* .client-logo{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-} */
- .client-logo img{
-  display:block;
-
-  width:78px;
-  height:78px;
-
-  object-fit:contain;
-
-  opacity:1;
-  filter:grayscale(100%);
-
-  margin:0 auto;
-
-  transition:
-    transform .35s ease,
-    filter .35s ease,
-    opacity .35s ease;
-}
-/* HOVER */
- /* .client-logo img{
-  width:78px;
-  height:78px;
-  object-fit:contain;
-
-  opacity:1;
-  filter:grayscale(100%);
-
-  transition:
-    transform .35s ease,
-    filter .35s ease,
-    opacity .35s ease;
-  } */
-/* HOVER */
-.client-card:hover .client-logo img{
-  filter:none;
-  transform:scale(1.06);
-}
-/* ═══════════════════════════════════════
-   CTA SECTION
-═══════════════════════════════════════ */
-.cta-section { background: #fff; position: relative; overflow: hidden; }
-
-.cta-h2 {
-  font-family: 'Rockwell', serif;
-  font-size: clamp(38px, 5vw, 64px);
-  font-weight: 900; color: var(--navy); line-height: 1.04;
-}
-
-.contact-card {
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
-  border-radius: 14px; padding: 20px;
-  display: flex; align-items: flex-start; gap: 14px;
-  transition: border-color .25s, box-shadow .25s, transform .25s;
-}
-.contact-card:hover {
-  border-color: rgba(47,128,237,.3);
-  box-shadow: 0 8px 24px rgba(47,128,237,.1);
-  transform: translateY(-2px);
-}
-.contact-icon {
-  width: 40px; height: 40px; border-radius: 10px;
-  background: rgba(47,128,237,.1);
-  border: 1px solid rgba(47,128,237,.2);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-
-/* ═══════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════ */
-footer {
-  background: var(--navy);
-}
-.footer-link {
-  color: rgba(255,255,255,.5);
-  font-size: 13px; text-decoration: none;
-  transition: color .2s;
-}
-.footer-link:hover { color: var(--secondary); }
-
-.footer-social {
-  width: 34px; height: 34px; border-radius: 8px;
-  background: rgba(255,255,255,.07);
-  border: 1px solid rgba(255,255,255,.1);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: background .2s, border-color .2s;
-}
-.footer-social:hover {
-  background: rgba(47,128,237,.25);
-  border-color: rgba(47,128,237,.4);
-}
-
-/* ═══════════════════════════════════════
-   SECTION DIVIDER
-═══════════════════════════════════════ */
-.section-divider {
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--border), transparent);
-}
-
-/* ═══════════════════════════════════════
-   CHATBOT
-═══════════════════════════════════════ */
-#chatbot-btn {
-  position: fixed; bottom: 28px; right: 24px; z-index: 999;
-  width: 58px; height: 58px; border-radius: 50%;
-  background: var(--grad);
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 8px 28px rgba(47,128,237,.45);
-  cursor: pointer; border: none;
-  transition: transform .3s, box-shadow .3s;
-}
-#chatbot-btn:hover { transform: scale(1.08); box-shadow: 0 14px 40px rgba(47,128,237,.55); }
-#chatbot-btn svg { width: 26px; height: 26px; fill: #fff; }
-
-.cb-pulse {
-  position: absolute; width: 100%; height: 100%; border-radius: 50%;
-  border: 2px solid rgba(47,128,237,.5);
-  animation: cbPulse 2.5s ease infinite;
-}
-@keyframes cbPulse { 0%{transform:scale(1);opacity:.8} 100%{transform:scale(1.8);opacity:0} }
-
-#chatbot-window {
-  position: fixed; bottom: 100px; right: 24px; z-index: 999;
-  width: 365px; background: #fff; border-radius: 20px;
-  box-shadow: 0 24px 64px rgba(22,50,79,.2);
-  display: none; flex-direction: column; overflow: hidden;
-  border: 1px solid var(--border);
-  animation: cbOpen .3s cubic-bezier(.16,1,.3,1);
-}
-@keyframes cbOpen { from{opacity:0;transform:translateY(16px) scale(.97)} to{opacity:1;transform:none} }
-#chatbot-window.open { display: flex; }
-
-@media(max-width:480px) {
-  #chatbot-window { position:fixed;inset:0;bottom:0;right:0;width:100%;height:100%;border-radius:0;border:none; }
-  #chatbot-btn { bottom:16px;right:16px;width:52px;height:52px; }
-}
-
-#cb-header {
-  background: var(--grad-dark);
-  padding: 14px 16px; display: flex; align-items: center; gap: 12px;
-  border-bottom: 1px solid rgba(47,128,237,.2); flex-shrink: 0;
-}
-#cb-header .cb-avatar {
-  width: 38px; height: 38px; border-radius: 50%;
-  background: rgba(255,255,255,.15);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 17px; flex-shrink: 0;
+/* ═══ CLIENT HIDDEN CARDS ANIMATION ═══ */
+.clients-extra-grid {
   overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.85s var(--ease-out-expo),
+              opacity 0.6s var(--ease-smooth),
+              margin-top 0.4s var(--ease-smooth);
+  margin-top: 0;
 }
+.clients-extra-grid.open { max-height: 2000px; opacity: 1; margin-top: 12px; }
+
+.client-card.extra-card {
+  opacity: 0;
+  transform: translateY(20px) scale(0.97);
+  transition: opacity 0.4s var(--ease-out-expo),
+              transform 0.4s var(--ease-out-expo);
+}
+.clients-extra-grid.open .client-card.extra-card { opacity: 1; transform: none; }
+
+/* Staggered delays */
+.clients-extra-grid.open .client-card.extra-card:nth-child(1){transition-delay:0.04s}
+.clients-extra-grid.open .client-card.extra-card:nth-child(2){transition-delay:0.08s}
+.clients-extra-grid.open .client-card.extra-card:nth-child(3){transition-delay:0.12s}
+.clients-extra-grid.open .client-card.extra-card:nth-child(4){transition-delay:0.16s}
+.clients-extra-grid.open .client-card.extra-card:nth-child(5){transition-delay:0.20s}
+.clients-extra-grid.open .client-card.extra-card:nth-child(6){transition-delay:0.24s}
+.clients-extra-grid.open .client-card.extra-card:nth-child(7){transition-delay:0.28s}
+.clients-extra-grid.open .client-card.extra-card:nth-child(8){transition-delay:0.32s}
+.clients-extra-grid.open .client-card.extra-card:nth-child(9){transition-delay:0.36s}
+.clients-extra-grid.open .client-card.extra-card:nth-child(10){transition-delay:0.40s}
+.clients-extra-grid.open .client-card.extra-card:nth-child(11){transition-delay:0.44s}
+.clients-extra-grid.open .client-card.extra-card:nth-child(12){transition-delay:0.48s}
+.clients-extra-grid.open .client-card.extra-card:nth-child(13){transition-delay:0.52s}
+.clients-extra-grid.open .client-card.extra-card:nth-child(14){transition-delay:0.56s}
+.clients-extra-grid.open .client-card.extra-card:nth-child(15){transition-delay:0.60s}
+.clients-extra-grid.open .client-card.extra-card:nth-child(16){transition-delay:0.64s}
+.clients-extra-grid.open .client-card.extra-card:nth-child(17){transition-delay:0.68s}
+
+#viewAllClientsBtn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 36px; border-radius: 999px;
+  background: var(--grad); color: #fff;
+  font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; border: none; cursor: pointer;
+  transition: transform .3s var(--ease-out-expo), box-shadow .3s; position: relative; overflow: hidden;
+}
+#viewAllClientsBtn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(47,128,237,.35); }
+#viewAllClientsBtn .btn-icon { transition: transform .35s var(--ease-out-expo); }
+#viewAllClientsBtn.open .btn-icon { transform: rotate(180deg); }
+#viewAllClientsBtn::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.15), transparent);
+  opacity: 0; transition: opacity .3s;
+}
+#viewAllClientsBtn:hover::before { opacity: 1; }
+
+/* ═══ CTA ═══ */
+.cta-section { background: linear-gradient(160deg, #FFF8F3 0%, #FFF4ED 50%, #FEEADB 100%); position: relative; overflow: hidden; }
+.cta-h2 { font-family: 'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif; font-size: clamp(38px, 5vw, 62px); font-weight: 900; color: var(--navy); line-height: 1.05; }
+.contact-card {
+  background: #fff; border: 1px solid var(--orange-border); border-radius: 14px; padding: 20px;
+  display: flex; align-items: flex-start; gap: 14px;
+  transition: border-color .3s, box-shadow .3s, transform .3s var(--ease-out-expo);
+}
+.contact-card:hover { border-color: rgba(232,98,26,.35); box-shadow: 0 8px 24px rgba(232,98,26,.1); transform: translateY(-2px); }
+.contact-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(232,98,26,.08); border: 1px solid rgba(232,98,26,.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+/* ═══ FOOTER ═══ */
+footer { background: var(--navy); }
+.footer-link { color: rgba(255,255,255,.5); font-family: 'Times New Roman', Times, serif; font-size: 14px; text-decoration: none; transition: color .25s; }
+.footer-link:hover { color: var(--secondary); }
+.footer-social { width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .25s, border-color .25s, transform .25s; text-decoration: none; }
+.footer-social:hover { background: rgba(47,128,237,.25); border-color: rgba(47,128,237,.4); transform: translateY(-2px); }
+
+.section-divider { height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); }
+
+/* ═══ CHATBOT ═══ */
+#chatbot-btn { position: fixed; bottom: 28px; right: 24px; z-index: 999; width: 58px; height: 58px; border-radius: 50%; background: var(--grad); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 28px rgba(47,128,237,.45); cursor: pointer; border: none; transition: transform .3s var(--ease-out-expo), box-shadow .3s; }
+#chatbot-btn:hover { transform: scale(1.1); box-shadow: 0 14px 40px rgba(47,128,237,.55); }
+#chatbot-btn svg { width: 26px; height: 26px; fill: #fff; }
+.cb-pulse { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 2px solid rgba(47,128,237,.5); animation: cbPulse 2.5s ease infinite; }
+@keyframes cbPulse { 0%{transform:scale(1);opacity:.8} 100%{transform:scale(1.8);opacity:0} }
+#chatbot-window { position: fixed; bottom: 100px; right: 24px; z-index: 999; width: 365px; background: #fff; border-radius: 20px; box-shadow: 0 24px 64px rgba(22,50,79,.2); display: none; flex-direction: column; overflow: hidden; border: 1px solid var(--border); animation: cbOpen .35s var(--ease-out-expo); }
+@keyframes cbOpen { from{opacity:0;transform:translateY(18px) scale(.96)} to{opacity:1;transform:none} }
+#chatbot-window.open { display: flex; }
+@media(max-width:480px) { #chatbot-window { position:fixed;inset:0;bottom:0;right:0;width:100%;height:100%;border-radius:0;border:none; } #chatbot-btn { bottom:16px;right:16px;width:52px;height:52px; } }
+#cb-header { background: var(--grad-dark); padding: 14px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(47,128,237,.2); flex-shrink: 0; }
+#cb-header .cb-avatar { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
 #cb-header .cb-avatar img { width: 100%; height: 100%; object-fit: contain; }
 #cb-header .cb-name { color: #fff; font-weight: 700; font-size: .86rem; font-family:'Montserrat',sans-serif; }
-#cb-header .cb-status {
-  color: #7CFC00; font-size: .67rem; font-weight: 600;
-  display: flex; align-items: center; gap: 4px; margin-top: 2px;
-}
+#cb-header .cb-status { color: #7CFC00; font-size: .67rem; font-weight: 600; display: flex; align-items: center; gap: 4px; margin-top: 2px; font-family: 'Montserrat', sans-serif; }
 #cb-header .cb-status::before { content:''; width:6px;height:6px;border-radius:50%;background:#7CFC00;display:inline-block; }
-#cb-close {
-  margin-left: auto; background: rgba(255,255,255,.1);
-  border: none; color: #fff; width: 30px; height: 30px;
-  border-radius: 50%; cursor: pointer; font-size: 15px;
-  display: flex; align-items: center; justify-content: center;
-  transition: .2s; flex-shrink: 0;
-}
+#cb-close { margin-left: auto; background: rgba(255,255,255,.1); border: none; color: #fff; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 15px; display: flex; align-items: center; justify-content: center; transition: background .2s; flex-shrink: 0; }
 #cb-close:hover { background: rgba(255,255,255,.2); }
-
-#cb-messages {
-  flex: 1; overflow-y: auto; padding: 14px;
-  display: flex; flex-direction: column; gap: 10px;
-  min-height: 220px; max-height: 340px;
-  background: var(--bg-soft);
-}
+#cb-messages { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; min-height: 220px; max-height: 340px; background: var(--bg-soft); }
 #cb-messages::-webkit-scrollbar { width: 3px; }
 #cb-messages::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
-
-.cb-msg { display:flex;gap:8px;align-items:flex-end;max-width:92%; }
+.cb-msg { display:flex;gap:8px;align-items:flex-end;max-width:92%; animation: msgIn .3s var(--ease-out-expo); }
+@keyframes msgIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
 .cb-msg.bot { align-self:flex-start; }
 .cb-msg.user { align-self:flex-end; flex-direction:row-reverse; }
-.cb-bubble { padding:10px 13px;border-radius:14px;font-size:.82rem;line-height:1.55;max-width:100%;word-break:break-word; }
+.cb-bubble { padding: 10px 13px; border-radius: 14px; font-size: .82rem; line-height: 1.6; max-width: 100%; word-break: break-word; font-family: 'Times New Roman', Times, serif; }
 .cb-msg.bot .cb-bubble { background:#fff;color:var(--navy);border:1px solid var(--border);border-bottom-left-radius:4px; }
 .cb-msg.user .cb-bubble { background:var(--grad);color:#fff;border-bottom-right-radius:4px; }
-.cb-msg-icon { width:28px;height:28px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;overflow:hidden; }
+.cb-msg-icon { width:28px;height:28px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden; }
 .cb-msg-icon img { width:100%;height:100%;object-fit:contain; }
-
 .cb-quick-wrap { display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px 6px;background:var(--bg-soft);flex-shrink:0; }
-.cb-quick {
-  background:#fff; border:1.5px solid var(--primary);
-  color: var(--primary); font-size:.72rem; font-weight:700;
-  padding:5px 12px; border-radius:999px; cursor:pointer;
-  transition:.2s; white-space:nowrap;
-  font-family: 'Montserrat', sans-serif;
-}
-.cb-quick:hover { background:var(--primary); color:#fff; }
-
+.cb-quick { background:#fff; border:1.5px solid var(--primary); color: var(--primary); font-size:.72rem; font-weight:700; padding:5px 12px; border-radius:999px; cursor:pointer; transition: background .2s, color .2s, transform .2s; white-space:nowrap; font-family: 'Montserrat', sans-serif; }
+.cb-quick:hover { background:var(--primary); color:#fff; transform: translateY(-1px); }
 #cb-input-row { display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--border);background:#fff;flex-shrink:0; }
-#cb-input { flex:1;border:1.5px solid var(--border);border-radius:10px;padding:9px 12px;outline:none;font-family:'Montserrat',sans-serif;transition:.2s;font-size:16px; }
+#cb-input { flex:1;border:1.5px solid var(--border);border-radius:10px;padding:9px 12px;outline:none;font-family:'Times New Roman',Times,serif;transition: border-color .2s, box-shadow .2s;font-size:16px; }
 @media(min-width:481px){ #cb-input { font-size:.84rem; } }
 #cb-input:focus { border-color:var(--primary);box-shadow:0 0 0 3px rgba(47,128,237,.1); }
-#cb-send { background:var(--grad);color:#fff;border:none;width:40px;height:40px;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0; }
-#cb-send:hover { box-shadow:0 4px 16px rgba(47,128,237,.4); }
+#cb-send { background:var(--grad);color:#fff;border:none;width:40px;height:40px;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition: box-shadow .2s, transform .2s;flex-shrink:0; }
+#cb-send:hover { box-shadow:0 4px 16px rgba(47,128,237,.4); transform: scale(1.05); }
 #cb-send svg { width:16px;height:16px;fill:#fff; }
-
 .cb-typing { display:flex;gap:4px;padding:8px 12px;align-items:center; }
 .cb-typing span { width:7px;height:7px;border-radius:50%;background:var(--primary);animation:cbDot 1.2s ease infinite; }
 .cb-typing span:nth-child(2){ animation-delay:.2s; }
 .cb-typing span:nth-child(3){ animation-delay:.4s; }
 @keyframes cbDot { 0%,80%,100%{transform:scale(.6);opacity:.4} 40%{transform:scale(1);opacity:1} }
 
-/* ═══════════════════════════════════════
-   REVEAL ANIMATIONS
-═══════════════════════════════════════ */
-.reveal { opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease; }
-.reveal.show { opacity:1;transform:none; }
-.fl { opacity:0;transform:translateX(-36px);transition:opacity .7s ease,transform .7s ease; }
-.fl.show { opacity:1;transform:none; }
-.fr { opacity:0;transform:translateX(36px);transition:opacity .7s ease,transform .7s ease; }
-.fr.show { opacity:1;transform:none; }
+/* ═══ MOBILE MENU ═══ */
+#mobileMenu { background: #fff; border-top: 1px solid var(--border); overflow: hidden; max-height: 0; transition: max-height .45s var(--ease-out-expo); }
+#mobileMenu .nav-link { display:inline-block; width:auto; font-size:14px; font-weight:600; color:var(--navy); text-decoration:none; position:relative; padding-bottom:6px; }
+#mobileMenu .nav-link.active { color:var(--primary); border-bottom:2px solid var(--primary); }
 
-/* icon SVG utility */
+/* ═══ SCROLL DOWN ARROW ═══ */
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* ─── UTILITIES ─── */
 .icon-svg { width:22px;height:22px;display:block; }
+.grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.grad-orange-text { background: var(--grad-orange); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.grad-green-text { background: var(--grad-green); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-/* gradient text utility */
-.grad-text {
-  background: var(--grad);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* mobile menu */
-#mobileMenu {
-  background: #fff;
-  border-top: 1px solid var(--border);
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height .5s cubic-bezier(.4,0,.2,1);
+/* ─── REDUCE MOTION ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 </style>
 </head>
-
-<body>
+<body class="loader-active">
 
 <!-- ═══════════ LOADER ═══════════ -->
-<div id="loader">
+<div id="loader" aria-hidden="true">
+  <div class="loader-ring ring1"></div>
+  <div class="loader-ring ring2"></div>
+  <div class="loader-ring ring3"></div>
   <div class="loader-box">
-    <img src="Logo.png" alt="Boilertech Logo" class="loader-logo"/>
+    <div class="loader-logo-wrap">
+      <img src="assets/btlogo.png" alt="Boilertech Logo" class="loader-logo"/>
+    </div>
     <h2 class="loader-title">BOILERTECH</h2>
-    <p class="loader-sub">Energy Services</p>
-    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    <p class="loader-sub">ENERGY SERVICES</p>
+    <p class="loader-tagline">Your Trusted Performance Partner.</p>
+    <div class="loader-progress-wrap">
+      <div class="loader-progress-bar"></div>
+    </div>
   </div>
 </div>
 
 <!-- ═══════════ NAVBAR ═══════════ -->
 <nav id="mainNav">
-  <div class="max-w-7xl mx-auto flex justify-between items-center px-5 sm:px-8 py-4">
-  <div class="flex items-center gap-3">
-      
-      <img src="Logo.png" 
-           alt="Boilertech Energy Services Logo" 
-           class="h-12 w-auto"/>
-
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-5 sm:px-8 py-2.5">
+    <div class="flex items-center gap-3">
       <div class="flex flex-col leading-none">
-        
-       <span class="logo-text text-[#0B6EA8] text-[18px] tracking-tight">
-          BOILERTECH
-      </span>
-
-        <span class="logo-sub text-[#0B6EA8] text-[18px] mt-1">
-          ENERGY SERVICES
-        </span>
-
+        <img src="assets/btlogo.png" alt="Boilertech Energy Services Logo" class="h-12 w-auto"/>
+        <span class="logo-tagline-nav">Your Trusted Performance Partner.</span>
       </div>
     </div>
-
-    <!-- DESKTOP MENU -->
-    <div class="hidden lg:flex items-center gap-8">
+    <div class="hidden lg:flex items-center gap-7 ml-auto">
       <a href="index.html" class="nav-link active">Home</a>
       <a href="about.html" class="nav-link">About</a>
       <a href="services.html" class="nav-link">Services</a>
       <a href="products.html" class="nav-link">Products</a>
       <a href="blog.html" class="nav-link">Blog</a>
       <a href="contact.html" class="nav-link">Contact</a>
+      <a href="career.html" class="nav-link">Career</a>
     </div>
-
-    <!-- CTA -->
-    <div class="hidden lg:block">
-      <a href="contact.html" class="btn-primary" style="padding:11px 24px;font-size:12px">Get a Quote</a>
-    </div>
-
-    <!-- MOBILE HAMBURGER -->
-    <button id="menuBtn" class="lg:hidden flex flex-col gap-[5px] p-1">
+    <button id="menuBtn" class="lg:hidden flex flex-col gap-[5px] p-1" aria-label="Toggle menu">
       <span class="w-6 h-0.5 block" style="background:var(--navy)"></span>
       <span class="w-6 h-0.5 block" style="background:var(--navy)"></span>
       <span class="w-6 h-0.5 block" style="background:var(--navy)"></span>
     </button>
   </div>
-
-  <!-- MOBILE MENU -->
-  <div id="mobileMenu">
+  <div id="mobileMenu" aria-hidden="true">
     <div class="flex flex-col px-6 py-5 gap-4">
       <a href="index.html" class="nav-link active" style="font-size:14px">Home</a>
       <a href="about.html" class="nav-link" style="font-size:14px">About</a>
       <a href="services.html" class="nav-link" style="font-size:14px">Services</a>
       <a href="products.html" class="nav-link" style="font-size:14px">Products</a>
       <a href="blog.html" class="nav-link" style="font-size:14px">Blog</a>
-      <a href="brochure.html" class="nav-link" style="font-size:14px">Brochures</a>
       <a href="contact.html" class="nav-link" style="font-size:14px">Contact</a>
-      <a href="contact.html" class="btn-primary" style="justify-content:center;margin-top:4px">Get a Quote</a>
+      <a href="career.html" class="nav-link" style="font-size:14px">Career</a>
     </div>
   </div>
 </nav>
@@ -1013,404 +833,201 @@ footer {
 <!-- ═══════════ HERO ═══════════ -->
 <section class="hero-section">
   <div class="hero-dot-grid"></div>
-  <div class="hero-glow" style="width:700px;height:700px;top:-200px;right:-150px;background:rgba(86,204,242,.18)"></div>
-  <div class="hero-glow" style="width:500px;height:500px;bottom:-100px;left:-100px;background:rgba(47,128,237,.1)"></div>
-
+  <div style="position:absolute;width:700px;height:700px;top:-200px;right:-150px;background:rgba(86,204,242,.12);border-radius:50%;filter:blur(80px);pointer-events:none"></div>
+  <div style="position:absolute;width:500px;height:500px;bottom:-100px;left:-100px;background:rgba(47,128,237,.08);border-radius:50%;filter:blur(80px);pointer-events:none"></div>
   <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full grid lg:grid-cols-2 gap-14 items-center py-24 relative" style="z-index:2">
-
-    <!-- LEFT -->
     <div>
-      <!-- <div class="hero-badge reveal">
-        <span>IBR Certified</span>
-        India's Trusted Boiler Engineering Partner
-      </div> -->
-
-      <h1 class="hero-h1 reveal" style="transition-delay:.06s">
-        Industrial<br>
-        <span class="gradient-text">Boiler</span><br>
-        Engineering<br>
-        <span class="gradient-text">Excellence</span>
+      <!-- Hero heading — each line animates in independently -->
+      <h1 class="hero-h1" id="heroHeading">
+        <span class="hero-line"><span class="hero-line-inner delay-1">Industrial</span></span>
+        <span class="hero-line"><span class="hero-line-inner gradient-text delay-2">Boiler</span></span>
+        <span class="hero-line"><span class="hero-line-inner delay-3">Engineering</span></span>
+        <span class="hero-line"><span class="hero-line-inner gradient-text delay-4">Excellence</span></span>
       </h1>
-
-      <p class="hero-p reveal" style="transition-delay:.1s">
-        Optimizing industrial boiler performance through advanced engineering, operational reliability, and long-term sustainability across 500+ projects pan India.
-      </p>
-
-      <div class="flex flex-wrap gap-4 mt-8 reveal" style="transition-delay:.14s">
+      <p class="hero-p reveal-up delay-5">Delivering advanced boiler engineering solutions focused on efficiency, reliability, and long-term plant performance across global industrial sectors.</p>
+      <div class="flex flex-wrap gap-4 mt-8 reveal-up delay-6">
         <a href="services.html" class="btn-primary">
           Explore Services
           <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
         </a>
-        <a href="contact.html" class="btn-secondary">Get a Quote</a>
-      </div>
-
-      <div class="hero-trust-pills reveal" style="transition-delay:.18s">
-        <div class="trust-pill"><div class="dot"></div>IBR Certified</div>
-        <div class="trust-pill"><div class="dot"></div>10+ Years</div>
-        <div class="trust-pill"><div class="dot"></div>100+ Projects</div>
-        <div class="trust-pill"><div class="dot"></div>Pan India</div>
       </div>
     </div>
-
-    <!-- RIGHT: Performance Card -->
-    <div class="perf-card reveal fr" style="transition-delay:.1s">
-      <div class="flex items-center justify-between mb-5">
-        <span style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:var(--navy);letter-spacing:.04em">Performance Index</span>
-        <span style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#22c55e">
-          <span style="width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;animation:pulse 2s infinite"></span>Live
-        </span>
-      </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-
-  <!-- Projects -->
-  <div class="perf-stat bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition">
-    <div class="perf-num text-3xl font-extrabold text-[#0B6EA8] font-[Montserrat]">
-      100+
-    </div>
-    <div class="perf-label text-sm text-slate-600 mt-1 font-[Rockwell]">
-      Projects Delivered
-    </div>
-
-    <div class="pbar mt-4 h-2 bg-slate-100 rounded-full overflow-hidden">
-      <div class="pbar-fill h-full rounded-full bg-[#0B6EA8]" style="width:92%"></div>
-    </div>
-  </div>
-
-  <!-- Clients -->
-  <div class="perf-stat bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition">
-    <div class="perf-num text-3xl font-extrabold text-[#0B6EA8] font-[Montserrat]">
-      50+
-    </div>
-    <div class="perf-label text-sm text-slate-600 mt-1 font-[Rockwell]">
-      Trusted Clients
-    </div>
-
-    <div class="pbar mt-4 h-2 bg-slate-100 rounded-full overflow-hidden">
-      <div class="pbar-fill h-full rounded-full bg-[#0B6EA8]" style="width:72%"></div>
-    </div>
-  </div>
-
-  <!-- Experience -->
-  <div class="perf-stat bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition sm:col-span-2">
-    <div class="flex items-center justify-between flex-wrap gap-4">
-
-      <div>
-        <div class="perf-num text-3xl font-extrabold text-[#0B6EA8] font-[Montserrat]">
-          10+
+    <div class="perf-card reveal-right" id="perfCard">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+        <div class="perf-stat bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition stagger-item delay-1">
+          <div class="counter-num" id="counter-projects">0</div>
+          <div class="perf-label mt-1"><b>Projects Delivered</b></div>
+          <div class="pbar mt-4"><div class="pbar-fill" id="pbar-projects" data-width="92"></div></div>
         </div>
-
-        <div class="perf-label text-sm text-slate-600 mt-1 font-[Rockwell]">
-          Years Experience
+        <div class="perf-stat bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition stagger-item delay-2">
+          <div class="counter-num" id="counter-clients">0</div>
+          <div class="perf-label mt-1"><b>Trusted Clients</b></div>
+          <div class="pbar mt-4"><div class="pbar-fill" id="pbar-clients" data-width="72"></div></div>
+        </div>
+        <div class="perf-stat bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition sm:col-span-2 stagger-item delay-3">
+          <div class="flex items-center justify-between flex-wrap gap-4">
+            <div>
+              <div class="counter-num" id="counter-years">0</div>
+              <div class="perf-label mt-1"><b>Years Experience</b></div>
+            </div>
+            <div class="w-full sm:w-[60%]"><div class="pbar"><div class="pbar-fill" id="pbar-years" data-width="80"></div></div></div>
+          </div>
         </div>
       </div>
-
-      <div class="w-full sm:w-[60%]">
-        <div class="pbar h-2 bg-slate-100 rounded-full overflow-hidden">
-          <div class="pbar-fill h-full rounded-full bg-[#0B6EA8]" style="width:80%"></div>
-        </div>
-      </div>
-
+      <img src="assets/hero-img.jpeg" alt="Boilertech plant" class="w-full rounded-[12px] object-cover h-[220px] sm:h-[260px] md:h-[300px] lg:h-[220px]" style="display:block;" onerror="this.src='https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=800&q=80'">
     </div>
   </div>
-
-</div>
-
-<img src="assets/home page img.png"
-     alt="Boilertech plant"
-     class="w-full rounded-[12px] object-cover h-[220px] sm:h-[260px] md:h-[300px] lg:h-[220px]"
-     style="display:block;">
-
-      <div class="flex items-center gap-3 mt-4 flex-wrap">
-        <div class="cert-tag">IBR</div>
-        <div class="cert-tag">CFD</div>
-        <div class="cert-tag">ISO</div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Scroll indicator -->
   <div style="position:absolute;bottom:18px;left:50%;transform:translateX(-50%);z-index:2;animation:bounce 2s infinite">
     <svg width="10" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
   </div>
 </section>
-<style>@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}</style>
-
-
 
 <!-- ═══════════ TICKER ═══════════ -->
-<div class="ticker-bg py-3 overflow-hidden">
+<div class="ticker-bg">
   <div class="ticker-wrap">
-    <div class="ticker-inner" style="font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255, 255, 255, 0.995)">
-      <span style="margin:0 24px">Boiler Performance Studies</span>
-      <span style="margin:0 10px;color:rgba(47,128,237,.5)">◆</span>
-      <span style="margin:0 24px">Combustion Optimization</span>
-      <span style="margin:0 10px;color:rgba(47,128,237,.5)">◆</span>
-      <span style="margin:0 24px">Energy Audit</span>
-      <span style="margin:0 10px;color:rgba(47,128,237,.5)">◆</span>
-      <span style="margin:0 24px">CFD Analysis</span>
-      <span style="margin:0 10px;color:rgba(47,128,237,.5)">◆</span>
-      <span style="margin:0 24px">IBR Piping Design</span>
-      <span style="margin:0 10px;color:rgba(47,128,237,.5)">◆</span>
-      <span style="margin:0 24px">Shutdown Audit</span>
-      <span style="margin:0 10px;color:rgba(47,128,237,.5)">◆</span>
-      <span style="margin:0 24px">Capacity Enhancement</span>
-      <span style="margin:0 10px;color:rgba(47,128,237,.5)">◆</span>
-      <span style="margin:0 24px">Alternate Fuel Study</span>
-      <span style="margin:0 10px;color:rgba(47,128,237,.5)">◆</span>
-      <span style="margin:0 24px">Root Cause Analysis</span>
-      <span style="margin:0 10px;color:rgba(47,128,237,.5)">◆</span>
-      <span style="margin:0 24px">Boiler Performance Studies</span>
-      <span style="margin:0 10px;color:rgba(47,128,237,.5)">◆</span>
-      <span style="margin:0 24px">Combustion Optimization</span>
-      <span style="margin:0 10px;color:rgba(47,128,237,.5)">◆</span>
-      <span style="margin:0 24px">Energy Audit</span>
-      <span style="margin:0 10px;color:rgba(47,128,237,.5)">◆</span>
-      <span style="margin:0 24px">CFD Analysis</span>
-      <span style="margin:0 10px;color:rgba(47,128,237,.5)">◆</span>
-      <span style="margin:0 24px">IBR Piping Design</span>
-      <span style="margin:0 10px;color:rgba(47,128,237,.5)">◆</span>
-      <span style="margin:0 24px">Shutdown Audit</span>
-      <span style="margin:0 10px;color:rgba(47,128,237,.5)">◆</span>
-      <span style="margin:0 24px">Capacity Enhancement</span>
-      <span style="margin:0 10px;color:rgba(47,128,237,.5)">◆</span>
-      <span style="margin:0 24px">Alternate Fuel Study</span>
-      <span style="margin:0 10px;color:rgba(47,128,237,.5)">◆</span>
-      <span style="margin:0 24px">Root Cause Analysis</span>
+    <div class="ticker-inner">
+      <span class="ticker-item">Boiler Performance Studies</span><span class="ticker-sep">◆</span>
+      <span class="ticker-item">Combustion Optimization</span><span class="ticker-sep">◆</span>
+      <span class="ticker-item">Energy Audit</span><span class="ticker-sep">◆</span>
+      <span class="ticker-item">CFD Analysis</span><span class="ticker-sep">◆</span>
+      <span class="ticker-item">IBR Piping Design</span><span class="ticker-sep">◆</span>
+      <span class="ticker-item">Shutdown Audit</span><span class="ticker-sep">◆</span>
+      <span class="ticker-item">Capacity Enhancement</span><span class="ticker-sep">◆</span>
+      <span class="ticker-item">Alternate Fuel Study</span><span class="ticker-sep">◆</span>
+      <span class="ticker-item">Root Cause Analysis</span><span class="ticker-sep">◆</span>
+      <span class="ticker-item">Boiler Performance Studies</span><span class="ticker-sep">◆</span>
+      <span class="ticker-item">Combustion Optimization</span><span class="ticker-sep">◆</span>
+      <span class="ticker-item">Energy Audit</span><span class="ticker-sep">◆</span>
+      <span class="ticker-item">CFD Analysis</span><span class="ticker-sep">◆</span>
+      <span class="ticker-item">IBR Piping Design</span><span class="ticker-sep">◆</span>
+      <span class="ticker-item">Shutdown Audit</span><span class="ticker-sep">◆</span>
+      <span class="ticker-item">Capacity Enhancement</span><span class="ticker-sep">◆</span>
+      <span class="ticker-item">Alternate Fuel Study</span><span class="ticker-sep">◆</span>
+      <span class="ticker-item">Root Cause Analysis</span><span class="ticker-sep">◆</span>
     </div>
   </div>
 </div>
 
-<section class="about-section py-16 lg:py-20 overflow-hidden">
-
+<!-- ═══════════ ABOUT ═══════════ -->
+<section class="about-section py-16 lg:py-20 overflow-hidden" style="padding:80px 0;background:var(--bg-soft);">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
-
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-
-      <!-- LEFT -->
-      <div class="relative">
-
+      <div class="relative reveal-left">
         <div class="absolute -top-10 -left-10 w-56 h-56 bg-blue-100 rounded-full blur-3xl opacity-40"></div>
-
         <div class="grid grid-cols-2 gap-4 relative z-10">
-
-          <!-- Main -->
           <div class="col-span-2 rounded-[24px] overflow-hidden shadow-2xl h-[320px] sm:h-[380px] lg:h-[420px] group relative">
-
-            <img src="assets/home1.jpg"
-                 class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-                 alt="Industrial Boiler"/>
-
+            <img src="assets/home-1.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Industrial Boiler" />
             <div class="absolute inset-0 bg-gradient-to-t from-[#16324F]/70 via-transparent to-transparent"></div>
-
             <div class="absolute bottom-5 left-5">
-              <span class="px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/20 text-white text-[10px] tracking-[.18em] font-bold uppercase">
-                Industrial Boiler Systems
-              </span>
+              <span class="px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/20 text-white text-[10px] tracking-[.18em] font-bold uppercase" style="font-family:'Montserrat',sans-serif;">Industrial Boiler Systems</span>
             </div>
-
           </div>
-
-          <!-- Small -->
           <div class="rounded-[20px] overflow-hidden shadow-xl h-[170px] sm:h-[210px] group">
-            <img src="assets/home2.jpg"
-                 class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-                 alt="">
+            <img src="assets/home-2.png" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="">
           </div>
-
           <div class="rounded-[20px] overflow-hidden shadow-xl h-[170px] sm:h-[210px] group">
-            <img src="assets/home3.jpg"
-                 class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-                 alt="">
+            <img src="assets/home-3.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="" >
           </div>
-
         </div>
-
-        <!-- Floating -->
-        <!-- <div class="absolute -bottom-6 right-0 bg-white border border-blue-100 rounded-2xl px-5 py-5 shadow-[0_20px_60px_rgba(47,128,237,.15)] z-20">
-
-          <h3 class="font-['Montserrat'] text-3xl lg:text-4xl font-black text-[#2F80ED] leading-none">
-            98%
-          </h3>
-
-          <p class="font-['Montserrat'] text-[10px] tracking-[.15em] uppercase text-slate-500 mt-2">
-            Avg. Boiler Efficiency
-          </p>
-
-        </div> -->
-
       </div>
-
-      <!-- RIGHT -->
       <div class="lg:pl-2">
-
-        <!-- Tag -->
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-100 bg-blue-50 text-[#2F80ED] text-[10px] font-bold tracking-[.15em] uppercase font-['Montserrat']">
-
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-100 bg-blue-50 text-[#2F80ED] text-[10px] font-bold tracking-[.15em] uppercase font-['Montserrat'] stag-reveal">
           <span class="w-1.5 h-1.5 rounded-full bg-[#2F80ED]"></span>
-
           About Boilertech Energy Services
-
         </div>
-
-        <!-- Heading -->
         <h2 class="mt-5 text-[#16324F] leading-[1.05]">
-
-          <span class="block font-['Rockwell'] font-black text-4xl lg:text-6xl">
-            Engineering
-          </span>
-
-          <span class="block font-['Rockwell'] font-black text-4xl lg:text-6xl bg-gradient-to-r from-[#2F80ED] to-[#56CCF2] bg-clip-text text-transparent">
-            Precision,
-          </span>
-
-          <span class="block font-['Rockwell'] font-black text-4xl lg:text-6xl">
-            Built for
-            <span class="bg-gradient-to-r from-[#2F80ED] to-[#56CCF2] bg-clip-text text-transparent">
-              Industry
-            </span>
-          </span>
-
+          <span class="block font-['Rockwell',serif] font-black text-4xl lg:text-5xl reveal-up delay-1">Advanced</span>
+          <span class="block font-['Rockwell',serif] font-black text-4xl lg:text-5xl bg-gradient-to-r from-[#2F80ED] to-[#56CCF2] bg-clip-text text-transparent reveal-up delay-2">Engineering for</span>
+          <span class="block font-['Rockwell',serif] font-black text-4xl lg:text-5xl reveal-up delay-3">Power Plant <span class="bg-gradient-to-r from-[#2F80ED] to-[#56CCF2] bg-clip-text text-transparent">Solutions</span></span>
         </h2>
-
-        <!-- Paragraph -->
-        <p class="mt-6 text-[16px] lg:text-[17px] leading-[1.9] text-[#5B6B7B] font-['Rockwell'] max-w-xl">
-
-          At Boilertech Energy Services, we specialize in optimizing the performance and availability of industrial boiler systems.
-
-        </p>
-
-        <p class="mt-4 text-[16px] lg:text-[17px] leading-[1.9] text-[#5B6B7B] font-['Rockwell'] max-w-xl">
-
-          Safety, performance, and sustainability remain at the core of every engineering solution we deliver.
-
-        </p>
-
-        <!-- Features -->
+        <p class="mt-6 about-p max-w-xl reveal-up delay-4">At Boilertech Energy Services, we specialize in optimizing the performance and availability of industrial boiler systems.</p>
+        <p class="mt-4 about-p max-w-xl reveal-up delay-5">Safety, performance, and sustainability remain at the core of every engineering solution we deliver.</p>
         <div class="grid sm:grid-cols-2 gap-4 mt-8">
-
-          <div class="bg-white border border-blue-100 rounded-2xl p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300">
-
+          <div class="bg-white border border-blue-100 rounded-2xl p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 reveal-scale delay-5">
             <div class="w-11 h-11 rounded-2xl bg-blue-50 flex items-center justify-center mb-3">
-           <i data-lucide="settings"></i>
+              <i data-lucide="settings" class="text-blue-500" style="width:20px;height:20px"></i>
             </div>
-
-            <h4 class="font-['Montserrat'] font-bold text-[#16324F] text-lg">
-              Engineering Precision
-            </h4>
-
-            <p class="mt-2 text-[#5B6B7B] text-sm leading-6 font-['Rockwell']">
-              Meticulous industrial boiler design & execution.
-            </p>
-
+            <h4 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;color:#16324F;font-size:16px">Engineering Precision</h4>
+            <p class="mt-2 text-[#5B6B7B] text-sm leading-6" style="font-family:'Times New Roman',Times,serif;">Meticulous industrial boiler design &amp; execution.</p>
           </div>
-
-          <div class="bg-white border border-blue-100 rounded-2xl p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300">
-
+          <div class="bg-white border border-blue-100 rounded-2xl p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 reveal-scale delay-6">
             <div class="w-11 h-11 rounded-2xl bg-blue-50 flex items-center justify-center mb-3">
-            <i data-lucide="zap"></i>
+              <i data-lucide="zap" class="text-blue-500" style="width:20px;height:20px"></i>
             </div>
-
-            <h4 class="font-['Montserrat'] font-bold text-[#16324F] text-lg">
-              Operational Reliability
-            </h4>
-
-            <p class="mt-2 text-[#5B6B7B] text-sm leading-6 font-['Rockwell']">
-              Consistent boiler performance you can depend on.
-            </p>
-
+            <h4 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;color:#16324F;font-size:16px">Operational Reliability</h4>
+            <p class="mt-2 text-[#5B6B7B] text-sm leading-6" style="font-family:'Times New Roman',Times,serif;">Consistent boiler performance you can depend on.</p>
           </div>
-
         </div>
-
-        <!-- Buttons -->
-        <div class="flex flex-wrap gap-3 mt-8">
-
-          <a href="about.html"
-             class="px-7 py-3.5 rounded-full bg-gradient-to-r from-[#2F80ED] to-[#56CCF2] text-white font-bold font-['Montserrat'] shadow-lg hover:shadow-2xl hover:-translate-y-1 transition duration-300">
-
-            Know More
-
-          </a>
-
-          <a href="contact.html"
-             class="px-7 py-3.5 rounded-full border border-blue-200 text-[#2F80ED] font-bold font-['Montserrat'] hover:bg-blue-50 transition duration-300">
-
-            Contact Us
-
-          </a>
-
+        <div class="flex flex-wrap gap-3 mt-8 reveal-up delay-7">
+          <a href="about.html" class="px-7 py-2.5 rounded-full bg-gradient-to-r from-[#2F80ED] to-[#56CCF2] text-white font-bold shadow-lg hover:shadow-2xl hover:-translate-y-1 transition duration-300" style="font-family:'Montserrat',sans-serif;">Know More</a>
+          <a href="contact.html" class="px-7 py-2.5 rounded-full border border-blue-200 text-[#2F80ED] font-bold hover:bg-blue-50 transition duration-300" style="font-family:'Montserrat',sans-serif;">Contact Us</a>
         </div>
-
       </div>
-
     </div>
-
   </div>
-
 </section>
+
 <!-- ═══════════ SERVICES ═══════════ -->
 <section class="services-section py-24">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="max-w-2xl mb-14 reveal">
-      <div class="stag">What We Do</div>
-      <h2 class="svc-h2">Core <span class="grad-text">Services</span></h2>
-      <p class="about-p mt-4">Comprehensive boiler engineering — from performance studies to full system re-engineering and IBR-compliant design.</p>
+    <div class="max-w-2xl mb-14">
+      <div class="stag-orange stag-reveal">What We Do</div>
+      <h2 class="svc-h2 reveal-up delay-1">Core <span class="grad-orange-text">Services</span></h2>
+      <p class="about-p mt-4 reveal-up delay-2">Complete Boiler Engineering Services — From Design to Residual Life Assessment.</p>
     </div>
-
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-
-      <div class="svc-card reveal">
-        <div class="svc-icon">
-          <svg class="icon-svg" fill="none" stroke="#2F80ED" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008Z"/></svg>
+      <div class="svc-card reveal-up delay-1">
+        <div class="svc-img-wrap"><img src="assets/BOILER PERFORMANCE.png" class="service-img" alt="Boiler Performance Study"></div>
+        <div class="svc-card-body">
+          <div class="svc-icon"><svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008Z"/></svg></div>
+          <h3 class="svc-h3">Boiler Performance &amp; Operational Studies</h3>
+          <p class="svc-p">Detailed evaluation of steam generation, fuel consumption, heat transfer, and efficiency — identifying gaps and improving output.</p>
         </div>
-        <h3 class="svc-h3">Boiler Performance & Operational Studies</h3>
-        <p class="svc-p">Detailed evaluation of steam generation, fuel consumption, heat transfer, and efficiency — identifying gaps and improving output.</p>
       </div>
-
-      <div class="svc-card reveal" style="transition-delay:.05s">
-        <div class="svc-icon">
-          <svg class="icon-svg" fill="none" stroke="#2F80ED" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"/></svg>
+      <div class="svc-card reveal-up delay-2">
+        <div class="svc-img-wrap"><img src="assets/SHUTDOWN & AUDIT.png" class="service-img" alt="Shutdown Audit"></div>
+        <div class="svc-card-body">
+          <div class="svc-icon"><svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"/></svg></div>
+          <h3 class="svc-h3">Shutdown &amp; Audit Services</h3>
+          <p class="svc-p">Pre-shutdown, shutdown, and post-shutdown audits with pressure part checks and thickness mapping at erosion zones.</p>
         </div>
-        <h3 class="svc-h3">Shutdown & Audit Services</h3>
-        <p class="svc-p">Pre-shutdown, shutdown, and post-shutdown audits with pressure part checks and thickness mapping at erosion zones.</p>
       </div>
-
-      <div class="svc-card reveal" style="transition-delay:.1s">
-        <div class="svc-icon">
-          <svg class="icon-svg" fill="none" stroke="#2F80ED" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
+      <div class="svc-card reveal-up delay-3">
+        <div class="svc-img-wrap"><img src="assets/TROUBLE SHOOT.png" class="service-img" alt="Root Cause Analysis"></div>
+        <div class="svc-card-body">
+          <div class="svc-icon"><svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg></div>
+          <h3 class="svc-h3">Troubleshooting &amp; Root Cause Analysis</h3>
+          <p class="svc-p">Diagnosis of tube failures, combustion issues, LOI control, and bed coil failures with corrective recommendations.</p>
         </div>
-        <h3 class="svc-h3">Troubleshooting & Root Cause Analysis</h3>
-        <p class="svc-p">Diagnosis of tube failures, combustion issues, LOI control, and bed coil failures with corrective recommendations.</p>
       </div>
-
-      <div class="svc-card reveal">
-        <div class="svc-icon">
-          <svg class="icon-svg" fill="none" stroke="#2F80ED" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605"/></svg>
+      <div class="svc-card reveal-up delay-4">
+        <div class="svc-img-wrap"><img src="assets/CAPACITY ENHANCEMENT.png" class="service-img" alt="Capacity Enhancement"></div>
+        <div class="svc-card-body">
+          <div class="svc-icon"><svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605"/></svg></div>
+          <h3 class="svc-h3">Capacity Enhancement &amp; Re-Engineering</h3>
+          <p class="svc-p">Design modifications to safely increase boiler capacity, including fluidized bed combustion re-engineering.</p>
         </div>
-        <h3 class="svc-h3">Capacity Enhancement & Re-Engineering</h3>
-        <p class="svc-p">Design modifications to safely increase boiler capacity, including fluidized bed combustion re-engineering.</p>
       </div>
-
-      <div class="svc-card reveal" style="transition-delay:.05s">
-        <div class="svc-icon">
-          <svg class="icon-svg" fill="none" stroke="#2F80ED" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+      <div class="svc-card reveal-up delay-5">
+        <div class="svc-img-wrap"><img src="assets/ENERGY PLANT OPERATION.png" class="service-img" alt="Energy Optimization"></div>
+        <div class="svc-card-body">
+          <div class="svc-icon"><svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg></div>
+          <h3 class="svc-h3">Energy &amp; Fuel Optimization</h3>
+          <p class="svc-p">Energy conservation, alternative fuel feasibility, combustion analysis for biomass/coal blends, and fuel system assessments.</p>
         </div>
-        <h3 class="svc-h3">Energy & Fuel Optimization</h3>
-        <p class="svc-p">Energy conservation, alternative fuel feasibility, combustion analysis for biomass/coal blends, and fuel system assessments.</p>
       </div>
-
-      <div class="svc-card reveal" style="transition-delay:.1s">
-        <div class="svc-icon">
-          <svg class="icon-svg" fill="none" stroke="#2F80ED" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0H3"/></svg>
+      <div class="svc-card reveal-up delay-6">
+        <div class="svc-img-wrap"><img src="assets/CFD ANALYSOR.png" class="service-img" alt="CFD Analysis"></div>
+        <div class="svc-card-body">
+          <div class="svc-icon"><svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0H3"/></svg></div>
+          <h3 class="svc-h3">CFD Analysis &amp; IBR Engineering</h3>
+          <p class="svc-p">CFD analysis for boiler ducting, IBR-compliant piping design, stress analysis, and auxiliary equipment optimization.</p>
         </div>
-        <h3 class="svc-h3">CFD Analysis & IBR Engineering</h3>
-        <p class="svc-p">CFD analysis for boiler ducting, IBR-compliant piping design, stress analysis, and auxiliary equipment optimization.</p>
       </div>
     </div>
-
-    <div class="mt-10 reveal">
-      <a href="services.html" class="btn-secondary">
+    <div class="mt-10 reveal-up delay-7">
+      <a href="services.html" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--orange);border:1.5px solid var(--orange);border-radius:999px;padding:12px 28px;font-weight:700;font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.06em;text-decoration:none;transition:.25s"
+         onmouseover="this.style.background='#FFF4ED'" onmouseout="this.style.background='#fff'">
         View All Services
         <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor"/></svg>
       </a>
@@ -1421,50 +1038,40 @@ footer {
 <!-- ═══════════ SHOWCASE ═══════════ -->
 <section class="showcase-section py-24">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
-
-    <div class="grid lg:grid-cols-2 gap-8 items-end mb-10 reveal">
+    <div class="grid lg:grid-cols-2 gap-8 items-end mb-10">
       <div>
-        <div class="stag" style="color:#56CCF2;background:rgba(86,204,242,.1);border-color:rgba(86,204,242,.25)">Our Work in Action</div>
-        <h2 style="font-family:'Montserrat',sans-serif;font-size:clamp(32px,4vw,50px);font-weight:900;color:#fff;line-height:1.1">
+        <div class="stag stag-reveal" style="color:#56CCF2;background:rgba(86,204,242,.1);border-color:rgba(86,204,242,.25)">Our Work in Action</div>
+        <h2 class="reveal-up delay-2" style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-size:clamp(32px,4vw,50px);font-weight:900;color:#fff;line-height:1.1">
           Industrial Engineering <span class="grad-text">Showcase</span>
         </h2>
       </div>
-      <p style="font-family:'Rockwell',Georgia,serif;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.5) ; lg:text-right;">
-        High-performance boiler systems engineered with precision across sectors — from cement giants to steel mills.
-      </p>
+      <p class="reveal-up delay-3" style="font-family:'Times New Roman',Times,serif;font-size:16px;line-height:1.85;color:rgba(255,255,255,.55);">High-performance boiler systems engineered with precision across all systems — from CHP to Chimney.</p>
     </div>
-
     <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="showcase-img-card reveal">
-        <img src="assets/AFBC Boiler System.webp" alt="AFBC Boiler"/>
-        <div class="ovl"></div>
-        <div class="showcase-label">AFBC Boiler System</div>
+      <div class="showcase-img-card reveal-scale delay-1">
+        <img src="assets/Afbc1.png" alt="AFBC Boiler" onerror="this.src='https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=600&q=80'"/>
+        <div class="ovl"></div><div class="showcase-label">AFBC Boiler System</div>
       </div>
-      <div class="showcase-img-card reveal" style="transition-delay:.05s">
-        <img src="assets/Energy Plant Operations.jpg" alt="Energy Plant"/>
-        <div class="ovl"></div>
-        <div class="showcase-label" style="background:rgba(86,204,242,.85)">Energy Plant Operations</div>
+      <div class="showcase-img-card reveal-scale delay-2">
+        <img src="assets/ENERGY PLANT OPERATION.png" alt="Energy Plant" onerror="this.src='https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80'"/>
+        <div class="ovl"></div><div class="showcase-label" style="background:rgba(86,204,242,.85)">Energy Plant Operations</div>
       </div>
-      <div class="showcase-img-card reveal" style="transition-delay:.1s">
-        <img src="assets/CFBC Boiler Plant.jpg" alt="CFBC Boiler"/>
-        <div class="ovl"></div>
-        <div class="showcase-label">CFBC Boiler Plant</div>
+      <div class="showcase-img-card reveal-scale delay-3">
+        <img src="assets/CFBC BOILER.png" alt="CFBC Boiler" onerror="this.src='https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=600&q=80'"/>
+        <div class="ovl"></div><div class="showcase-label">CFBC Boiler Plant</div>
       </div>
-      <div class="showcase-img-card reveal" style="transition-delay:.05s">
-        <img src="assets/Steam Generation Unit.png" alt="Steam Generation"/>
-        <div class="ovl"></div>
-        <div class="showcase-label" style="background:rgba(86,204,242,.85)">Steam Generation Unit</div>
+      <div class="showcase-img-card reveal-scale delay-4">
+        <img src="assets/STEAM GENERATION.png" alt="Steam Generation" onerror="this.src='https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80'"/>
+        <div class="ovl"></div><div class="showcase-label" style="background:rgba(86,204,242,.85)">Steam Generation Unit</div>
       </div>
-      <div class="showcase-img-card reveal" style="transition-delay:.1s">
-        <img src="PHOTOS FOR WEBSITE/thermal audit.jpg" alt="Thermal Engineering"/>
-        <div class="ovl"></div>
-        <div class="showcase-label">Thermal Engineering</div>
+      <div class="showcase-img-card reveal-scale delay-5">
+        <img src="assets/THERMAL ENGNEER.png" alt="Thermal Engineering" onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80'"/>
+        <div class="ovl"></div><div class="showcase-label">Thermal Engineering</div>
       </div>
-      <div class="showcase-cta-card reveal" style="transition-delay:.15s">
-        <div style="font-family:'Montserrat',sans-serif;font-size:48px;font-weight:900;line-height:1;" class="grad-text">100+</div>
+      <div class="showcase-cta-card reveal-scale delay-6">
+        <div style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-size:52px;font-weight:900;line-height:1;" class="grad-text">500+</div>
         <div style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#fff;margin-top:6px">Projects Delivered</div>
-        <!-- <div style="font-family:'Rockwell',Georgia,serif;font-size:12px;color:rgba(255,255,255,.45);margin-top:6px">Across 7+ industries nationwide</div> -->
-        <a href="about.html" style="margin-top:18px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;" class="grad-text">View Our Journey →</a>
+        <a href="about.html" style="margin-top:18px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-family:'Montserrat',sans-serif;" class="grad-text">View Our Journey →</a>
       </div>
     </div>
   </div>
@@ -1473,67 +1080,62 @@ footer {
 <!-- ═══════════ WHY BOILERTECH ═══════════ -->
 <section class="why-section py-24">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="text-center max-w-2xl mx-auto mb-14 reveal">
-      <div class="stag" style="margin:0 auto 18px;display:inline-flex">Our Edge</div>
-      <h2 class="why-h2">Why Choose <span class="grad-text">Boilertech?</span></h2>
-      <p class="about-p mt-4">The technical and operational advantages that make us India's most trusted boiler engineering partner.</p>
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <div class="stag-green stag-reveal" style="margin:0 auto 18px;display:inline-flex">Our Edge</div>
+      <h2 class="why-h2 reveal-up delay-1">Why Choose <span class="grad-green-text">Boilertech?</span></h2>
+      <p class="about-p mt-4 reveal-up delay-2">The technical and operational advantages that make us India's most trusted boiler engineering partner.</p>
     </div>
-
     <div class="grid lg:grid-cols-5 gap-5 mb-5">
-      <!-- Featured -->
-      <div class="lg:col-span-2 why-featured reveal">
+      <div class="lg:col-span-2 why-featured reveal-left">
         <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=700&q=80" alt="CFD Analysis"/>
         <div class="why-featured-overlay"></div>
         <div class="why-featured-content">
-          <div style="width:40px;height:40px;border-radius:10px;background:rgba(47,128,237,.2);border:1px solid rgba(47,128,237,.35);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
-            <svg class="icon-svg" fill="none" stroke="#56CCF2" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(12,122,75,.2);border:1px solid rgba(12,122,75,.35);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+            <svg class="icon-svg" fill="none" stroke="#1DB97A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
           </div>
-          <h3 style="font-family:'Montserrat',sans-serif;font-weight:900;font-size:20px;color:#fff;margin-bottom:8px">CFD-Driven Analysis</h3>
-          <p style="font-family:'Rockwell',Georgia,serif;font-size:14px;color:rgba(255,255,255,.7);line-height:1.7">We simulate and optimize boiler performance computationally before any physical work begins — reducing risk, maximizing results.</p>
-          <div style="margin-top:14px;display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.08em;" class="grad-text">
-            <span style="width:28px;height:1px;background:linear-gradient(135deg,#2F80ED,#56CCF2)"></span>
+          <h3 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:900;font-size:20px;color:#fff;margin-bottom:8px">CFD-Driven Analysis</h3>
+          <p style="font-family:'Times New Roman',Times,serif;font-size:15px;color:rgba(255,255,255,.75);line-height:1.8;">We simulate and optimize boiler performance computationally before any physical work begins — reducing risk, maximizing results.</p>
+          <div style="margin-top:14px;display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.08em;font-family:'Montserrat',sans-serif;" class="grad-green-text">
+            <span style="width:28px;height:1px;background:linear-gradient(135deg,#0C7A4B,#1DB97A)"></span>
             Industry-leading precision
           </div>
         </div>
       </div>
-
-      <!-- 4 why cards -->
       <div class="lg:col-span-3 grid sm:grid-cols-2 gap-4">
-        <div class="why-card reveal">
-          <div class="why-icon"><svg class="icon-svg" fill="none" stroke="#2F80ED" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg></div>
+        <div class="why-card reveal-up delay-1">
+          <div class="why-icon"><svg class="icon-svg" fill="none" stroke="#0C7A4B" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg></div>
           <h3 class="why-h3">IBR Certified Designs</h3>
           <p class="why-p">All designs strictly adhere to Indian Boiler Regulations — full legal compliance and safety at every stage.</p>
         </div>
-        <div class="why-card reveal" style="transition-delay:.05s">
-          <div class="why-icon"><svg class="icon-svg" fill="none" stroke="#2F80ED" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg></div>
+        <div class="why-card reveal-up delay-2">
+          <div class="why-icon"><svg class="icon-svg" fill="none" stroke="#0C7A4B" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg></div>
           <h3 class="why-h3">15–25% Fuel Savings</h3>
           <p class="why-p">Combustion optimization and energy audit services deliver measurable fuel cost reductions across sectors.</p>
         </div>
-        <div class="why-card reveal" style="transition-delay:.1s">
-          <div class="why-icon"><svg class="icon-svg" fill="none" stroke="#2F80ED" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg></div>
+        <div class="why-card reveal-up delay-3">
+          <div class="why-icon"><svg class="icon-svg" fill="none" stroke="#0C7A4B" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg></div>
           <h3 class="why-h3">Zero-Downtime Focus</h3>
           <p class="why-p">Shutdown audits and preventive maintenance catch issues before failures — keeping your plant running.</p>
         </div>
-        <div class="why-card reveal" style="background:var(--bg-soft);transition-delay:.15s">
-          <div class="why-icon"><svg class="icon-svg" fill="none" stroke="#2F80ED" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"/></svg></div>
+        <div class="why-card reveal-up delay-4">
+          <div class="why-icon"><svg class="icon-svg" fill="none" stroke="#0C7A4B" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"/></svg></div>
           <h3 class="why-h3">Long-Term Partnership</h3>
           <p class="why-p">We stay with you for the lifetime of your plant — ongoing support, training, and system upgrades.</p>
         </div>
       </div>
     </div>
-
     <div class="grid sm:grid-cols-3 gap-4">
-      <div class="why-card reveal flex items-start gap-4">
-        <div class="why-icon shrink-0"><svg class="icon-svg" fill="none" stroke="#2F80ED" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 0 0-8.862 12.872M12.75 3.031a9 9 0 0 1 6.69 14.036m0 0-.177-.529A2.25 2.25 0 0 0 17.128 15H16.5l-.324-.324a1.453 1.453 0 0 0-2.328.377l-.036.073a1.586 1.586 0 0 1-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643"/></svg></div>
+      <div class="why-card reveal-up delay-1 flex items-start gap-4">
+        <div class="why-icon shrink-0"><svg class="icon-svg" fill="none" stroke="#0C7A4B" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 0 0-8.862 12.872M12.75 3.031a9 9 0 0 1 6.69 14.036m0 0-.177-.529A2.25 2.25 0 0 0 17.128 15H16.5l-.324-.324a1.453 1.453 0 0 0-2.328.377l-.036.073a1.586 1.586 0 0 1-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643"/></svg></div>
         <div><h3 class="why-h3">Eco-Friendly Solutions</h3><p class="why-p">Alternative fuel systems and emission control reduce your carbon footprint significantly.</p></div>
       </div>
-      <div class="why-card reveal flex items-start gap-4" style="transition-delay:.05s">
-        <div class="why-icon shrink-0"><svg class="icon-svg" fill="none" stroke="#2F80ED" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg></div>
+      <div class="why-card reveal-up delay-2 flex items-start gap-4">
+        <div class="why-icon shrink-0"><svg class="icon-svg" fill="none" stroke="#0C7A4B" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg></div>
         <div><h3 class="why-h3">End-to-End Service</h3><p class="why-p">Design, installation, shutdown audits, re-engineering, and performance studies — all under one roof.</p></div>
       </div>
-      <div class="why-card reveal flex items-start gap-4" style="transition-delay:.1s">
-        <div class="why-icon shrink-0"><svg class="icon-svg" fill="none" stroke="#2F80ED" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg></div>
-        <div><h3 class="why-h3">Pan India Presence</h3><p class="why-p">Active projects across Tamil Nadu, Maharashtra, Odisha, Chhattisgarh, West Bengal, Rajasthan and more.</p></div>
+      <div class="why-card reveal-up delay-3 flex items-start gap-4">
+        <div class="why-icon shrink-0"><svg class="icon-svg" fill="none" stroke="#0C7A4B" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg></div>
+        <div><h3 class="why-h3">Pan India Presence</h3><p class="why-p">Delivering precision engineering solutions for industrial boiler and power plant systems worldwide.</p></div>
       </div>
     </div>
   </div>
@@ -1544,250 +1146,179 @@ footer {
 <!-- ═══════════ CLIENTS ═══════════ -->
 <section class="clients-section py-24">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
-    <div class="text-center max-w-2xl mx-auto mb-14 reveal">
-      <div class="stag" style="margin:0 auto 18px;display:inline-flex">Trusted By Industry</div>
-      <h2 class="clients-h2">Our <span class="grad-text">Clients</span></h2>
-      <p class="about-p mt-4">Delivering engineering excellence to leading industrial names across India — from cement giants to steel mills, sugar plants to specialty chemicals.</p>
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <div class="stag stag-reveal" style="margin:0 auto 18px;display:inline-flex">Trusted By Industry</div>
+      <h2 class="clients-h2 reveal-up delay-1">Our <span class="grad-text">Clients</span></h2>
+      <p class="about-p mt-4 reveal-up delay-2">Delivering engineering excellence to leading industrial names across India — from cement giants to steel mills, sugar plants to specialty chemicals.</p>
     </div>
 
-    <!-- Scrolling rows -->
     <div class="overflow-hidden mb-2">
       <div class="client-row cs1">
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Ultratech Cements</span><span style="font-size:11px;color:var(--body);margin-left:8px">Tamil Nadu</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Ambuja Cements</span><span style="font-size:11px;color:var(--body);margin-left:8px">Chhattisgarh</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Adani Cement</span><span style="font-size:11px;color:var(--body);margin-left:8px">Rajasthan</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Jubilant Life Sciences</span><span style="font-size:11px;color:var(--body);margin-left:8px">Pune</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Star Paper Mills</span><span style="font-size:11px;color:var(--body);margin-left:8px">Uttar Pradesh</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Orient Paper Mills</span><span style="font-size:11px;color:var(--body);margin-left:8px">Madhya Pradesh</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">CEAT Tyres</span><span style="font-size:11px;color:var(--body);margin-left:8px">Tamil Nadu</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Parry Sugars</span><span style="font-size:11px;color:var(--body);margin-left:8px">Andhra Pradesh</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">EID Parry India</span><span style="font-size:11px;color:var(--body);margin-left:8px">Karnataka</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Shakti Sugars</span><span style="font-size:11px;color:var(--body);margin-left:8px">Tamil Nadu</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Ultratech Cements</span><span style="font-size:11px;color:var(--body);margin-left:8px">Tamil Nadu</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Ambuja Cements</span><span style="font-size:11px;color:var(--body);margin-left:8px">Chhattisgarh</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Adani Cement</span><span style="font-size:11px;color:var(--body);margin-left:8px">Rajasthan</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Jubilant Life Sciences</span><span style="font-size:11px;color:var(--body);margin-left:8px">Pune</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Star Paper Mills</span><span style="font-size:11px;color:var(--body);margin-left:8px">Uttar Pradesh</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Orient Paper Mills</span><span style="font-size:11px;color:var(--body);margin-left:8px">Madhya Pradesh</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">CEAT Tyres</span><span style="font-size:11px;color:var(--body);margin-left:8px">Tamil Nadu</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Parry Sugars</span><span style="font-size:11px;color:var(--body);margin-left:8px">Andhra Pradesh</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">EID Parry India</span><span style="font-size:11px;color:var(--body);margin-left:8px">Karnataka</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Shakti Sugars</span><span style="font-size:11px;color:var(--body);margin-left:8px">Tamil Nadu</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Power plants</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Steel Plants</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Sugar Plants</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Paper Mills</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Chemical Industries</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Cement Industries</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Power plants</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Steel Plants</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Sugar Plants</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Paper Mills</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Chemical Industries</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Cement Industries</span></div>
       </div>
     </div>
     <div class="overflow-hidden mb-12">
       <div class="client-row cs2">
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Hira Ferro Alloys</span><span style="font-size:11px;color:var(--body);margin-left:8px">Chhattisgarh</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Shyam Metallics</span><span style="font-size:11px;color:var(--body);margin-left:8px">Odisha</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Sunflag Iron & Steel</span><span style="font-size:11px;color:var(--body);margin-left:8px">Maharashtra</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Rashmi Metallics</span><span style="font-size:11px;color:var(--body);margin-left:8px">Kharagpur</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">NSL Textiles</span><span style="font-size:11px;color:var(--body);margin-left:8px">Andhra Pradesh</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Neuland Labs</span><span style="font-size:11px;color:var(--body);margin-left:8px">Hyderabad</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">MSP Metallics</span><span style="font-size:11px;color:var(--body);margin-left:8px">Odisha</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Sripathi Papers</span><span style="font-size:11px;color:var(--body);margin-left:8px">Tamil Nadu</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Kraft Papers</span><span style="font-size:11px;color:var(--body);margin-left:8px">Assam</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Gujarat Ambuja Exports</span><span style="font-size:11px;color:var(--body);margin-left:8px">Karnataka</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Hira Ferro Alloys</span><span style="font-size:11px;color:var(--body);margin-left:8px">Chhattisgarh</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Shyam Metallics</span><span style="font-size:11px;color:var(--body);margin-left:8px">Odisha</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Sunflag Iron & Steel</span><span style="font-size:11px;color:var(--body);margin-left:8px">Maharashtra</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Rashmi Metallics</span><span style="font-size:11px;color:var(--body);margin-left:8px">Kharagpur</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">NSL Textiles</span><span style="font-size:11px;color:var(--body);margin-left:8px">Andhra Pradesh</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Neuland Labs</span><span style="font-size:11px;color:var(--body);margin-left:8px">Hyderabad</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">MSP Metallics</span><span style="font-size:11px;color:var(--body);margin-left:8px">Odisha</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Sripathi Papers</span><span style="font-size:11px;color:var(--body);margin-left:8px">Tamil Nadu</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Kraft Papers</span><span style="font-size:11px;color:var(--body);margin-left:8px">Assam</span></div>
-        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy)">Gujarat Ambuja Exports</span><span style="font-size:11px;color:var(--body);margin-left:8px">Karnataka</span></div>
-      </div>
-    </div>
-    <!-- Client cards -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 reveal">
-      <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"> -->
-          <div class="client-logo">
-            <img src="bt client logos/ultratech-cement-logo.png" alt=""/>
-          </div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">Ultratech Cements</div>
-        <!-- </div> -->
-        <!-- <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Training · Tamil Nadu</div> -->
-      </div>
-      
-      <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"> -->
-          <div class="client-logo">
-            <img src="bt client logos/jubli.png" alt="" />
-          </div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">Jubilant Life Sciences</div>
-        <!-- </div> -->
-        <!-- <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Performance Study · Pune</div> -->
-      </div>
-      <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"> -->
-          <div class="client-logo">
-            <img src="bt client logos/adani-logo.svg" alt="" />
-          </div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">Adani Cement</div>
-        <!-- </div>
-        <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Performance Study · Rajasthan</div> -->
-      </div>
-      <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"> -->
-          <div class="client-logo">
-            <img src="bt client logos/ceat logo.png" alt="" />
-          </div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">CEAT Tyres Ltd</div>
-        <!-- </div>
-        <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Troubleshooting · Tamil Nadu</div> -->
-      </div>
-      <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">-->
-          <div class="client-logo"> 
-            <img src="bt client logos/star paper mills.jpg" alt="" />
-          </div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy); text-align: center;">Star Paper Mills</div>
-        <!-- </div>
-        <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Operational Study · U.P</div> -->
-      </div>
-      <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">-->
-          <div class="client-logo"> 
-            <img src="bt client logos/Ambuja cement.webp" alt="" />
-          </div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">Ambuja Cements</div>
-        <!-- </div>
-        <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Performance Improvement · C.G</div> -->
-      </div>
-      <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"> -->
-          <div class="client-logo"> 
-            <img src="bt client logos/hira-ferro.png" alt="" />
-          </div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">Hira Ferro Alloys</div>
-        <!-- </div>
-        <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Capacity Enhancement · C.G</div> -->
-      </div>
-      <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">-->
-          <div class="client-logo"> 
-            <img src="bt client logos/parrys sugar.jpg" alt="" />
-          </div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">Parry Sugars</div>
-        <!-- </div>
-        <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Shutdown Inspection · A.P</div> -->
-      </div>
-      <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">-->
-          <div class="client-logo"> 
-            <img src="bt client logos/Sunflag Iron & Steel.png" alt="" />
-          </div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">Sunflag Iron & Steel</div>
-        <!-- </div>
-        <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Troubleshooting · Maharashtra</div> -->
-      </div>
-      <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">-->
-          <div class="client-logo"> 
-            <img src="bt client logos/neuland_laboratories_limited_logo.jpg" alt="" />
-          </div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">Neuland Labs</div>
-        <!-- </div>
-        <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Derating Study · Hyderabad</div> -->
-      </div>
-      <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">-->
-          <div class="client-logo"> 
-            <img src="bt client logos/shyam metalics.webp" alt="" />
-          </div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">Shyam Metallics</div>
-        <!-- </div>
-        <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">CFD Analysis · Odisha</div> -->
-      </div>
-      <div class="client-card">
-        <!-- <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">-->
-          <div class="client-logo"> 
-            <img src="bt client logos/parrys sugar.jpg" alt="" />
-          </div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:var(--navy); text-align: center;">EID Parry India</div>
-        <!-- </div>
-        <div style="font-size:14px;color:var(--body);padding-left:46px;font-family:'Rockwell',Georgia,serif">Shutdown Inspection · Karnataka</div> -->
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Power plants</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Steel Plants</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Sugar Plants</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Paper Mills</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Chemical Industries</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Cement Industries</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Power plants</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Steel Plants</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Sugar Plants</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Paper Mills</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Chemical Industries</span></div>
+        <div class="client-item"><span style="font-size:14px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;">Cement Industries</span></div>
       </div>
     </div>
 
-    <div class="text-center mt-10 reveal">
-      <div style="display:inline-flex;align-items:center;gap:8px;padding:10px 24px;border-radius:999px;border:1px solid var(--border);background:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--body)">
-        <span style="width:6px;height:6px;border-radius:50%;background:var(--grad);display:inline-block"></span>
-        50+ clients trusted — Erode to Assam
+    <!-- First 12 logos (always visible) -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3" id="clientsInitialGrid">
+      <div class="client-card reveal-scale delay-1">
+        <div class="client-logo"><img src="bt client logos/ultratech-cement-logo.png" alt="Ultratech"/></div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Ultratech Cements</div>
       </div>
+      <div class="client-card reveal-scale delay-2">
+        <div class="client-logo"><img src="bt client logos/jubli.png" alt="Jubilant"/></div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:var(--navy);text-align:center;">Jubilant Life Sciences</div>
+      </div>
+      <div class="client-card reveal-scale delay-3">
+        <div class="client-logo"><img src="bt client logos/adani-logo.svg" alt="Adani"/></div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Adani Cement</div>
+      </div>
+      <div class="client-card reveal-scale delay-4">
+        <div class="client-logo"><img src="bt client logos/ceat logo.png" alt="CEAT"/></div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">CEAT Tyres Ltd</div>
+      </div>
+      <div class="client-card reveal-scale delay-5">
+        <div class="client-logo"><img src="bt client logos/star paper mills.jpg" alt="Star Paper"/></div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:var(--navy);text-align:center;">Star Paper Mills</div>
+      </div>
+      <div class="client-card reveal-scale delay-6">
+        <div class="client-logo"><img src="bt client logos/Ambuja cement.webp.png" alt="Ambuja"/></div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Ambuja Cements</div>
+      </div>
+      <div class="client-card reveal-scale delay-7">
+        <div class="client-logo"><img src="bt client logos/hira-ferro.png" alt="Hira Ferro"/></div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Hira Ferro Alloys</div>
+      </div>
+      <div class="client-card reveal-scale delay-8">
+        <div class="client-logo"><img src="bt client logos/parrys sugar.jpg" alt="Parry"/></div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Parry Sugars</div>
+      </div>
+      <div class="client-card reveal-scale delay-1">
+        <div class="client-logo"><img src="bt client logos/Sunflag Iron & Steel.png" alt="Sunflag"/></div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:var(--navy);text-align:center;">Sunflag Iron &amp; Steel</div>
+      </div>
+      <div class="client-card reveal-scale delay-2">
+        <div class="client-logo"><img src="bt client logos/neuland_laboratories_limited_logo.jpg" alt="Neuland"/></div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Neuland Labs</div>
+      </div>
+      <div class="client-card reveal-scale delay-3">
+        <div class="client-logo"><img src="bt client logos/shyam metalics.webp" alt="Shyam"/></div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Shyam Metallics</div>
+      </div>
+      <div class="client-card reveal-scale delay-4">
+        <div class="client-logo"><img src="bt client logos/ck birla group.jpg" alt="Orient Paper"/></div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Orient Paper Mills</div>
+      </div>
+    </div>
+
+    <!-- Extra logos -->
+    <div class="clients-extra-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3" id="clientsExtraGrid">
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/oeg india.png" alt="OEG India"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Operational Energy Group India Ltd</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/sripathi.jpg" alt="Sripathi"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Sripathi Papers Ltd</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/rashmi group.jpg" alt="Rashmi"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Rashmi Metallicks</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/nsl textile.png" alt="NSL"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">NSL Textiles</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/sks ispat.jpg" alt="SKS Ispat"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">SKS Ispat &amp; Power Ltd</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/GR group.jpg" alt="GR Krishna"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">GR Krishna Ferro Alloys</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/shakambhari group.jpg" alt="Shakambhari"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Shakambhari Ispat &amp; Power</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/mivaan.jpg" alt="Mivaan"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Mivaan Steel Limited</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/NR Group.png" alt="NR Group"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">NR Ispat &amp; Power Pvt Ltd</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/Kraft papers Pvt Ltd, Assam.webp" alt="Kraft Papers"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Kraft Papers Pvt Ltd</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/bluecraft.webp" alt="Bluecraft"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Blue Craft Agro Pvt Ltd</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/Nano Green Power Pvt Ltd.webp" alt="Nano Green"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Nano Green Power Pvt Ltd</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/NAKODA-GROUP-LOGO.webp" alt="Nakoda"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Nakoda Ispat &amp; Power Ltd</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/minera.png" alt="Minera"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Minera Steels &amp; Power Pvt Ltd</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/mayur.png" alt="Kanpur Edibles"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Kanpur Edibles, Kanpur</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/msp-logo.png" alt="MSP"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">MSP Metallics</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/sakthi group.png" alt="Sakthi"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Shakti Sugars Ltd, T.N</div></div>
+    </div>
+
+    <div class="text-center mt-10 reveal-up delay-2" id="viewAllBtnWrap">
+      <button id="viewAllClientsBtn" onclick="toggleClients()">
+        <span id="btnText">View All Clients</span>
+        <svg class="btn-icon icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
     </div>
   </div>
 </section>
 
 <!-- ═══════════ CTA ═══════════ -->
 <section class="cta-section py-24">
-  <div style="position:absolute;top:-100px;left:-100px;width:500px;height:500px;border-radius:50%;filter:blur(80px);background:rgba(47,128,237,.07);pointer-events:none"></div>
-  <div style="position:absolute;bottom:-80px;right:-80px;width:400px;height:400px;border-radius:50%;filter:blur(80px);background:rgba(86,204,242,.07);pointer-events:none"></div>
-
+  <div style="position:absolute;top:-100px;left:-100px;width:500px;height:500px;border-radius:50%;filter:blur(80px);background:rgba(232,98,26,.06);pointer-events:none"></div>
+  <div style="position:absolute;bottom:-80px;right:-80px;width:400px;height:400px;border-radius:50%;filter:blur(80px);background:rgba(245,166,35,.06);pointer-events:none"></div>
   <div class="max-w-7xl mx-auto px-5 sm:px-8 relative" style="z-index:1">
     <div class="grid lg:grid-cols-2 gap-16 items-center">
-
-      <div class="reveal">
-        <div class="stag">Start Your Project</div>
+      <div>
+        <div class="stag-orange stag-reveal">Start Your Project</div>
         <h2 class="cta-h2">
-          Let's Build<br>
-          <span class="grad-text">Something</span><br>
-          Extraordinary
+          <span class="reveal-up delay-1 block">Let's Build</span>
+          <span class="reveal-up delay-2 block"><span class="grad-orange-text">Something</span></span>
+          <span class="reveal-up delay-3 block">Extraordinary</span>
         </h2>
-        <p class="about-p mt-5 max-w-md">
-          We collaborate with industries to design intelligent boiler systems that improve efficiency, reliability, and performance at scale. Tell us your plant's challenges.
-        </p>
-        <div class="flex flex-wrap gap-4 mt-8">
-          <a href="contact.html" class="btn-primary">
-            Start a Project
-            <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+        <p class="about-p mt-5 max-w-md reveal-up delay-4">We collaborate with industries to design intelligent boiler systems that improve efficiency, reliability, and performance at scale. Tell us your plant's challenges.</p>
+        <div class="flex flex-wrap gap-4 mt-8 reveal-up delay-5">
+          <a href="services.html" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#E8621A,#F5A623);color:#fff;border-radius:999px;padding:13px 30px;font-weight:700;font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.06em;text-decoration:none;transition:.25s;border:none;cursor:pointer;"
+             onmouseover="this.style.boxShadow='0 12px 32px rgba(232,98,26,.35)';this.style.transform='translateY(-2px)'"
+             onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+            Explore Services
+            <svg style="width:22px;height:22px" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
           </a>
-          <a href="services.html" class="btn-secondary">View Services</a>
+          <a href="services.html" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--orange);border:1.5px solid var(--orange);border-radius:999px;padding:12px 28px;font-weight:700;font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.06em;text-decoration:none;transition:.25s"
+             onmouseover="this.style.background='#FFF4ED'" onmouseout="this.style.background='#fff'">View Services</a>
         </div>
-        <p style="margin-top:20px;font-size:11px;color:var(--body);font-weight:600;letter-spacing:.06em">Trusted across Power · Steel · Sugar · Paper · Chemical · Food · Cement</p>
+        <p class="reveal-up delay-6" style="margin-top:20px;font-size:12px;color:var(--body);font-weight:600;letter-spacing:.06em;font-family:'Times New Roman',Times,serif;">Trusted across Power · Steel · Sugar · Paper · Chemical · Food · Cement</p>
       </div>
-
-      <!-- Contact cards -->
-      <div class="reveal space-y-3" style="transition-delay:.1s">
-        <div class="contact-card">
-          <div class="contact-icon">
-            <svg class="icon-svg" fill="none" stroke="#2F80ED" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
-          </div>
+      <div class="space-y-3">
+        <div class="contact-card reveal-right delay-1">
+          <div class="contact-icon"><svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg></div>
           <div>
-            <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--body);margin-bottom:4px">Call Us Directly</div>
-            <a href="tel:7708397080" style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;" class="grad-text">+91 77083 97080</a>
-            <div style="font-size:14px;color:var(--body);margin-top:2px;font-family:'Rockwell',Georgia,serif">Available for project discussions</div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--body);margin-bottom:4px;font-family:'Montserrat',sans-serif;">Call Us Directly</div>
+            <a href="tel:7708397080" style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;" class="grad-orange-text">+91 77083 97080</a><br>
+            <a href="tel:04244062193" style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;color:var(--navy);text-decoration:none;">+91 424 406 2193</a>
+            <div style="font-size:14px;color:var(--body);margin-top:2px;font-family:'Times New Roman',Times,serif;">Available for project discussions</div>
           </div>
         </div>
-        <div class="contact-card">
-          <div class="contact-icon">
-            <svg class="icon-svg" fill="none" stroke="#2F80ED" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
-          </div>
+        <div class="contact-card reveal-right delay-2">
+          <div class="contact-icon"><svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg></div>
           <div>
-            <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--body);margin-bottom:4px">Email Us</div>
-            <a href="mailto:boilertechenergy@gmail.com" style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;color:var(--navy);text-decoration:none;transition:color .2s" onmouseover="this.style.color='#2F80ED'" onmouseout="this.style.color='var(--navy)'">boilertechenergy@gmail.com</a>
+            <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--body);margin-bottom:4px;font-family:'Montserrat',sans-serif;">Email Us</div>
+            <a href="mailto:boilertechenergy@gmail.com" style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;color:var(--navy);text-decoration:none;display:block;transition:color .2s" onmouseover="this.style.color='#E8621A'" onmouseout="this.style.color='var(--navy)'">boilertechenergy@gmail.com</a>
+            <a href="mailto:director@boilertechenergy.com" style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;color:var(--navy);text-decoration:none;display:block;margin-top:3px;transition:color .2s" onmouseover="this.style.color='#E8621A'" onmouseout="this.style.color='var(--navy)'">director@boilertechenergy.com</a>
           </div>
         </div>
-        <div class="contact-card">
-          <div class="contact-icon">
-            <svg class="icon-svg" fill="none" stroke="#2F80ED" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
-          </div>
+        <div class="contact-card reveal-right delay-3">
+          <div class="contact-icon"><svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg></div>
           <div>
-            <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--body);margin-bottom:4px">Visit Our Office</div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--body);margin-bottom:4px;font-family:'Montserrat',sans-serif;">Visit Our Office</div>
             <div style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;color:var(--navy)">130/1, First Floor, Periyar Street</div>
-            <div style="font-size:14px;color:var(--body);margin-top:2px;font-family:'Rockwell',Georgia,serif">Backside of EDCC Bank, Erode – 638001</div>
-          </div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-icon">
-            <svg class="icon-svg" fill="none" stroke="#2F80ED" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253M3.284 14.253A8.959 8.959 0 0 1 3 12c0-1.016.167-1.994.474-2.91"/></svg>
-          </div>
-          <div>
-            <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--body);margin-bottom:4px">Website</div>
-            <a href="https://www.boilertechenergy.com" target="_blank" style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;" class="grad-text">www.boilertechenergy.com</a>
-            <div style="font-size:14px;color:var(--body);margin-top:2px;font-family:'Rockwell',Georgia,serif">Erode, Tamil Nadu — Pan India Operations</div>
+            <div style="font-size:14px;color:var(--body);margin-top:2px;font-family:'Times New Roman',Times,serif;">Backside of EDCC Bank, Erode – 638001</div>
           </div>
         </div>
       </div>
@@ -1798,39 +1329,28 @@ footer {
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer class="pt-14 pb-8">
   <div class="max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-    <div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
-
-        
-        <img src="Logo.png" alt="Logo" style="height:36px;width:auto"/>
-        <!-- <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:20px;color:#fff">
-          BOILER<span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">TECH</span>
-        </div> -->
-         <div class="flex flex-col leading-none">
-        
-       <span class="logo-text text-[#0B6EA8] text-[18px] tracking-tight">
-          BOILERTECH
-      </span>
-
-        <span class="logo-sub text-[#0B6EA8] text-[18px] mt-1">
-          ENERGY SERVICES
-        </span>
-
+    <div class="reveal-up delay-1">
+      <div style="display:flex;flex-direction:column;align-items:flex-start;margin-bottom:12px;">
+        <img src="assets/btlogo.png" alt="Logo" style="height:40px;width:auto;margin-bottom:6px;"/>
+        <span style="font-family:'Times New Roman',Times,serif;font-size:12px;font-style:italic;margin-top:1px;letter-spacing:.08em;text-align:right;color:#6B7280;">Your Trusted Performance Partner.</span>
       </div>
-      </div>
-      <div style="font-size:12px;font-weight:600;color:var(--secondary);margin-bottom:10px;letter-spacing:.06em">Your Trusted Performance Partner.</div>
-      <p style="font-family:'Rockwell'serif;font-size:13px;line-height:1.7;color:rgba(255,255,255,.4);margin-bottom:18px">
+      <p style="font-family:'Times New Roman',Times,serif;font-size:14.5px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:18px">
         Optimizing industrial boiler performance through engineering precision, operational reliability, and long-term sustainability since 2015.
       </p>
-      <div style="display:flex;gap:8px">
-        <div class="footer-social"><span class="material-symbols-outlined" style="font-size:16px;color:var(--secondary)">language</span></div>
-        <div class="footer-social"><span class="material-symbols-outlined" style="font-size:16px;color:var(--secondary)">mail</span></div>
+      <div style="display:flex;gap:10px">
+        <a href="https://www.linkedin.com/company/boilertech-energy-services" target="_blank" rel="noopener" class="footer-social" title="LinkedIn">
+          <svg style="width:17px;height:17px;fill:var(--secondary)" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="mailto:boilertechenergy@gmail.com" class="footer-social" title="Email">
+          <svg style="width:17px;height:17px;fill:none;stroke:var(--secondary);stroke-width:1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/>
+          </svg>
+        </a>
       </div>
     </div>
-
-    <div>
-      <h4 style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#fff;margin-bottom:18px">Expertise</h4>
-      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-family:'Rockwell'">
+    <div class="reveal-up delay-2">
+      <h4 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-bottom:18px">Expertise</h4>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
         <li><a class="footer-link" href="#">Boiler Performance Study</a></li>
         <li><a class="footer-link" href="#">Shutdown Audit</a></li>
         <li><a class="footer-link" href="#">Energy Conservation</a></li>
@@ -1839,39 +1359,38 @@ footer {
         <li><a class="footer-link" href="#">Capacity Enhancement</a></li>
       </ul>
     </div>
-
-    <div>
-      <h4 style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#fff;margin-bottom:18px">Company</h4>
-      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px; font-family:'Rockwell'">
+    <div class="reveal-up delay-3">
+      <h4 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-bottom:18px">Company</h4>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
         <li><a class="footer-link" href="about.html">About Us</a></li>
         <li><a class="footer-link" href="services.html">Services</a></li>
         <li><a class="footer-link" href="products.html">Products</a></li>
         <li><a class="footer-link" href="contact.html">Contact Us</a></li>
       </ul>
     </div>
-
-    <div>
-      <h4 style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#fff;margin-bottom:18px">Headquarters</h4>
-      <p style="font-family:'Rockwell',Georgia,serif;font-size:13px;line-height:1.8;color:rgba(255,255,255,.4)">
-        130/1, First Floor, Periyar Street,<br>
-        Erode – 638001, Tamil Nadu<br><br>
-        <a href="tel:7708397080" style="color:var(--secondary);text-decoration:none">+91 77083 97080</a><br>
-        <a href="mailto:boilertechenergy@gmail.com" style="color:rgba(255,255,255,.4);text-decoration:none;word-break:break-all">boilertechenergy@gmail.com</a>
-      </p>
+    <div class="reveal-up delay-4">
+      <h4 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-bottom:18px">Contact</h4>
+      <p style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--secondary);margin-bottom:4px">Office</p>
+      <p style="font-family:'Times New Roman',Times,serif;font-size:14px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:14px">130/1, First Floor, Periyar Street,<br>Erode – 638001, Tamil Nadu</p>
+      <p style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--secondary);margin-bottom:4px">Administrative Office:</p>
+      <p style="font-family:'Times New Roman',Times,serif;font-size:14px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:14px">219-A, Ramamoorthy Nagar,<br>Krishnampalayam Road,<br>Erode – 638003, Tamil Nadu</p>
+      <a href="tel:7708397080" style="display:block;color:var(--secondary);text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;margin-bottom:3px">+91 77083 97080</a>
+      <a href="tel:04244062193" style="display:block;color:rgba(255,255,255,.5);text-decoration:none;font-family:'Montserrat',sans-serif;font-size:13px;margin-bottom:6px">+91 424 406 2193</a>
+      <a href="mailto:boilertechenergy@gmail.com" style="display:block;color:rgba(255,255,255,.4);text-decoration:none;font-family:'Times New Roman',Times,serif;font-size:13px;word-break:break-all;margin-bottom:2px">boilertechenergy@gmail.com</a>
+      <a href="mailto:director@boilertechenergy.com" style="display:block;color:rgba(255,255,255,.4);text-decoration:none;font-family:'Times New Roman',Times,serif;font-size:13px;word-break:break-all">director@boilertechenergy.com</a>
     </div>
   </div>
-
   <div style="max-width:80rem;margin:32px auto 0;padding:20px 2rem 0;border-top:1px solid rgba(255,255,255,.07);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px">
-    <p style="font-size:12px;color:rgba(255,255,255,.3)">© 2026 BoilerTech Energy Services. All rights reserved.</p>
+    <p style="font-size:14px;color:rgba(255,255,255,.3);font-family:'Times New Roman',Times,serif;">© 2026 BoilerTech Energy Services. All rights reserved.</p>
     <div style="display:flex;gap:20px;flex-wrap:wrap">
-      <a class="footer-link" href="privacy-policy.html" style="font-size:12px">Privacy Policy</a>
-      <a class="footer-link" href="terms of condition.html" style="font-size:12px">Terms of Service</a>
-      <a class="footer-link" href="#" style="font-size:12px">Sitemap</a>
+      <a class="footer-link" href="privacy-policy.html" style="font-size:13px">Privacy Policy</a>
+      <a class="footer-link" href="terms of condition.html" style="font-size:13px">Terms of Service</a>
+      <a class="footer-link" href="#" style="font-size:13px">Sitemap</a>
     </div>
   </div>
 </footer>
 
-<!-- ═══════════ CHATBOT BUTTON ═══════════ -->
+<!-- ═══════════ CHATBOT ═══════════ -->
 <button id="chatbot-btn" aria-label="Open Chat Assistant">
   <div class="cb-pulse"></div>
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1879,7 +1398,6 @@ footer {
   </svg>
 </button>
 
-<!-- ═══════════ CHATBOT WINDOW ═══════════ -->
 <div id="chatbot-window" role="dialog" aria-label="Boilertech Chat Assistant">
   <div id="cb-header">
     <div class="cb-avatar"><img src="Logo.png" alt=""/></div>
@@ -1899,127 +1417,285 @@ footer {
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════
+   JAVASCRIPT — optimized, no console errors
+═══════════════════════════════════════ -->
 <script>
-/* LOADER */
-window.addEventListener("load",()=>{
-  setTimeout(()=>{
-    const l=document.getElementById("loader");
-    if(l){l.classList.add("hide");setTimeout(()=>l.remove(),600);}
-  },1400);
-});
+(function () {
+  'use strict';
 
-/* SCROLL REVEAL */
-const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('show');}),{threshold:.08});
-document.querySelectorAll('.reveal,.fl,.fr').forEach(el=>obs.observe(el));
+  /* ─── 1. LOADER — max 2 s ───────────────────────────────────── */
+  const loader = document.getElementById('loader');
 
-/* NAV SCROLL */
-window.addEventListener('scroll',()=>{
-  document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);
-});
-
-/* MOBILE MENU */
-const menuBtn=document.getElementById('menuBtn'),mob=document.getElementById('mobileMenu');
-let mOpen=false;
-menuBtn.addEventListener('click',()=>{
-  mOpen=!mOpen;mob.style.maxHeight=mOpen?'500px':'0';
-});
-
-/* ═══ CHATBOT ═══ */
-const cbBtn=document.getElementById('chatbot-btn');
-const cbWin=document.getElementById('chatbot-window');
-const cbClose=document.getElementById('cb-close');
-const cbMsgs=document.getElementById('cb-messages');
-const cbInput=document.getElementById('cb-input');
-const cbSend=document.getElementById('cb-send');
-const cbQuick=document.getElementById('cb-quick-area');
-
-const KB={
-  greet:["hi","hello","hey","vanakkam","good morning","good afternoon","good evening"],
-  services:["service","services","what do you do","offer","boiler","performance","shutdown","audit","cfd","ibr","capacity","energy","fuel","troubleshoot","root cause"],
-  contact:["contact","phone","email","call","reach","address","office","location","whatsapp","number"],
-  quote:["quote","quotation","price","cost","charge","rate","fee","estimate"],
-  about:["about","company","who","years","experience","founded","history","team"],
-  clients:["client","customer","project","ultratech","ambuja","adani","ceat","jubilant"],
-  industries:["industry","industries","sector","cement","steel","sugar","paper","chemical","food","textile","pharma","power"],
-};
-
-function matchTopic(msg){
-  const m=msg.toLowerCase();
-  for(const[t,kws]of Object.entries(KB)){if(kws.some(k=>m.includes(k)))return t;}
-  return null;
-}
-
-function getReply(topic){
-  const r={
-    greet:`Hello! Welcome to <strong>Boilertech Energy Services</strong>. I'm here to help you with information about our services, clients, or how to get in touch. How can I assist you?`,
-    services:`We offer comprehensive industrial boiler engineering:<br><br>• <strong>Performance & Operational Studies</strong><br>• <strong>Shutdown & Audit Services</strong><br>• <strong>Troubleshooting & Root Cause Analysis</strong><br>• <strong>Capacity Enhancement & Re-Engineering</strong><br>• <strong>Energy & Fuel Optimization</strong><br>• <strong>CFD Analysis & IBR Engineering</strong><br><br>Would you like details on any specific service?`,
-    contact:`You can reach us through:<br><br>📞 <a href="tel:7708397080" style="color:#2F80ED">+91 77083 97080</a><br>✉️ boilertechenergy@gmail.com<br>📍 130/1, Periyar Street, Erode – 638001<br>💬 <a href="https://wa.me/917708397080" target="_blank" style="color:#25d366">WhatsApp</a><br><br>Response within <strong>24–48 hours</strong>.`,
-    quote:`For a customized quote, please share:<br><br>• Industry/sector type<br>• Boiler capacity & type<br>• Service required<br>• Location<br><br>📞 <a href="tel:7708397080" style="color:#2F80ED">+91 77083 97080</a><br>Or <a href="contact.html" style="color:#2F80ED">fill our inquiry form →</a>`,
-    about:`<strong>Boilertech Energy Services</strong> — leading industrial boiler engineering, Erode, Tamil Nadu.<br><br>✓ <strong>10+ Years</strong> of engineering excellence<br>✓ <strong>IBR Certified</strong> designs<br>✓ <strong>Pan India</strong> operations<br>✓ <strong>500+ Projects</strong> delivered<br>✓ <strong>7+ Industries</strong> served`,
-    clients:`We've served <strong>50+ leading companies</strong> across India:<br><br>• Ultratech, Ambuja, Adani Cement<br>• Jubilant Life Sciences, Neuland Labs<br>• CEAT Tyres, NSL Textiles<br>• Hira Ferro Alloys, Shyam Metallics<br>• Star Paper Mills, Orient Paper Mills<br>• Parry Sugars, EID Parry India…`,
-    industries:`We serve <strong>7+ major industries</strong>:<br><br>Power Plants · Steel Plants · Sugar Plants<br>Paper Mills · Chemical Industries<br>Food Industries · Cement · Pharma · Textiles<br><br>Each solution is customized to the specific boiler type and requirements.`,
-  };
-  return r[topic]||`I can help you with:<br><br>• Our <strong>Services</strong><br>• <strong>Contact</strong> information<br>• Getting a <strong>Quote</strong><br>• <strong>About</strong> us<br>• Our <strong>Clients</strong><br><br>Or call: <a href="tel:7708397080" style="color:#2F80ED">+91 77083 97080</a>`;
-}
-
-function addMsg(text,from='bot'){
-  const w=document.createElement('div');
-  w.className=`cb-msg ${from}`;
-  w.innerHTML=from==='bot'
-    ?`<div class="cb-msg-icon"><img src="Logo.png" alt=""/></div><div class="cb-bubble">${text}</div>`
-    :`<div class="cb-bubble">${text}</div>`;
-  cbMsgs.appendChild(w);
-  cbMsgs.scrollTop=cbMsgs.scrollHeight;
-}
-
-function showTyping(){
-  const d=document.createElement('div');
-  d.className='cb-msg bot';d.id='cbTyping';
-  d.innerHTML=`<div class="cb-msg-icon"><img src="Logo.png" alt=""/></div><div class="cb-bubble"><div class="cb-typing"><span></span><span></span><span></span></div></div>`;
-  cbMsgs.appendChild(d);cbMsgs.scrollTop=cbMsgs.scrollHeight;
-}
-function removeTyping(){const t=document.getElementById('cbTyping');if(t)t.remove();}
-
-function showQuicks(opts){
-  cbQuick.innerHTML='';
-  const w=document.createElement('div');w.className='cb-quick-wrap';
-  opts.forEach(o=>{
-    const b=document.createElement('button');b.className='cb-quick';b.textContent=o;
-    b.addEventListener('click',()=>{cbQuick.innerHTML='';addMsg(o,'user');handleResp(o);});
-    w.appendChild(b);
-  });
-  cbQuick.appendChild(w);
-}
-
-function handleResp(msg){
-  showTyping();
-  setTimeout(()=>{
-    removeTyping();
-    addMsg(getReply(matchTopic(msg)));
-    showQuicks(['Our Services','Get a Quote','Contact Us','Our Clients']);
-  },900);
-}
-
-cbBtn.addEventListener('click',()=>{
-  cbWin.classList.toggle('open');
-  if(cbWin.classList.contains('open')&&cbMsgs.children.length===0){
-    setTimeout(()=>{
-      addMsg("Hello! Welcome to <strong>Boilertech Energy Services</strong>.<br>How can I help you today?");
-      showQuicks(['Our Services','Get a Quote','Contact Us','About Us','Our Clients']);
-    },200);
+  function dismissLoader() {
+    if (!loader || loader.classList.contains('hide')) return;
+    loader.classList.add('hide');
+    document.body.classList.remove('loader-active');
+    // Remove from DOM after fade completes so it can't block anything
+    setTimeout(() => { loader && loader.remove(); }, 600);
   }
-});
-cbClose.addEventListener('click',()=>cbWin.classList.remove('open'));
 
-function sendMsg(){
-  const t=cbInput.value.trim();if(!t)return;
-  cbQuick.innerHTML='';addMsg(t,'user');cbInput.value='';handleResp(t);
-}
-cbSend.addEventListener('click',sendMsg);
-cbInput.addEventListener('keydown',e=>{if(e.key==='Enter')sendMsg();});
+  // Dismiss at most 2 s after DOMContentLoaded, or immediately if page is
+  // already loaded (fast connection / cached).
+  const LOADER_MAX_MS = 1900;
+
+  if (document.readyState === 'complete') {
+    // Page fully loaded before script ran — short delay for animation
+    setTimeout(dismissLoader, 400);
+  } else {
+    window.addEventListener('load', () => setTimeout(dismissLoader, 300), { once: true });
+    // Hard cap: always gone by 2 s
+    setTimeout(dismissLoader, LOADER_MAX_MS);
+  }
+
+  /* ─── 2. NAV SCROLL ─────────────────────────────────────────── */
+  const mainNav = document.getElementById('mainNav');
+  let lastScrollY = 0;
+  let navTicking = false;
+
+  function onNavScroll() {
+    if (!navTicking) {
+      requestAnimationFrame(() => {
+        mainNav.classList.toggle('scrolled', window.scrollY > 60);
+        navTicking = false;
+      });
+      navTicking = true;
+    }
+  }
+  window.addEventListener('scroll', onNavScroll, { passive: true });
+
+  /* ─── 3. MOBILE MENU ────────────────────────────────────────── */
+  const menuBtn  = document.getElementById('menuBtn');
+  const mobMenu  = document.getElementById('mobileMenu');
+  let mOpen = false;
+
+  menuBtn.addEventListener('click', () => {
+    mOpen = !mOpen;
+    mobMenu.style.maxHeight = mOpen ? '500px' : '0';
+    mobMenu.setAttribute('aria-hidden', String(!mOpen));
+  });
+
+  /* ─── 4. SCROLL-REVEAL — single IntersectionObserver ────────── */
+  // Selects all animatable elements in one shot; no per-section observers.
+  const ANIM_CLASSES = [
+    '.reveal-up', '.reveal-left', '.reveal-right',
+    '.reveal-scale', '.reveal-fade', '.stagger-item',
+    '.hero-line-inner', '.stag-reveal',
+    // Legacy
+    '.reveal', '.fl', '.fr',
+  ];
+
+  const revealEls = document.querySelectorAll(ANIM_CLASSES.join(','));
+
+  // Map legacy class → visible class
+  function makeVisible(el) {
+    if (el.classList.contains('reveal') || el.classList.contains('fl') || el.classList.contains('fr')) {
+      el.classList.add('show');
+    } else {
+      el.classList.add('is-visible');
+    }
+    // Free the will-change after transition to save memory
+    const dur = parseFloat(getComputedStyle(el).transitionDuration || '0') * 1000;
+    setTimeout(() => { el.style.willChange = 'auto'; }, dur + 100);
+  }
+
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        makeVisible(entry.target);
+        revealObs.unobserve(entry.target); // fire once only
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -40px 0px',
+  });
+
+  revealEls.forEach(el => revealObs.observe(el));
+
+  /* ─── 5. HERO HEADING — trigger immediately after loader ─────── */
+  function triggerHeroLines() {
+    document.querySelectorAll('.hero-line-inner').forEach(el => {
+      el.classList.add('is-visible');
+    });
+    // Trigger the perf-card and hero paragraph too
+    document.querySelectorAll('.hero-p, .hero-section .reveal-up, .hero-section .reveal-right').forEach(el => {
+      el.classList.add('is-visible');
+    });
+  }
+  // Run slightly after loader dismisses
+  setTimeout(triggerHeroLines, 500);
+
+  /* ─── 6. COUNT-UP + PROGRESS BARS ──────────────────────────── */
+  const COUNTERS = [
+    { id: 'counter-projects', barId: 'pbar-projects', target: 500, suffix: '+', duration: 2000 },
+    { id: 'counter-clients',  barId: 'pbar-clients',  target: 100, suffix: '+', duration: 1800 },
+    { id: 'counter-years',    barId: 'pbar-years',    target: 10,  suffix: '+', duration: 1600 },
+  ];
+
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function animateCounter(el, target, suffix, duration) {
+    const start = performance.now();
+    function tick(now) {
+      const t = Math.min((now - start) / duration, 1);
+      el.textContent = Math.round(easeOutCubic(t) * target) + (t >= 1 ? suffix : '');
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function startCounters() {
+    COUNTERS.forEach(({ id, barId, target, suffix, duration }) => {
+      const el  = document.getElementById(id);
+      const bar = document.getElementById(barId);
+      if (el)  animateCounter(el, target, suffix, duration);
+      if (bar) {
+        // Read the data-width attribute set on each bar
+        const w = bar.getAttribute('data-width') || '80';
+        // rAF ensures the 0% starting width is painted first
+        requestAnimationFrame(() => {
+          bar.style.width = w + '%';
+        });
+      }
+    });
+  }
+
+  const perfCard = document.getElementById('perfCard');
+  if (perfCard) {
+    const counterObs = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        startCounters();
+        counterObs.disconnect();
+      }
+    }, { threshold: 0.3 });
+    counterObs.observe(perfCard);
+  }
+
+  /* ─── 7. VIEW-ALL CLIENTS TOGGLE ───────────────────────────── */
+  let clientsOpen = false;
+  window.toggleClients = function () {
+    const extraGrid = document.getElementById('clientsExtraGrid');
+    const btn       = document.getElementById('viewAllClientsBtn');
+    const btnText   = document.getElementById('btnText');
+    clientsOpen = !clientsOpen;
+    extraGrid.classList.toggle('open', clientsOpen);
+    btn.classList.toggle('open', clientsOpen);
+    btnText.textContent = clientsOpen ? 'Show Less' : 'View All Clients';
+    if (clientsOpen) {
+      setTimeout(() => extraGrid.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 120);
+    } else {
+      setTimeout(() => document.getElementById('clientsInitialGrid')
+        .scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+    }
+  };
+
+  /* ─── 8. CHATBOT ────────────────────────────────────────────── */
+  const cbBtn   = document.getElementById('chatbot-btn');
+  const cbWin   = document.getElementById('chatbot-window');
+  const cbClose = document.getElementById('cb-close');
+  const cbMsgs  = document.getElementById('cb-messages');
+  const cbInput = document.getElementById('cb-input');
+  const cbSend  = document.getElementById('cb-send');
+  const cbQuick = document.getElementById('cb-quick-area');
+
+  const KB = {
+    greet:      ['hi','hello','hey','vanakkam','good morning','good afternoon','good evening'],
+    services:   ['service','services','what do you do','offer','boiler','performance','shutdown','audit','cfd','ibr','capacity','energy','fuel','troubleshoot','root cause'],
+    contact:    ['contact','phone','email','call','reach','address','office','location','whatsapp','number'],
+    quote:      ['quote','quotation','price','cost','charge','rate','fee','estimate'],
+    about:      ['about','company','who','years','experience','founded','history','team'],
+    clients:    ['client','customer','project','ultratech','ambuja','adani','ceat','jubilant'],
+    industries: ['industry','industries','sector','cement','steel','sugar','paper','chemical','food','textile','pharma','power'],
+  };
+
+  function matchTopic(msg) {
+    const m = msg.toLowerCase();
+    for (const [t, kws] of Object.entries(KB)) {
+      if (kws.some(k => m.includes(k))) return t;
+    }
+    return null;
+  }
+
+  const REPLIES = {
+    greet:      `Hello! Welcome to <strong>Boilertech Energy Services</strong>. I'm here to help you with information about our services, clients, or how to get in touch. How can I assist you?`,
+    services:   `We offer comprehensive industrial boiler engineering:<br><br>• <strong>Performance &amp; Operational Studies</strong><br>• <strong>Shutdown &amp; Audit Services</strong><br>• <strong>Troubleshooting &amp; Root Cause Analysis</strong><br>• <strong>Capacity Enhancement &amp; Re-Engineering</strong><br>• <strong>Energy &amp; Fuel Optimization</strong><br>• <strong>CFD Analysis &amp; IBR Engineering</strong><br><br>Would you like details on any specific service?`,
+    contact:    `You can reach us through:<br><br>📞 <a href="tel:7708397080" style="color:#2F80ED">+91 77083 97080</a><br>📞 <a href="tel:04244062193" style="color:#2F80ED">+91 424 406 2193</a><br>✉️ boilertechenergy@gmail.com<br>✉️ director@boilertechenergy.com<br>📍 130/1, Periyar Street, Erode – 638001<br>💬 <a href="https://wa.me/917708397080" target="_blank" style="color:#25d366">WhatsApp</a><br><br>Response within <strong>24–48 hours</strong>.`,
+    quote:      `For a customized quote, please share:<br><br>• Industry/sector type<br>• Boiler capacity &amp; type<br>• Service required<br>• Location<br><br>📞 <a href="tel:7708397080" style="color:#2F80ED">+91 77083 97080</a><br>Or <a href="contact.html" style="color:#2F80ED">fill our inquiry form →</a>`,
+    about:      `<strong>Boilertech Energy Services</strong> — leading industrial boiler engineering, Erode, Tamil Nadu.<br><br>✓ <strong>10+ Years</strong> of engineering excellence<br>✓ <strong>IBR Certified</strong> designs<br>✓ <strong>Pan India</strong> operations<br>✓ <strong>500+ Projects</strong> delivered<br>✓ <strong>7+ Industries</strong> served`,
+    clients:    `We've served <strong>500+ leading companies</strong> across India:<br><br>• Ultratech, Ambuja, Adani Cement<br>• Jubilant Life Sciences, Neuland Labs<br>• CEAT Tyres, NSL Textiles<br>• Hira Ferro Alloys, Shyam Metallics<br>• Star Paper Mills, Orient Paper Mills<br>• Parry Sugars &amp; many more…`,
+    industries: `We serve <strong>7+ major industries</strong>:<br><br>Power Plants · Steel Plants · Sugar Plants<br>Paper Mills · Chemical Industries<br>Food Industries · Cement · Pharma · Textiles<br><br>Each solution is customized to the specific boiler type and requirements.`,
+  };
+
+  function getReply(topic) {
+    return REPLIES[topic] || `I can help you with:<br><br>• Our <strong>Services</strong><br>• <strong>Contact</strong> information<br>• Getting a <strong>Quote</strong><br>• <strong>About</strong> us<br>• Our <strong>Clients</strong><br><br>Or call: <a href="tel:7708397080" style="color:#2F80ED">+91 77083 97080</a>`;
+  }
+
+  function addMsg(text, from = 'bot') {
+    const w = document.createElement('div');
+    w.className = `cb-msg ${from}`;
+    w.innerHTML = from === 'bot'
+      ? `<div class="cb-msg-icon"><img src="Logo.png" alt=""/></div><div class="cb-bubble">${text}</div>`
+      : `<div class="cb-bubble">${text}</div>`;
+    cbMsgs.appendChild(w);
+    requestAnimationFrame(() => { cbMsgs.scrollTop = cbMsgs.scrollHeight; });
+  }
+
+  function showTyping() {
+    const d = document.createElement('div');
+    d.className = 'cb-msg bot'; d.id = 'cbTyping';
+    d.innerHTML = `<div class="cb-msg-icon"><img src="Logo.png" alt=""/></div><div class="cb-bubble"><div class="cb-typing"><span></span><span></span><span></span></div></div>`;
+    cbMsgs.appendChild(d);
+    requestAnimationFrame(() => { cbMsgs.scrollTop = cbMsgs.scrollHeight; });
+  }
+  function removeTyping() { const t = document.getElementById('cbTyping'); if (t) t.remove(); }
+
+  function showQuicks(opts) {
+    cbQuick.innerHTML = '';
+    const w = document.createElement('div');
+    w.className = 'cb-quick-wrap';
+    opts.forEach(o => {
+      const b = document.createElement('button');
+      b.className = 'cb-quick'; b.textContent = o;
+      b.addEventListener('click', () => { cbQuick.innerHTML = ''; addMsg(o, 'user'); handleResp(o); });
+      w.appendChild(b);
+    });
+    cbQuick.appendChild(w);
+  }
+
+  function handleResp(msg) {
+    showTyping();
+    setTimeout(() => {
+      removeTyping();
+      addMsg(getReply(matchTopic(msg)));
+      showQuicks(['Our Services', 'Get a Quote', 'Contact Us', 'Our Clients']);
+    }, 900);
+  }
+
+  cbBtn.addEventListener('click', () => {
+    const isOpen = cbWin.classList.toggle('open');
+    if (isOpen && cbMsgs.children.length === 0) {
+      setTimeout(() => {
+        addMsg("Hello! Welcome to <strong>Boilertech Energy Services</strong>.<br>How can I help you today?");
+        showQuicks(['Our Services', 'Get a Quote', 'Contact Us', 'About Us', 'Our Clients']);
+      }, 200);
+    }
+  });
+  cbClose.addEventListener('click', () => cbWin.classList.remove('open'));
+
+  function sendMsg() {
+    const t = cbInput.value.trim();
+    if (!t) return;
+    cbQuick.innerHTML = '';
+    addMsg(t, 'user');
+    cbInput.value = '';
+    handleResp(t);
+  }
+  cbSend.addEventListener('click', sendMsg);
+  cbInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendMsg(); });
+
+})();
 </script>
-<script>
-  lucide.createIcons();
-</script>
+<script>lucide.createIcons();</script>
 </body>
 </html>

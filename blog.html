@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Navbar & Footer – Boilertech Energy Services</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════
+   DESIGN TOKENS — IDENTICAL TO ORIGINAL
+═══════════════════════════════════════ */
+:root {
+  --primary:    #2F80ED;
+  --secondary:  #56CCF2;
+  --navy:       #16324F;
+  --body:       #5B6B7B;
+  --bg-soft:    #F5FAFF;
+  --card-bg:    #FFFFFF;
+  --border:     #DCEBFF;
+  --orange:     #E8621A;
+  --orange-soft:#FFF4ED;
+  --orange-border:#FDDEC8;
+  --green:      #0C7A4B;
+  --green-soft: #EDFAF4;
+  --green-border:#B6E8D3;
+  --grad:       linear-gradient(135deg, #2F80ED, #56CCF2);
+  --grad-dark:  linear-gradient(135deg, #16324F, #1E4D7B);
+  --grad-orange:linear-gradient(135deg, #E8621A, #F5A623);
+  --grad-green: linear-gradient(135deg, #0C7A4B, #1DB97A);
+}
+
+*, body { box-sizing: border-box; }
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Rockwell', 'Rockwell Nova', 'Courier Bold', Georgia, serif;
+}
+
+body, p, li {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+nav, button, .btn {
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background: #fff;
+  color: var(--navy);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* spacer so content shows below fixed nav */
+  padding-top: 72px;
+}
+
+/* ═══ NAVBAR ═══ */
+#mainNav {
+  position: fixed; top: 0; width: 100%; z-index: 500;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow .3s, background .3s;
+}
+#mainNav.scrolled { box-shadow: 0 4px 32px rgba(47,128,237,.09); }
+
+.logo-tagline-nav {
+  font-family: 'Times New Roman', Times, serif; font-size: 11px;
+  font-style: italic; margin-top: 1px; letter-spacing: .08em;
+  text-align:end; color:#6B7280;
+}
+
+.nav-link {
+  font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;
+  color: var(--navy); letter-spacing: .05em; text-decoration: none;
+  position: relative; padding-bottom: 4px; transition: color .25s;
+}
+.nav-link::after {
+  content: ''; position: absolute; left: 0; bottom: -2px;
+  width: 0; height: 2px; background: var(--grad); border-radius: 2px;
+  transition: width .3s cubic-bezier(.4,0,.2,1);
+}
+.nav-link:hover { color: var(--primary); }
+.nav-link:hover::after { width: 100%; }
+.nav-link.active { color: var(--primary); }
+.nav-link.active::after { width: 100%; }
+
+/* ═══ MOBILE MENU ═══ */
+#mobileMenu {
+  background: #fff;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .5s cubic-bezier(.4,0,.2,1);
+}
+#mobileMenu .nav-link {
+  display:inline-block; width:auto; font-size:14px; font-weight:600;
+}
+
+/* ═══ FOOTER ═══ */
+footer { background: var(--navy); }
+
+.footer-link {
+  color: rgba(255,255,255,.5);
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color .2s;
+}
+.footer-link:hover { color: var(--secondary); }
+
+.footer-social {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background .2s, border-color .2s; text-decoration: none;
+}
+.footer-social:hover {
+  background: rgba(47,128,237,.25); border-color: rgba(47,128,237,.4);
+}
+
+.grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.icon-svg { width:22px;height:22px;display:block; }
+
+/* ═══ DEMO BODY SPACER ═══ */
+.demo-body {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #F5FAFF 0%, #EEF6FF 100%);
+}
+.demo-body p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--body);
+  border: 1.5px dashed var(--border);
+  padding: 20px 40px;
+  border-radius: 12px;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════ -->
+<nav id="mainNav">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-5 sm:px-8 py-2.5">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-3">
+      <div class="flex flex-col leading-none">
+        <img src="assets/btlogo.png" alt="Boilertech Energy Services Logo" class="h-12 w-auto"
+             onerror="this.style.display='none'"/>
+        <!-- Fallback text logo if image missing -->
+        <span style="font-family:'Rockwell',Georgia,serif;font-size:18px;font-weight:900;color:var(--navy);letter-spacing:-.5px;display:none" id="logoFallback">Boilertech</span>
+        <span class="logo-tagline-nav">Your Trusted Performance Partner.</span>
+      </div>
+    </div>
+
+    <!-- Desktop Nav Links -->
+    <div class="hidden lg:flex items-center gap-7 ml-auto">
+      <a href="index.html"    class="nav-link">Home</a>
+      <a href="about.html"   class="nav-link">About</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="products.html" class="nav-link">Products</a>
+      <a href="blog.html"    class="nav-link  active">Blog</a>
+      <a href="contact.html"  class="nav-link">Contact</a>
+      <a href="career.html"   class="nav-link">Career</a>
+      <a href="admin.html"   class="nav-link">Admin</a>
+
+    </div>
+
+    <!-- Hamburger -->
+    <button id="menuBtn" class="lg:hidden flex flex-col gap-[5px] p-1" aria-label="Toggle menu">
+      <span class="w-6 h-0.5 block" style="background:var(--navy)"></span>
+      <span class="w-6 h-0.5 block" style="background:var(--navy)"></span>
+      <span class="w-6 h-0.5 block" style="background:var(--navy)"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu">
+    <div class="flex flex-col px-6 py-5 gap-4">
+      <a href="index.html"    class="nav-link" style="font-size:14px">Home</a>
+      <a href="about.html"   class="nav-link" style="font-size:14px">About</a>
+      <a href="services.html" class="nav-link " style="font-size:14px">Services</a>
+      <a href="products.html" class="nav-link" style="font-size:14px">Products</a>
+      <a href="blog.html"    class="nav-link active" style="font-size:14px">Blog</a>
+      <a href="contact.html"  class="nav-link" style="font-size:14px">Contact</a>
+      <a href="career.html"   class="nav-link" style="font-size:14px">Career</a>
+       <a href="admin.html"   class="nav-link" style="font-size:14px">Admin</a>
+
+    </div>
+  </div>
+</nav>
+<div class="demo-body">
+  <!-- <p>Your page content goes here</p> -->
+
+
+
+
+</div>
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer class="pt-14 pb-8">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+    <!-- Col 1: Brand -->
+    <div>
+      <div style="display:flex;flex-direction:column;align-items:flex-start;margin-bottom:12px;">
+        <img src="assets/btlogo.png" alt="Boilertech Logo"
+             style="height:40px;width:auto;margin-bottom:6px;"
+             onerror="this.style.display='none'"/>
+        <span style="font-family:'Times New Roman',Times,serif;font-size:12px;font-style:italic;margin-top:1px;letter-spacing:.08em;color:#6B7280;">Your Trusted Performance Partner.</span>
+      </div>
+      <p style="font-family:'Times New Roman',Times,serif;font-size:14.5px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:18px">
+        Optimizing industrial boiler performance through engineering precision, operational reliability, and long-term sustainability since 2015.
+      </p>
+      <div style="display:flex;gap:10px">
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/company/boilertech-energy-services"
+           target="_blank" rel="noopener" class="footer-social" title="LinkedIn">
+          <svg style="width:17px;height:17px;fill:var(--secondary)" viewBox="0 0 24 24">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+        <!-- Email -->
+        <a href="mailto:boilertechenergy@gmail.com" class="footer-social" title="Email">
+          <svg style="width:17px;height:17px;fill:none;stroke:var(--secondary);stroke-width:1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Col 2: Services -->
+    <div>
+      <h4 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-bottom:18px">Services</h4>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+        <li><a class="footer-link" href="#core-services">Boiler Performance Study</a></li>
+        <li><a class="footer-link" href="#core-services">Shutdown Audit</a></li>
+        <li><a class="footer-link" href="#core-services">Energy Conservation</a></li>
+        <li><a class="footer-link" href="#engineering">CFD Analysis</a></li>
+        <li><a class="footer-link" href="#engineering">IBR Piping Design</a></li>
+        <li><a class="footer-link" href="#core-services">Capacity Enhancement</a></li>
+      </ul>
+    </div>
+
+    <!-- Col 3: Company -->
+    <div>
+      <h4 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-bottom:18px">Company</h4>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+        <li><a class="footer-link" href="about.html">About Us</a></li>
+        <li><a class="footer-link" href="services.html">Services</a></li>
+        <li><a class="footer-link" href="products.html">Products</a></li>
+        <li><a class="footer-link" href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Col 4: Contact -->
+    <div>
+      <h4 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-bottom:18px">Contact</h4>
+
+      <p style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--secondary);margin-bottom:4px">Office</p>
+      <p style="font-family:'Times New Roman',Times,serif;font-size:14px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:14px">
+        130/1, First Floor, Periyar Street,<br>Erode – 638001, Tamil Nadu
+      </p>
+
+      <p style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--secondary);margin-bottom:4px">Administrative Office</p>
+      <p style="font-family:'Times New Roman',Times,serif;font-size:14px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:14px">
+        219-A, Ramamoorthy Nagar,<br>Krishnampalayam Road,<br>Erode – 638003, Tamil Nadu
+      </p>
+
+      <a href="tel:7708397080"
+         style="display:block;color:var(--secondary);text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;margin-bottom:3px">
+        +91 77083 97080
+      </a>
+      <a href="tel:04244062193"
+         style="display:block;color:rgba(255,255,255,.5);text-decoration:none;font-family:'Montserrat',sans-serif;font-size:13px;margin-bottom:6px">
+        +91 424 406 2193
+      </a>
+      <a href="mailto:boilertechenergy@gmail.com"
+         style="display:block;color:rgba(255,255,255,.4);text-decoration:none;font-family:'Times New Roman',Times,serif;font-size:13px;word-break:break-all;margin-bottom:2px">
+        boilertechenergy@gmail.com
+      </a>
+      <a href="mailto:director@boilertechenergy.com"
+         style="display:block;color:rgba(255,255,255,.4);text-decoration:none;font-family:'Times New Roman',Times,serif;font-size:13px;word-break:break-all">
+        director@boilertechenergy.com
+      </a>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div style="max-width:80rem;margin:32px auto 0;padding:20px 2rem 0;border-top:1px solid rgba(255,255,255,.07);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px">
+    <p style="font-size:14px;color:rgba(255,255,255,.3);font-family:'Times New Roman',Times,serif;">
+      © 2026 BoilerTech Energy Services. All rights reserved.
+    </p>
+    <div style="display:flex;gap:20px;flex-wrap:wrap">
+      <a class="footer-link" href="privacy-policy.html"        style="font-size:13px">Privacy Policy</a>
+      <a class="footer-link" href="terms of condition.html"    style="font-size:13px">Terms of Service</a>
+      <a class="footer-link" href="#"                          style="font-size:13px">Sitemap</a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════ -->
+<script>
+/* ── Nav scroll shadow ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ── Mobile menu toggle ── */
+const menuBtn = document.getElementById('menuBtn');
+const mob     = document.getElementById('mobileMenu');
+let mOpen = false;
+
+menuBtn.addEventListener('click', () => {
+  mOpen = !mOpen;
+  mob.style.maxHeight = mOpen ? '500px' : '0';
+});
+
+/* ── Logo image fallback ── */
+const logoImg = document.querySelector('nav img');
+if (logoImg) {
+  logoImg.addEventListener('error', () => {
+    logoImg.style.display = 'none';
+    const fb = document.getElementById('logoFallback');
+    if (fb) fb.style.display = 'inline';
+  });
+}
+</script>
+
+</body>
+</html>

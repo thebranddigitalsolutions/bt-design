@@ -1,1243 +1,1378 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Contact – Boilertech Energy Services</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<title>Contact Us – Boilertech Energy Services</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{fontFamily:{manrope:['Manrope','sans-serif'],bebas:['Bebas Neue','sans-serif']}}}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://unpkg.com/lucide@latest"></script>
 <style>
-:root{
-  --blue:#1a7fa8;
-  --blue-bright:#1CB5D8;
-  --blue2:#145f80;
-  --orange:#E8830A;
-  --orange2:#c96f00;
-  --dk:#05080e;
-  --dk2:#070a12;
-  --dk-card:#0a0e18;
-  --dk-border:rgba(26,127,168,.1);
-  --dk-border2:rgba(26,127,168,.2);
-  --dk-muted:rgba(190,205,220,.45);
-  --dk-muted2:rgba(190,205,220,.72);
-  --lt:#f5f7fa;
-  --lt2:#eef1f5;
-  --lt-border:rgba(0,0,0,.06);
-  --lt-border2:rgba(0,0,0,.1);
-  --lt-muted:#6b7585;
-  --lt-text:#0d1117;
-  --steel:#c8d4e0;
-}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'Manrope',sans-serif;background:var(--dk);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:var(--dk);}::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px;}
-
-.topbar{position:fixed;top:0;left:0;width:100%;height:2px;z-index:500;background:linear-gradient(90deg,var(--blue),var(--orange),var(--blue-bright),var(--blue));background-size:300% 100%;animation:barShift 6s linear infinite;}
-@keyframes barShift{0%{background-position:0%}100%{background-position:300%}}
-/* ── NAV start ── */
-.logo-text{
-  font-family:'Montserrat',sans-serif;
-  font-weight:700;
-  letter-spacing:1px;
-  line-height:1;
+/* ═══════════════════════════════════════
+   DESIGN TOKENS — identical to index
+═══════════════════════════════════════ */
+:root {
+  --primary:    #2F80ED;
+  --secondary:  #56CCF2;
+  --navy:       #16324F;
+  --body:       #5B6B7B;
+  --bg-soft:    #F5FAFF;
+  --card-bg:    #FFFFFF;
+  --border:     #DCEBFF;
+  --orange:     #E8621A;
+  --orange-soft:#FFF4ED;
+  --orange-border:#FDDEC8;
+  --green:      #0C7A4B;
+  --green-soft: #EDFAF4;
+  --green-border:#B6E8D3;
+  --grad:       linear-gradient(135deg, #2F80ED, #56CCF2);
+  --grad-dark:  linear-gradient(135deg, #16324F, #1E4D7B);
+  --grad-orange:linear-gradient(135deg, #E8621A, #F5A623);
+  --grad-green: linear-gradient(135deg, #0C7A4B, #1DB97A);
 }
 
-.logo-sub{
-  font-family:'Montserrat',sans-serif;
-  letter-spacing:1px;
-  font-weight:700;
+*, body { box-sizing: border-box; }
+
+h1,h2,h3,h4,h5,h6,
+.section-title,.hero-title,
+.svc-h2,.svc-h3,.why-h2,.why-h3,
+.clients-h2,.cta-h2,.logo-text,.hero-h1 {
+  font-family: 'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif;
 }
 
-.nav-link{
-  position:relative;
-  transition:.3s;
+body, p, li, .description, .svc-p, .about-p,
+.why-p, .hero-p, .footer-link, .footer-text, .cb-bubble {
+  font-family: 'Times New Roman', Times, serif;
 }
 
-.nav-link::after{
-  content:'';
-  position:absolute;
-  left:0;
-  bottom:-8px;
-  width:0;
-  height:2px;
-  background:#FFA500;
-  transition:.3s;
+nav, button, .btn, .stats-number {
+  font-family: 'Montserrat', sans-serif;
 }
 
-.nav-link:hover::after{
-  width:100%;
+body {
+  background: #fff;
+  color: var(--navy);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-.nav-link:hover{
-  color:#FFA500;
+/* ═══════════════════════════════════════
+   NAVBAR — exact match
+═══════════════════════════════════════ */
+#mainNav {
+  position: fixed; top: 0; width: 100%; z-index: 500;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow .3s, background .3s;
+}
+#mainNav.scrolled { box-shadow: 0 4px 32px rgba(47,128,237,.09); }
+
+.logo-tagline-nav {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 11px;
+  font-style: italic;
+  margin-top: 1px;
+  letter-spacing: .08em;
+  text-align: end;
+  color: #6B7280;
+
 }
 
-/* nav end */
-/* ═══════════════════════════════
-   HERO
-═══════════════════════════════ */
-.hero{
-  min-height:100vh;
-  display:flex;align-items:center;
-  padding:120px 40px 80px;
-  background:var(--dk);
-  position:relative;overflow:hidden;
+.nav-link {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy); letter-spacing: .05em;
+  text-decoration: none;
+  position: relative; padding-bottom: 4px;
+  transition: color .25s;
+}
+.nav-link::after {
+  content: ''; position: absolute;
+  left: 0; bottom: -2px;
+  width: 0; height: 2px;
+  background: var(--grad);
+  border-radius: 2px;
+  transition: width .3s cubic-bezier(.4,0,.2,1);
+}
+.nav-link:hover { color: var(--primary); }
+.nav-link:hover::after { width: 100%; }
+.nav-link.active { color: var(--primary); }
+.nav-link.active::after { width: 100%; }
+
+/* ═══════════════════════════════════════
+   MOBILE MENU — fixed spacing
+═══════════════════════════════════════ */
+#mobileMenu {
+  background: #fff;
+  border-top: 1px solid var(--border);
+  overflow: hidden; max-height: 0;
+  transition: max-height .5s cubic-bezier(.4,0,.2,1);
+}
+#mobileMenu .flex { gap: 0; }
+#mobileMenu a {
+  display: block;
+  padding: 12px 24px;
+  border-bottom: 1px solid rgba(220,235,255,.4);
+  font-size: 14px !important;
+  line-height: 1.5;
+  width: 100%;
+}
+#mobileMenu a:last-child { border-bottom: none; }
+
+/* ═══════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════ */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--grad);
+  color: #fff; border-radius: 999px;
+  padding: 13px 30px; font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px; letter-spacing: .06em;
+  border: none; cursor: pointer;
+  transition: transform .25s, box-shadow .25s;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(47,128,237,.35);
 }
 
-/* Subtle topographic lines */
-.hero-topo{
-  position:absolute;inset:0;pointer-events:none;z-index:1;
-  background-image:
-    repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(26,127,168,.03) 80px),
-    repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(26,127,168,.03) 80px);
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #fff; color: var(--primary);
+  border: 1.5px solid var(--primary);
+  border-radius: 999px;
+  padding: 12px 28px; font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px; letter-spacing: .06em;
+  cursor: pointer; text-decoration: none;
+  transition: background .25s, color .25s, transform .25s, box-shadow .25s;
 }
-/* Single strong diagonal accent */
-.hero-diagonal{
-  position:absolute;top:0;right:0;
-  width:52%;height:100%;
-  background:linear-gradient(135deg,transparent 0%,rgba(26,127,168,.032) 50%,transparent 100%);
-  border-left:1px solid rgba(26,127,168,.06);
-  clip-path:polygon(8% 0,100% 0,100% 100%,0% 100%);
-  pointer-events:none;z-index:1;
-}
-/* Ambient light */
-.hero-ambient{
-  position:absolute;top:-20%;left:30%;
-  width:700px;height:600px;
-  pointer-events:none;z-index:1;
-  background:radial-gradient(ellipse,rgba(26,127,168,.04) 0%,transparent 65%);
-}
-.hero-ambient-2{
-  position:absolute;bottom:-10%;right:5%;
-  width:400px;height:400px;
-  pointer-events:none;z-index:1;
-  background:radial-gradient(ellipse,rgba(232,131,10,.03) 0%,transparent 65%);
+.btn-secondary:hover {
+  background: var(--bg-soft);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(47,128,237,.15);
 }
 
-.hero-in{
-  position:relative;z-index:10;
-  max-width:1280px;margin:0 auto;width:100%;
-  display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center;
+/* ═══════════════════════════════════════
+   SECTION TAGS
+═══════════════════════════════════════ */
+.stag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--primary);
+  background: rgba(47,128,237,.08);
+  border: 1px solid rgba(47,128,237,.2);
+  padding: 6px 14px; border-radius: 999px;
+  margin-bottom: 18px;
+}
+.stag::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--primary); }
+
+.stag-orange {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--orange);
+  background: rgba(232,98,26,.08);
+  border: 1px solid rgba(232,98,26,.2);
+  padding: 6px 14px; border-radius: 999px;
+  margin-bottom: 18px;
+}
+.stag-orange::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--orange); }
+
+.stag-green {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--green);
+  background: rgba(12,122,75,.08);
+  border: 1px solid rgba(12,122,75,.2);
+  padding: 6px 14px; border-radius: 999px;
+  margin-bottom: 18px;
+}
+.stag-green::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--green); }
+
+/* ═══════════════════════════════════════
+   HERO — White + Blue (same as index)
+═══════════════════════════════════════ */
+.hero-section {
+  min-height: 50vh;
+  background: linear-gradient(160deg, #ffffff 0%, #EEF6FF 60%, #D6ECFF 100%);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center;
+  padding-top: 5px;
+}
+@keyframes floatImage{
+  0%,100%{
+    transform:translateY(0px);
+  }
+  50%{
+    transform:translateY(-14px);
+  }
+}
+.hero-dot-grid {
+  position: absolute; inset: 0; opacity: .3;
+  background-image: radial-gradient(circle, #DCEBFF 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+.hero-h1 {
+  font-family: 'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif;
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 900; line-height: 1.05;
+  color: var(--navy); letter-spacing: -0.5px;
+}
+.hero-h1 .gradient-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-p {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 17px; line-height: 1.85;
+  color: var(--body); max-width: 520px;
+  margin-top: 20px; letter-spacing: 0.01em;
 }
 
-/* Left: text */
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:10px;
-  margin-bottom:32px;
-  animation:fadeUp .5s ease both;
-}
-.hero-eyebrow-line{width:24px;height:1px;background:var(--orange);}
-.hero-eyebrow-text{font-size:.68rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--orange);}
-
-.hero-h1{
-  font-family:'Manrope',sans-serif;
-  font-size:clamp(3.2rem,5vw,5.6rem);
-  font-weight:900;
-  line-height:1.0;
-  letter-spacing:-2px;
-  color:#fff;
-  animation:fadeUp .5s .08s ease both;
-}
-.hero-h1 .accent{
-  display:block;
-  color:transparent;
-  -webkit-text-stroke:1px rgba(28,181,216,.4);
-  letter-spacing:-1px;
-}
-.hero-h1 .solid{display:block;color:#fff;}
-
-.hero-divider{width:48px;height:2px;background:var(--orange);margin:28px 0;animation:fadeUp .5s .15s ease both;}
-
-.hero-desc{
-  font-size:.95rem;font-weight:400;line-height:1.85;
-  color:var(--dk-muted2);
-  max-width:420px;
-  animation:fadeUp .5s .2s ease both;
+/* ═══════════════════════════════════════
+   ABOUT / SECTION TEXT
+═══════════════════════════════════════ */
+.about-p {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px; line-height: 1.9;
+  color: var(--body); letter-spacing: 0.01em;
 }
 
-.hero-contacts{
-  display:flex;flex-direction:column;gap:0;
-  margin-top:36px;
-  border:1px solid var(--dk-border);
-  border-radius:10px;
-  overflow:hidden;
-  animation:fadeUp .5s .28s ease both;
+/* ═══════════════════════════════════════
+   CONTACT INFO CARDS — orange theme
+═══════════════════════════════════════ */
+.contact-info-card {
+  background: #fff;
+  border: 1px solid var(--orange-border);
+  border-radius: 16px; padding: 26px;
+  display: flex; align-items: flex-start; gap: 16px;
+  transition: border-color .25s, box-shadow .25s, transform .25s;
+  position: relative; overflow: hidden;
 }
-.hero-contact-row{
-  display:flex;align-items:center;gap:16px;
-  padding:14px 20px;
-  border-bottom:1px solid var(--dk-border);
-  text-decoration:none;
-  transition:background .2s;
+.contact-info-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 0;
+  background: var(--grad-orange);
+  transition: height .35s;
+  border-radius: 16px 16px 0 0;
 }
-.hero-contact-row:last-child{border-bottom:none;}
-.hero-contact-row:hover{background:rgba(26,127,168,.05);}
-.hc-icon{
-  width:34px;height:34px;border-radius:6px;
-  flex-shrink:0;display:flex;align-items:center;justify-content:center;
-  font-size:.85rem;
-  background:rgba(26,127,168,.08);
-  border:1px solid rgba(26,127,168,.12);
+.contact-info-card:hover::before { height: 3px; }
+.contact-info-card:hover {
+  border-color: rgba(232,98,26,.4);
+  box-shadow: 0 16px 40px rgba(232,98,26,.12);
+  transform: translateY(-4px);
 }
-.hc-label{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dk-muted);display:block;}
-.hc-val{font-size:.82rem;font-weight:700;color:rgba(255,255,255,.85);margin-top:1px;}
-
-.hero-cta{
-  display:inline-flex;align-items:center;gap:10px;
-  margin-top:28px;
-  background:var(--orange);
-  color:#fff;
-  font-weight:800;font-size:.82rem;
-  padding:13px 26px;
-  border-radius:6px;
-  border:none;cursor:pointer;
-  font-family:'Manrope',sans-serif;
-  letter-spacing:.5px;
-  transition:all .25s;
-  animation:fadeUp .5s .33s ease both;
+.contact-info-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: rgba(232,98,26,.08);
+  border: 1px solid rgba(232,98,26,.2);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
 }
-.hero-cta:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,127,168,.2);}
-.hero-cta-arrow{font-size:1rem;}
+.icon-svg { width: 22px; height: 22px; display: block; }
 
-/* Right: stats */
-.hero-right{animation:fadeUp .5s .18s ease both;}
+/* ═══════════════════════════════════════
+   FORM SECTION — white + blue (same as index about)
+═══════════════════════════════════════ */
+.form-section { background: #fff; }
 
-.stats-panel{
-  background:var(--dk-card);
-  border:1px solid var(--dk-border);
-  border-radius:12px;
-  overflow:hidden;
+.form-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(47,128,237,.1), 0 4px 16px rgba(47,128,237,.06);
+  position: relative; overflow: hidden;
 }
-.stats-panel-header{
-  padding:16px 24px;
-  border-bottom:1px solid var(--dk-border);
-  display:flex;align-items:center;gap:10px;
-}
-.sph-dot{width:7px;height:7px;border-radius:50%;background:var(--blue-bright);animation:blink 2.5s ease infinite;}
-.sph-label{font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--dk-muted);}
-
-.stats-grid{display:grid;grid-template-columns:1fr 1fr;}
-.stat-cell{
-  padding:28px 24px;
-  border-right:1px solid var(--dk-border);
-  border-bottom:1px solid var(--dk-border);
-  position:relative;
-  overflow:hidden;
-}
-.stat-cell:nth-child(even){border-right:none;}
-.stat-cell:nth-child(3),.stat-cell:nth-child(4){border-bottom:none;}
-.stat-cell::after{content:'';position:absolute;top:0;left:0;width:100%;height:2px;}
-.stat-cell.c-blue::after{background:var(--blue);}
-.stat-cell.c-orange::after{background:var(--orange);}
-.stat-cell.c-steel::after{background:rgba(190,205,220,.3);}
-
-.stat-num{
-  font-family:'Manrope',sans-serif;
-  font-weight:900;font-size:2.8rem;
-  line-height:1;letter-spacing:-1px;
-  font-variant-numeric:tabular-nums;
-}
-.c-blue .stat-num{color:var(--blue-bright);}
-.c-orange .stat-num{color:var(--orange);}
-.c-steel .stat-num{color:var(--steel);}
-.stat-label{font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dk-muted);margin-top:8px;}
-
-.stats-panel-footer{
-  padding:14px 24px;
-  border-top:1px solid var(--dk-border);
-  display:flex;gap:8px;
-  flex-wrap:wrap;
-}
-.spf-badge{
-  display:flex;align-items:center;gap:6px;
-  background:rgba(26,127,168,.07);
-  border:1px solid rgba(26,127,168,.12);
-  border-radius:4px;
-  padding:5px 10px;
-  font-size:.64rem;font-weight:700;
-  letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--dk-muted2);
-}
-.spf-check{color:var(--blue-bright);}
-
-/* ═══════════════════════════════
-   SECTIONS
-═══════════════════════════════ */
-.sec{padding:96px 40px;}
-.sec.dark{background:var(--dk);}
-.sec.light{background:var(--lt);}
-.sec.mid{background:#f0f3f7;}
-.sec-in{max-width:1280px;margin:0 auto;}
-
-.sec-tag{font-size:.62rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:14px;}
-.sec-tag-line{width:20px;height:1px;background:currentColor;}
-.dark .sec-tag{color:var(--blue-bright);}
-.light .sec-tag,.mid .sec-tag{color:var(--blue);}
-
-.sec-heading{
-  font-family:'Manrope',sans-serif;font-weight:900;
-  font-size:clamp(2.4rem,4vw,3.8rem);
-  line-height:1.05;letter-spacing:-1px;
-}
-.dark .sec-heading{color:#fff;}
-.light .sec-heading,.mid .sec-heading{color:var(--lt-text);}
-.dark .sec-heading em{font-style:normal;color:var(--orange);}
-.light .sec-heading em,.mid .sec-heading em{font-style:normal;color:var(--blue);}
-
-.sec-desc{font-size:.9rem;line-height:1.85;max-width:500px;margin-top:12px;}
-.dark .sec-desc{color:var(--dk-muted);}
-.light .sec-desc,.mid .sec-desc{color:var(--lt-muted);}
-
-.sec-header-bar{
-  width:36px;height:2px;
-  background:var(--orange);
-  margin-top:20px;
+.form-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--grad);
 }
 
-/* ═══════════════════════════════
-   FORM SECTION
-═══════════════════════════════ */
-.form-layout{
-  display:grid;grid-template-columns:1fr 1.3fr;gap:64px;
-  margin-top:64px;align-items:start;
+.form-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--body); margin-bottom: 6px;
+  display: block;
+}
+.form-input {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 15px;
+  color: var(--navy);
+  background: var(--bg-soft);
+  outline: none;
+  transition: border-color .25s, box-shadow .25s, background .25s;
+}
+.form-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(47,128,237,.1);
+  background: #fff;
+}
+.form-input::placeholder { color: #aab4c0; }
+.form-textarea {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 15px;
+  color: var(--navy);
+  background: var(--bg-soft);
+  outline: none;
+  resize: vertical;
+  min-height: 130px;
+  transition: border-color .25s, box-shadow .25s, background .25s;
+}
+.form-textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(47,128,237,.1);
+  background: #fff;
+}
+.form-textarea::placeholder { color: #aab4c0; }
+
+.form-select {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--bg-soft);
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color .25s, box-shadow .25s, background .25s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235B6B7B' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+.form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(47,128,237,.1);
+  background-color: #fff;
 }
 
-/* Info cards */
-.info-stack{display:flex;flex-direction:column;gap:1px;border:1px solid var(--lt-border2);border-radius:10px;overflow:hidden;}
-.ic-row{
-  display:flex;align-items:flex-start;gap:16px;
-  padding:20px 22px;
-  background:#fff;
-  border-bottom:1px solid var(--lt-border);
-  transition:background .2s;
+/* ═══════════════════════════════════════
+   WHY CONTACT CARDS — green theme
+═══════════════════════════════════════ */
+.why-section {
+  background: linear-gradient(160deg, #F4FDF8 0%, #EDFAF4 60%, #D4F2E5 100%);
+  position: relative; overflow: hidden;
 }
-.ic-row:last-child{border-bottom:none;}
-.ic-row:hover{background:#fafbfd;}
-.ic-row-icon{
-  width:38px;height:38px;border-radius:7px;
-  flex-shrink:0;display:flex;align-items:center;justify-content:center;
-  font-size:.9rem;
-  background:var(--lt2);
-  border:1px solid var(--lt-border2);
-}
-.ic-row-label{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--lt-muted);margin-bottom:4px;}
-.ic-row-val{font-size:.85rem;font-weight:600;color:var(--lt-text);line-height:1.6;}
-.ic-row-val a{color:var(--blue);text-decoration:none;}
-.ic-row-val a:hover{text-decoration:underline;}
-
-.info-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;}
-.info-badge{
-  display:flex;align-items:center;gap:6px;
-  background:#fff;
-  border:1px solid var(--lt-border2);
-  border-radius:5px;padding:7px 13px;
-  font-size:.68rem;font-weight:700;
-  color:var(--lt-text);
-}
-.info-badge-dot{width:5px;height:5px;border-radius:50%;background:var(--blue);flex-shrink:0;}
-
-/* Form card */
-.form-card{
-  background:#fff;
-  border:1px solid var(--lt-border2);
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 2px 24px rgba(0,0,0,.05);
-}
-.form-card-header{
-  padding:28px 32px 20px;
-  border-bottom:1px solid var(--lt-border);
-  position:relative;
-}
-.form-card-header::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--blue),var(--orange));
-}
-.form-card-header h3{font-size:1.15rem;font-weight:900;color:var(--lt-text);margin-bottom:4px;}
-.form-card-sub{font-size:.78rem;color:var(--lt-muted);line-height:1.6;}
-
-.wa-chip{
-  display:inline-flex;align-items:center;gap:7px;
-  background:#f0fdf4;border:1px solid #b6f0cc;
-  border-radius:4px;padding:5px 11px;
-  font-size:.7rem;font-weight:700;color:#166534;
-  margin-top:12px;
-}
-.wa-chip svg{width:13px;height:13px;fill:#16a34a;flex-shrink:0;}
-
-.form-body{padding:28px 32px 32px;}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.form-row.full{grid-template-columns:1fr;}
-.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
-.form-group label{font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--lt-muted);}
-.req{color:var(--orange);}
-
-.form-group input,
-.form-group select,
-.form-group textarea{
-  background:#f7f9fc;
-  border:1px solid #dde3ec;
-  border-radius:6px;
-  padding:11px 14px;
-  font-size:.86rem;font-weight:500;
-  color:var(--lt-text);
-  font-family:'Manrope',sans-serif;
-  transition:all .2s;
-  outline:none;resize:none;width:100%;
-}
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus{
-  border-color:var(--blue);
-  background:#fff;
-  box-shadow:0 0 0 3px rgba(26,127,168,.08);
-}
-.form-group textarea{height:110px;}
-.form-group select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7585' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;}
-
-.form-submit{
-  width:100%;
-  background:#25d366;color:#fff;
-  font-weight:800;font-size:.86rem;
-  padding:14px;border-radius:6px;border:none;
-  cursor:pointer;font-family:'Manrope',sans-serif;
-  letter-spacing:.4px;
-  transition:all .25s;
-  display:flex;align-items:center;justify-content:center;gap:10px;
-}
-.form-submit:hover{background:#1aab55;transform:translateY(-1px);box-shadow:0 6px 20px rgba(37,211,102,.25);}
-.form-submit svg{width:18px;height:18px;fill:#fff;flex-shrink:0;}
-
-#formSuccess{display:none;text-align:center;padding:48px 32px;}
-#formSuccess .s-icon{width:60px;height:60px;border-radius:50%;background:#f0fdf4;border:1.5px solid #22c55e;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.6rem;}
-#formSuccess h4{font-size:1.05rem;font-weight:900;color:var(--lt-text);margin-bottom:8px;}
-#formSuccess p{font-size:.83rem;color:var(--lt-muted);line-height:1.75;}
-.send-again{margin-top:18px;background:transparent;border:1.5px solid var(--blue);color:var(--blue);padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:.8rem;transition:.2s;}
-.send-again:hover{background:var(--blue);color:#fff;}
-
-/* ═══════════════════════════════
-   MAP SECTION
-═══════════════════════════════ */
-.map-layout{
-  display:grid;grid-template-columns:1fr 1.8fr;gap:48px;
-  margin-top:64px;align-items:start;
-}
-.addr-list{display:flex;flex-direction:column;gap:1px;border:1px solid var(--dk-border);border-radius:10px;overflow:hidden;}
-.addr-item{
-  padding:20px 22px;
-  background:var(--dk-card);
-  border-bottom:1px solid var(--dk-border);
-  position:relative;
-  transition:background .2s;
-}
-.addr-item:last-child{border-bottom:none;}
-.addr-item:hover{background:rgba(26,127,168,.04);}
-.addr-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--ai-color,var(--blue));}
-
-.addr-item-tag{font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--ai-color,var(--blue-bright));margin-bottom:6px;}
-.addr-item h4{font-size:.88rem;font-weight:800;color:#e8edf4;margin-bottom:5px;}
-.addr-item p{font-size:.78rem;color:var(--dk-muted);line-height:1.7;}
-.addr-item a{color:var(--blue-bright);text-decoration:none;font-weight:600;}
-.addr-item a:hover{text-decoration:underline;}
-
-.map-frame-wrap{
-  border-radius:10px;overflow:hidden;
-  border:1px solid var(--dk-border);
-  height:460px;position:relative;
-}
-.map-frame-wrap iframe{width:100%;height:100%;border:none;display:block;}
-.map-overlay-badge{
-  position:absolute;bottom:14px;left:14px;
-  background:rgba(5,8,14,.92);
-  backdrop-filter:blur(12px);
-  border:1px solid rgba(26,127,168,.18);
-  border-radius:8px;padding:11px 16px;
-  display:flex;align-items:center;gap:10px;
-}
-.mob-pulse{width:7px;height:7px;border-radius:50%;background:var(--blue-bright);flex-shrink:0;animation:blink 2.5s ease infinite;}
-.mob-name{font-size:.77rem;font-weight:800;color:#fff;}
-.mob-addr{font-size:.67rem;color:var(--dk-muted);margin-top:2px;}
-
-/* ═══════════════════════════════
-   WHY US
-═══════════════════════════════ */
-.why-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-  margin-top:64px;
-  background:var(--lt-border2);
-  border:1px solid var(--lt-border2);
-  border-radius:10px;overflow:hidden;
-}
-.why-card{
-  background:#fff;
-  padding:36px 28px;
-  position:relative;
-  transition:background .25s;
-}
-.why-card::after{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:var(--wc,var(--blue));
-  transform:scaleX(0);transform-origin:left;
-  transition:.35s cubic-bezier(.4,0,.2,1);
-}
-.why-card:hover{background:#fafbfd;}
-.why-card:hover::after{transform:scaleX(1);}
-
-.why-icon-wrap{
-  width:46px;height:46px;
-  border-radius:8px;
-  background:var(--lt2);
-  border:1px solid var(--lt-border2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.1rem;
-  margin-bottom:20px;
-}
-.why-card h4{font-size:.92rem;font-weight:900;color:var(--lt-text);margin-bottom:10px;}
-.why-card p{font-size:.78rem;color:var(--lt-muted);line-height:1.7;}
-.why-card-num{
-  position:absolute;bottom:20px;right:22px;
-  font-size:2.5rem;font-weight:900;
-  color:rgba(0,0,0,.035);
-  letter-spacing:-2px;font-variant-numeric:tabular-nums;
-  pointer-events:none;
+.why-section::before {
+  content: '';
+  position: absolute; bottom: -60px; left: -60px;
+  width: 350px; height: 350px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(12,122,75,.06) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-/* ═══════════════════════════════
-   CTA
-═══════════════════════════════ */
-.cta-sec{
-  background:var(--dk2);
-  padding:88px 40px;
-  border-top:1px solid rgba(255,255,255,.03);
+.why-card {
+  background: #fff;
+  border: 1px solid var(--green-border);
+  border-radius: 16px; padding: 24px;
+  transition: transform .25s, box-shadow .25s, border-color .25s;
 }
-.cta-inner{
-  max-width:1280px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;
+.why-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(12,122,75,.1);
+  border-color: rgba(12,122,75,.35);
 }
-.cta-left{}
-.cta-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
-.cta-eyebrow-line{width:20px;height:1px;background:var(--orange);}
-.cta-eyebrow-text{font-size:.62rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--orange);}
-.cta-heading{font-family:'Manrope',sans-serif;font-weight:900;font-size:clamp(2.6rem,4vw,4rem);color:#fff;line-height:1.05;letter-spacing:-1px;margin-bottom:16px;}
-.cta-heading span{color:var(--orange);}
-.cta-body{color:var(--dk-muted);line-height:1.85;font-size:.9rem;}
+.why-icon {
+  width: 42px; height: 42px; border-radius: 11px;
+  background: rgba(12,122,75,.08);
+  border: 1px solid rgba(12,122,75,.2);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+}
+.why-h3 {
+  font-family: 'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif;
+  font-size: 15px; font-weight: 700; color: var(--navy);
+  margin-bottom: 8px;
+}
+.why-p {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14.5px; line-height: 1.78;
+  color: var(--body); letter-spacing: 0.01em;
+}
 
-.cta-right{display:flex;flex-direction:column;gap:12px;}
-.cta-action{
-  display:flex;align-items:center;gap:16px;
-  background:var(--dk-card);
-  border:1px solid var(--dk-border);
-  border-radius:8px;padding:16px 20px;
-  text-decoration:none;cursor:pointer;
-  transition:border-color .2s,background .2s,transform .2s;
-}
-.cta-action:hover{border-color:rgba(26,127,168,.25);background:rgba(26,127,168,.04);transform:translateX(4px);}
-.cta-action-icon{
-  width:40px;height:40px;border-radius:7px;
-  flex-shrink:0;display:flex;align-items:center;justify-content:center;
-  font-size:.95rem;
-  background:rgba(26,127,168,.08);
-  border:1px solid rgba(26,127,168,.12);
-}
-.cta-action-label{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dk-muted);}
-.cta-action-val{font-size:.86rem;font-weight:700;color:rgba(255,255,255,.85);margin-top:2px;}
-.cta-action-arr{margin-left:auto;color:var(--dk-muted);font-size:.8rem;transition:transform .2s;}
-.cta-action:hover .cta-action-arr{transform:translateX(3px);color:var(--blue-bright);}
+/* ═══════════════════════════════════════
+   MAP SECTION — navy dark
+═══════════════════════════════════════ */
+.map-section { background: var(--navy); }
 
-.cta-primary{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  background:var(--orange);color:#fff;
-  font-weight:800;font-size:.86rem;
-  padding:14px;border-radius:7px;border:none;
-  cursor:pointer;font-family:'Manrope',sans-serif;
-  letter-spacing:.4px;transition:all .25s;
-  text-decoration:none;
+.map-card {
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(47,128,237,.2);
+  box-shadow: 0 20px 50px rgba(0,0,0,.3);
 }
-.cta-primary:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,127,168,.2);}
 
-/* ═══════════════════════════════
+.office-card {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(47,128,237,.2);
+  border-radius: 14px; padding: 22px;
+  transition: background .25s, border-color .25s, transform .25s;
+  backdrop-filter: blur(10px);
+}
+.office-card:hover {
+  background: rgba(47,128,237,.1);
+  border-color: rgba(47,128,237,.4);
+  transform: translateY(-3px);
+}
+
+
+/* ═══════════════════════════════════════
+   FOOTER — exact match
+═══════════════════════════════════════ */
+footer { background: var(--navy); }
+.footer-link {
+  color: rgba(255,255,255,.5);
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14px; text-decoration: none;
+  transition: color .2s;
+}
+.footer-link:hover { color: var(--secondary); }
+.footer-social {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.1);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background .2s, border-color .2s;
+  text-decoration: none;
+}
+.footer-social:hover {
+  background: rgba(47,128,237,.25);
+  border-color: rgba(47,128,237,.4);
+}
+
+/* ═══════════════════════════════════════
+   SECTION DIVIDER
+═══════════════════════════════════════ */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+}
+
+/* ═══════════════════════════════════════
+   GRADIENT UTILITIES
+═══════════════════════════════════════ */
+.grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.grad-orange-text {
+  background: var(--grad-orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.grad-green-text {
+  background: var(--grad-green);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══════════════════════════════════════
+   REVEAL ANIMATIONS
+═══════════════════════════════════════ */
+.reveal { opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease; }
+.reveal.show { opacity:1;transform:none; }
+.fl { opacity:0;transform:translateX(-36px);transition:opacity .7s ease,transform .7s ease; }
+.fl.show { opacity:1;transform:none; }
+.fr { opacity:0;transform:translateX(36px);transition:opacity .7s ease,transform .7s ease; }
+.fr.show { opacity:1;transform:none; }
+
+/* ═══════════════════════════════════════
    CHATBOT
-═══════════════════════════════ */
-#chatbot-btn{position:fixed;bottom:28px;right:28px;z-index:999;width:52px;height:52px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(26,127,168,.35);cursor:pointer;border:none;transition:all .3s;}
-#chatbot-btn:hover{background:var(--blue2);transform:scale(1.08);}
-#chatbot-btn svg{width:22px;height:22px;fill:#fff;}
-.cb-pulse{position:absolute;width:100%;height:100%;border-radius:50%;border:1.5px solid rgba(26,127,168,.35);animation:cbPulse 2.5s ease infinite;}
-@keyframes cbPulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.7);opacity:0}}
-#chatbot-window{position:fixed;bottom:92px;right:28px;z-index:999;width:360px;background:#fff;border-radius:14px;box-shadow:0 16px 48px rgba(0,0,0,.15);display:none;flex-direction:column;overflow:hidden;border:1px solid rgba(26,127,168,.14);}
-#chatbot-window.open{display:flex;animation:cbOpen .3s cubic-bezier(.16,1,.3,1);}
-@keyframes cbOpen{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
-#cb-header{background:#05080e;padding:13px 15px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(26,127,168,.1);flex-shrink:0;}
-.cb-avatar{width:34px;height:34px;border-radius:50%;overflow:hidden;flex-shrink:0;}
-.cb-avatar img{width:100%;height:100%;object-fit:cover;}
-.cb-name{color:#fff;font-weight:800;font-size:.82rem;}
-.cb-status{color:#22c55e;font-size:.63rem;font-weight:700;display:flex;align-items:center;gap:4px;margin-top:2px;}
-.cb-status::before{content:'';width:5px;height:5px;border-radius:50%;background:#22c55e;display:inline-block;}
-#cb-close{margin-left:auto;background:rgba(255,255,255,.07);border:none;color:#fff;width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0;}
-#cb-close:hover{background:rgba(255,255,255,.15);}
-#cb-messages{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;min-height:220px;max-height:320px;background:#f8fafc;}
-#cb-messages::-webkit-scrollbar{width:3px;}#cb-messages::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px;}
-.cb-msg{display:flex;gap:8px;align-items:flex-end;max-width:92%;}
-.cb-msg.bot{align-self:flex-start;}
-.cb-msg.user{align-self:flex-end;flex-direction:row-reverse;}
-.cb-bubble{padding:10px 13px;border-radius:12px;font-size:.8rem;line-height:1.55;max-width:100%;word-break:break-word;}
-.cb-msg.bot .cb-bubble{background:#fff;color:var(--lt-text);border:1px solid #e8edf4;border-bottom-left-radius:3px;}
-.cb-msg.user .cb-bubble{background:var(--blue);color:#fff;border-bottom-right-radius:3px;}
-.cb-msg-icon{width:24px;height:24px;border-radius:50%;overflow:hidden;flex-shrink:0;}
-.cb-msg-icon img{width:100%;height:100%;object-fit:cover;}
-.cb-quick-wrap{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px 6px;background:#f8fafc;flex-shrink:0;}
-.cb-quick{background:#fff;border:1px solid var(--blue);color:var(--blue);font-size:.68rem;font-weight:700;padding:5px 11px;border-radius:999px;cursor:pointer;transition:.2s;white-space:nowrap;}
-.cb-quick:hover{background:var(--blue);color:#fff;}
-#cb-input-row{display:flex;gap:8px;padding:10px 12px;border-top:1px solid #e8edf4;background:#fff;flex-shrink:0;}
-#cb-input{flex:1;border:1px solid #e8edf4;border-radius:7px;padding:9px 12px;outline:none;font-family:'Manrope',sans-serif;transition:.2s;font-size:.83rem;}
-#cb-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,127,168,.08);}
-#cb-send{background:var(--blue);color:#fff;border:none;width:36px;height:36px;border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0;}
-#cb-send:hover{background:var(--blue2);}
-#cb-send svg{width:14px;height:14px;fill:#fff;}
-.cb-typing{display:flex;gap:4px;align-items:center;}
-.cb-typing span{width:5px;height:5px;border-radius:50%;background:var(--blue);animation:cbDot 1.2s ease infinite;}
-.cb-typing span:nth-child(2){animation-delay:.2s;}.cb-typing span:nth-child(3){animation-delay:.4s;}
-@keyframes cbDot{0%,80%,100%{transform:scale(.6);opacity:.4}40%{transform:scale(1);opacity:1}}
+═══════════════════════════════════════ */
+#chatbot-btn {
+  position: fixed; bottom: 28px; right: 24px; z-index: 999;
+  width: 58px; height: 58px; border-radius: 50%;
+  background: var(--grad);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 28px rgba(47,128,237,.45);
+  cursor: pointer; border: none;
+  transition: transform .3s, box-shadow .3s;
+}
+#chatbot-btn:hover { transform: scale(1.08); box-shadow: 0 14px 40px rgba(47,128,237,.55); }
+#chatbot-btn svg { width: 26px; height: 26px; fill: #fff; }
+.cb-pulse {
+  position: absolute; width: 100%; height: 100%; border-radius: 50%;
+  border: 2px solid rgba(47,128,237,.5);
+  animation: cbPulse 2.5s ease infinite;
+}
+@keyframes cbPulse { 0%{transform:scale(1);opacity:.8} 100%{transform:scale(1.8);opacity:0} }
+#chatbot-window {
+  position: fixed; bottom: 100px; right: 24px; z-index: 999;
+  width: 365px; background: #fff; border-radius: 20px;
+  box-shadow: 0 24px 64px rgba(22,50,79,.2);
+  display: none; flex-direction: column; overflow: hidden;
+  border: 1px solid var(--border);
+  animation: cbOpen .3s cubic-bezier(.16,1,.3,1);
+}
+@keyframes cbOpen { from{opacity:0;transform:translateY(16px) scale(.97)} to{opacity:1;transform:none} }
+#chatbot-window.open { display: flex; }
+@media(max-width:480px) {
+  #chatbot-window { position:fixed;inset:0;bottom:0;right:0;width:100%;height:100%;border-radius:0;border:none; }
+  #chatbot-btn { bottom:16px;right:16px;width:52px;height:52px; }
+}
+#cb-header {
+  background: var(--grad-dark);
+  padding: 14px 16px; display: flex; align-items: center; gap: 12px;
+  border-bottom: 1px solid rgba(47,128,237,.2); flex-shrink: 0;
+}
+#cb-header .cb-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(255,255,255,.15);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; overflow: hidden;
+}
+#cb-header .cb-avatar img { width: 100%; height: 100%; object-fit: contain; }
+#cb-header .cb-name { color: #fff; font-weight: 700; font-size: .86rem; font-family:'Montserrat',sans-serif; }
+#cb-header .cb-status {
+  color: #7CFC00; font-size: .67rem; font-weight: 600;
+  display: flex; align-items: center; gap: 4px; margin-top: 2px;
+  font-family: 'Montserrat', sans-serif;
+}
+#cb-header .cb-status::before { content:''; width:6px;height:6px;border-radius:50%;background:#7CFC00;display:inline-block; }
+#cb-close {
+  margin-left: auto; background: rgba(255,255,255,.1);
+  border: none; color: #fff; width: 30px; height: 30px;
+  border-radius: 50%; cursor: pointer; font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+  transition: .2s; flex-shrink: 0;
+}
+#cb-close:hover { background: rgba(255,255,255,.2); }
+#cb-messages {
+  flex: 1; overflow-y: auto; padding: 14px;
+  display: flex; flex-direction: column; gap: 10px;
+  min-height: 220px; max-height: 340px;
+  background: var(--bg-soft);
+}
+#cb-messages::-webkit-scrollbar { width: 3px; }
+#cb-messages::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+.cb-msg { display:flex;gap:8px;align-items:flex-end;max-width:92%; }
+.cb-msg.bot { align-self:flex-start; }
+.cb-msg.user { align-self:flex-end; flex-direction:row-reverse; }
+.cb-bubble {
+  padding: 10px 13px; border-radius: 14px;
+  font-size: .82rem; line-height: 1.6;
+  max-width: 100%; word-break: break-word;
+  font-family: 'Times New Roman', Times, serif;
+}
+.cb-msg.bot .cb-bubble { background:#fff;color:var(--navy);border:1px solid var(--border);border-bottom-left-radius:4px; }
+.cb-msg.user .cb-bubble { background:var(--grad);color:#fff;border-bottom-right-radius:4px; }
+.cb-msg-icon { width:28px;height:28px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden; }
+.cb-msg-icon img { width:100%;height:100%;object-fit:contain; }
+.cb-quick-wrap { display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px 6px;background:var(--bg-soft);flex-shrink:0; }
+.cb-quick {
+  background:#fff; border:1.5px solid var(--primary);
+  color: var(--primary); font-size:.72rem; font-weight:700;
+  padding:5px 12px; border-radius:999px; cursor:pointer;
+  transition:.2s; white-space:nowrap;
+  font-family: 'Montserrat', sans-serif;
+}
+.cb-quick:hover { background:var(--primary); color:#fff; }
+#cb-input-row { display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--border);background:#fff;flex-shrink:0; }
+#cb-input { flex:1;border:1.5px solid var(--border);border-radius:10px;padding:9px 12px;outline:none;font-family:'Times New Roman',Times,serif;transition:.2s;font-size:16px; }
+@media(min-width:481px){ #cb-input { font-size:.84rem; } }
+#cb-input:focus { border-color:var(--primary);box-shadow:0 0 0 3px rgba(47,128,237,.1); }
+#cb-send { background:var(--grad);color:#fff;border:none;width:40px;height:40px;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0; }
+#cb-send:hover { box-shadow:0 4px 16px rgba(47,128,237,.4); }
+#cb-send svg { width:16px;height:16px;fill:#fff; }
+.cb-typing { display:flex;gap:4px;padding:8px 12px;align-items:center; }
+.cb-typing span { width:7px;height:7px;border-radius:50%;background:var(--primary);animation:cbDot 1.2s ease infinite; }
+.cb-typing span:nth-child(2){ animation-delay:.2s; }
+.cb-typing span:nth-child(3){ animation-delay:.4s; }
+@keyframes cbDot { 0%,80%,100%{transform:scale(.6);opacity:.4} 40%{transform:scale(1);opacity:1} }
 
-/* Animations */
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
-.reveal.in{opacity:1;transform:none;}
-.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
+/* success state */
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+  animation: fadeUp .5s ease;
+}
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
 
-/* Responsive */
-@media(max-width:1100px){.why-grid{grid-template-columns:1fr 1fr;}.cta-inner{grid-template-columns:1fr;gap:40px;}}
-@media(max-width:900px){.hero-in{grid-template-columns:1fr;gap:48px;}.form-layout{grid-template-columns:1fr;gap:40px;}.map-layout{grid-template-columns:1fr;gap:32px;}.hero{padding:120px 24px 72px;}.sec{padding:72px 24px;}}
-@media(max-width:640px){.why-grid{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}.cta-sec{padding:64px 24px;}.form-body{padding:22px 20px 24px;}.form-card-header{padding:22px 20px 16px;}}
+/* submit btn orange */
+.btn-submit {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--grad-orange);
+  color: #fff; border-radius: 999px;
+  padding: 14px 36px; font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px; letter-spacing: .06em;
+  border: none; cursor: pointer;
+  transition: transform .25s, box-shadow .25s;
+  text-decoration: none; width: 100%; justify-content: center;
+}
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(232,98,26,.35);
+}
+
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
 </style>
 </head>
 <body>
 
-<div class="topbar"></div>
-
-<!-- ═════════ NAVBAR start ═════════ -->
-
-<nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-  
-  <div class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 py-4">
-
-    <!-- LOGO -->
+<!-- ═══════════ NAVBAR ═══════════ -->
+<nav id="mainNav">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-5 sm:px-8 py-2.5">
     <div class="flex items-center gap-3">
-      
-      <img src="Logo.png" 
-           alt="Boilertech Energy Services Logo" 
-           class="h-12 w-auto"/>
-
       <div class="flex flex-col leading-none">
-        
-       <span class="logo-text text-[#0B6EA8] text-[18px] tracking-tight">
-          BOILERTECH
-      </span>
-
-        <span class="logo-sub text-[#0B6EA8] text-[18px] mt-1">
-          ENERGY SERVICES
-        </span>
-
+        <img src="assets/btlogo.png" alt="Boilertech Energy Services Logo" class="h-14 w-auto"/>
+        <span class="logo-tagline-nav">Your Trusted Performance Partner.</span>
       </div>
     </div>
-
-    <!-- DESKTOP MENU -->
-    <div class="hidden lg:flex items-center gap-8 text-[15px] font-semibold">
-
-      <a href="index.html"
-         class="nav-link text-[#FFA500]">
-         Home
-      </a>
-
-      <a href="about.html"
-         class="nav-link text-slate-700">
-         About
-      </a>
-
-      <a href="services.html"
-         class="nav-link text-slate-700">
-         Services
-      </a>
-
-      <a href="products.html"
-         class="nav-link text-slate-700">
-         Products
-      </a>
-
-      <!-- NEW BLOG MENU -->
-      <a href="blog.html"
-         class="nav-link text-slate-700">
-         Blog
-      </a>
-
-      <!-- NEW BROCHURE MENU -->
-      <a href="brochure.html"
-         class="nav-link text-slate-700">
-         Brochures
-      </a>
-
-      <a href="contact.html"
-         class="nav-link text-slate-700">
-         Contact
-      </a>
+    <div class="hidden lg:flex items-center gap-7 ml-auto">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="products.html" class="nav-link">Products</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="contact.html" class="nav-link active">Contact</a>
+      <a href="career.html" class="nav-link">Career</a>
 
     </div>
-
-    <!-- CTA BUTTON -->
-    <div class="hidden lg:block">
-      <a href="contact.html">
-        <button class="bg-[#FFA500] hover:bg-[#1CB5D8] text-white text-sm px-6 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-xl font-bold">
-          Get Quote
-        </button>
-      </a>
-    </div>
-
-    <!-- MOBILE MENU BUTTON -->
-    <button id="menuBtn" class="lg:hidden flex flex-col gap-[5px] p-1">
-      <span class="w-6 h-0.5 bg-black block"></span>
-      <span class="w-6 h-0.5 bg-black block"></span>
-      <span class="w-6 h-0.5 bg-black block"></span>
+    <button id="menuBtn" class="lg:hidden flex flex-col gap-[5px] p-1" aria-label="Toggle menu">
+      <span class="w-6 h-0.5 block" style="background:var(--navy)"></span>
+      <span class="w-6 h-0.5 block" style="background:var(--navy)"></span>
+      <span class="w-6 h-0.5 block" style="background:var(--navy)"></span>
     </button>
-
   </div>
-
-  <!-- MOBILE MENU -->
-  <div id="mobileMenu"
-       class="lg:hidden bg-white border-t border-slate-100 overflow-hidden max-h-0 transition-all duration-500">
-
-    <div class="flex flex-col px-6 py-5 gap-5 text-[15px] font-semibold">
-
-      <a href="index.html" class="text-[#FFA500] font-bold">Home</a>
-
-      <a href="about.html" class="text-slate-700 hover:text-[#FFA500]">
-        About
-      </a>
-
-      <a href="services.html" class="text-slate-700 hover:text-[#FFA500]">
-        Services
-      </a>
-
-      <a href="products.html" class="text-slate-700 hover:text-[#FFA500]">
-        Products
-      </a>
-
-      <!-- MOBILE BLOG -->
-      <a href="blog.html" class="text-slate-700 hover:text-[#FFA500]">
-        Blog
-      </a>
-
-      <!-- MOBILE BROCHURE -->
-      <a href="brochure.html" class="text-slate-700 hover:text-[#FFA500]">
-        Brochures
-      </a>
-
-      <a href="contact.html" class="text-slate-700 hover:text-[#FFA500]">
-        Contact
-      </a>
-
-      <button class="bg-[#FFA500] text-white px-5 py-3 rounded-full w-full font-bold">
-        Get Quote
-      </button>
+  <div id="mobileMenu">
+    <div class="flex flex-col">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="products.html" class="nav-link">Products</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="contact.html" class="nav-link active">Contact</a>
+      <a href="career.html" class="nav-link">Career</a>
 
     </div>
   </div>
 </nav>
 
-<!-- ═══════════════════════════════════
-     HERO
-════════════════════════════════════ -->
-<section class="hero">
-  <div class="hero-topo"></div>
-  <div class="hero-diagonal"></div>
-  <div class="hero-ambient"></div>
-  <div class="hero-ambient-2"></div>
+<!-- ═══════════ HERO — White + Blue ═══════════ -->
+<section class="hero-section">
+  <div class="hero-dot-grid"></div>
 
-  <div class="hero-in">
-    <!-- Left -->
-    <div>
-      <div class="hero-eyebrow">
-        <div class="hero-eyebrow-line"></div>
-        <span class="hero-eyebrow-text">Get In Touch</span>
-      </div>
+  <!-- background glow -->
+  <div style="position:absolute;width:700px;height:700px;top:-200px;right:-150px;background:rgba(86,204,242,.12);border-radius:50%;filter:blur(80px);pointer-events:none"></div>
 
-      <h1 class="hero-h1">
-        <span class="solid text-white">Optimize</span>
-        <span class="solid">Your&nbsp;Energy</span>
-        <span class="solid">Operations.</span>
-      </h1>
+  <div style="position:absolute;width:500px;height:500px;bottom:-100px;left:-100px;background:rgba(47,128,237,.08);border-radius:50%;filter:blur(80px);pointer-events:none"></div>
 
-      <div class="hero-divider"></div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full py-28 relative" style="z-index:2">
 
-      <p class="hero-desc">
-        Whether it's a performance audit, new installation, or urgent troubleshooting — our IBR-certified engineering team delivers precision solutions for your boiler operations across India.
-      </p>
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
 
-      <div class="hero-contacts">
-        <a href="tel:7708397080" class="hero-contact-row">
-          <div class="hc-icon">📞</div>
-          <div>
-            <span class="hc-label">Call Us</span>
-            <div class="hc-val">+91 77083 97080</div>
-          </div>
-        </a>
-        <a href="mailto:boilertechenergy@gmail.com" class="hero-contact-row">
-          <div class="hc-icon">✉️</div>
-          <div>
-            <span class="hc-label">Email</span>
-            <div class="hc-val">boilertechenergy@gmail.com</div>
-          </div>
-        </a>
-        <div class="hero-contact-row">
-          <div class="hc-icon">📍</div>
-          <div>
-            <span class="hc-label">Location</span>
-            <div class="hc-val">Erode, Tamil Nadu — PAN India Service</div>
-          </div>
+      <!-- LEFT CONTENT -->
+      <div class="max-w-3xl">
+
+        <div class="stag reveal">Get In Touch</div>
+
+        <h1 class="hero-h1 reveal" style="transition-delay:.06s">
+          Let's Start a<br>
+          <span class="gradient-text">Conversation</span>
+        </h1>
+
+        <p class="hero-p reveal" style="transition-delay:.1s">
+          Have a boiler challenge? Looking to improve plant efficiency or schedule an audit? Our engineering team is ready to help — reach out today.
+        </p>
+
+        <!-- Quick contact pills -->
+        <div class="flex flex-wrap gap-3 mt-8 reveal" style="transition-delay:.14s">
+
+          <!-- phone -->
+          <a href="tel:7708397080"
+             style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);border:1.5px solid var(--border);border-radius:999px;padding:10px 20px;font-weight:700;font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:.05em;text-decoration:none;box-shadow:0 4px 16px rgba(47,128,237,.08);transition:.25s">
+
+            <svg style="width:16px;height:16px" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/>
+            </svg>
+
+            +91 77083 97080
+          </a>
+
+          <!-- email -->
+          <a href="mailto:boilertechenergy@gmail.com"
+             style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);border:1.5px solid var(--border);border-radius:999px;padding:10px 20px;font-weight:700;font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:.05em;text-decoration:none;box-shadow:0 4px 16px rgba(47,128,237,.08);transition:.25s">
+
+            <svg style="width:16px;height:16px" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/>
+            </svg>
+
+            Send Email
+          </a>
+
         </div>
+
       </div>
 
-      <button class="hero-cta" onclick="document.getElementById('formSec').scrollIntoView({behavior:'smooth'})">
-        Send Project Inquiry <span class="hero-cta-arrow">→</span>
-      </button>
+      <!-- RIGHT IMAGE -->
+      <div class="relative hidden lg:flex justify-end items-center fr reveal"
+           style="transition-delay:.18s;min-height:620px;">
+
+        <!-- big glow -->
+        <div style="
+          position:absolute;
+          width:650px;
+          height:650px;
+          background:rgba(47,128,237,.14);
+          border-radius:50%;
+          filter:blur(90px);
+          top:50%;
+          left:50%;
+          transform:translate(-50%,-50%);
+          z-index:0;
+        "></div>
+
+        <!-- image -->
+        <div style="
+          position:relative;
+          z-index:2;
+          width:100%;
+          display:flex;
+          justify-content:flex-end;
+        ">
+
+          <img
+            src="assets/contact.jpg"
+            alt="Industrial Boiler Plant"
+            style="
+              width:600px;
+              max-width:none;
+              height:auto;
+              object-fit:cover;
+              filter:drop-shadow(0 30px 60px rgba(22,50,79,.22)) ;
+              border-radius: 10px;
+              max-height:680px;
+              object-fit:cover;
+            "
+          />
+
+        </div>
+
+      </div>
+
     </div>
 
-    <!-- Right: stats panel -->
-    <div class="hero-right">
-      <div class="stats-panel">
-        <div class="stats-panel-header">
-          <div class="sph-dot"></div>
-          <span class="sph-label">Company Overview</span>
-        </div>
-        <div class="stats-grid">
-          <div class="stat-cell c-blue">
-            <div class="stat-num" data-target="10" data-suffix="+">0</div>
-            <div class="stat-label">Years Experience</div>
-          </div>
-          <div class="stat-cell c-orange">
-            <div class="stat-num" data-target="500" data-suffix="+">0</div>
-            <div class="stat-label">Projects Delivered</div>
-          </div>
-          <div class="stat-cell c-steel">
-            <div class="stat-num" data-text="IBR">—</div>
-            <div class="stat-label">Certified</div>
-          </div>
-          <div class="stat-cell c-blue">
-            <div class="stat-num" data-text="PAN">—</div>
-            <div class="stat-label">India Service</div>
-          </div>
-        </div>
-        <div class="stats-panel-footer">
-          <div class="spf-badge"><span class="spf-check">✓</span> 24–48hr Response</div>
-          <div class="spf-badge"><span class="spf-check">✓</span> ISO Compliant</div>
-          <div class="spf-badge"><span class="spf-check">✓</span> 50+ Clients</div>
-        </div>
-      </div>
+    <!-- Scroll indicator -->
+    <div style="
+      position:absolute;
+      bottom:-32px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:2;
+      animation:bounce 2s infinite;
+    ">
+      <svg width="10" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
     </div>
+
   </div>
 </section>
 
-<!-- ═══════════════════════════════════
-     FORM SECTION
-════════════════════════════════════ -->
-<section class="sec light" id="formSec">
-  <div class="sec-in">
-    <div class="reveal">
-      <div class="sec-tag" style="color:var(--blue);">
-        <span class="sec-tag-line"></span>
-        Send Us a Message
-      </div>
-      <h2 class="sec-heading">Project <em>Inquiry</em></h2>
-      <p class="sec-desc">Fill in your details and we'll open WhatsApp with your enquiry pre-filled — sent directly to our engineering team.</p>
-      <div class="sec-header-bar"></div>
-    </div>
+<!-- ═══════════ CONTACT INFO CARDS + FORM — Orange + White / White + Blue ═══════════ -->
+<section class="form-section py-20 lg:py-24 overflow-hidden" style="background:linear-gradient(160deg,#FFF8F3 0%,#fff 40%,#EEF6FF 100%)">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
 
-    <div class="form-layout">
-      <!-- Info -->
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+      <!-- LEFT — Contact Info -->
       <div>
-        <div class="info-stack reveal d1">
-          <div class="ic-row">
-            <div class="ic-row-icon">📞</div>
-            <div>
-              <div class="ic-row-label">Direct Line</div>
-              <div class="ic-row-val"><a href="tel:7708397080">+91 77083 97080</a></div>
-            </div>
-          </div>
-          <div class="ic-row">
-            <div class="ic-row-icon">✉️</div>
-            <div>
-              <div class="ic-row-label">Email</div>
-              <div class="ic-row-val"><a href="mailto:boilertechenergy@gmail.com">boilertechenergy@gmail.com</a></div>
-            </div>
-          </div>
-          <!-- <div class="ic-row">
-            <div class="ic-row-icon">🏢</div>
-            <div>
-              <div class="ic-row-label">Registered Address</div>
-              <div class="ic-row-val">219-A, Ramamoorthy Nagar,<br>Krishnampalayam Road, Erode – 638003</div>
-            </div>
-          </div> -->
-          <div class="ic-row">
-            <div class="ic-row-icon">📌</div>
-            <div>
-              <div class="ic-row-label">Office Address</div>
-              <div class="ic-row-val">130/1, First Floor, Periyar Street,<br>Backside of EDCC Bank, Erode – 638001</div>
-            </div>
-          </div>
-          <div class="ic-row">
-            <div class="ic-row-icon">🌐</div>
-            <div>
-              <div class="ic-row-label">Website</div>
-              <div class="ic-row-val"><a href="http://www.boilertechenergy.com" target="_blank">www.boilertechenergy.com</a></div>
-            </div>
-          </div>
-        </div>
+        <div class="stag-orange reveal">Reach Us</div>
+        <h2 class="reveal" style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-size:clamp(30px,4vw,46px);font-weight:900;color:var(--navy);line-height:1.1;transition-delay:.04s">
+          Contact <span class="grad-orange-text">Information</span>
+        </h2>
+        <p class="about-p mt-4 mb-8 reveal" style="transition-delay:.08s">
+          Our engineering team is available for project discussions, technical consultations, and on-site visits. Get in touch through any of the channels below.
+        </p>
 
-        <div class="info-badges reveal d2">
-          <div class="info-badge"><span class="info-badge-dot"></span> IBR Certified</div>
-          <div class="info-badge"><span class="info-badge-dot"></span> ISO Compliant</div>
-          <div class="info-badge"><span class="info-badge-dot"></span> 10+ Yrs Experience</div>
-          <div class="info-badge"><span class="info-badge-dot"></span> PAN India Service</div>
+        <div class="flex flex-col gap-4">
+
+          <!-- Phone -->
+          <div class="contact-info-card reveal" style="transition-delay:.1s">
+            <div class="contact-info-icon">
+              <svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
+            </div>
+            <div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--body);margin-bottom:6px;font-family:'Montserrat',sans-serif;">Phone & Mobile</div>
+              <a href="tel:7708397080" style="display:block;font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;text-decoration:none;" class="grad-orange-text">+91 77083 97080</a>
+              <a href="tel:04244062193" style="display:block;font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;color:var(--navy);text-decoration:none;margin-top:4px;">+91 424 406 2193</a>
+              <p style="font-family:'Times New Roman',Times,serif;font-size:14px;color:var(--body);margin-top:4px;">Mon – Sat, 9:00 AM – 6:00 PM IST</p>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="contact-info-card reveal" style="transition-delay:.14s">
+            <div class="contact-info-icon">
+              <svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+            </div>
+            <div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--body);margin-bottom:6px;font-family:'Montserrat',sans-serif;">Email Us</div>
+              <a href="mailto:boilertechenergy@gmail.com" style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;color:var(--navy);text-decoration:none;display:block;transition:color .2s" onmouseover="this.style.color='#E8621A'" onmouseout="this.style.color='var(--navy)'">boilertechenergy@gmail.com</a>
+              <a href="mailto:director@boilertechenergy.com" style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;color:var(--navy);text-decoration:none;display:block;margin-top:4px;transition:color .2s" onmouseover="this.style.color='#E8621A'" onmouseout="this.style.color='var(--navy)'">director@boilertechenergy.com</a>
+              <p style="font-family:'Times New Roman',Times,serif;font-size:14px;color:var(--body);margin-top:4px;">Response within 24–48 hours</p>
+            </div>
+          </div>
+
+          <!-- WhatsApp -->
+          <div class="contact-info-card reveal" style="transition-delay:.18s;border-color:#c3f0d2">
+            <div class="contact-info-icon" style="background:rgba(37,211,102,.08);border-color:rgba(37,211,102,.25)">
+              <svg class="icon-svg" style="fill:#25d366" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            </div>
+            <div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--body);margin-bottom:6px;font-family:'Montserrat',sans-serif;">WhatsApp</div>
+              <a href="https://wa.me/917708397080" target="_blank" style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:15px;color:#25d366;text-decoration:none;">+91 77083 97080</a>
+              <p style="font-family:'Times New Roman',Times,serif;font-size:14px;color:var(--body);margin-top:4px;">Tap to chat directly — fastest response</p>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="contact-info-card reveal" style="transition-delay:.22s">
+            <div class="contact-info-icon">
+              <svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+            </div>
+            <div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--body);margin-bottom:6px;font-family:'Montserrat',sans-serif;">Office Address</div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;color:var(--navy)">130/1, First Floor, Periyar Street</div>
+              <div style="font-family:'Times New Roman',Times,serif;font-size:14px;color:var(--body);margin-top:3px;">Backside of EDCC Bank, Erode – 638001, Tamil Nadu</div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:var(--navy);margin-top:10px;">Administrative Office</div>
+              <div style="font-family:'Times New Roman',Times,serif;font-size:14px;color:var(--body);margin-top:3px;">219-A, Ramamoorthy Nagar, Krishnampalayam Road, Erode – 638003</div>
+            </div>
+          </div>
+
+          <!-- LinkedIn -->
+          <div class="contact-info-card reveal" style="transition-delay:.26s;border-color:#c8ddf7">
+            <div class="contact-info-icon" style="background:rgba(47,128,237,.08);border-color:rgba(47,128,237,.2)">
+              <svg class="icon-svg" style="fill:var(--primary)" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </div>
+            <div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--body);margin-bottom:6px;font-family:'Montserrat',sans-serif;">LinkedIn</div>
+              <a href="https://www.linkedin.com/company/boilertech-energy-services" target="_blank" rel="noopener" style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;color:var(--primary);text-decoration:none;">Boilertech Energy Services</a>
+              <p style="font-family:'Times New Roman',Times,serif;font-size:14px;color:var(--body);margin-top:4px;">Follow us for updates & insights</p>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <!-- Form -->
-      <div class="form-card reveal d1">
-        <div class="form-card-header">
-          <h3>Send Your Inquiry</h3>
-          <p class="form-card-sub">Our team typically responds within 24–48 hours.</p>
-          <div class="wa-chip">
-            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.025.507 3.934 1.399 5.609L0 24l6.542-1.375A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.37l-.36-.214-3.722.977.993-3.63-.235-.373A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182c5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
-            Submitting will open WhatsApp with your enquiry pre-filled
+      <!-- RIGHT — Inquiry Form -->
+      <div class="fr reveal" style="transition-delay:.08s">
+        <div class="form-card">
+          <div style="margin-bottom:28px">
+            <div class="stag" style="margin-bottom:12px">Send an Inquiry</div>
+            <h3 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-size:26px;font-weight:900;color:var(--navy);line-height:1.1">Tell Us About<br>Your <span class="grad-text">Project</span></h3>
+            <p style="font-family:'Times New Roman',Times,serif;font-size:15px;color:var(--body);margin-top:8px;line-height:1.8;">Fill in the details below and our team will get back to you within 24–48 hours.</p>
           </div>
-        </div>
 
-        <div class="form-body">
-          <form id="contactForm">
-            <div class="form-row">
-              <div class="form-group"><label>Full Name <span class="req">*</span></label><input type="text" id="f-name" placeholder="Your full name" required/></div>
-              <div class="form-group"><label>Company / Organisation</label><input type="text" id="f-company" placeholder="Company name"/></div>
-            </div>
-            <div class="form-row">
-              <div class="form-group"><label>Phone Number <span class="req">*</span></label><input type="tel" id="f-phone" placeholder="+91 XXXXX XXXXX" required/></div>
-              <div class="form-group"><label>Email Address <span class="req">*</span></label><input type="email" id="f-email" placeholder="you@company.com" required/></div>
-            </div>
-            <div class="form-row full">
-              <div class="form-group">
-                <label>Industry / Sector <span class="req">*</span></label>
-                <select id="f-industry" required>
-                  <option value="" disabled selected>Select your industry</option>
-                  <option>Power Plants</option><option>Steel Plants</option><option>Sugar Plants</option>
-                  <option>Paper Mills</option><option>Chemical Industries</option><option>Food Industries</option>
-                  <option>Cement Industries</option><option>Textile Mills</option><option>Pharmaceutical</option><option>Other</option>
-                </select>
+          <div id="contactForm">
+            <div class="grid sm:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label class="form-label" for="fullName">Full Name *</label>
+                <input class="form-input" type="text" id="fullName" placeholder="Your full name" required/>
+              </div>
+              <div>
+                <label class="form-label" for="company">Company / Plant Name</label>
+                <input class="form-input" type="text" id="company" placeholder="Company name"/>
               </div>
             </div>
-            <div class="form-row full">
-              <div class="form-group">
-                <label>Service Required</label>
-                <select id="f-service">
-                  <option value="" disabled selected>Select service type</option>
-                  <option>Boiler Performance Study</option>
-                  <option>Shutdown / Audit Services</option>
-                  <option>Troubleshooting & Root Cause Analysis</option>
-                  <option>Capacity Enhancement</option>
-                  <option>Energy Conservation Study</option>
-                  <option>CFD Analysis</option>
-                  <option>IBR Piping Engineering & Design</option>
-                  <option>Product / Spare Supply</option>
-                  <option>General Enquiry</option>
-                </select>
+            <div class="grid sm:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label class="form-label" for="phone">Phone Number *</label>
+                <input class="form-input" type="tel" id="phone" placeholder="+91 XXXXX XXXXX" required/>
+              </div>
+              <div>
+                <label class="form-label" for="email">Email Address *</label>
+                <input class="form-input" type="email" id="email" placeholder="you@company.com" required/>
               </div>
             </div>
-            <div class="form-row full">
-              <div class="form-group"><label>Project Requirements / Message <span class="req">*</span></label><textarea id="f-message" placeholder="Describe your boiler system, capacity, issue, or requirements…" required></textarea></div>
+            <div class="mb-4">
+              <label class="form-label" for="industry">Industry / Sector</label>
+              <select class="form-select" id="industry">
+                <option value="" disabled selected>Select your industry</option>
+                <option>Power Plants</option>
+                <option>Steel Plants</option>
+                <option>Sugar / Food Industry</option>
+                <option>Paper Mills</option>
+                <option>Chemical Industries</option>
+                <option>Cement Industry</option>
+                <option>Textile / Pharma</option>
+                <option>Other</option>
+              </select>
             </div>
-
-            <button type="submit" class="form-submit">
-              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.025.507 3.934 1.399 5.609L0 24l6.542-1.375A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.37l-.36-.214-3.722.977.993-3.63-.235-.373A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182c5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
-              Send via WhatsApp
+            <div class="mb-4">
+              <label class="form-label" for="service">Service Required</label>
+              <select class="form-select" id="service">
+                <option value="" disabled selected>Select a service</option>
+                <option>Boiler Performance & Operational Study</option>
+                <option>Shutdown & Audit Services</option>
+                <option>Troubleshooting & Root Cause Analysis</option>
+                <option>Capacity Enhancement & Re-Engineering</option>
+                <option>Energy & Fuel Optimization</option>
+                <option>CFD Analysis & Engineering</option>
+                <option>Residual Life Assessment</option>
+                <option>General Inquiry</option>
+              </select>
+            </div>
+            <div class="mb-6">
+              <label class="form-label" for="message">Message / Project Details</label>
+              <textarea class="form-textarea" id="message" placeholder="Describe your boiler type, capacity, challenges, or any specific requirements…"></textarea>
+            </div>
+            <button class="btn-submit" onclick="handleSubmit()">
+              Send Inquiry
+              <svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
             </button>
-          </form>
-
-          <div id="formSuccess">
-            <div class="s-icon">✅</div>
-            <h4>WhatsApp Opened!</h4>
-            <p>Your enquiry has been pre-filled in WhatsApp.<br>Just press <strong>Send</strong> and our team will reply within <strong>24–48 hours</strong>.</p>
-            <button class="send-again" onclick="resetForm()">Send Another Enquiry</button>
+            <p style="font-family:'Times New Roman',Times,serif;font-size:13px;color:var(--body);margin-top:14px;text-align:center;">We respect your privacy. Your information will never be shared.</p>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ═══════════════════════════════════
-     MAP
-════════════════════════════════════ -->
-<section class="sec dark" id="mapSec">
-  <div class="sec-in">
-    <div class="reveal">
-      <div class="sec-tag">
-        <span class="sec-tag-line"></span>
-        Find Us
-      </div>
-      <h2 class="sec-heading">Our <em>Location</em></h2>
-      <p class="sec-desc">Based in Erode, Tamil Nadu — serving industrial clients across India and internationally.</p>
-      <div class="sec-header-bar"></div>
-    </div>
-
-    <div class="map-layout">
-      <div class="addr-list reveal">
-        <div class="addr-item" style="--ai-color:var(--blue-bright);">
-          <div class="addr-item-tag">Registered Address</div>
-          <h4>219-A, Ramamoorthy Nagar</h4>
-          <p>Krishnampalayam Road,<br>Erode – 638003, Tamil Nadu, India</p>
-        </div>
-        <div class="addr-item" style="--ai-color:var(--orange);">
-          <div class="addr-item-tag">Office Address</div>
-          <h4>130/1, First Floor, Periyar Street</h4>
-          <p>Backside of EDCC Bank,<br>Erode – 638001, Tamil Nadu, India</p>
-        </div>
-        <div class="addr-item" style="--ai-color:var(--steel);">
-          <div class="addr-item-tag">GPS Coordinates</div>
-          <h4>11°20'23.8"N 77°43'51.7"E</h4>
-          <p><a href="https://maps.google.com/?q=11.339944,77.730917" target="_blank">Open in Google Maps →</a></p>
-        </div>
-        <div class="addr-item" style="--ai-color:var(--blue-bright);">
-          <div class="addr-item-tag">Contact</div>
-          <h4><a href="tel:7708397080">+91 77083 97080</a></h4>
-          <p><a href="mailto:boilertechenergy@gmail.com">boilertechenergy@gmail.com</a></p>
-        </div>
-      </div>
-
-      <div class="reveal d1">
-        <div class="map-frame-wrap">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3911.928474580659!2d77.72844637505011!3d11.339934988845188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTHCsDIwJzIzLjgiTiA3N8KwNDMnNTEuNyJF!5e0!3m2!1sen!2sin!4v1778132685517!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          <div class="map-overlay-badge">
-            <div class="mob-pulse"></div>
-            <div>
-              <div class="mob-name">Boilertech Energy Services</div>
-              <div class="mob-addr">Erode, Tamil Nadu – 638001</div>
+          <!-- Success state -->
+          <div class="form-success" id="formSuccess">
+            <div style="width:72px;height:72px;background:linear-gradient(135deg,#0C7A4B,#1DB97A);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px">
+              <svg style="width:36px;height:36px;fill:none;stroke:#fff;stroke-width:2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            </div>
+            <h3 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-size:24px;font-weight:900;color:var(--navy);margin-bottom:10px">Inquiry Sent!</h3>
+            <p style="font-family:'Times New Roman',Times,serif;font-size:16px;color:var(--body);line-height:1.8;max-width:360px;margin:0 auto">Thank you for reaching out. Our engineering team will review your query and respond within 24–48 hours.</p>
+            <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+              <a href="tel:7708397080" style="display:inline-flex;align-items:center;gap:6px;background:var(--grad-orange);color:#fff;border-radius:999px;padding:10px 24px;font-weight:700;font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none">Call Now</a>
+              <a href="services.html" style="display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--primary);border:1.5px solid var(--primary);border-radius:999px;padding:10px 24px;font-weight:700;font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none">Our Services</a>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════
-     WHY CHOOSE US
-════════════════════════════════════ -->
-<section class="sec light">
-  <div class="sec-in">
-    <div class="reveal" style="max-width:520px;">
-      <div class="sec-tag" style="color:var(--blue);">
-        <span class="sec-tag-line"></span>
-        Why Choose Us
-      </div>
-      <h2 class="sec-heading">Built on <em>Trust</em></h2>
-      <p class="sec-desc">Decades of engineering excellence, strict safety standards, and a client-first approach across every industrial sector.</p>
-      <div class="sec-header-bar"></div>
+<div class="section-divider"></div>
+
+<!-- ═══════════ WHY CONTACT US — Green + White ═══════════ -->
+<section class="why-section py-20 lg:py-24">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+      <div class="stag-green" style="display:inline-flex;margin-bottom:18px">What to Expect</div>
+      <h2 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-size:clamp(30px,4vw,46px);font-weight:900;color:var(--navy);line-height:1.1">
+        Our <span class="grad-green-text">Engagement Process</span>
+      </h2>
+      <p class="about-p mt-4">From your first inquiry to final delivery — a structured, transparent approach every step of the way.</p>
     </div>
 
-    <div class="why-grid">
-      <div class="why-card reveal d1" style="--wc:var(--blue);">
-        <div class="why-icon-wrap">🏆</div>
-        <h4>10+ Years Experience</h4>
-        <p>Trusted by leading industries across power, steel, sugar, chemical, and paper sectors nationwide.</p>
-        <div class="why-card-num">01</div>
-      </div>
-      <div class="why-card reveal d1" style="--wc:var(--orange);">
-        <div class="why-icon-wrap">⚙️</div>
-        <h4>IBR Compliant</h4>
-        <p>All designs and services comply with Indian Boiler Regulations — ensuring full safety and legal certification.</p>
-        <div class="why-card-num">02</div>
-      </div>
-      <div class="why-card reveal d2" style="--wc:var(--blue);">
-        <div class="why-icon-wrap">🌱</div>
-        <h4>Sustainability Focus</h4>
-        <p>Energy conservation, alternative fuel studies, and pollution control systems for cleaner, greener operations.</p>
-        <div class="why-card-num">03</div>
-      </div>
-      <div class="why-card reveal d2" style="--wc:var(--orange);">
-        <div class="why-icon-wrap">🚀</div>
-        <h4>24–48hr Response</h4>
-        <p>Dedicated engineering team ensures rapid response for all inquiries, audits, and on-site emergencies.</p>
-        <div class="why-card-num">04</div>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
-<!-- ═══════════════════════════════════
-     CTA
-════════════════════════════════════ -->
-<section class="cta-sec">
-  <div class="cta-inner reveal">
-    <div class="cta-left">
-      <div class="cta-eyebrow">
-        <div class="cta-eyebrow-line"></div>
-        <span class="cta-eyebrow-text">Your Trusted Performance Partner</span>
+      <!-- Step 1 -->
+      <div class="why-card reveal text-center" style="position:relative">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#0C7A4B,#1DB97A);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:900;color:#fff">1</div>
+        <h3 class="why-h3" style="text-align:center">Initial Inquiry</h3>
+        <p class="why-p" style="text-align:center">Submit your query via form, call, or email. Our team acknowledges within 24 hours.</p>
       </div>
-      <h2 class="cta-heading ">Ready to <span>Optimize</span><br>Your Boiler System?</h2>
-      <p class="cta-body">From feasibility studies to commissioning — our IBR-certified engineering team delivers precision thermal solutions for every industrial need.</p>
+
+      <!-- Step 2 -->
+      <div class="why-card reveal text-center" style="transition-delay:.06s">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#0C7A4B,#1DB97A);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:900;color:#fff">2</div>
+        <h3 class="why-h3" style="text-align:center">Technical Discussion</h3>
+        <p class="why-p" style="text-align:center">Our engineers review your boiler details and discuss the scope, requirements, and challenges.</p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="why-card reveal text-center" style="transition-delay:.12s">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#0C7A4B,#1DB97A);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:900;color:#fff">3</div>
+        <h3 class="why-h3" style="text-align:center">Proposal & Quote</h3>
+        <p class="why-p" style="text-align:center">A tailored proposal with scope, timeline, and transparent pricing — no hidden costs.</p>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="why-card reveal text-center" style="transition-delay:.18s">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#0C7A4B,#1DB97A);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:900;color:#fff">4</div>
+        <h3 class="why-h3" style="text-align:center">Project Execution</h3>
+        <p class="why-p" style="text-align:center">IBR-compliant engineering delivery with ongoing communication and post-project support.</p>
+      </div>
+
     </div>
 
-    <div class="cta-right">
-      <button class="cta-primary" onclick="document.getElementById('formSec').scrollIntoView({behavior:'smooth'})">
-        📋 &nbsp;Send a Project Inquiry
-      </button>
-      <a href="https://wa.me/917708397080" target="_blank" class="cta-action">
-        <div class="cta-action-icon">💬</div>
-        <div>
-          <div class="cta-action-label">WhatsApp</div>
-          <div class="cta-action-val">Message Us Directly</div>
+    <!-- Why trust us — 3 cards -->
+    <div class="grid sm:grid-cols-3 gap-4 mt-6">
+      <div class="why-card reveal flex items-start gap-4" style="transition-delay:.06s">
+        <div class="why-icon shrink-0">
+          <svg class="icon-svg" fill="none" stroke="#0C7A4B" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
         </div>
-        <span class="cta-action-arr">→</span>
-      </a>
-      <a href="tel:7708397080" class="cta-action">
-        <div class="cta-action-icon">📞</div>
         <div>
-          <div class="cta-action-label">Call Now</div>
-          <div class="cta-action-val">+91 77083 97080</div>
+          <h3 class="why-h3">Quick Response</h3>
+          <p class="why-p">All inquiries acknowledged within 24 hours. Priority handling for shutdown and emergency audits.</p>
         </div>
-        <span class="cta-action-arr">→</span>
-      </a>
+      </div>
+      <div class="why-card reveal flex items-start gap-4" style="transition-delay:.12s">
+        <div class="why-icon shrink-0">
+          <svg class="icon-svg" fill="none" stroke="#0C7A4B" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
+        </div>
+        <div>
+          <h3 class="why-h3">No Obligation Quote</h3>
+          <p class="why-p">Free preliminary consultation. We assess your needs before committing to any scope or fee.</p>
+        </div>
+      </div>
+      <div class="why-card reveal flex items-start gap-4" style="transition-delay:.18s">
+        <div class="why-icon shrink-0">
+          <svg class="icon-svg" fill="none" stroke="#0C7A4B" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+        </div>
+        <div>
+          <h3 class="why-h3">Global Site Visits</h3>
+          <p class="why-p">Our engineering team provides on-site assessment, inspection, and auditing services for industrial plants across global locations.</p>
+        </div>
+      </div>
     </div>
+
   </div>
 </section>
 
-<!-- FOOTER — unchanged -->
-<footer class="bg-slate-950 pt-14 pb-8">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-    <div>
-      <div class="flex items-center gap-3 mb-3"><img src="Logo.png" alt="Logo" class="h-9 w-auto"/><div class="font-black text-lg text-white font-manrope">Boiler<span class="text-[#1CB5D8]">Tech</span></div></div>
-      <div class="text-[#1CB5D8] text-sm font-semibold mb-3">Your Trusted Performance Partner.</div>
-      <p class="text-slate-500 text-sm leading-relaxed mb-5">Optimizing industrial boiler performance through engineering precision, operational reliability, and long-term sustainability since 2015.</p>
-      <div class="flex gap-3">
-        <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-[#F5A200] hover:bg-slate-700 cursor-pointer transition"><span class="material-symbols-outlined text-sm">language</span></div>
-        <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-[#F5A200] hover:bg-slate-700 cursor-pointer transition"><span class="material-symbols-outlined text-sm">mail</span></div>
+<!-- ═══════════ MAP SECTION — Navy Dark ═══════════ -->
+<section class="map-section py-20 lg:py-24">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid lg:grid-cols-2 gap-10 items-start mb-10 reveal">
+      <div>
+        <div class="stag" style="color:#56CCF2;background:rgba(86,204,242,.1);border-color:rgba(86,204,242,.25)">Our Locations</div>
+        <h2 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-size:clamp(30px,4vw,46px);font-weight:900;color:#fff;line-height:1.1">
+          Find Us in <span class="grad-text">Erode</span>
+        </h2>
       </div>
-    </div>
-    <div>
-      <h4 class="font-bold text-sm mb-5 text-white">Expertise</h4>
-      <ul class="space-y-3 text-sm">
-        <li><a class="text-slate-500 hover:text-slate-300 transition" href="services.html">Boiler Performance Study</a></li>
-        <li><a class="text-slate-500 hover:text-slate-300 transition" href="services.html">Shutdown Audit</a></li>
-        <li><a class="text-slate-500 hover:text-slate-300 transition" href="services.html">Energy Conservation</a></li>
-        <li><a class="text-slate-500 hover:text-slate-300 transition" href="services.html">CFD Analysis</a></li>
-        <li><a class="text-slate-500 hover:text-slate-300 transition" href="services.html">IBR Piping Engineering</a></li>
-        <li><a class="text-slate-500 hover:text-slate-300 transition" href="services.html">Capacity Enhancement</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4 class="font-bold text-sm mb-5 text-white">Company</h4>
-      <ul class="space-y-3 text-sm">
-        <li><a class="text-slate-500 hover:text-slate-300 transition" href="about.html">About Us</a></li>
-        <li><a class="text-slate-500 hover:text-slate-300 transition" href="services.html">Services</a></li>
-        <li><a class="text-slate-500 hover:text-slate-300 transition" href="products.html">Products</a></li>
-        <li><a class="text-slate-500 hover:text-slate-300 transition" href="contact.html">Contact Us</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4 class="font-bold text-sm mb-5 text-white">Headquarters</h4>
-      <p class="text-slate-500 text-sm leading-relaxed">130/1, First Floor, Periyar Street,<br>Erode – 638001, Tamil Nadu<br><br>
-        <a href="tel:7708397080" class="text-[#1CB5D8] hover:underline">+91 77083 97080</a><br>
-        <a href="mailto:boilertechenergy@gmail.com" class="text-slate-500 hover:text-slate-300 break-all">boilertechenergy@gmail.com</a>
+      <p style="font-family:'Times New Roman',Times,serif;font-size:16px;line-height:1.85;color:rgba(255,255,255,.55);">
+        Headquartered in Erode, Tamil Nadu — strategically located for Global Industrial Engineering  project reach. Walk-in visits welcome during office hours.
       </p>
     </div>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+
+      <!-- Map -->
+      <div class="lg:col-span-2 map-card reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.9!2d77.7172!3d11.3408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDIwJzI2LjkiTiA3N8KwNDMnMDIuMiJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+          width="100%"
+          height="560"
+          style="border:0;display:block;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Boilertech Energy Services Location">
+        </iframe>
+      </div>
+
+      <!-- Office Cards -->
+      <div class="flex flex-col gap-4">
+
+        <div class="office-card reveal">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(47,128,237,.2);border:1px solid rgba(47,128,237,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg style="width:16px;height:16px;fill:none;stroke:#56CCF2;stroke-width:1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21 8.954 9.297c.13-.26.51-.26.64 0l2.572 5.144a.75.75 0 0 0 1.048.28l3.536-2.122a.75.75 0 0 1 1.091.323l3.24 7.29M3.75 21h16.5"/></svg>
+            </div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#56CCF2">Registered Office</div>
+          </div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;color:#fff;margin-bottom:4px">130/1, First Floor</div>
+          <div style="font-family:'Times New Roman',Times,serif;font-size:14px;color:rgba(255,255,255,.5);line-height:1.8">
+            Periyar Street, Backside of EDCC Bank<br>
+            Erode – 638001, Tamil Nadu
+          </div>
+        </div>
+
+        <div class="office-card reveal" style="transition-delay:.06s">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(47,128,237,.2);border:1px solid rgba(47,128,237,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg style="width:16px;height:16px;fill:none;stroke:#56CCF2;stroke-width:1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"/></svg>
+            </div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#56CCF2">Administrative Office</div>
+          </div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;color:#fff;margin-bottom:4px">219-A, Ramamoorthy Nagar</div>
+          <div style="font-family:'Times New Roman',Times,serif;font-size:14px;color:rgba(255,255,255,.5);line-height:1.8">
+            Krishnampalayam Road<br>
+            Erode – 638003, Tamil Nadu
+          </div>
+        </div>
+
+        <div class="office-card reveal" style="transition-delay:.12s">
+          <div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#56CCF2;margin-bottom:12px">Office Hours</div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-family:'Times New Roman',Times,serif;font-size:14px;color:rgba(255,255,255,.6)">Mon – Fri</span>
+              <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#fff">9:00 AM – 6:00 PM</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-family:'Times New Roman',Times,serif;font-size:14px;color:rgba(255,255,255,.6)">Saturday</span>
+              <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#fff">9:00 AM – 6:00 PM</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-family:'Times New Roman',Times,serif;font-size:14px;color:rgba(255,255,255,.6)">Sunday</span>
+              <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:rgba(255,255,255,.35)">Closed</span>
+            </div>
+          </div>
+          <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08);font-family:'Times New Roman',Times,serif;font-size:13px;color:rgba(255,255,255,.4);font-style:italic">Emergency audit support available — call us anytime.</div>
+        </div>
+
+      </div>
+    </div>
   </div>
-  <div class="max-w-7xl mx-auto px-5 sm:px-8 mt-10 pt-6 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center gap-3">
-    <p class="text-slate-400 text-sm">© 2026 BoilerTech Energy Services. All rights reserved.</p>
-    <div class="flex flex-wrap justify-center gap-4">
-      <a class="text-slate-400 hover:text-slate-300 text-sm" href="privacy-policy.html">Privacy Policy</a>
-      <a class="text-slate-400 hover:text-slate-300 text-sm" href="terms-of-service.html">Terms of Service</a>
-      <a class="text-slate-400 hover:text-slate-300 text-sm" href="#">Sitemap</a>
+</section>
+
+<!-- ═══════════ FOOTER — exact match ═══════════ -->
+<footer class="pt-14 pb-8">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+    <!-- Brand -->
+    <div>
+      <div style="display:flex;flex-direction:column;align-items:flex-start;margin-bottom:12px;">
+        <img src="assets/btlogo.png" alt="Logo" style="height:40px;width:auto;margin-bottom:6px;"/>
+        <span style="font-family:'Times New Roman',Times,serif;font-size:12px;font-style:italic;margin-top:1px;letter-spacing:.08em;color:#6B7280;">Your Trusted Performance Partner.</span>
+      </div>
+      <p style="font-family:'Times New Roman',Times,serif;font-size:14.5px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:18px">
+        Optimizing industrial boiler performance through engineering precision, operational reliability, and long-term sustainability since 2015.
+      </p>
+      <div style="display:flex;gap:10px">
+        <a href="https://www.linkedin.com/company/boilertech-energy-services" target="_blank" rel="noopener" class="footer-social" title="LinkedIn">
+          <svg style="width:17px;height:17px;fill:var(--secondary)" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="mailto:boilertechenergy@gmail.com" class="footer-social" title="Email">
+          <svg style="width:17px;height:17px;fill:none;stroke:var(--secondary);stroke-width:1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Expertise -->
+    <div>
+      <h4 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-bottom:18px">Expertise</h4>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+        <li><a class="footer-link" href="services.html">Boiler Performance Study</a></li>
+        <li><a class="footer-link" href="services.html">Shutdown Audit</a></li>
+        <li><a class="footer-link" href="services.html">Energy Conservation</a></li>
+        <li><a class="footer-link" href="services.html">CFD Analysis</a></li>
+        <li><a class="footer-link" href="services.html">IBR Piping Design</a></li>
+        <li><a class="footer-link" href="services.html">Capacity Enhancement</a></li>
+      </ul>
+    </div>
+
+    <!-- Company -->
+    <div>
+      <h4 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-bottom:18px">Company</h4>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+        <li><a class="footer-link" href="about.html">About Us</a></li>
+        <li><a class="footer-link" href="services.html">Services</a></li>
+        <li><a class="footer-link" href="products.html">Products</a></li>
+        <li><a class="footer-link" href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <h4 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-bottom:18px">Contact</h4>
+      <p style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--secondary);margin-bottom:4px">Office</p>
+      <p style="font-family:'Times New Roman',Times,serif;font-size:14px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:14px">
+        130/1, First Floor, Periyar Street,<br>Erode – 638001, Tamil Nadu
+      </p>
+      <p style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--secondary);margin-bottom:4px">Administrative Office</p>
+      <p style="font-family:'Times New Roman',Times,serif;font-size:14px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:14px">
+        219-A, Ramamoorthy Nagar,<br>Krishnampalayam Road,<br>Erode – 638003, Tamil Nadu
+      </p>
+      <a href="tel:7708397080" style="display:block;color:var(--secondary);text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;margin-bottom:3px">+91 77083 97080</a>
+      <a href="tel:04244062193" style="display:block;color:rgba(255,255,255,.5);text-decoration:none;font-family:'Montserrat',sans-serif;font-size:13px;margin-bottom:6px">+91 424 406 2193</a>
+      <a href="mailto:boilertechenergy@gmail.com" style="display:block;color:rgba(255,255,255,.4);text-decoration:none;font-family:'Times New Roman',Times,serif;font-size:13px;word-break:break-all;margin-bottom:2px">boilertechenergy@gmail.com</a>
+      <a href="mailto:director@boilertechenergy.com" style="display:block;color:rgba(255,255,255,.4);text-decoration:none;font-family:'Times New Roman',Times,serif;font-size:13px;word-break:break-all">director@boilertechenergy.com</a>
+    </div>
+  </div>
+
+  <div style="max-width:80rem;margin:32px auto 0;padding:20px 2rem 0;border-top:1px solid rgba(255,255,255,.07);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px">
+    <p style="font-size:14px;color:rgba(255,255,255,.3);font-family:'Times New Roman',Times,serif;">© 2026 BoilerTech Energy Services. All rights reserved.</p>
+    <div style="display:flex;gap:20px;flex-wrap:wrap">
+      <a class="footer-link" href="privacy-policy.html" style="font-size:13px">Privacy Policy</a>
+      <a class="footer-link" href="terms of condition.html" style="font-size:13px">Terms of Service</a>
+      <a class="footer-link" href="#" style="font-size:13px">Sitemap</a>
     </div>
   </div>
 </footer>
 
-<!-- CHATBOT — unchanged logic, refined styling -->
-<button id="chatbot-btn" aria-label="Open Chat Assistant"><div class="cb-pulse"></div><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg></button>
-<div id="chatbot-window" role="dialog">
+<!-- ═══════════ CHATBOT BUTTON ═══════════ -->
+<button id="chatbot-btn" aria-label="Open Chat Assistant">
+  <div class="cb-pulse"></div>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+  </svg>
+</button>
+
+<!-- ═══════════ CHATBOT WINDOW ═══════════ -->
+<div id="chatbot-window" role="dialog" aria-label="Boilertech Chat Assistant">
   <div id="cb-header">
     <div class="cb-avatar"><img src="Logo.png" alt=""/></div>
-    <div><div class="cb-name">Boilertech Energy Service Assistant</div><div class="cb-status">Online — Ready to Help</div></div>
-    <button id="cb-close">✕</button>
+    <div class="cb-info">
+      <div class="cb-name">Boilertech Assistant</div>
+      <div class="cb-status">Online — Ready to Help</div>
+    </div>
+    <button id="cb-close" aria-label="Close chat">✕</button>
   </div>
   <div id="cb-messages"></div>
   <div id="cb-quick-area"></div>
   <div id="cb-input-row">
     <input id="cb-input" type="text" placeholder="Type your message…" autocomplete="off" maxlength="200"/>
-    <button id="cb-send"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+    <button id="cb-send" aria-label="Send">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
   </div>
 </div>
 
 <script>
-/* Mobile nav */
-document.getElementById('menuBtn').addEventListener('click',()=>{const m=document.getElementById('mobileMenu');m.style.maxHeight=m.style.maxHeight==='400px'?'0':'400px';});
+/* ═══ SCROLL REVEAL ═══ */
+const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('show'); }), { threshold: .08 });
+document.querySelectorAll('.reveal,.fl,.fr').forEach(el => obs.observe(el));
 
-/* Scroll reveal */
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-/* Counters */
-function easeOutQuart(t){return 1-Math.pow(1-t,4);}
-function runCounter(el){const target=parseInt(el.dataset.target,10),suffix=el.dataset.suffix||'',dur=1800,s=performance.now();function tick(now){const p=Math.min((now-s)/dur,1);el.textContent=Math.floor(easeOutQuart(p)*target)+suffix;if(p<1)requestAnimationFrame(tick);else el.textContent=target+suffix;}requestAnimationFrame(tick);}
-function runTextReveal(el){const full=el.dataset.text;let i=0;el.textContent='';const iv=setInterval(()=>{el.textContent+=full[i++];if(i>=full.length)clearInterval(iv);},140);}
-window.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>{document.querySelectorAll('.stat-num').forEach(el=>{if(el.dataset.target!==undefined)runCounter(el);else if(el.dataset.text!==undefined)runTextReveal(el);});},600);});
-
-/* Form → WhatsApp */
-const WA_NUMBER='917708397080';
-function buildWAMessage(){
-  const name=document.getElementById('f-name').value.trim();
-  const company=document.getElementById('f-company').value.trim();
-  const phone=document.getElementById('f-phone').value.trim();
-  const email=document.getElementById('f-email').value.trim();
-  const industry=document.getElementById('f-industry').value;
-  const service=document.getElementById('f-service').value;
-  const message=document.getElementById('f-message').value.trim();
-  const text=
-    `🔔 *New Enquiry — Boilertech Energy Services*\n\n`+
-    `👤 *Name:* ${name}\n`+
-    `🏢 *Company:* ${company||'Not specified'}\n`+
-    `📞 *Phone:* ${phone}\n`+
-    `✉️ *Email:* ${email}\n`+
-    `🏭 *Industry:* ${industry}\n`+
-    `🔧 *Service:* ${service||'Not specified'}\n\n`+
-    `📝 *Requirements:*\n${message}`;
-  return encodeURIComponent(text);
-}
-function resetForm(){document.getElementById('contactForm').style.display='';document.getElementById('formSuccess').style.display='none';}
-document.getElementById('contactForm').addEventListener('submit',function(e){
-  e.preventDefault();
-  window.open(`https://wa.me/${WA_NUMBER}?text=${buildWAMessage()}`,'_blank');
-  this.style.display='none';
-  document.getElementById('formSuccess').style.display='block';
+/* ═══ NAV SCROLL ═══ */
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
 });
 
-/* Chatbot */
-const cbBtn=document.getElementById('chatbot-btn'),cbWindow=document.getElementById('chatbot-window'),cbClose=document.getElementById('cb-close'),cbMsgs=document.getElementById('cb-messages'),cbInput=document.getElementById('cb-input'),cbSend=document.getElementById('cb-send'),cbQuick=document.getElementById('cb-quick-area');
-const KB={greet:['hi','hello','hey','vanakkam','good morning','good afternoon','good evening','helo','hii'],services:['service','services','what do you do','offer','boiler','performance','shutdown','audit','cfd','ibr','capacity','energy','fuel','troubleshoot','root cause','piping','pipe','stress','isometric','steam'],contact:['contact','phone','email','call','reach','address','office','location','whatsapp','number'],quote:['quote','quotation','price','cost','charge','rate','fee','estimate'],about:['about','company','who','years','experience','founded','history','team'],clients:['client','customer','project','ultratech','ambuja','adani','ceat','jubilant'],industries:['industry','industries','sector','cement','steel','sugar','paper','chemical','food','textile','pharma','power']};
-function matchTopic(msg){const m=msg.toLowerCase();for(const[t,kws]of Object.entries(KB)){if(kws.some(k=>m.includes(k)))return t;}return null;}
-function getReply(topic){switch(topic){case 'greet':return"Hello! 👋 Welcome to <strong>Boilertech Energy Services</strong>. How can I help you today?";case 'services':return`Full range of services:<br><br>⚙️ <strong>Boiler Performance Studies</strong><br>🛠 <strong>Shutdown & Audit</strong><br>🔍 <strong>Troubleshooting & RCA</strong><br>🚀 <strong>Capacity Enhancement</strong><br>🌱 <strong>Energy Conservation</strong><br>💻 <strong>CFD Analysis</strong><br>🔩 <strong>IBR Piping Engineering</strong><br>📦 <strong>Spares & Product Supply</strong>`;case 'contact':return`📞 <a href="tel:7708397080" style="color:#1CB5D8">+91 77083 97080</a><br>✉️ boilertechenergy@gmail.com<br>💬 <a href="https://wa.me/917708397080" target="_blank" style="color:#25d366">WhatsApp us</a><br>📍 130/1, Periyar Street, Erode – 638001`;case 'quote':return`Share these for a quote:<br><br>• Industry & sector<br>• Boiler type & capacity<br>• Service required<br>• Location<br><br>📞 <a href="tel:7708397080" style="color:#1CB5D8">+91 77083 97080</a>`;case 'about':return`<strong>Boilertech Energy Services</strong><br>Erode, Tamil Nadu<br><br>🏆 10+ Years experience<br>🔩 IBR Piping & Certification<br>🌍 Pan India operations<br>⚙️ 500+ Projects delivered`;case 'clients':return`50+ leading clients:<br><br>• Ultratech, Ambuja, Adani Cements<br>• Jubilant Life Sciences, Neuland<br>• CEAT Tyres, NSL Textiles<br>• Parry Sugars, EID Parry<br>• Star Paper, Orient Paper Mills`;case 'industries':return`🏭 Power &nbsp;⚙️ Steel &nbsp;🍬 Sugar<br>📄 Paper &nbsp;🧪 Chemical &nbsp;🍲 Food<br>🏗 Cement &nbsp;🧵 Textile &nbsp;💊 Pharma`;default:return`I can help with:<br><br>• <strong>Services</strong> (incl. IBR Piping)<br>• <strong>Contact</strong> details<br>• <strong>Get a Quote</strong><br>• <strong>About</strong> us & <strong>Clients</strong><br><br>📞 <a href="tel:7708397080" style="color:#1CB5D8">+91 77083 97080</a>`;}}
-function addMsg(text,from='bot'){const w=document.createElement('div');w.className=`cb-msg ${from}`;w.innerHTML=from==='bot'?`<div class="cb-msg-icon"><img src="Logo.png" alt=""/></div><div class="cb-bubble">${text}</div>`:`<div class="cb-bubble">${text}</div>`;cbMsgs.appendChild(w);cbMsgs.scrollTop=cbMsgs.scrollHeight;}
-function showTyping(){const d=document.createElement('div');d.className='cb-msg bot';d.id='cb-typing-row';d.innerHTML=`<div class="cb-msg-icon"><img src="Logo.png" alt=""/></div><div class="cb-bubble"><div class="cb-typing"><span></span><span></span><span></span></div></div>`;cbMsgs.appendChild(d);cbMsgs.scrollTop=cbMsgs.scrollHeight;}
-function removeTyping(){const t=document.getElementById('cb-typing-row');if(t)t.remove();}
-function showQR(opts){cbQuick.innerHTML='';const w=document.createElement('div');w.className='cb-quick-wrap';opts.forEach(o=>{const b=document.createElement('button');b.className='cb-quick';b.textContent=o;b.addEventListener('click',()=>{cbQuick.innerHTML='';addMsg(o,'user');handle(o);});w.appendChild(b);});cbQuick.appendChild(w);}
-function handle(msg){showTyping();setTimeout(()=>{removeTyping();addMsg(getReply(matchTopic(msg)),'bot');showQR(['Our Services','IBR Piping','Get a Quote','Contact Us','Our Clients']);},900);}
-cbBtn.addEventListener('click',()=>{cbWindow.classList.toggle('open');if(cbWindow.classList.contains('open')&&cbMsgs.children.length===0){setTimeout(()=>{addMsg("Hello! 👋 Welcome to <strong>Boilertech Energy Services</strong>.<br>How can I help you today?",'bot');showQR(['Our Services','IBR Piping','Get a Quote','Contact Us','About Us']);},200);}});
-cbClose.addEventListener('click',()=>cbWindow.classList.remove('open'));
-function sendMessage(){const txt=cbInput.value.trim();if(!txt)return;cbQuick.innerHTML='';addMsg(txt,'user');cbInput.value='';handle(txt);}
-cbSend.addEventListener('click',sendMessage);
-cbInput.addEventListener('keydown',e=>{if(e.key==='Enter')sendMessage();});
+/* ═══ MOBILE MENU ═══ */
+const menuBtn = document.getElementById('menuBtn'), mob = document.getElementById('mobileMenu');
+let mOpen = false;
+menuBtn.addEventListener('click', () => {
+  mOpen = !mOpen;
+  mob.style.maxHeight = mOpen ? '500px' : '0';
+});
+
+/* ═══ FORM SUBMIT ═══ */
+function handleSubmit() {
+  const name = document.getElementById('fullName').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if (!name || !phone || !email) {
+    alert('Please fill in all required fields (Name, Phone, Email).');
+    return;
+  }
+  document.getElementById('contactForm').style.display = 'none';
+  const s = document.getElementById('formSuccess');
+  s.style.display = 'block';
+}
+
+/* ═══ CHATBOT ═══ */
+const cbBtn = document.getElementById('chatbot-btn');
+const cbWin = document.getElementById('chatbot-window');
+const cbClose = document.getElementById('cb-close');
+const cbMsgs = document.getElementById('cb-messages');
+const cbInput = document.getElementById('cb-input');
+const cbSend = document.getElementById('cb-send');
+const cbQuick = document.getElementById('cb-quick-area');
+
+const KB = {
+  greet: ["hi","hello","hey","vanakkam","good morning","good afternoon","good evening"],
+  services: ["service","services","what do you do","offer","boiler","performance","shutdown","audit","cfd","capacity","energy","fuel","troubleshoot","root cause"],
+  contact: ["contact","phone","email","call","reach","address","office","location","whatsapp","number"],
+  quote: ["quote","quotation","price","cost","charge","rate","fee","estimate"],
+  about: ["about","company","who","years","experience","founded","history","team"],
+  clients: ["client","customer","project","ultratech","ambuja","adani","ceat","jubilant"],
+  industries: ["industry","industries","sector","cement","steel","sugar","paper","chemical","food","textile","pharma","power"],
+};
+
+function matchTopic(msg) {
+  const m = msg.toLowerCase();
+  for (const [t, kws] of Object.entries(KB)) { if (kws.some(k => m.includes(k))) return t; }
+  return null;
+}
+
+function getReply(topic) {
+  const r = {
+    greet: `Hello! Welcome to <strong>Boilertech Energy Services</strong>. I'm here to help you with information about our services, clients, or how to get in touch. How can I assist you?`,
+    services: `We offer comprehensive industrial boiler engineering:<br><br>• <strong>Performance & Operational Studies</strong><br>• <strong>Shutdown & Audit Services</strong><br>• <strong>Troubleshooting & Root Cause Analysis</strong><br>• <strong>Capacity Enhancement & Re-Engineering</strong><br>• <strong>Energy & Fuel Optimization</strong><br>• <strong>CFD Analysis &  Engineering</strong><br><br>Would you like details on any specific service?`,
+    contact: `You can reach us through:<br><br>📞 <a href="tel:7708397080" style="color:#2F80ED">+91 77083 97080</a><br>📞 <a href="tel:04244062193" style="color:#2F80ED">+91 424 406 2193</a><br>✉️ boilertechenergy@gmail.com<br>✉️ director@boilertechenergy.com<br>📍 130/1, Periyar Street, Erode – 638001<br>💬 <a href="https://wa.me/917708397080" target="_blank" style="color:#25d366">WhatsApp</a><br><br>Response within <strong>24–48 hours</strong>.`,
+    quote: `For a customized quote, please share:<br><br>• Industry/sector type<br>• Boiler capacity & type<br>• Service required<br>• Location<br><br>📞 <a href="tel:7708397080" style="color:#2F80ED">+91 77083 97080</a><br>Or fill the <a href="#contactForm" style="color:#2F80ED">inquiry form above →</a>`,
+    about: `<strong>Boilertech Energy Services</strong> — leading industrial boiler engineering, Erode, Tamil Nadu.<br><br>✓ <strong>10+ Years</strong> of engineering excellence<br>✓ <strong> Certified</strong> designs<br>✓ <strong>Global Industrial Engineering Solutions</strong> operations<br>✓ <strong>500+ Projects</strong> delivered<br>✓ <strong>7+ Industries</strong> served`,
+    clients: `We've served <strong>500+ leading companies</strong> across India:<br><br>• Ultratech, Ambuja, Adani Cement<br>• Jubilant Life Sciences, Neuland Labs<br>• CEAT Tyres, NSL Textiles<br>• Hira Ferro Alloys, Shyam Metallics<br>• Star Paper Mills, Orient Paper Mills<br>• Parry Sugars, EID Parry India…`,
+    industries: `We serve <strong>7+ major industries</strong>:<br><br>Power Plants · Steel Plants · Sugar Plants<br>Paper Mills · Chemical Industries<br>Food Industries · Cement · Pharma · Textiles<br><br>Each solution is customized to the specific boiler type and requirements.`,
+  };
+  return r[topic] || `I can help you with:<br><br>• Our <strong>Services</strong><br>• <strong>Contact</strong> information<br>• Getting a <strong>Quote</strong><br>• <strong>About</strong> us<br>• Our <strong>Clients</strong><br><br>Or call: <a href="tel:7708397080" style="color:#2F80ED">+91 77083 97080</a>`;
+}
+
+function addMsg(text, from = 'bot') {
+  const w = document.createElement('div');
+  w.className = `cb-msg ${from}`;
+  w.innerHTML = from === 'bot'
+    ? `<div class="cb-msg-icon"><img src="Logo.png" alt=""/></div><div class="cb-bubble">${text}</div>`
+    : `<div class="cb-bubble">${text}</div>`;
+  cbMsgs.appendChild(w);
+  cbMsgs.scrollTop = cbMsgs.scrollHeight;
+}
+
+function showTyping() {
+  const d = document.createElement('div');
+  d.className = 'cb-msg bot'; d.id = 'cbTyping';
+  d.innerHTML = `<div class="cb-msg-icon"><img src="Logo.png" alt=""/></div><div class="cb-bubble"><div class="cb-typing"><span></span><span></span><span></span></div></div>`;
+  cbMsgs.appendChild(d); cbMsgs.scrollTop = cbMsgs.scrollHeight;
+}
+function removeTyping() { const t = document.getElementById('cbTyping'); if (t) t.remove(); }
+
+function showQuicks(opts) {
+  cbQuick.innerHTML = '';
+  const w = document.createElement('div'); w.className = 'cb-quick-wrap';
+  opts.forEach(o => {
+    const b = document.createElement('button'); b.className = 'cb-quick'; b.textContent = o;
+    b.addEventListener('click', () => { cbQuick.innerHTML = ''; addMsg(o, 'user'); handleResp(o); });
+    w.appendChild(b);
+  });
+  cbQuick.appendChild(w);
+}
+
+function handleResp(msg) {
+  showTyping();
+  setTimeout(() => {
+    removeTyping();
+    addMsg(getReply(matchTopic(msg)));
+    showQuicks(['Our Services', 'Get a Quote', 'Contact Us', 'Our Clients']);
+  }, 900);
+}
+
+cbBtn.addEventListener('click', () => {
+  cbWin.classList.toggle('open');
+  if (cbWin.classList.contains('open') && cbMsgs.children.length === 0) {
+    setTimeout(() => {
+      addMsg("Hello! Welcome to <strong>Boilertech Energy Services</strong>.<br>How can I help you today?");
+      showQuicks(['Our Services', 'Get a Quote', 'Contact Us', 'About Us', 'Our Clients']);
+    }, 200);
+  }
+});
+cbClose.addEventListener('click', () => cbWin.classList.remove('open'));
+
+function sendMsg() {
+  const t = cbInput.value.trim(); if (!t) return;
+  cbQuick.innerHTML = ''; addMsg(t, 'user'); cbInput.value = ''; handleResp(t);
+}
+cbSend.addEventListener('click', sendMsg);
+cbInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendMsg(); });
 </script>
+<script>lucide.createIcons();</script>
 </body>
 </html>
-
