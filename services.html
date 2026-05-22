@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Services – Boilertech Energy Services</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
 /* ═══════════════════════════════════════
@@ -41,11 +41,11 @@ h1,h2,h3,h4,h5,h6,
 }
 
 body, p, li, .description, .svc-p, .about-p, .hero-p {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Inter', sans-serif;
 }
 
 nav, button, .btn, .stats-number {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
@@ -73,11 +73,13 @@ body {
   font-style: italic; margin-top: 1px;
    letter-spacing: .08em;
   text-align:end; color:#5f6672;
+
+  
 }
 
 
 .nav-link {
-  font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
   color: var(--navy); letter-spacing: .05em; text-decoration: none;
   position: relative; padding-bottom: 4px; transition: color .25s;
 }
@@ -95,7 +97,7 @@ body {
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--grad); color: #fff; border-radius: 999px;
-  padding: 13px 30px; font-weight: 700; font-family: 'Montserrat', sans-serif;
+  padding: 13px 30px; font-weight: 700; font-family: 'Inter', sans-serif;
   font-size: 13px; letter-spacing: .06em; border: none; cursor: pointer;
   transition: transform .25s, box-shadow .25s; text-decoration: none;
 }
@@ -105,7 +107,7 @@ body {
   display: inline-flex; align-items: center; gap: 8px;
   background: #fff; color: var(--primary); border: 1.5px solid var(--primary);
   border-radius: 999px; padding: 12px 28px; font-weight: 700;
-  font-family: 'Montserrat', sans-serif; font-size: 13px; letter-spacing: .06em;
+  font-family: 'Inter', sans-serif; font-size: 13px; letter-spacing: .06em;
   cursor: pointer; text-decoration: none;
   transition: background .25s, color .25s, transform .25s, box-shadow .25s;
 }
@@ -114,7 +116,7 @@ body {
 /* ═══ SECTION TAG ═══ */
 .stag {
   display: inline-flex; align-items: center; gap: 8px;
-  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
   letter-spacing: .18em; text-transform: uppercase; color: var(--primary);
   background: rgba(47,128,237,.08); border: 1px solid rgba(47,128,237,.2);
   padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
@@ -123,7 +125,7 @@ body {
 
 .stag-orange {
   display: inline-flex; align-items: center; gap: 8px;
-  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
   letter-spacing: .18em; text-transform: uppercase; color: var(--orange);
   background: rgba(232,98,26,.08); border: 1px solid rgba(232,98,26,.2);
   padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
@@ -132,7 +134,7 @@ body {
 
 .stag-green {
   display: inline-flex; align-items: center; gap: 8px;
-  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
   letter-spacing: .18em; text-transform: uppercase; color: var(--green);
   background: rgba(12,122,75,.08); border: 1px solid rgba(12,122,75,.2);
   padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
@@ -163,7 +165,7 @@ body {
   background: var(--grad-orange); -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; background-clip: text;
 }
-.hero-p { font-family: 'Times New Roman', Times, serif; font-size: 18px; line-height: 1.85; color: var(--body); max-width: 480px; margin-top: 24px; letter-spacing: 0.01em; }
+.hero-p { font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.85; color: var(--body); max-width: 480px; margin-top: 24px; letter-spacing: 0.01em; }
 
 /* ═══ SERVICE CARDS — ORANGE THEME ═══ */
 .services-section {
@@ -185,7 +187,7 @@ body {
   background: var(--grad-orange); transition: height .35s; border-radius: 20px 20px 0 0;
 }
 .svc-card:hover::after { height: 3px; }
-.svc-card:hover { transform: translateY(-6px); box-shadow: 0 24px 56px rgba(232,98,26,.14); border-color: rgba(232,98,26,.45); }
+.svc-card:hover { transform: translateY(-8px); box-shadow: 0 24px 56px rgba(232,98,26,.14); border-color: rgba(232,98,26,.45); }
 
 .svc-img-wrap { overflow: hidden; height: 200px; }
 .svc-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; display: block; }
@@ -198,11 +200,11 @@ body {
   display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
 }
 .svc-h3 { font-family: 'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif; font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 10px; letter-spacing: .01em; }
-.svc-p { font-family: 'Times New Roman', Times, serif; font-size: 15px; line-height: 1.78; color: var(--body); letter-spacing: 0.01em; }
+.svc-p { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.78; color: var(--body); letter-spacing: 0.01em; }
 
 .svc-tag {
   display: inline-flex; align-items: center;
-  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
   letter-spacing: .12em; text-transform: uppercase; color: var(--orange);
   background: rgba(232,98,26,.07); border: 1px solid rgba(232,98,26,.18);
   padding: 4px 10px; border-radius: 6px; margin: 3px 3px 0 0;
@@ -228,7 +230,7 @@ body {
   background: var(--grad-green); transition: height .35s; border-radius: 20px 20px 0 0;
 }
 .g-card:hover::after { height: 3px; }
-.g-card:hover { transform: translateY(-6px); box-shadow: 0 24px 56px rgba(12,122,75,.12); border-color: rgba(12,122,75,.4); }
+.g-card:hover { transform: translateY(-8px); box-shadow: 0 24px 56px rgba(12,122,75,.12); border-color: rgba(12,122,75,.4); }
 
 .g-icon {
   width: 48px; height: 48px; border-radius: 12px;
@@ -236,10 +238,10 @@ body {
   display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
 }
 .g-h3 { font-family: 'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif; font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
-.g-p { font-family: 'Times New Roman', Times, serif; font-size: 15px; line-height: 1.78; color: var(--body); }
+.g-p { font-family: 'Inter', sans-serif;font-size: 15px; line-height: 1.78; color: var(--body); }
 .g-tag {
   display: inline-flex; align-items: center;
-  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
   letter-spacing: .12em; text-transform: uppercase; color: var(--green);
   background: rgba(12,122,75,.07); border: 1px solid rgba(12,122,75,.18);
   padding: 4px 10px; border-radius: 6px; margin: 3px 3px 0 0;
@@ -265,7 +267,7 @@ body {
   background: var(--grad); transition: height .35s; border-radius: 20px 20px 0 0;
 }
 .b-card:hover::after { height: 3px; }
-.b-card:hover { transform: translateY(-6px); box-shadow: 0 24px 56px rgba(47,128,237,.14); border-color: rgba(47,128,237,.4); }
+.b-card:hover { transform: translateY(-8px); box-shadow: 0 24px 56px rgba(47,128,237,.14); border-color: rgba(47,128,237,.4); }
 
 .b-icon {
   width: 48px; height: 48px; border-radius: 12px;
@@ -273,10 +275,10 @@ body {
   display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
 }
 .b-h3 { font-family: 'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif; font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
-.b-p { font-family: 'Times New Roman', Times, serif; font-size: 15px; line-height: 1.78; color: var(--body); }
+.b-p { font-family: 'Inter', sans-serif;font-size: 15px; line-height: 1.78; color: var(--body); }
 .b-tag {
   display: inline-flex; align-items: center;
-  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
   letter-spacing: .12em; text-transform: uppercase; color: var(--primary);
   background: rgba(47,128,237,.07); border: 1px solid rgba(47,128,237,.18);
   padding: 4px 10px; border-radius: 6px; margin: 3px 3px 0 0;
@@ -286,7 +288,7 @@ body {
 .dark-section { background: var(--navy); position: relative; overflow: hidden; }
 
 /* ═══ ABOUT/BODY ═══ */
-.about-p { font-family: 'Times New Roman', Times, serif; font-size: 16px; line-height: 1.9; color: var(--body); letter-spacing: 0.01em; }
+.about-p { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.9; color: var(--body); letter-spacing: 0.01em; }
 
 /* ═══ CTA ═══ */
 .cta-section { background: linear-gradient(160deg, #FFF8F3 0%, #FFF4ED 50%, #FEEADB 100%); position: relative; overflow: hidden; }
@@ -297,7 +299,7 @@ body {
 
 /* ═══ FOOTER ═══ */
 footer { background: var(--navy); }
-.footer-link { color: rgba(255,255,255,.5); font-family: 'Times New Roman', Times, serif; font-size: 14px; text-decoration: none; transition: color .2s; }
+.footer-link { color: rgba(255,255,255,.5); font-family: 'Inter', sans-serif; font-size: 14px; text-decoration: none; transition: color .2s; }
 .footer-link:hover { color: var(--secondary); }
 .footer-social { width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .2s, border-color .2s; text-decoration: none; }
 .footer-social:hover { background: rgba(47,128,237,.25); border-color: rgba(47,128,237,.4); }
@@ -317,8 +319,8 @@ footer { background: var(--navy); }
 #cb-header { background: var(--grad-dark); padding: 14px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(47,128,237,.2); flex-shrink: 0; }
 #cb-header .cb-avatar { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
 #cb-header .cb-avatar img { width: 100%; height: 100%; object-fit: contain; }
-#cb-header .cb-name { color: #fff; font-weight: 700; font-size: .86rem; font-family:'Montserrat',sans-serif; }
-#cb-header .cb-status { color: #7CFC00; font-size: .67rem; font-weight: 600; display: flex; align-items: center; gap: 4px; margin-top: 2px; font-family: 'Montserrat', sans-serif; }
+#cb-header .cb-name { color: #fff; font-weight: 700; font-size: .86rem; font-family:'Inter',sans-serif; }
+#cb-header .cb-status { color: #7CFC00; font-size: .67rem; font-weight: 600; display: flex; align-items: center; gap: 4px; margin-top: 2px; font-family: 'Inter', sans-serif; }
 #cb-header .cb-status::before { content:''; width:6px;height:6px;border-radius:50%;background:#7CFC00;display:inline-block; }
 #cb-close { margin-left: auto; background: rgba(255,255,255,.1); border: none; color: #fff; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 15px; display: flex; align-items: center; justify-content: center; transition: .2s; flex-shrink: 0; }
 #cb-close:hover { background: rgba(255,255,255,.2); }
@@ -328,16 +330,16 @@ footer { background: var(--navy); }
 .cb-msg { display:flex;gap:8px;align-items:flex-end;max-width:92%; }
 .cb-msg.bot { align-self:flex-start; }
 .cb-msg.user { align-self:flex-end; flex-direction:row-reverse; }
-.cb-bubble { padding: 10px 13px; border-radius: 14px; font-size: .82rem; line-height: 1.6; max-width: 100%; word-break: break-word; font-family: 'Times New Roman', Times, serif; }
+.cb-bubble { padding: 10px 13px; border-radius: 14px; font-size: .82rem; line-height: 1.6; max-width: 100%; word-break: break-word; font-family: 'Inter', sans-serif; }
 .cb-msg.bot .cb-bubble { background:#fff;color:var(--navy);border:1px solid var(--border);border-bottom-left-radius:4px; }
 .cb-msg.user .cb-bubble { background:var(--grad);color:#fff;border-bottom-right-radius:4px; }
 .cb-msg-icon { width:28px;height:28px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden; }
 .cb-msg-icon img { width:100%;height:100%;object-fit:contain; }
 .cb-quick-wrap { display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px 6px;background:var(--bg-soft);flex-shrink:0; }
-.cb-quick { background:#fff; border:1.5px solid var(--primary); color: var(--primary); font-size:.72rem; font-weight:700; padding:5px 12px; border-radius:999px; cursor:pointer; transition:.2s; white-space:nowrap; font-family: 'Montserrat', sans-serif; }
+.cb-quick { background:#fff; border:1.5px solid var(--primary); color: var(--primary); font-size:.72rem; font-weight:700; padding:5px 12px; border-radius:999px; cursor:pointer; transition:.2s; white-space:nowrap; font-family: 'Inter', sans-serif; }
 .cb-quick:hover { background:var(--primary); color:#fff; }
 #cb-input-row { display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--border);background:#fff;flex-shrink:0; }
-#cb-input { flex:1;border:1.5px solid var(--border);border-radius:10px;padding:9px 12px;outline:none;font-family:'Times New Roman',Times,serif;transition:.2s;font-size:16px; }
+#cb-input { flex:1;border:1.5px solid var(--border);border-radius:10px;padding:9px 12px;outline:none;font-family: 'Inter', sans-serif;transition:.2s;font-size:16px; }
 @media(min-width:481px){ #cb-input { font-size:.84rem; } }
 #cb-input:focus { border-color:var(--primary);box-shadow:0 0 0 3px rgba(47,128,237,.1); }
 #cb-send { background:var(--grad);color:#fff;border:none;width:40px;height:40px;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0; }
@@ -368,7 +370,7 @@ footer { background: var(--navy); }
 /* STATS BAND */
 .stats-band { background: var(--navy); }
 .stat-num { font-family: 'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif; font-size: 36px; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
-.stat-label { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-top: 4px; }
+.stat-label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-top: 4px; }
 
 /* HOVER PILL */
 .pill-hover { transition: background .2s, color .2s; }
@@ -427,7 +429,7 @@ footer { background: var(--navy); }
   <div style="position:absolute;width:500px;height:500px;bottom:-100px;left:-100px;background:rgba(47,128,237,.08);border-radius:50%;filter:blur(80px);pointer-events:none"></div>
   <div style="position:absolute;width:400px;height:400px;top:50%;left:40%;background:rgba(232,98,26,.05);border-radius:50%;filter:blur(80px);pointer-events:none"></div>
 
-  <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full grid lg:grid-cols-2 gap-14 items-center py-24 relative" style="z-index:2">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full grid lg:grid-cols-2 gap-14 items-center py-28 relative" style="z-index:2">
     <div>
       <div class="stag-orange reveal" style="transition-delay:.04s">Complete Engineering Portfolio</div>
       <h1 class="hero-h1 reveal" style="transition-delay:.08s">
@@ -436,13 +438,13 @@ footer { background: var(--navy); }
         <span style="  color: var(--navy);">Engineering</span><br>
          <span class="gradient-text"> Services</span>
       </h1>
-      <p class="hero-p reveal" style="transition-delay:.12s">Deep technical expertise across 16 specialized services — from boiler performance studies and shutdown audits to CFD analysis and IBR piping design. Trusted by India's leading industries.</p>
+      <p class="hero-p reveal" style="transition-delay:.12s">Deep technical expertise across specialized services — from boiler performance studies and shutdown audits to CFD analysis and IBR piping design. Trusted by industrial clients across global energy and manufacturing sectors.</p>
       <div class="flex flex-wrap gap-4 mt-8 reveal" style="transition-delay:.16s">
         <a href="contact.html" class="btn-primary">
           Get a Quote
           <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
         </a>
-        <a href="#core-services" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);border:1.5px solid var(--border);border-radius:999px;padding:12px 28px;font-weight:700;font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.06em;text-decoration:none;transition:.25s;"
+        <a href="#core-services" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);border:1.5px solid var(--border);border-radius:999px;padding:12px 28px;font-weight:700;font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.06em;text-decoration:none;transition:.25s;"
            onmouseover="this.style.borderColor='var(--primary)';this.style.color='var(--primary)'"
            onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--navy)'">
           Explore Services
@@ -456,32 +458,33 @@ footer { background: var(--navy); }
       <div class="bg-white border border-slate-100 rounded-[24px] p-7 shadow-2xl shadow-blue-100/50 relative overflow-hidden">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)"></div>
         <div class="grid grid-cols-2 gap-4">
-          <div class="rounded-[16px] overflow-hidden h-[150px] group shadow-md">
-            <img src="assets/BOILER PERFORMANCE.png" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Boiler Performance" onerror="this.src='https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=400&q=80'"/>
+          <div class="rounded-[16px] overflow-hidden h-[170px] group shadow-md">
+            <img src="assets/h-1.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Boiler Performance" />
           </div>
-          <div class="rounded-[16px] overflow-hidden h-[150px] group shadow-md">
-            <img src="assets/CFD ANALYSOR.png" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="CFD Analysis" onerror="this.src='https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=400&q=80'"/>
+          <div class="rounded-[16px] overflow-hidden h-[170px] group shadow-md">
+            <img src="assets/h-2.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="CFD Analysis" />
           </div>
-          <div class="rounded-[16px] overflow-hidden h-[150px] group shadow-md">
-            <img src="assets/CAPACITY ENHANCEMENT.png" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Capacity Enhancement" onerror="this.src='https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&q=80'"/>
+          <div class="rounded-[16px] overflow-hidden h-[170px] group shadow-md">
+            <img src="assets/h-3.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Capacity Enhancement" />
           </div>
-          <div class="rounded-[16px] overflow-hidden h-[150px] group shadow-md">
-            <img src="assets/ENERGY PLANT OPERATION.png" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Energy Optimization" onerror="this.src='https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&q=80'"/>
+          <div class="rounded-[16px] overflow-hidden h-[170px] group shadow-md">
+            <img src="assets/h-4.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Energy Optimization"/>
           </div>
         </div>
         <div class="mt-5 grid grid-cols-3 gap-3">
           <div class="text-center">
             <div style="font-family:'Rockwell',serif;font-size:24px;font-weight:900;background:var(--grad-orange);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">16+</div>
-            <div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--body);letter-spacing:.1em;text-transform:uppercase;margin-top:3px">Services</div>
+            <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:700;color:var(--body);letter-spacing:.1em;text-transform:uppercase;margin-top:3px">Services</div>
           </div>
           <div class="text-center">
-            <div style="font-family:'Rockwell',serif;font-size:24px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">500+</div>
-            <div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--body);letter-spacing:.1em;text-transform:uppercase;margin-top:3px">Projects</div>
+            <div style="font-family:'Rockwell',serif;font-size:24px;font-weight:900;background:var(--grad-green);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">500+</div>
+            <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:700;color:var(--body);letter-spacing:.1em;text-transform:uppercase;margin-top:3px">Projects</div>
           </div>
-          <div class="text-center">
-            <div style="font-family:'Rockwell',serif;font-size:24px;font-weight:900;background:var(--grad-green);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">7+</div>
-            <div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--body);letter-spacing:.1em;text-transform:uppercase;margin-top:3px">Industries</div>
+            <div class="text-center">
+            <div style="font-family:'Rockwell',serif;font-size:24px;font-weight:900;background:var(--grad-green);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">Global</div>
+            <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:700;color:var(--body);letter-spacing:.1em;text-transform:uppercase;margin-top:3px"> Industrial Support</div>
           </div>
+
         </div>
       </div>
     </div>
@@ -494,12 +497,12 @@ footer { background: var(--navy); }
 
 
 <!-- ═══════════ SECTION 1 — CORE BOILER SERVICES (ORANGE) ═══════════ -->
-<section id="core-services" class="services-section py-24">
+<section id="core-services" class="services-section py-28">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="max-w-2xl mb-14 reveal">
       <div class="stag-orange">01 — Core Services</div>
       <h2 style="font-family:'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif;font-size:clamp(32px,4vw,50px);font-weight:900;color:var(--navy);line-height:1.1">
-        Boiler Studies <span class="grad-orange-text">&amp; Audits</span>
+       <span class="grad-orange-text"> Boiler Studies &amp; Audits</span>
       </h2>
       <p class="about-p mt-4 max-w-xl">Comprehensive assessment and evaluation of your boiler systems to unlock peak performance, reduce losses, and ensure long-term operational reliability.</p>
     </div>
@@ -509,7 +512,7 @@ footer { background: var(--navy); }
       <!-- Card 1: Performance Study -->
       <div class="svc-card reveal">
         <div class="svc-img-wrap">
-          <img src="assets/BOILER PERFORMANCE.png" alt="Boiler Performance Study" onerror="this.src='https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=600&q=80'"/>
+          <img src="assets/boiler-perform.jpg" alt="Boiler Performance Study" />
         </div>
         <div class="svc-card-body">
           <div class="svc-icon">
@@ -529,7 +532,7 @@ footer { background: var(--navy); }
       <!-- Card 2: Shutdown Audit -->
       <div class="svc-card reveal" style="transition-delay:.06s">
         <div class="svc-img-wrap">
-          <img src="assets/SHUTDOWN & AUDIT.png" alt="Shutdown Audit" onerror="this.src='https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80'"/>
+          <img src="assets/shutdown-audit-service.jpg" alt="Shutdown Audit" />
         </div>
         <div class="svc-card-body">
           <div class="svc-icon">
@@ -549,7 +552,7 @@ footer { background: var(--navy); }
       <!-- Card 3: Energy Conservation -->
       <div class="svc-card reveal" style="transition-delay:.12s">
         <div class="svc-img-wrap">
-          <img src="assets/ENERGY PLANT OPERATION.png" alt="Energy Conservation" onerror="this.src='https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80'"/>
+          <img src="assets/Energy Conservation Study service.jpg" alt="Energy Conservation" />
         </div>
         <div class="svc-card-body">
           <div class="svc-icon">
@@ -569,7 +572,7 @@ footer { background: var(--navy); }
       <!-- Card 4: Alternative Fuel -->
       <div class="svc-card reveal">
         <div class="svc-img-wrap">
-          <img src="assets/TROUBLE SHOOT.png" alt="Alternative Fuel Study" onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80'"/>
+          <img src="assets/Alternative Fuel Feasibility Study.jpg" alt="Alternative Fuel Study" />
         </div>
         <div class="svc-card-body">
           <div class="svc-icon">
@@ -589,7 +592,7 @@ footer { background: var(--navy); }
       <!-- Card 5: Boiler Operation Troubleshooting -->
       <div class="svc-card reveal" style="transition-delay:.06s">
         <div class="svc-img-wrap">
-          <img src="assets/CFBC BOILER.png" alt="Boiler Troubleshooting" onerror="this.src='https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=600&q=80'"/>
+          <img src="assets/Boiler Operation Troubleshooting-service.jpg" alt="Boiler Troubleshooting" />
         </div>
         <div class="svc-card-body">
           <div class="svc-icon">
@@ -608,7 +611,7 @@ footer { background: var(--navy); }
       <!-- Card 6: Tube Failure Analysis -->
       <div class="svc-card reveal" style="transition-delay:.12s">
         <div class="svc-img-wrap">
-          <img src="assets/STEAM GENERATION.png" alt="Tube Failure Analysis" onerror="this.src='https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=600&q=80'"/>
+          <img src="assets/Tube Failure Analysis.jpg" alt="Tube Failure Analysis"/>
         </div>
         <div class="svc-card-body">
           <div class="svc-icon">
@@ -629,12 +632,12 @@ footer { background: var(--navy); }
 </section>
 
 <!-- ═══════════ SECTION 2 — OPERATIONAL EXPERTISE (GREEN THEME) ═══════════ -->
-<section class="green-section py-24">
+<section class="green-section py-28">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="max-w-2xl mb-14 reveal">
       <div class="stag-green">02 — Operational Expertise</div>
       <h2 style="font-family:'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif;font-size:clamp(32px,4vw,50px);font-weight:900;color:var(--navy);line-height:1.1">
-        Optimization <span class="grad-green-text">&amp; Re-Engineering</span>
+ <span class="grad-green-text"> Optimization&amp;<br>  Re-Engineering</span>
       </h2>
       <p class="about-p mt-4 max-w-xl">Real-world problem solving and precision engineering to restore, enhance, and future-proof your boiler operations for years to come.</p>
     </div>
@@ -644,7 +647,7 @@ footer { background: var(--navy); }
       <!-- LOI Control -->
       <div class="g-card reveal">
         <div class="svc-img-wrap">
-          <img src="assets/THERMAL ENGNEER.png" alt="LOI Control" onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80'"/>
+          <img src="assets/LOI Control Optimization.jpg" alt="LOI Control"/>
         </div>
         <div class="svc-card-body">
           <div class="g-icon">
@@ -664,7 +667,7 @@ footer { background: var(--navy); }
       <!-- Auxiliary Equipment -->
       <div class="g-card reveal" style="transition-delay:.06s">
         <div class="svc-img-wrap">
-          <img src="assets/Afbc1.png" alt="Auxiliary Equipment" onerror="this.src='https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80'"/>
+          <img src="assets/Auxiliary Equipment Optimization.jpg" alt="Auxiliary Equipment" />
         </div>
         <div class="svc-card-body">
           <div class="g-icon">
@@ -684,7 +687,7 @@ footer { background: var(--navy); }
       <!-- Fuel Feeding System -->
       <div class="g-card reveal" style="transition-delay:.12s">
         <div class="svc-img-wrap">
-          <img src="assets/CAPACITY ENHANCEMENT.png" alt="Fuel Feeding System" onerror="this.src='https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=600&q=80'"/>
+          <img src="assets/Fuel Feeding System Study.jpg" alt="Fuel Feeding System" />
         </div>
         <div class="svc-card-body">
           <div class="g-icon">
@@ -704,7 +707,7 @@ footer { background: var(--navy); }
       <!-- Capacity Enhancement -->
       <div class="g-card reveal">
         <div class="svc-img-wrap">
-          <img src="assets/CFBC BOILER.png" alt="Capacity Enhancement" onerror="this.src='https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=600&q=80'"/>
+          <img src="assets/Capacity Enhancement & Re-Engineering.jpg" alt="Capacity Enhancement" />
         </div>
         <div class="svc-card-body">
           <div class="g-icon">
@@ -724,7 +727,7 @@ footer { background: var(--navy); }
       <!-- Pump Efficiency -->
       <div class="g-card reveal" style="transition-delay:.06s">
         <div class="svc-img-wrap">
-          <img src="assets/STEAM GENERATION.png" alt="Pump Efficiency" onerror="this.src='https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80'"/>
+          <img src="assets/Pump Efficiency Study.jpg" alt="Pump Efficiency" />
         </div>
         <div class="svc-card-body">
           <div class="g-icon">
@@ -744,7 +747,7 @@ footer { background: var(--navy); }
       <!-- Fan Efficiency -->
       <div class="g-card reveal" style="transition-delay:.12s">
         <div class="svc-img-wrap">
-          <img src="assets/THERMAL ENGNEER.png" alt="Fan Efficiency Study" onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80'"/>
+          <img src="assets/Fan Efficiency Study.jpg" alt="Fan Efficiency Study" onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80'"/>
         </div>
         <div class="svc-card-body">
           <div class="g-icon">
@@ -766,7 +769,7 @@ footer { background: var(--navy); }
 </section>
 
 <!-- ═══════════ SECTION 3 — ADVANCED ANALYSIS (BLUE THEME) ═══════════ -->
-<section class="blue-section py-24">
+<section class="blue-section py-28">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="max-w-2xl mb-14 reveal">
       <div class="stag">03 — Advanced Capabilities</div>
@@ -781,7 +784,7 @@ footer { background: var(--navy); }
       <!-- CFD Analysis -->
       <div class="b-card reveal">
         <div class="svc-img-wrap">
-          <img src="assets/CFD ANALYSOR.png" alt="CFD Analysis" onerror="this.src='https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=600&q=80'"/>
+          <img src="assets/CFD Analysis.jpg" alt="CFD Analysis" />
         </div>
         <div class="svc-card-body">
           <div class="b-icon">
@@ -801,7 +804,7 @@ footer { background: var(--navy); }
       <!-- IBR Piping Design -->
       <div class="b-card reveal" style="transition-delay:.06s">
         <div class="svc-img-wrap">
-          <img src="assets/Afbc1.png" alt="Piping Design IBR" onerror="this.src='https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80'"/>
+          <img src="assets/Piping Design (IBR).jpg" alt="Piping Design IBR" />
         </div>
         <div class="svc-card-body">
           <div class="b-icon">
@@ -821,7 +824,7 @@ footer { background: var(--navy); }
       <!-- Economiser Failure Study -->
       <div class="b-card reveal" style="transition-delay:.12s">
         <div class="svc-img-wrap">
-          <img src="assets/BOILER PERFORMANCE.png" alt="Economiser Failure Study" onerror="this.src='https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=600&q=80'"/>
+          <img src="assets/Economiser Failure Study.jpg" alt="Economiser Failure Study" onerror="this.src='https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=600&q=80'"/>
         </div>
         <div class="svc-card-body">
           <div class="b-icon">
@@ -841,7 +844,7 @@ footer { background: var(--navy); }
       <!-- APH System Study -->
       <div class="b-card reveal">
         <div class="svc-img-wrap">
-          <img src="assets/ENERGY PLANT OPERATION.png" alt="APH System Study" onerror="this.src='https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80'"/>
+          <img src="assets/APH System Study.jpg" alt="APH System Study" />
         </div>
         <div class="svc-card-body">
           <div class="b-icon">
@@ -863,7 +866,7 @@ footer { background: var(--navy); }
       <!-- Residual Life Assessment — Wide card spanning 2 cols -->
           <div class="b-card reveal">
         <div class="svc-img-wrap">
-          <img src="assets/CFBC BOILER.png" alt="Advanced Engineering" class="w-full h-full object-cover hover:scale-105 transition duration-700" onerror="this.src='https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=700&q=80'"/>
+          <img src="assets/IBR-Certified Engineering Excellence.jpg" alt="Advanced Engineering" class="w-full h-full object-cover hover:scale-105 transition duration-700" onerror="this.src='https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=700&q=80'"/>
         </div>
         <div class="svc-card-body">
           <div class="b-icon">
@@ -880,14 +883,6 @@ footer { background: var(--navy); }
         </div>
       </div>
 
-          <!-- <div class="mt-6">
-            <a href="contact.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--grad);color:#fff;border-radius:999px;padding:12px 26px;font-weight:700;font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.06em;text-decoration:none;transition:.25s"
-               onmouseover="this.style.boxShadow='0 12px 32px rgba(47,128,237,.35)';this.style.transform='translateY(-2px)'"
-               onmouseout="this.style.boxShadow='none';this.style.transform='none'">
-              Start a Project
-              <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
-            </a>
-          </div> -->
         </div>
       </div>
 
@@ -896,20 +891,20 @@ footer { background: var(--navy); }
 </section>
 
 <!-- ═══════════ WHY CHOOSE US — DARK SECTION ═══════════ -->
-<section class="dark-section py-24">
+<section class="dark-section py-28">
   <div style="position:absolute;width:600px;height:600px;top:-150px;right:-100px;background:rgba(86,204,242,.06);border-radius:50%;filter:blur(80px);pointer-events:none"></div>
   <div style="position:absolute;width:500px;height:500px;bottom:-100px;left:-80px;background:rgba(47,128,237,.06);border-radius:50%;filter:blur(80px);pointer-events:none"></div>
 
   <div class="max-w-7xl mx-auto px-5 sm:px-8 relative" style="z-index:1">
     <div class="text-center max-w-2xl mx-auto mb-14 reveal">
-      <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--secondary);background:rgba(86,204,242,.1);border:1px solid rgba(86,204,242,.25);padding:6px 14px;border-radius:999px;margin-bottom:18px">
+      <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--secondary);background:rgba(86,204,242,.1);border:1px solid rgba(86,204,242,.25);padding:6px 14px;border-radius:999px;margin-bottom:18px">
         <span style="width:5px;height:5px;border-radius:50%;background:var(--secondary);display:inline-block"></span>
         Why Boilertech
       </div>
       <h2 style="font-family:'Rockwell','Rockwell Nova','Courier Bold',Georgia,serif;font-size:clamp(32px,4vw,50px);font-weight:900;color:#fff;line-height:1.1">
         The <span class="grad-text">Technical Edge</span> That Sets Us Apart
       </h2>
-      <p style="font-family:'Times New Roman',Times,serif;font-size:16px;line-height:1.85;color:rgba(255,255,255,.55);margin-top:16px">Engineering advantages that make every project more efficient, more reliable, and more profitable for our clients.</p>
+      <p style="font-family: 'Inter', sans-serif;font-size:16px;line-height:1.85;color:rgba(255,255,255,.55);margin-top:16px">Engineering advantages that make every project more efficient, more reliable, and more profitable for our clients.</p>
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -918,106 +913,50 @@ footer { background: var(--navy); }
           <svg class="icon-svg" fill="none" stroke="var(--secondary)" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
         </div>
         <h3 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;font-size:15px;color:#fff;margin-bottom:8px">IBR Certified Designs</h3>
-        <p style="font-family:'Times New Roman',Times,serif;font-size:14px;line-height:1.8;color:rgba(255,255,255,.55)">All designs strictly adhere to Indian Boiler Regulations — full legal compliance and safety at every stage.</p>
+        <p style="font-family: 'Inter', sans-serif;font-size:14px;line-height:1.8;color:rgba(255,255,255,.55)">All designs strictly adhere to Indian Boiler Regulations — full legal compliance and safety at every stage.</p>
       </div>
       <div class="reveal p-6 rounded-[16px] border transition-all duration-300 hover:-translate-y-1" style="background:rgba(232,98,26,.07);border-color:rgba(232,98,26,.2);transition-delay:.05s">
         <div style="width:42px;height:42px;border-radius:11px;background:rgba(232,98,26,.15);border:1px solid rgba(232,98,26,.3);display:flex;align-items:center;justify-content:center;margin-bottom:16px">
           <svg class="icon-svg" fill="none" stroke="#F5A623" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
         </div>
         <h3 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;font-size:15px;color:#fff;margin-bottom:8px">15–25% Fuel Savings</h3>
-        <p style="font-family:'Times New Roman',Times,serif;font-size:14px;line-height:1.8;color:rgba(255,255,255,.55)">Combustion optimization and energy audit services deliver measurable fuel cost reductions across sectors.</p>
+        <p style="font-family: 'Inter', sans-serif;font-size:14px;line-height:1.8;color:rgba(255,255,255,.55)">Combustion optimization and energy audit services deliver measurable fuel cost reductions across sectors.</p>
       </div>
       <div class="reveal p-6 rounded-[16px] border transition-all duration-300 hover:-translate-y-1" style="background:rgba(12,122,75,.07);border-color:rgba(12,122,75,.25);transition-delay:.1s">
         <div style="width:42px;height:42px;border-radius:11px;background:rgba(12,122,75,.15);border:1px solid rgba(12,122,75,.3);display:flex;align-items:center;justify-content:center;margin-bottom:16px">
           <svg class="icon-svg" fill="none" stroke="#1DB97A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
         </div>
         <h3 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;font-size:15px;color:#fff;margin-bottom:8px">Zero-Downtime Focus</h3>
-        <p style="font-family:'Times New Roman',Times,serif;font-size:14px;line-height:1.8;color:rgba(255,255,255,.55)">Shutdown audits and preventive maintenance catch issues before failures — keeping your plant running.</p>
+        <p style="font-family: 'Inter', sans-serif;font-size:14px;line-height:1.8;color:rgba(255,255,255,.55)">Shutdown audits and preventive maintenance catch issues before failures — keeping your plant running.</p>
       </div>
       <div class="reveal p-6 rounded-[16px] border transition-all duration-300 hover:-translate-y-1" style="background:rgba(47,128,237,.07);border-color:rgba(47,128,237,.2);transition-delay:.05s">
         <div style="width:42px;height:42px;border-radius:11px;background:rgba(47,128,237,.15);border:1px solid rgba(47,128,237,.3);display:flex;align-items:center;justify-content:center;margin-bottom:16px">
           <svg class="icon-svg" fill="none" stroke="var(--secondary)" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
         </div>
         <h3 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;font-size:15px;color:#fff;margin-bottom:8px">CFD-Driven Analysis</h3>
-        <p style="font-family:'Times New Roman',Times,serif;font-size:14px;line-height:1.8;color:rgba(255,255,255,.55)">Simulate and optimize before physical work begins — reducing risk and maximizing results with computational precision.</p>
+        <p style="font-family: 'Inter', sans-serif;font-size:14px;line-height:1.8;color:rgba(255,255,255,.55)">Simulate and optimize before physical work begins — reducing risk and maximizing results with computational precision.</p>
       </div>
       <div class="reveal p-6 rounded-[16px] border transition-all duration-300 hover:-translate-y-1" style="background:rgba(232,98,26,.07);border-color:rgba(232,98,26,.2);transition-delay:.1s">
         <div style="width:42px;height:42px;border-radius:11px;background:rgba(232,98,26,.15);border:1px solid rgba(232,98,26,.3);display:flex;align-items:center;justify-content:center;margin-bottom:16px">
           <svg class="icon-svg" fill="none" stroke="#F5A623" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
         </div>
         <h3 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;font-size:15px;color:#fff;margin-bottom:8px">End-to-End Service</h3>
-        <p style="font-family:'Times New Roman',Times,serif;font-size:14px;line-height:1.8;color:rgba(255,255,255,.55)">Design, installation, shutdown audits, re-engineering, and performance studies — all under one roof.</p>
+        <p style="font-family: 'Inter', sans-serif;font-size:14px;line-height:1.8;color:rgba(255,255,255,.55)">Design, installation, shutdown audits, re-engineering, and performance studies — all under one roof.</p>
       </div>
       <div class="reveal p-6 rounded-[16px] border transition-all duration-300 hover:-translate-y-1" style="background:rgba(12,122,75,.07);border-color:rgba(12,122,75,.25);transition-delay:.15s">
         <div style="width:42px;height:42px;border-radius:11px;background:rgba(12,122,75,.15);border:1px solid rgba(12,122,75,.3);display:flex;align-items:center;justify-content:center;margin-bottom:16px">
           <svg class="icon-svg" fill="none" stroke="#1DB97A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
         </div>
         <h3 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;font-size:15px;color:#fff;margin-bottom:8px">Pan India Presence</h3>
-        <p style="font-family:'Times New Roman',Times,serif;font-size:14px;line-height:1.8;color:rgba(255,255,255,.55)">Delivering precision engineering solutions for industrial boiler and power plant systems across India.</p>
+        <p style="font-family: 'Inter', sans-serif;font-size:14px;line-height:1.8;color:rgba(255,255,255,.55)">Delivering precision engineering solutions for industrial boiler and power plant systems across India.</p>
       </div>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
+<!-- <div class="section-divider"></div> -->
 
-<!-- ═══════════ CTA — IDENTICAL STYLE TO HOME ═══════════ -->
-<!-- <section class="cta-section py-24">
-  <div style="position:absolute;top:-100px;left:-100px;width:500px;height:500px;border-radius:50%;filter:blur(80px);background:rgba(232,98,26,.06);pointer-events:none"></div>
-  <div style="position:absolute;bottom:-80px;right:-80px;width:400px;height:400px;border-radius:50%;filter:blur(80px);background:rgba(245,166,35,.06);pointer-events:none"></div>
-  <div class="max-w-7xl mx-auto px-5 sm:px-8 relative" style="z-index:1">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-      <div class="reveal">
-        <div class="stag-orange">Start Your Project</div>
-        <h2 class="cta-h2">
-          Let's Build<br>
-          <span class="grad-orange-text">Something</span><br>
-          Extraordinary
-        </h2>
-        <p class="about-p mt-5 max-w-md">We collaborate with industries to design intelligent boiler systems that improve efficiency, reliability, and performance at scale. Tell us your plant's challenges.</p>
-        <div class="flex flex-wrap gap-4 mt-8">
-          <a href="contact.html" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#E8621A,#F5A623);color:#fff;border-radius:999px;padding:13px 30px;font-weight:700;font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.06em;text-decoration:none;transition:.25s;border:none;cursor:pointer;"
-             onmouseover="this.style.boxShadow='0 12px 32px rgba(232,98,26,.35)';this.style.transform='translateY(-2px)'"
-             onmouseout="this.style.boxShadow='none';this.style.transform='none'">
-            Get a Free Consultation
-            <svg style="width:22px;height:22px" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
-          </a>
-          <a href="#core-services" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--orange);border:1.5px solid var(--orange);border-radius:999px;padding:12px 28px;font-weight:700;font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.06em;text-decoration:none;transition:.25s"
-             onmouseover="this.style.background='#FFF4ED'" onmouseout="this.style.background='#fff'">Back to Services</a>
-        </div>
-        <p style="margin-top:20px;font-size:12px;color:var(--body);font-weight:600;letter-spacing:.06em;font-family:'Times New Roman',Times,serif;">Trusted across Power · Steel · Sugar · Paper · Chemical · Food · Cement</p>
-      </div>
-      <div class="reveal space-y-3" style="transition-delay:.1s">
-        <div class="contact-card">
-          <div class="contact-icon"><svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg></div>
-          <div>
-            <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--body);margin-bottom:4px;font-family:'Montserrat',sans-serif;">Call Us Directly</div>
-            <a href="tel:7708397080" style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;" class="grad-orange-text">+91 77083 97080</a>
-            <br>
-            <a href="tel:04244062193" style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;color:var(--navy);text-decoration:none;">+91 424 406 2193</a>
-            <div style="font-size:14px;color:var(--body);margin-top:2px;font-family:'Times New Roman',Times,serif;">Available for project discussions</div>
-          </div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-icon"><svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg></div>
-          <div>
-            <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--body);margin-bottom:4px;font-family:'Montserrat',sans-serif;">Email Us</div>
-            <a href="mailto:boilertechenergy@gmail.com" style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;color:var(--navy);text-decoration:none;display:block;transition:color .2s" onmouseover="this.style.color='#E8621A'" onmouseout="this.style.color='var(--navy)'">boilertechenergy@gmail.com</a>
-            <a href="mailto:director@boilertechenergy.com" style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;color:var(--navy);text-decoration:none;display:block;margin-top:3px;transition:color .2s" onmouseover="this.style.color='#E8621A'" onmouseout="this.style.color='var(--navy)'">director@boilertechenergy.com</a>
-          </div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-icon"><svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg></div>
-          <div>
-            <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--body);margin-bottom:4px;font-family:'Montserrat',sans-serif;">Visit Our Office</div>
-            <div style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;color:var(--navy)">130/1, First Floor, Periyar Street</div>
-            <div style="font-size:14px;color:var(--body);margin-top:2px;font-family:'Times New Roman',Times,serif;">Backside of EDCC Bank, Erode – 638001</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
+
 
 <!-- ═══════════ FOOTER — IDENTICAL TO HOME ═══════════ -->
 <footer class="pt-14 pb-8">
@@ -1025,9 +964,9 @@ footer { background: var(--navy); }
     <div>
       <div style="display:flex;flex-direction:column;align-items:flex-start;margin-bottom:12px;">
         <img src="assets/btlogo.png" alt="Logo" style="height:30px;width:auto;margin-bottom:6px;"/>
-        <span style="font-family:'Times New Roman',Times,serif;font-size:12px;font-style:italic;margin-top:1px;letter-spacing:.08em;color:#6B7280;">Your Trusted Performance Partner.</span>
+        <span style="font-family: 'Inter', sans-serif;font-size:12px;font-style:italic;margin-top:1px;letter-spacing:.08em;color:#6B7280;">Your Trusted Performance Partner.</span>
       </div>
-      <p style="font-family:'Times New Roman',Times,serif;font-size:14.5px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:18px">
+      <p style="font-family: 'Inter', sans-serif;font-size:14.5px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:18px">
         Optimizing industrial boiler performance through engineering precision, operational reliability, and long-term sustainability since 2015.
       </p>
       <div style="display:flex;gap:10px">
@@ -1063,22 +1002,32 @@ footer { background: var(--navy); }
     </div>
     <div>
       <h4 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-bottom:18px">Contact</h4>
-      <p style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--secondary);margin-bottom:4px">Office</p>
-      <p style="font-family:'Times New Roman',Times,serif;font-size:14px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:14px">130/1, First Floor, Periyar Street,<br>Erode – 638001, Tamil Nadu</p>
-      <p style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--secondary);margin-bottom:4px">Administrative Office</p>
-      <p style="font-family:'Times New Roman',Times,serif;font-size:14px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:14px">219-A, Ramamoorthy Nagar,<br>Krishnampalayam Road,<br>Erode – 638003, Tamil Nadu</p>
-      <a href="tel:7708397080" style="display:block;color:var(--secondary);text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;margin-bottom:3px">+91 77083 97080</a>
-      <a href="tel:04244062193" style="display:block;color:rgba(255,255,255,.5);text-decoration:none;font-family:'Montserrat',sans-serif;font-size:13px;margin-bottom:6px">+91 424 406 2193</a>
-      <a href="mailto:boilertechenergy@gmail.com" style="display:block;color:rgba(255,255,255,.4);text-decoration:none;font-family:'Times New Roman',Times,serif;font-size:13px;word-break:break-all;margin-bottom:2px">boilertechenergy@gmail.com</a>
-      <a href="mailto:director@boilertechenergy.com" style="display:block;color:rgba(255,255,255,.4);text-decoration:none;font-family:'Times New Roman',Times,serif;font-size:13px;word-break:break-all">director@boilertechenergy.com</a>
+      <p style="font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--secondary);margin-bottom:4px">Office</p>
+      <p style="font-family: 'Inter', sans-serif;font-size:14px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:14px">130/1, First Floor, Periyar Street,<br>Erode – 638001, Tamil Nadu</p>
+      <p style="font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--secondary);margin-bottom:4px">Administrative Office</p>
+      <p style="font-family: 'Inter', sans-serif;font-size:14px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:14px">219-A, Ramamoorthy Nagar,<br>Krishnampalayam Road,<br>Erode – 638003, Tamil Nadu</p>
+      <a href="tel:7708397080" style="display:block;color:var(--secondary);text-decoration:none;font-family:'Inter',sans-serif;font-weight:600;font-size:14px;margin-bottom:3px">+91 77083 97080</a>
+      <a href="tel:04244062193" style="display:block;color:rgba(255,255,255,.5);text-decoration:none;font-family:'Inter',sans-serif;font-size:13px;margin-bottom:6px">+91 424 406 2193</a>
+      <a href="mailto:boilertechenergy@gmail.com" style="display:block;color:rgba(255,255,255,.4);text-decoration:none;font-family: 'Inter', sans-serif;font-size:13px;word-break:break-all;margin-bottom:2px">boilertechenergy@gmail.com</a>
+      <a href="mailto:director@boilertechenergy.com" style="display:block;color:rgba(255,255,255,.4);text-decoration:none;font-family: 'Inter', sans-serif;font-size:13px;word-break:break-all">director@boilertechenergy.com</a>
     </div>
   </div>
   <div style="max-width:80rem;margin:32px auto 0;padding:20px 2rem 0;border-top:1px solid rgba(255,255,255,.07);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px">
-    <p style="font-size:14px;color:rgba(255,255,255,.3);font-family:'Times New Roman',Times,serif;">© 2026 BoilerTech Energy Services. All rights reserved.</p>
-    <div style="display:flex;gap:20px;flex-wrap:wrap">
+<p style="font-size:14px;color:rgba(255,255,255,.3);font-family: 'Inter', sans-serif;">© 2026 BoilerTech Energy Services. All rights reserved.
+<a href="https://thebranddigitalsolutions.com"
+target="_blank"
+rel="noopener"
+style="
+color:#56CCF2;
+text-decoration:none;
+font-weight:600;
+transition:.2s;
+">
+Designed & Developed by The Brand Digital Solutions
+</a></p>    <div style="display:flex;gap:20px;flex-wrap:wrap">
       <a class="footer-link" href="privacy-policy.html" style="font-size:13px">Privacy Policy</a>
       <a class="footer-link" href="terms of condition.html" style="font-size:13px">Terms of Service</a>
-      <a class="footer-link" href="#" style="font-size:13px">Sitemap</a>
+      <!-- <a class="footer-link" href="#" style="font-size:13px">Sitemap</a> -->
     </div>
   </div>
 </footer>

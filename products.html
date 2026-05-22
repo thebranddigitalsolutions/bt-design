@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Products – Boilertech Energy Services</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════
    DESIGN TOKENS — same as index page
@@ -40,12 +40,12 @@ h1,h2,h3,h4,h5,h6 {
 
 /* PARAGRAPHS → Times New Roman */
 body, p, li, span {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Inter', sans-serif;
 }
 
 /* NAVBAR + BUTTONS */
 nav, button, .btn, input {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
@@ -68,7 +68,7 @@ body {
 }
 #mainNav.scrolled { box-shadow: 0 4px 32px rgba(47,128,237,.09); }
 .logo-tagline-nav {
-  font-family:' Montserrat', sans-serif;
+  font-family:'Inter', sans-serif;
    font-size: 11.5px;
    font-weight: 400;
   font-style: italic; margin-top: 1px;
@@ -78,7 +78,7 @@ body {
 
 
 .nav-link {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 700;
   color: var(--navy); letter-spacing: .05em;
@@ -126,7 +126,7 @@ body {
 ═══════════════════════════════════════ */
 .stag {
   display: inline-flex; align-items: center; gap: 8px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 10px; font-weight: 700;
   letter-spacing: .18em; text-transform: uppercase;
   color: var(--primary);
@@ -139,7 +139,7 @@ body {
 
 .stag-orange {
   display: inline-flex; align-items: center; gap: 8px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 10px; font-weight: 700;
   letter-spacing: .18em; text-transform: uppercase;
   color: var(--orange);
@@ -152,7 +152,7 @@ body {
 
 .stag-green {
   display: inline-flex; align-items: center; gap: 8px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 10px; font-weight: 700;
   letter-spacing: .18em; text-transform: uppercase;
   color: var(--green);
@@ -165,7 +165,7 @@ body {
 
 .stag-light {
   display: inline-flex; align-items: center; gap: 8px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 10px; font-weight: 700;
   letter-spacing: .18em; text-transform: uppercase;
   color: var(--secondary);
@@ -193,7 +193,7 @@ body {
 .cat-nav-inner::-webkit-scrollbar { display: none; }
 .cat-pill {
   white-space: nowrap; padding: 7px 18px; border-radius: 100px;
-  font-family: 'Montserrat', sans-serif; font-size: .78rem; font-weight: 700;
+  font-family: 'Inter', sans-serif; font-size: .78rem; font-weight: 700;
   cursor: pointer; background: transparent; color: #64748b;
   border: 1px solid #e2e8f0; transition: all .22s; letter-spacing: 0.2px;
 }
@@ -337,7 +337,7 @@ body {
 .sec-green .card-lt .card-border-top { background: var(--grad-green); }
 
 .card-lt .card-img-wrap { position: relative; overflow: hidden; height: 185px; background: #f4f6f9; }
-.card-lt .card-img-wrap img { width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+.card-lt .card-img-wrap img { width:100%; height:100%; transition:transform .5s ease;object-fit:contain; background:#fff; padding:10px; }
 .card-lt:hover .card-img-wrap img { transform: scale(1.05); }
 .card-lt .card-img-overlay { position:absolute; inset:0; background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.22) 100%); }
 
@@ -360,7 +360,7 @@ body {
   margin-bottom: 8px; letter-spacing: -0.2px; line-height: 1.25;
 }
 .card-lt .card-desc {
-  font-family:'Times New Roman',Times,serif;
+  font-family: 'Inter', sans-serif;
   font-size: .84rem; color: var(--body); line-height: 1.7; flex:1;
 }
 .card-lt .card-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:14px; }
@@ -396,8 +396,8 @@ body {
   transform: translateY(-5px);
   box-shadow: 0 20px 50px rgba(0,0,0,.4);
 }
-.card-dk .card-img-wrap { position:relative; overflow:hidden; height:185px; background:#0b0e15; }
-.card-dk .card-img-wrap img { width:100%; height:100%; object-fit:cover; filter:brightness(.85); transition:transform .5s ease; }
+.card-dk .card-img-wrap { position:relative; overflow:hidden; height:220px; background:#0b0e15; }
+.card-dk .card-img-wrap img { width:100%; height:100%;object-fit:contain; background:#fff;  padding:10px; filter:brightness(.85); transition:transform .5s ease; }
 .card-dk:hover .card-img-wrap img { transform:scale(1.05); filter:brightness(.95); }
 .card-dk .card-img-overlay { position:absolute; inset:0; background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.5) 100%); }
 .card-dk .card-cat-badge {
@@ -415,7 +415,7 @@ body {
   margin-bottom:8px; line-height:1.25;
 }
 .card-dk .card-desc {
-  font-family:'Times New Roman',Times,serif;
+  font-family: 'Inter', sans-serif;
   font-size:.84rem; color:rgba(215,225,240,.55); line-height:1.7; flex:1;
 }
 .card-dk .card-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:14px; }
@@ -495,7 +495,7 @@ body {
 footer { background: var(--navy); }
 .footer-link {
   color: rgba(255,255,255,.5);
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Inter', sans-serif;
   font-size: 14px; text-decoration: none; transition: color .2s;
 }
 .footer-link:hover { color: var(--secondary); }
@@ -586,7 +586,7 @@ footer { background: var(--navy); }
 .cb-bubble {
   padding:10px 13px; border-radius:14px;
   font-size:.82rem; line-height:1.6; max-width:100%; word-break:break-word;
-  font-family:'Times New Roman',Times,serif;
+  font-family: 'Inter', sans-serif;
 }
 .cb-msg.bot .cb-bubble { background:#fff; color:var(--navy); border:1px solid var(--border); border-bottom-left-radius:4px; }
 .cb-msg.user .cb-bubble { background:var(--grad); color:#fff; border-bottom-right-radius:4px; }
@@ -603,7 +603,7 @@ footer { background: var(--navy); }
 .cb-quick:hover { background:var(--primary); color:#fff; }
 
 #cb-input-row { display:flex; gap:8px; padding:10px 12px; border-top:1px solid var(--border); background:#fff; flex-shrink:0; }
-#cb-input { flex:1; border:1.5px solid var(--border); border-radius:10px; padding:9px 12px; outline:none; font-family:'Times New Roman',Times,serif; transition:.2s; font-size:16px; }
+#cb-input { flex:1; border:1.5px solid var(--border); border-radius:10px; padding:9px 12px; outline:none; font-family: 'Inter', sans-serif; transition:.2s; font-size:16px; }
 @media(min-width:481px){ #cb-input { font-size:.84rem; } }
 #cb-input:focus { border-color:var(--primary); box-shadow:0 0 0 3px rgba(47,128,237,.1); }
 #cb-send { background:var(--grad); color:#fff; border:none; width:40px; height:40px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.2s; flex-shrink:0; }
@@ -633,8 +633,8 @@ footer { background: var(--navy); }
 ═══════════════════════════════════════ */
 .sec-title-dark { color: var(--navy); }
 .sec-title-light { color: #fff; }
-.sec-sub-dark { font-family:'Times New Roman',Times,serif; font-size:.95rem; color:var(--body); margin-top:8px; line-height:1.7; max-width:500px; }
-.sec-sub-light { font-family:'Times New Roman',Times,serif; font-size:.95rem; color:rgba(215,225,240,.6); margin-top:8px; line-height:1.7; max-width:500px; }
+.sec-sub-dark { font-family: 'Inter', sans-serif;font-size:.95rem; color:var(--body); margin-top:8px; line-height:1.7; max-width:500px; }
+.sec-sub-light {font-family: 'Inter', sans-serif;font-size:.95rem; color:rgba(215,225,240,.6); margin-top:8px; line-height:1.7; max-width:500px; }
 
 /* MOBILE */
 @media(max-width:860px){ .prod-grid { grid-template-columns: 1fr 1fr; } }
@@ -827,39 +827,6 @@ footer { background: var(--navy); }
   </div>
 </nav>
 
-<!-- ═══════════ PAGE HERO (Blue) ═══════════ -->
-<!-- <section class="page-hero">
-  <div class="hero-dot-grid"></div>
-  <div style="max-width:1320px;margin:0 auto;width:100%;position:relative;z-index:1;">
-    <div class="reveal">
-      <div class="stag">Engineering-Grade Manufacturing</div>
-    </div>
-    <h1 class="reveal reveal-d1" style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;color:var(--navy);line-height:1.08;letter-spacing:-1.5px;margin-bottom:16px;margin-top:4px;">
-      Industrial Boiler<br>
-      <span class="grad-text">Components</span> &amp; Systems
-    </h1>
-    <p class="reveal reveal-d2" style="font-family:'Times New Roman',Times,serif;font-size:1.05rem;color:var(--body);line-height:1.75;max-width:540px;margin-bottom:36px;">
-      Precision-engineered components for CFBC, FBC, and industrial boiler systems — designed for performance, longevity, and IBR compliance.
-    </p>
-    <div class="reveal reveal-d3" style="display:flex;gap:36px;flex-wrap:wrap;">
-      <div>
-        <div style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-size:1.75rem;font-weight:900;" class="grad-text">22<span>+</span></div>
-        <div style="font-family:'Montserrat',sans-serif;font-size:.73rem;color:var(--body);font-weight:700;letter-spacing:.5px;margin-top:2px;">Product Lines</div>
-      </div>
-      <div style="width:1px;background:var(--border);height:44px;"></div>
-      <div>
-        <div style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-size:1.75rem;font-weight:900;" class="grad-text">500<span>+</span></div>
-        <div style="font-family:'Montserrat',sans-serif;font-size:.73rem;color:var(--body);font-weight:700;letter-spacing:.5px;margin-top:2px;">Projects Delivered</div>
-      </div>
-      <div style="width:1px;background:var(--border);height:44px;"></div>
-      <div>
-        <div style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-size:1.75rem;font-weight:900;" class="grad-text">10<span>+</span></div>
-        <div style="font-family:'Montserrat',sans-serif;font-size:.73rem;color:var(--body);font-weight:700;letter-spacing:.5px;margin-top:2px;">Years Engineering</div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
 <!-- ═══════════ STICKY CATEGORY NAV ═══════════ -->
 <nav class="cat-nav" id="catNav">
   <div class="cat-nav-inner">
@@ -885,7 +852,7 @@ footer { background: var(--navy); }
     <div class="sec-header reveal" style="margin-bottom:48px;">
       <div class="stag">Combustion &amp; Fuel</div>
       <h2 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:var(--navy);letter-spacing:-.5px;line-height:1.2;" class="sec-title-dark">
-        Combustion &amp; Fuel <span class="grad-text">System Components</span>
+        Combustion &amp; Fuel <span class="grad-text" style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;">System Components</span>
       </h2>
       <p class="sec-sub-dark">Precision-engineered for FBC / CFBC boilers — optimizing flame stability, fuel atomization, and bed performance.</p>
     </div>
@@ -941,7 +908,7 @@ Enquire
       <div class="card-lt reveal reveal-d3">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Fuel-Oil-Burner-.avif" alt="Fuel Nozzle" loading="lazy"/>
+          <img src="assets/Fuel Nozzle.jpeg" alt="Fuel Nozzle" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Combustion</span>
         </div>
@@ -1007,6 +974,50 @@ Enquire
         </div>
       </div>
 
+       <div class="card-lt reveal reveal-d2">
+        <div class="card-border-top"></div>
+        <div class="card-img-wrap">
+          <img src="assets/sporger header.jpeg" alt="Sparger Header" loading="lazy"/>
+          <div class="card-img-overlay"></div>
+          <span class="card-cat-badge">Combustion</span>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Sparger Header</div>
+          <div class="card-desc">Robust drag chain and pocket feeder systems for continuous, controlled fuel supply — suitable for coal, biomass, and mixed-fuel operations.</div>
+          <div class="card-tags">
+            <span class="ctag">Drag Chain</span><span class="ctag">Pocket Feeder</span><span class="ctag">Biomass</span><span class="ctag">Coal</span>
+          </div>
+        </div>
+        <div class="card-foot">
+          <span class="card-note">Custom sizing available</span>
+          <button class="enq-btn-blue"
+onclick="openModal('Sparger Header')">
+Enquire
+</button>
+        </div>
+      </div>
+        <div class="card-lt reveal reveal-d1">
+        <div class="card-border-top"></div>
+        <div class="card-img-wrap">
+          <img src="assets/pantchues.jpeg" alt="Pant Chutes" loading="lazy"/>
+          <div class="card-img-overlay"></div>
+          <span class="card-cat-badge">Structural</span>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Pant Chutes</div>
+          <div class="card-desc">Heavy-duty chute systems for controlled fuel and ash material transfer in high-wear boiler plant environments.</div>
+          <div class="card-tags">
+            <span class="ctag">Fuel Transfer</span>
+          </div>
+        </div>
+        <div class="card-foot">
+          <span class="card-note">Custom sizing available</span>
+<button class="enq-btn-orange"
+onclick="openModal('Pant Chutes')">
+Enquire
+</button>         
+</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1019,7 +1030,7 @@ Enquire
     <div class="sec-header reveal" style="margin-bottom:48px;">
       <div class="stag-orange">Structural &amp; Thermal</div>
       <h2 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:var(--navy);letter-spacing:-.5px;line-height:1.2;">
-        Boiler Structural &amp; <span class="grad-orange-text">Thermal Components</span>
+        <span class="grad-orange-text" style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;">Boiler Structural &amp; Thermal Components</span>
       </h2>
       <p class="sec-sub-dark">Heavy-duty structural and heat recovery components engineered for reliability under extreme thermal and pressure conditions.</p>
     </div>
@@ -1118,7 +1129,7 @@ Enquire
       <div class="card-lt reveal reveal-d2" style="border:2px solid rgba(232,98,26,.25);">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Air Preheater.webp" alt="Air Preheater" loading="lazy"/>
+          <img src="assets/Air Preheater.jpeg" alt="Air Preheater" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge" style="color:var(--orange);border-color:rgba(232,98,26,.35);">Key Product</span>
         </div>
@@ -1137,6 +1148,29 @@ Enquire
 </button>          </div>
       </div>
 
+      <div class="card-lt reveal reveal-d2" style="border:2px solid rgba(232,98,26,.25);">
+        <div class="card-border-top"></div>
+        <div class="card-img-wrap">
+          <img src="assets/sample-cooler.png" alt="Sample Cooler" loading="lazy"/>
+          <div class="card-img-overlay"></div>
+          <span class="card-cat-badge" style="color:var(--orange);border-color:rgba(232,98,26,.35);">Key Product</span>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Sample Cooler</div>
+          <div class="card-desc">Efficient cooling systems for reducing high-temperature steam and water samples to safe analysis conditions in boiler applications.</div>          
+          <div class="card-tags">
+    <span class="ctag">Steam Sampling</span>
+  <span class="ctag">Heat Reduction</span>
+  <span class="ctag">Safe Analysis</span>          </div>
+        </div>
+        <div class="card-foot">
+          <span class="card-note" style="color:var(--orange);font-weight:700;">All boiler types</span>
+<button class="enq-btn-orange"
+onclick="openModal('Sample Cooler')">
+Enquire
+</button>          </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1149,7 +1183,7 @@ Enquire
     <div class="sec-header reveal" style="margin-bottom:48px;">
       <div class="stag-green">CFBC &amp; Ash Handling</div>
       <h2 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:var(--navy);letter-spacing:-.5px;line-height:1.2;">
-        CFBC &amp; <span class="grad-green-text">Ash Handling Systems</span>
+       <span class="grad-green-text" style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;"> CFBC &amp; Ash Handling Systems</span>
       </h2>
       <p class="sec-sub-dark">Robust ash management and material transfer systems for high-throughput CFBC and FBC boiler plant operations.</p>
     </div>
@@ -1181,7 +1215,7 @@ Enquire
       <div class="card-lt reveal reveal-d2">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Closed Belt Conveyors.jpeg" alt="Closed Belt Conveyors" loading="lazy"/>
+          <img src="assets/closed belt.png" alt="Closed Belt Conveyors" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Material Handling</span>
         </div>
@@ -1203,7 +1237,7 @@ Enquire
       <div class="card-lt reveal reveal-d3">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/surge-hopper.webp" alt="Surge Hopper" loading="lazy"/>
+          <img src="assets/Surge Hopper.jpeg" alt="Surge Hopper" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Material Flow</span>
         </div>
@@ -1222,32 +1256,12 @@ Enquire
 </button>         </div>
       </div>
 
-      <div class="card-lt reveal reveal-d1">
-        <div class="card-border-top"></div>
-        <div class="card-img-wrap">
-          <img src="assets/pant sutes.png" alt="Pant Chutes" loading="lazy"/>
-          <div class="card-img-overlay"></div>
-          <span class="card-cat-badge">Structural</span>
-        </div>
-        <div class="card-body">
-          <div class="card-name">Pant Chutes</div>
-          <div class="card-desc">Heavy-duty chute systems for controlled fuel and ash material transfer in high-wear boiler plant environments.</div>
-          <div class="card-tags">
-            <span class="ctag">Fuel Transfer</span>
-          </div>
-        </div>
-        <div class="card-foot">
-          <span class="card-note">Custom sizing available</span>
-<button class="enq-btn-orange"
-onclick="openModal('Pant Chutes')">
-Enquire
-</button>         </div>
-      </div>
+    
 
       <div class="card-lt reveal reveal-d2">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Cross-for-Boiler.jpg" alt="Cross Components" loading="lazy"/>
+          <img src="assets/cross.png" alt="Cross Components" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Structural</span>
         </div>
@@ -1280,14 +1294,14 @@ Enquire
       <h2 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1.2;">
         Boiler Piping &amp; <span class="grad-text">Expansion Components</span>
       </h2>
-      <p class="sec-sub-light">compliant piping support and expansion components designed for thermal reliability in demanding boiler environments.</p>
+      <p class="sec-sub-light">ASME-compliant piping support and expansion components designed for thermal reliability in demanding boiler environments.</p>
     </div>
 
     <div class="prod-grid">
 
       <div class="card-dk reveal reveal-d1">
         <div class="card-img-wrap">
-          <img src="assets/Ferrules.jpg" alt="Ferrules" loading="lazy"/>
+          <img src="assets/Ferrules.png" alt="Ferrules" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Piping</span>
         </div>
@@ -1310,7 +1324,7 @@ Enquire
 
       <div class="card-dk reveal reveal-d2">
         <div class="card-img-wrap">
-          <img src="assets/Spring Supports.jpg" alt="Spring Supports" loading="lazy"/>
+          <img src="assets/Spring Supports.jpeg" alt="Spring Supports" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Piping</span>
         </div>
@@ -1331,12 +1345,12 @@ Enquire
 
       <div class="card-dk reveal reveal-d3">
         <div class="card-img-wrap">
-          <img src="assets/Coil Alignment Clamps.png" alt="Coil Alignment Clamps" loading="lazy"/>
+          <img src="assets/Coil Alignment Clamps.jpeg" alt="Coil Shield" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Piping</span>
         </div>
         <div class="card-body">
-          <div class="card-name">Coil Alignment Clamps</div>
+          <div class="card-name">Coil Shield</div>
           <div class="card-desc">Precision clamps for proper alignment and support of boiler coil assemblies, preventing vibration and ensuring stable heat transfer performance.</div>
           <div class="card-tags">
             <span class="ctag">Precision Fit</span><span class="ctag">Coil Alignment</span><span class="ctag">Heat Transfer</span>
@@ -1345,7 +1359,7 @@ Enquire
         <div class="card-foot">
           <span class="card-note">Custom sizing available</span>
 <button class="enq-btn-orange"
-onclick="openModal('Coil Alignment Clamps')">
+onclick="openModal('Coil Shield')">
 Enquire
 </button>         </div>
       </div>
@@ -1362,7 +1376,7 @@ Enquire
     <div class="sec-header reveal" style="margin-bottom:48px;">
       <div class="stag-orange">Duct Components</div>
       <h2 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:var(--navy);letter-spacing:-.5px;line-height:1.2;">
-        Boiler <span class="grad-orange-text">Duct Components</span>
+        <span class="grad-orange-text" style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;"> Boiler Duct Components</span>
       </h2>
       <p class="sec-sub-dark">Industrial-grade flow control and isolation components for air and flue gas duct systems — built for precision and durability.</p>
     </div>
@@ -1372,7 +1386,7 @@ Enquire
       <div class="card-lt reveal reveal-d1">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/boiler-dampers.jpg" alt="Dampers" loading="lazy"/>
+          <img src="assets/Dampers.jpeg" alt="Dampers" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Duct Control</span>
         </div>
@@ -1388,13 +1402,14 @@ Enquire
 <button class="enq-btn-orange"
 onclick="openModal('Dampers')">
 Enquire
-</button>         </div>
+</button>        
+ </div>
       </div>
 
       <div class="card-lt reveal reveal-d2">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/boiler-butterfly-valve.jpg" alt="Butterfly Damper" loading="lazy"/>
+          <img src="assets/Butterfly Damper.jpeg" alt="Butterfly Damper" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Duct Control</span>
         </div>
@@ -1410,13 +1425,14 @@ Enquire
 <button class="enq-btn-orange"
 onclick="openModal('Butterfly Damper')">
 Enquire
-</button>         </div>
+</button>         
+</div>
       </div>
 
       <div class="card-lt reveal reveal-d3">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Guillotine Gate.jpg" alt="Guillotine Gate" loading="lazy"/>
+          <img src="assets/Guillotine Gate.jpeg" alt="Guillotine Gate" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Duct Control</span>
         </div>
@@ -1432,13 +1448,14 @@ Enquire
 <button class="enq-btn-orange"
 onclick="openModal('Guillotine Gate')">
 Enquire
-</button>         </div>
+</button>        
+ </div>
       </div>
 
       <div class="card-lt reveal reveal-d1">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Bellows.webp" alt="Bellows" loading="lazy"/>
+          <img src="assets/Bellows.jpeg" alt="Bellows" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Expansion</span>
         </div>
@@ -1464,7 +1481,7 @@ Enquire
 <!-- ══════════════════════════════════════════
   SEC 6: ENVIRONMENTAL — NAVY DARK BACKGROUND
 ══════════════════════════════════════════ -->
-<section class="sec-navy2 cat-section" id="sec-env">
+<!-- <section class="sec-navy2 cat-section" id="sec-env">
   <div class="sec-inner">
     <div class="sec-header reveal" style="margin-bottom:48px;">
       <div class="stag-light">Environmental</div>
@@ -1494,32 +1511,124 @@ Enquire
 <button class="enq-btn-orange"
 onclick="openModal('Air Pollution Control System')">
 Enquire
-</button>        </div>
+</button>        
+</div>
       </div>
 
-      <!-- <div class="card-dk reveal reveal-d2">
-        <div class="card-img-wrap" style="height:220px;">
-          <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=800&q=80" alt="Special Equipment" loading="lazy"/>
+
+    </div>
+  </div>
+</section> -->
+<section class="sec-navy2 cat-section" id="sec-env">
+  <div class="sec-inner">
+
+    <div class="sec-header reveal" style="margin-bottom:56px;">
+      <div class="stag-light">Environmental</div>
+
+      <h2 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;
+      font-size:clamp(1.8rem,3vw,2.6rem);
+      font-weight:800;
+      color:#fff;
+      letter-spacing:-.5px;
+      line-height:1.2;">
+
+        Environmental &amp;
+        <span class="grad-text">Special Systems</span>
+      </h2>
+
+      <p class="sec-sub-light"
+      style="max-width:720px;">
+        Sustainability-focused engineering solutions for cleaner operations,
+        emission control, and environmentally compliant industrial performance.
+      </p>
+    </div>
+
+    <div class="prod-grid env-grid">
+
+      <div class="card-dk reveal reveal-d1"
+      style="border-color:rgba(86,204,242,.22);">
+
+        <div class="card-img-wrap"
+        style="height:320px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:#0f172a;">
+
+          <img src="assets/Air Pollution Control System.jpg"
+          alt="Air Pollution Control System"
+          loading="lazy"
+
+          style="
+          width:100%;
+          height:100%;
+          object-fit:cover;
+          filter:contrast(1.05) saturate(1.03);
+          " />
+
           <div class="card-img-overlay"></div>
-          <span class="card-cat-badge">Special</span>
+
+          <span class="card-cat-badge"
+          style="color:var(--secondary);">
+            Featured Product
+          </span>
         </div>
-        <div class="card-body">
-          <div class="card-name">Other Special Equipment</div>
-          <div class="card-desc">Custom-engineered products designed to client-specific boiler and process requirements. Our engineering team works directly with your plant team to deliver purpose-built solutions.</div>
-          <div class="card-tags">
-            <span class="ctag">Custom Design</span><span class="ctag">Client-Specific</span><span class="ctag">Engineered-to-Order</span>
+
+        <div class="card-body"
+        style="padding:28px;">
+
+          <div class="card-name"
+          style="font-size:1.35rem;">
+            Air Pollution Control System
+          </div>
+
+          <div class="card-desc"
+          style="font-size:.92rem;
+          line-height:1.8;
+          margin-top:10px;">
+
+           Advanced air pollution control solutions designed for cleaner,
+safer, and environmentally compliant industrial operations.
+Our systems are engineered for efficient dust collection,
+fume extraction, and emission control across diverse industries.
+
+We provide customized solutions including bag filters,
+wet scrubbers, spark arrestors, suction hoods,
+and complete ducting systems tailored to plant requirements
+for reliable and energy-efficient performance.
+
+          </div>
+
+          <div class="card-tags"
+          style="margin-top:18px;">
+            <span class="ctag">Bag Filters</span>
+            <span class="ctag">Wet Scrubber</span>
+            <span class="ctag">Spark Arrestor</span>
+            <span class="ctag">Emission Control</span>
+            <span class="ctag">Dust Collection</span>
           </div>
         </div>
-        <div class="card-foot">
-          <span class="card-note">Fully bespoke</span>
-          <button class="enq-btn-orange">Enquire</button>
+
+        <div class="card-foot"
+        style="padding:18px 28px;">
+
+          <span class="card-note"
+          style="color:var(--secondary);
+          font-weight:700;">
+            CPCB / PCB Compliant
+          </span>
+
+          <button class="enq-btn-orange"
+          onclick="openModal('Air Pollution Control System')">
+            Enquire
+          </button>
+
         </div>
-      </div> -->
+      </div>
 
     </div>
   </div>
 </section>
-
 <!-- ══════════════════════════════════════════
   CTA — Orange (like index CTA)
 ══════════════════════════════════════════ -->
@@ -1529,7 +1638,7 @@ Enquire
     <h2 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-size:clamp(2rem,4.5vw,3.4rem);font-weight:900;color:var(--navy);margin-bottom:16px;letter-spacing:-1px;line-height:1.1;">
       Need a <span class="grad-orange-text">Custom-Engineered</span><br>Product Solution?
     </h2>
-    <p style="font-family:'Times New Roman',Times,serif;color:var(--body);max-width:480px;margin:0 auto 36px;line-height:1.7;font-size:.97rem;">
+    <p style="font-family: 'Inter', sans-serif;color:var(--body);max-width:480px;margin:0 auto 36px;line-height:1.7;font-size:.97rem;">
       Our engineering team specializes in purpose-built boiler components to your exact specifications — from concept to delivery.
     </p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;">
@@ -1562,9 +1671,9 @@ Enquire
     <div>
       <div style="display:flex;flex-direction:column;align-items:flex-start;margin-bottom:12px;">
         <img src="assets/btlogo.png" alt="Logo" style="height:40px;width:auto;margin-bottom:6px;"/>
-        <span style="font-family:'Times New Roman',Times,serif;font-size:12px;font-style:italic;margin-top:1px;letter-spacing:.08em;color:#6B7280;">Your Trusted Performance Partner.</span>
+        <span style="font-family: 'Inter', sans-serif;font-size:12px;font-style:italic;margin-top:1px;letter-spacing:.08em;color:#6B7280;">Your Trusted Performance Partner.</span>
       </div>
-      <p style="font-family:'Times New Roman',Times,serif;font-size:14.5px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:18px">
+      <p style="font-family: 'Inter', sans-serif;font-size:14.5px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:18px">
         Optimizing industrial boiler performance through engineering precision, operational reliability, and long-term sustainability since 2015.
       </p>
       <div style="display:flex;gap:10px">
@@ -1599,25 +1708,35 @@ Enquire
     <div>
       <h4 style="font-family:'Rockwell','Rockwell Nova',Georgia,serif;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-bottom:18px">Contact</h4>
       <p style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#56CCF2;margin-bottom:4px">Office</p>
-      <p style="font-family:'Times New Roman',Times,serif;font-size:14px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:14px">
+      <p style="font-family: 'Inter', sans-serif;font-size:14px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:14px">
         130/1, First Floor, Periyar Street,<br>Erode – 638001, Tamil Nadu
       </p>
       <p style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#56CCF2;margin-bottom:4px">Administrative Office</p>
-      <p style="font-family:'Times New Roman',Times,serif;font-size:14px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:14px">
+      <p style="font-family: 'Inter', sans-serif;font-size:14px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:14px">
         219-A, Ramamoorthy Nagar,<br>Krishnampalayam Road,<br>Erode – 638003, Tamil Nadu
       </p>
       <a href="tel:7708397080" style="display:block;color:#56CCF2;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;margin-bottom:3px">+91 77083 97080</a>
       <a href="tel:04244062193" style="display:block;color:rgba(255,255,255,.5);text-decoration:none;font-family:'Montserrat',sans-serif;font-size:13px;margin-bottom:6px">+91 424 406 2193</a>
-      <a href="mailto:boilertechenergy@gmail.com" style="display:block;color:rgba(255,255,255,.4);text-decoration:none;font-family:'Times New Roman',Times,serif;font-size:13px;word-break:break-all;margin-bottom:2px">boilertechenergy@gmail.com</a>
-      <a href="mailto:director@boilertechenergy.com" style="display:block;color:rgba(255,255,255,.4);text-decoration:none;font-family:'Times New Roman',Times,serif;font-size:13px;word-break:break-all">director@boilertechenergy.com</a>
+      <a href="mailto:boilertechenergy@gmail.com" style="display:block;color:rgba(255,255,255,.4);text-decoration:none;font-family: 'Inter', sans-serif;font-size:13px;word-break:break-all;margin-bottom:2px">boilertechenergy@gmail.com</a>
+      <a href="mailto:director@boilertechenergy.com" style="display:block;color:rgba(255,255,255,.4);text-decoration:none;font-family: 'Inter', sans-serif;font-size:13px;word-break:break-all">director@boilertechenergy.com</a>
     </div>
   </div>
   <div style="max-width:80rem;margin:32px auto 0;padding:20px 2rem 0;border-top:1px solid rgba(255,255,255,.07);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px">
-    <p style="font-size:14px;color:rgba(255,255,255,.3);font-family:'Times New Roman',Times,serif;">© 2026 BoilerTech Energy Services. All rights reserved.</p>
-    <div style="display:flex;gap:20px;flex-wrap:wrap">
+<p style="font-size:14px;color:rgba(255,255,255,.3);font-family: 'Inter', sans-serif;">© 2026 BoilerTech Energy Services. All rights reserved.
+<a href="https://thebranddigitalsolutions.com"
+target="_blank"
+rel="noopener"
+style="
+color:#56CCF2;
+text-decoration:none;
+font-weight:600;
+transition:.2s;
+">
+Designed & Developed by The Brand Digital Solutions
+</a></p>    <div style="display:flex;gap:20px;flex-wrap:wrap">
       <a class="footer-link" href="privacy-policy.html" style="font-size:13px">Privacy Policy</a>
       <a class="footer-link" href="terms of condition.html" style="font-size:13px">Terms of Service</a>
-      <a class="footer-link" href="#" style="font-size:13px">Sitemap</a>
+      <!-- <a class="footer-link" href="#" style="font-size:13px">Sitemap</a> -->
     </div>
   </div>
 </footer>
@@ -1842,7 +1961,7 @@ function closeModal() {
 }
 
 // form script
-const scriptURL = "https://script.google.com/macros/s/AKfycbze0OmB50JchL0btGMtwftznSdaciC_a8PgVhq2mHMskh1x0o-rDliB1dJ51i9twNbX/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbx-QjBClcJl3q4inxgoeFjJ3UlZwoLryAMZ_rXIRdRU_PRWNXNnw66KIPkCSgw99_cY/exec";
 
 const enquiryForm = document.getElementById("enquiryForm");
 
