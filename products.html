@@ -7,6 +7,24 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T7D53ZBC');</script>
+<!-- End Google Tag Manager -->
+     <!--google Analytics-->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NK6R83C2E0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NK6R83C2E0');
+</script>
+    <!-- End Google Analytics -->
 <style>
 /* ═══════════════════════════════════════
    DESIGN TOKENS — same as index page
@@ -38,7 +56,7 @@ h1,h2,h3,h4,h5,h6 {
   font-family: 'Rockwell', 'Rockwell Nova', 'Courier Bold', Georgia, serif;
 }
 
-/* PARAGRAPHS → Times New Roman */
+
 body, p, li, span {
   font-family: 'Inter', sans-serif;
 }
@@ -67,14 +85,7 @@ body {
   transition: box-shadow .3s, background .3s;
 }
 #mainNav.scrolled { box-shadow: 0 4px 32px rgba(47,128,237,.09); }
-/* .logo-tagline-nav {
-  font-family:'Inter', sans-serif;
-   font-size: 11.5px;
-   font-weight: 400;
-  font-style: italic; margin-top: 1px;
-   letter-spacing: .08em;
-  text-align:end; color:#5f6672;
-} */
+
 
 
 .nav-link {
@@ -133,7 +144,7 @@ body {
   background: rgba(47,128,237,.08);
   border: 1px solid rgba(47,128,237,.2);
   padding: 6px 14px; border-radius: 999px;
-  margin-bottom: 18px;
+  margin-bottom: 18px;margin-top:40px;
 }
 .stag::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--primary); }
 
@@ -180,7 +191,7 @@ body {
    STICKY CATEGORY NAV
 ═══════════════════════════════════════ */
 .cat-nav {
-  position: sticky; top: 80px; z-index: 100;
+  position: sticky; top: 100px; z-index: 100;
   background:#16324F;
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(0,0,0,.07);
@@ -651,15 +662,17 @@ footer { background: var(--navy); }
   overflow:hidden; max-height:0;
   transition:max-height .5s cubic-bezier(.4,0,.2,1);
 }
+
+
 #logo{
-  height: 52px;
+  height:58px;
   width: auto;
 }
 
 .logo-tagline-nav {
   font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  font-weight: 500;
+font-size:11.5px;
+font-weight:500;
   font-style: italic;
   letter-spacing: 0.03em;
   color: #6b7280;
@@ -875,7 +888,7 @@ footer { background: var(--navy); }
       <div class="card-lt reveal reveal-d1">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/boiler-air-nozzles.jpg" alt="Air Nozzle" loading="lazy"/>
+          <img src="assets/boiler-air-nozzles.webp" alt="Air Nozzle" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Combustion</span>
         </div>
@@ -898,7 +911,7 @@ Enquire
       <div class="card-lt reveal reveal-d2">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Dp Plates.jpg" alt="DP Plates" loading="lazy"/>
+          <img src="assets/Dp Plates.webp" alt="DP Plates" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Combustion</span>
         </div>
@@ -921,7 +934,7 @@ Enquire
       <div class="card-lt reveal reveal-d3">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Fuel Nozzle.jpeg" alt="Fuel Nozzle" loading="lazy"/>
+          <img src="assets/Fuel Nozzle.webp" alt="Fuel Nozzle" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Combustion</span>
         </div>
@@ -944,7 +957,7 @@ Enquire
       <div class="card-lt reveal reveal-d1">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Boiler-Coal-Mixing-Nozzle.jpg" alt="Mixing Nozzle" loading="lazy"/>
+          <img src="assets/Boiler-Coal-Mixing-Nozzle.webp" alt="Mixing Nozzle" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Combustion</span>
         </div>
@@ -967,7 +980,7 @@ Enquire
       <div class="card-lt reveal reveal-d2">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Fuel Feeders.jpg" alt="Fuel Feeders" loading="lazy"/>
+          <img src="assets/Fuel Feeders.webp" alt="Fuel Feeders" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Combustion</span>
         </div>
@@ -990,7 +1003,7 @@ Enquire
        <div class="card-lt reveal reveal-d2">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/sporger header.jpeg" alt="Sparger Header" loading="lazy"/>
+          <img src="assets/sporger header.webp" alt="Sparger Header" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Combustion</span>
         </div>
@@ -1012,7 +1025,7 @@ Enquire
         <div class="card-lt reveal reveal-d1">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/pantchues.jpeg" alt="Pant Chutes" loading="lazy"/>
+          <img src="assets/pantchues.webp" alt="Pant Chutes" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Structural</span>
         </div>
@@ -1053,7 +1066,7 @@ Enquire
       <div class="card-lt reveal reveal-d1">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Boiler-Fire-Door.jpg" alt="Boiler Doors" loading="lazy"/>
+          <img src="assets/Boiler-Fire-Door.webp" alt="Boiler Doors" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Structural</span>
         </div>
@@ -1076,7 +1089,7 @@ Enquire
       <div class="card-lt reveal reveal-d2">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Silencers.jpg" alt="Silencers" loading="lazy"/>
+          <img src="assets/Silencers.webp" alt="Silencers" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Structural</span>
         </div>
@@ -1098,7 +1111,7 @@ Enquire
       <div class="card-lt reveal reveal-d3">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Aerofoils.jpg" alt="Aerofoils" loading="lazy"/>
+          <img src="assets/Aerofoils.webp" alt="Aerofoils" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Thermal</span>
         </div>
@@ -1120,7 +1133,7 @@ Enquire
       <div class="card-lt reveal reveal-d1">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Recuperator.jpg" alt="Recuperator" loading="lazy"/>
+          <img src="assets/Recuperator.webp" alt="Recuperator" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Heat Recovery</span>
         </div>
@@ -1142,7 +1155,7 @@ Enquire
       <div class="card-lt reveal reveal-d2" style="border:2px solid rgba(232,98,26,.25);">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Air Preheater.jpeg" alt="Air Preheater" loading="lazy"/>
+          <img src="assets/Air Preheater.webp" alt="Air Preheater" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge" style="color:var(--orange);border-color:rgba(232,98,26,.35);">Key Product</span>
         </div>
@@ -1164,7 +1177,7 @@ Enquire
       <div class="card-lt reveal reveal-d2" style="border:2px solid rgba(232,98,26,.25);">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/sample-cooler.png" alt="Sample Cooler" loading="lazy"/>
+          <img src="assets/sample-cooler.webp" alt="Sample Cooler" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge" style="color:var(--orange);border-color:rgba(232,98,26,.35);">Key Product</span>
         </div>
@@ -1206,7 +1219,7 @@ Enquire
       <div class="card-lt reveal reveal-d1">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Bed Ash Cooler.jpeg" alt="Bed Ash Cooler" loading="lazy"/>
+          <img src="assets/Bed Ash Cooler.webp" alt="Bed Ash Cooler" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">CFBC</span>
         </div>
@@ -1228,7 +1241,7 @@ Enquire
       <div class="card-lt reveal reveal-d2">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/closed belt.png" alt="Closed Belt Conveyors" loading="lazy"/>
+          <img src="assets/closed belt.webp" alt="Closed Belt Conveyors" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Material Handling</span>
         </div>
@@ -1250,7 +1263,7 @@ Enquire
       <div class="card-lt reveal reveal-d3">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Surge Hopper.jpeg" alt="Surge Hopper" loading="lazy"/>
+          <img src="assets/Surge Hopper.webp" alt="Surge Hopper" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Material Flow</span>
         </div>
@@ -1274,7 +1287,7 @@ Enquire
       <div class="card-lt reveal reveal-d2">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/cross.png" alt="Cross Components" loading="lazy"/>
+          <img src="assets/cross.webp" alt="Cross Components" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Structural</span>
         </div>
@@ -1314,7 +1327,7 @@ Enquire
 
       <div class="card-dk reveal reveal-d1">
         <div class="card-img-wrap">
-          <img src="assets/Ferrules.png" alt="Ferrules" loading="lazy"/>
+          <img src="assets/Ferrules.webp" alt="Ferrules" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Piping</span>
         </div>
@@ -1337,7 +1350,7 @@ Enquire
 
       <div class="card-dk reveal reveal-d2">
         <div class="card-img-wrap">
-          <img src="assets/Spring Supports.jpeg" alt="Spring Supports" loading="lazy"/>
+          <img src="assets/Spring Supports.webp" alt="Spring Supports" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Piping</span>
         </div>
@@ -1358,7 +1371,7 @@ Enquire
 
       <div class="card-dk reveal reveal-d3">
         <div class="card-img-wrap">
-          <img src="assets/Coil Alignment Clamps.jpeg" alt="Coil Shield" loading="lazy"/>
+          <img src="assets/Coil Alignment Clamps.webp" alt="Coil Shield" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Piping</span>
         </div>
@@ -1399,7 +1412,7 @@ Enquire
       <div class="card-lt reveal reveal-d1">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Dampers.jpeg" alt="Dampers" loading="lazy"/>
+          <img src="assets/Dampers.webp" alt="Dampers" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Duct Control</span>
         </div>
@@ -1422,7 +1435,7 @@ Enquire
       <div class="card-lt reveal reveal-d2">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Butterfly Damper.jpeg" alt="Butterfly Damper" loading="lazy"/>
+          <img src="assets/Butterfly Damper.webp" alt="Butterfly Damper" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Duct Control</span>
         </div>
@@ -1445,7 +1458,7 @@ Enquire
       <div class="card-lt reveal reveal-d3">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Guillotine Gate.jpeg" alt="Guillotine Gate" loading="lazy"/>
+          <img src="assets/Guillotine Gate.webp" alt="Guillotine Gate" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Duct Control</span>
         </div>
@@ -1468,7 +1481,7 @@ Enquire
       <div class="card-lt reveal reveal-d1">
         <div class="card-border-top"></div>
         <div class="card-img-wrap">
-          <img src="assets/Bellows.jpeg" alt="Bellows" loading="lazy"/>
+          <img src="assets/Bellows.webp" alt="Bellows" loading="lazy"/>
           <div class="card-img-overlay"></div>
           <span class="card-cat-badge">Expansion</span>
         </div>
@@ -1568,7 +1581,7 @@ Enquire
         justify-content:center;
         background:#0f172a;">
 
-          <img src="assets/Air Pollution Control System.jpg"
+          <img src="assets/Air Pollution Control System.webp"
           alt="Air Pollution Control System"
           loading="lazy"
 
@@ -2033,5 +2046,10 @@ enquiryForm.addEventListener("submit", async (e) => {
 });
 
 </script>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7D53ZBC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 </body>
 </html>

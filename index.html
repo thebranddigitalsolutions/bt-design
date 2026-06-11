@@ -5,9 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Boilertech Energy Services – Your Trusted Performance Partner</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<link rel="icon" type="image/png" href="favicon-title.png">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T7D53ZBC');</script>
+<!-- End Google Tag Manager -->
+     <!--google Analytics-->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NK6R83C2E0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NK6R83C2E0');
+</script>
+    <!-- End Google Analytics -->
 <style>
 /* ═══════════════════════════════════════
    DESIGN TOKENS
@@ -327,7 +347,7 @@ body.loader-active {
   font-size: 15px;
   font-style: italic;
   color: var(--body);
-  letter-spacing: .06em;
+  letter-spacing: .04em;
   animation: fadeUp .65s .38s both;
 }
 
@@ -335,7 +355,7 @@ body.loader-active {
 .loader-progress-wrap {
   margin-top: 34px;
   width: 180px;
-  height: 3px;
+  height: 2px;
   background: rgba(47,128,237,.15);
   border-radius: 3px;
   overflow: hidden;
@@ -363,10 +383,10 @@ body.loader-active {
 @keyframes fadeUp    { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
 
 @media(max-width:768px){
-  .loader-logo-wrap{width:120px;height:120px}
+  .loader-logo-wrap{width:120px;height:50px}
   .loader-logo{width:76px}
-  .loader-title{font-size:28px;letter-spacing:3px}
-  .loader-sub{font-size:13px;letter-spacing:5px}
+  .loader-title{font-size:28px;letter-spacing:2px}
+  .loader-sub{font-size:13px;letter-spacing:2px}
   .loader-tagline{font-size:13px}
   .ring1{width:420px;height:420px}
   .ring2{width:300px;height:300px}
@@ -391,24 +411,17 @@ body.loader-active {
 }
 #mainNav.scrolled { box-shadow: 0 4px 32px rgba(47,128,237,.09); }
 
-/* .logo-tagline-nav {
-  font-family:' Montserrat', sans-serif;
-   font-size: 11.5px;
-   font-weight: 400;
-  font-style: italic; margin-top: 1px;
-   letter-spacing: .08em;
-  text-align:end; color:#5f6672;
-} */
+
 
 #logo{
-  height: 52px;
+  height:58px;
   width: auto;
 }
 
 .logo-tagline-nav {
   font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  font-weight: 500;
+font-size:11.5px;
+font-weight:500;
   font-style: italic;
   letter-spacing: 0.03em;
   color: #6b7280;
@@ -904,7 +917,7 @@ footer { background: var(--navy); }
           </div>
         </div>
       </div>
-      <img src="assets/hero-img.jpg" alt="Boilertech plant" class="w-full rounded-[12px] object-cover h-[220px] sm:h-[260px] md:h-[300px] lg:h-[220px]" style="display:block;">
+      <img src="assets/hero-img.webp" alt="Boilertech plant" class="w-full rounded-[12px] object-cover h-[220px] sm:h-[260px] md:h-[300px] lg:h-[220px]" style="display:block;">
     </div>
   </div>
   <div style="position:absolute;bottom:18px;left:50%;transform:translateX(-50%);z-index:2;animation:bounce 2s infinite">
@@ -946,17 +959,17 @@ footer { background: var(--navy); }
         <div class="absolute -top-10 -left-10 w-56 h-56 bg-blue-100 rounded-full blur-3xl opacity-40"></div>
         <div class="grid grid-cols-2 gap-4 relative z-10">
           <div class="col-span-2 rounded-[24px] overflow-hidden shadow-2xl h-[320px] sm:h-[380px] lg:h-[420px] group relative">
-            <img src="assets/home-1.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Industrial Boiler" />
+            <img src="assets/home-1.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Industrial Boiler" />
             <div class="absolute inset-0 bg-gradient-to-t from-[#16324F]/70 via-transparent to-transparent"></div>
             <div class="absolute bottom-5 left-5">
               <span class="px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/20 text-white text-[10px] tracking-[.18em] font-bold uppercase" style="font-family:'Montserrat',sans-serif;">Industrial Boiler Systems</span>
             </div>
           </div>
           <div class="rounded-[20px] overflow-hidden shadow-xl h-[170px] sm:h-[210px] group">
-            <img src="assets/home-2.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="">
+            <img src="assets/home-2.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="">
           </div>
           <div class="rounded-[20px] overflow-hidden shadow-xl h-[170px] sm:h-[210px] group">
-            <img src="assets/home-3.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="" >
+            <img src="assets/home-3.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="" >
           </div>
         </div>
       </div>
@@ -1007,7 +1020,7 @@ footer { background: var(--navy); }
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
       <div class="svc-card reveal-up delay-1">
-        <div class="svc-img-wrap"><img src="assets/BOILER PERFORMANCE.png" class="service-img" alt="Boiler Performance Study"></div>
+        <div class="svc-img-wrap"><img src="assets/BOILER PERFORMANCE.webp" class="service-img" alt="Boiler Performance Study"></div>
         <div class="svc-card-body">
           <div class="svc-icon"><svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008Z"/></svg></div>
           <h3 class="svc-h3">Boiler Performance &amp; Operational Studies</h3>
@@ -1015,7 +1028,7 @@ footer { background: var(--navy); }
         </div>
       </div>
       <div class="svc-card reveal-up delay-2">
-        <div class="svc-img-wrap"><img src="assets/Shutdown&Audit.png" class="service-img" alt="Shutdown audit"></div>
+        <div class="svc-img-wrap"><img src="assets/Shutdown&Audit.webp" class="service-img" alt="Shutdown audit"></div>
         <div class="svc-card-body">
           <div class="svc-icon"><svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"/></svg></div>
           <h3 class="svc-h3">Shutdown &amp; Audit Services</h3>
@@ -1023,7 +1036,7 @@ footer { background: var(--navy); }
         </div>
       </div>
       <div class="svc-card reveal-up delay-3">
-        <div class="svc-img-wrap"><img src="assets/TROUBLE SHOOT.png" class="service-img" alt="Root Cause Analysis"></div>
+        <div class="svc-img-wrap"><img src="assets/TROUBLE SHOOT.webp" class="service-img" alt="Root Cause Analysis"></div>
         <div class="svc-card-body">
           <div class="svc-icon"><svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg></div>
           <h3 class="svc-h3">Troubleshooting &amp; Root Cause Analysis</h3>
@@ -1031,7 +1044,7 @@ footer { background: var(--navy); }
         </div>
       </div>
       <div class="svc-card reveal-up delay-4">
-        <div class="svc-img-wrap"><img src="assets/CAPACITY ENHANCEMENT.png" class="service-img" alt="Capacity Enhancement"></div>
+        <div class="svc-img-wrap"><img src="assets/CAPACITY ENHANCEMENT.webp" class="service-img" alt="Capacity Enhancement"></div>
         <div class="svc-card-body">
           <div class="svc-icon"><svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605"/></svg></div>
           <h3 class="svc-h3">Capacity Enhancement &amp; Re-Engineering</h3>
@@ -1039,7 +1052,7 @@ footer { background: var(--navy); }
         </div>
       </div>
       <div class="svc-card reveal-up delay-5">
-        <div class="svc-img-wrap"><img src="assets/ENERGY AND FULE.png" class="service-img" alt="Energy Optimization"></div>
+        <div class="svc-img-wrap"><img src="assets/ENERGY AND FULE.webp" class="service-img" alt="Energy Optimization"></div>
         <div class="svc-card-body">
           <div class="svc-icon"><svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg></div>
           <h3 class="svc-h3">Energy &amp; Fuel Optimization</h3>
@@ -1047,7 +1060,7 @@ footer { background: var(--navy); }
         </div>
       </div>
       <div class="svc-card reveal-up delay-6">
-        <div class="svc-img-wrap"><img src="assets/CFD ANALYSOR.png" class="service-img" alt="CFD Analysis"></div>
+        <div class="svc-img-wrap"><img src="assets/CFD ANALYSOR.webp" class="service-img" alt="CFD Analysis"></div>
         <div class="svc-card-body">
           <div class="svc-icon"><svg class="icon-svg" fill="none" stroke="#E8621A" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0H3"/></svg></div>
           <h3 class="svc-h3">CFD Analysis &amp; IBR Engineering</h3>
@@ -1079,23 +1092,23 @@ footer { background: var(--navy); }
     </div>
     <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
       <div class="showcase-img-card reveal-scale delay-1">
-        <img src="assets/AFBC.png" alt="AFBC Boiler" onerror="this.src='https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=600&q=80'"/>
+        <img src="assets/AFBC.webp" alt="AFBC Boiler" onerror="this.src='https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=600&q=80'"/>
         <div class="ovl"></div><div class="showcase-label">AFBC Boiler System</div>
       </div>
       <div class="showcase-img-card reveal-scale delay-2">
-        <img src="assets/ENERGY PLANT OPERATION.png" alt="Energy Plant" onerror="this.src='https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80'"/>
+        <img src="assets/ENERGY PLANT OPERATION.webp" alt="Energy Plant" onerror="this.src='https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80'"/>
         <div class="ovl"></div><div class="showcase-label" style="background:rgba(86,204,242,.85)">Energy Plant Operations</div>
       </div>
       <div class="showcase-img-card reveal-scale delay-3">
-        <img src="assets/CFBC BOILER.png" alt="CFBC Boiler" onerror="this.src='https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=600&q=80'"/>
+        <img src="assets/CFBC BOILER.webp" alt="CFBC Boiler" onerror="this.src='https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=600&q=80'"/>
         <div class="ovl"></div><div class="showcase-label">CFBC Boiler Plant</div>
       </div>
       <div class="showcase-img-card reveal-scale delay-4">
-        <img src="assets/STEAM GENERATION.png" alt="Steam Generation" onerror="this.src='https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80'"/>
+        <img src="assets/STEAM GENERATION.webp" alt="Steam Generation" onerror="this.src='https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80'"/>
         <div class="ovl"></div><div class="showcase-label" style="background:rgba(86,204,242,.85)">Steam Generation Unit</div>
       </div>
       <div class="showcase-img-card reveal-scale delay-5">
-        <img src="assets/THERMAL ENGNEER.png" alt="Thermal Engineering" onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80'"/>
+        <img src="assets/THERMAL ENGNEER.webp" alt="Thermal Engineering" onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80'"/>
         <div class="ovl"></div><div class="showcase-label">Thermal Engineering</div>
       </div>
       <div class="showcase-cta-card reveal-scale delay-6">
@@ -1117,7 +1130,7 @@ footer { background: var(--navy); }
     </div>
     <div class="grid lg:grid-cols-5 gap-5 mb-5">
       <div class="lg:col-span-2 why-featured reveal-left" style="background: rgba(0,0,0,0.35);transform: translateY(-4px);box-shadow: 0 12px 30px rgba(0,0,0,0.08);">
-        <img src="assets/cdf analysis.jpg" alt="CFD Analysis"/>
+        <img src="assets/cdf analysis.webp" alt="CFD Analysis"/>
         <div class="why-featured-overlay"></div>
         <div class="why-featured-content">
           <div style="width:40px;height:40px;border-radius:10px;background:rgba(12,122,75,.2);border:1px solid rgba(12,122,75,.35);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
@@ -1218,43 +1231,43 @@ footer { background: var(--navy); }
     <!-- First 12 logos (always visible) -->
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3" id="clientsInitialGrid">
       <div class="client-card reveal-scale delay-1">
-        <div class="client-logo"><img src="bt client logos/ultratech-cement-logo.png" alt="Ultratech"/></div>
+        <div class="client-logo"><img src="bt client logos/ultratech-cement-logo.webp" alt="Ultratech"/></div>
         <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Ultratech Cements</div>
       </div>
       <div class="client-card reveal-scale delay-2">
-        <div class="client-logo"><img src="bt client logos/jubli.png" alt="Jubilant"/></div>
+        <div class="client-logo"><img src="bt client logos/jubli.webp" alt="Jubilant"/></div>
         <div style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:var(--navy);text-align:center;">Jubilant Life Sciences</div>
       </div>
       <div class="client-card reveal-scale delay-3">
-        <div class="client-logo"><img src="bt client logos/adani-logo.svg" alt="Adani"/></div>
+        <div class="client-logo"><img src="bt client logos/adani-logo.webp" alt="Adani"/></div>
         <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Adani Cement</div>
       </div>
       <div class="client-card reveal-scale delay-4">
-        <div class="client-logo"><img src="bt client logos/ceat logo.png" alt="CEAT"/></div>
+        <div class="client-logo"><img src="bt client logos/ceat logo.webp" alt="CEAT"/></div>
         <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">CEAT Tyres Ltd</div>
       </div>
       <div class="client-card reveal-scale delay-5">
-        <div class="client-logo"><img src="bt client logos/star paper mills.jpg" alt="Star Paper"/></div>
+        <div class="client-logo"><img src="bt client logos/star paper mills.webp" alt="Star Paper"/></div>
         <div style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:var(--navy);text-align:center;">Star Paper Mills</div>
       </div>
       <div class="client-card reveal-scale delay-6">
-        <div class="client-logo"><img src="bt client logos/Ambuja cement.webp.png" alt="Ambuja"/></div>
+        <div class="client-logo"><img src="bt client logos/Ambuja cement.webp" alt="Ambuja"/></div>
         <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Ambuja Cements</div>
       </div>
       <div class="client-card reveal-scale delay-7">
-        <div class="client-logo"><img src="bt client logos/hira-ferro.png" alt="Hira Ferro"/></div>
+        <div class="client-logo"><img src="bt client logos/hira-ferro.webp" alt="Hira Ferro"/></div>
         <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Hira Ferro Alloys</div>
       </div>
       <div class="client-card reveal-scale delay-8">
-        <div class="client-logo"><img src="bt client logos/parrys sugar.jpg" alt="Parry"/></div>
+        <div class="client-logo"><img src="bt client logos/parrys sugar.webp" alt="Parry"/></div>
         <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Parry Sugars</div>
       </div>
       <div class="client-card reveal-scale delay-1">
-        <div class="client-logo"><img src="bt client logos/Sunflag Iron & Steel.png" alt="Sunflag"/></div>
+        <div class="client-logo"><img src="bt client logos/Sunflag Iron & Steel.webp" alt="Sunflag"/></div>
         <div style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:var(--navy);text-align:center;">Sunflag Iron &amp; Steel</div>
       </div>
       <div class="client-card reveal-scale delay-2">
-        <div class="client-logo"><img src="bt client logos/neuland_laboratories_limited_logo.jpg" alt="Neuland"/></div>
+        <div class="client-logo"><img src="bt client logos/neuland_laboratories_limited_logo.webp" alt="Neuland"/></div>
         <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Neuland Labs</div>
       </div>
       <div class="client-card reveal-scale delay-3">
@@ -1262,30 +1275,30 @@ footer { background: var(--navy); }
         <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Shyam Metallics</div>
       </div>
       <div class="client-card reveal-scale delay-4">
-        <div class="client-logo"><img src="bt client logos/ck birla group.jpg" alt="Orient Paper"/></div>
+        <div class="client-logo"><img src="bt client logos/ck birla group.webp" alt="Orient Paper"/></div>
         <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Orient Paper Mills</div>
       </div>
     </div>
 
     <!-- Extra logos -->
     <div class="clients-extra-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3" id="clientsExtraGrid">
-      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/oeg india.png" alt="OEG India"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Operational Energy Group India Ltd</div></div>
-      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/sripathi.jpg" alt="Sripathi"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Sripathi Papers Ltd</div></div>
-      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/rashmi group.jpg" alt="Rashmi"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Rashmi Metallicks</div></div>
-      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/nsl textile.png" alt="NSL"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">NSL Textiles</div></div>
-      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/sks ispat.jpg" alt="SKS Ispat"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">SKS Ispat &amp; Power Ltd</div></div>
-      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/GR group.jpg" alt="GR Krishna"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">GR Krishna Ferro Alloys</div></div>
-      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/shakambhari group.jpg" alt="Shakambhari"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Shakambhari Ispat &amp; Power</div></div>
-      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/mivaan.jpg" alt="Mivaan"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Mivaan Steel Limited</div></div>
-      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/NR Group.png" alt="NR Group"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">NR Ispat &amp; Power Pvt Ltd</div></div>
-      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/Kraft papers Pvt Ltd, Assam.webp" alt="Kraft Papers"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Kraft Papers Pvt Ltd</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/oeg india.webp" alt="OEG India"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Operational Energy Group India Ltd</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/sripathi.webp" alt="Sripathi"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Sripathi Papers Ltd</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/rashmi group.webp" alt="Rashmi"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Rashmi Metallicks</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/nsl textile.webp" alt="NSL"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">NSL Textiles</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/sks ispat.webp" alt="SKS Ispat"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">SKS Ispat &amp; Power Ltd</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/GR group.webp" alt="GR Krishna"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">GR Krishna Ferro Alloys</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/shakambhari group.webp" alt="Shakambhari"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Shakambhari Ispat &amp; Power</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/mivaan.webp" alt="Mivaan"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Mivaan Steel Limited</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/NR Group.webp" alt="NR Group"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">NR Ispat &amp; Power Pvt Ltd</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/Kraft papers Pvt Ltd, Assam." alt="Kraft Papers"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Kraft Papers Pvt Ltd</div></div>
       <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/bluecraft.webp" alt="Bluecraft"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Blue Craft Agro Pvt Ltd</div></div>
       <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/Nano Green Power Pvt Ltd.webp" alt="Nano Green"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Nano Green Power Pvt Ltd</div></div>
       <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/NAKODA-GROUP-LOGO.webp" alt="Nakoda"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Nakoda Ispat &amp; Power Ltd</div></div>
-      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/minera.png" alt="Minera"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Minera Steels &amp; Power Pvt Ltd</div></div>
-      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/mayur.png" alt="Kanpur Edibles"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Kanpur Edibles, Kanpur</div></div>
-      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/msp-logo.png" alt="MSP"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">MSP Metallics</div></div>
-      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/sakthi group.png" alt="Sakthi"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Shakti Sugars Ltd, T.N</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/minera.webp" alt="Minera"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Minera Steels &amp; Power Pvt Ltd</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/mayur.webp" alt="Kanpur Edibles"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Kanpur Edibles, Kanpur</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/msp-logo.webp" alt="MSP"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">MSP Metallics</div></div>
+      <div class="client-card extra-card"><div class="client-logo"><img src="bt client logos/sakthi group.webp" alt="Sakthi"/></div><div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:var(--navy);text-align:center;">Shakti Sugars Ltd, T.N</div></div>
     </div>
     
     <div class="text-center mt-10 reveal-up delay-2" id="viewAllBtnWrap">
@@ -1364,7 +1377,7 @@ footer { background: var(--navy); }
   <div class="max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
     <div class="reveal-up delay-1">
       <div style="display:flex;flex-direction:column;align-items:flex-start;margin-bottom:12px;">
-        <img src="assets/btlogo.png" alt="Logo" style="height:40px;width:auto;margin-bottom:6px;"/>
+        <img src="assets/btlogo.webp" alt="Logo" style="height:40px;width:auto;margin-bottom:6px;"/>
         <span style="font-family: 'Inter', sans-serif;font-size:12px;font-style:italic;margin-top:1px;letter-spacing:.08em;text-align:right;color:#6B7280;">Your Trusted Performance Partner.</span>
       </div>
       <p style="font-family: 'Inter', sans-serif;font-size:14.5px;line-height:1.85;color:rgba(255,255,255,.45);margin-bottom:18px">
@@ -1741,5 +1754,10 @@ Designed & Developed by The Brand Digital Solutions
 })();
 </script>
 <script>lucide.createIcons();</script>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7D53ZBC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 </body>
 </html>
